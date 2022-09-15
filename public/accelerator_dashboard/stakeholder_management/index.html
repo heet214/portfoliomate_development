@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Portfoliomate / Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/portfoliomate.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../../configurations/common.css">
+    <script src="js/index.js"></script>
+    <script src="js/mobile_functions.js"></script>
+    <script src="../../configurations/local_dbfunctions.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- update the version number as needed -->
+
+    <script defer src="/__/firebase/9.9.2/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.9.2/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-performance-compat.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+</head>
+
+<body>
+    <div id="main_holder">
+        <div class="main_menu_holder shadow">
+            <div class="logo_menu_item">
+                <img class="img-fluid" src="../../assets/portfoliomate.png">
+            </div>
+
+            <div class="menu_item_divider"></div>
+            <div class="main_menu_item active">
+                <i class="fa-solid fa-user-group"></i>
+                <div class="label">Stakeholders</div>
+            </div>
+
+            <div class="menu_item_divider"></div>
+            <div class="main_menu_item inactive">
+                <i style="font-size: xx-large;" class="fa-solid fa-cubes-stacked"></i>
+                <div class="label">Work</div>
+            </div>
+
+
+            <div class="menu_item_divider"></div>
+            <div class="main_menu_item inactive">
+                <i class="fa-solid fa-user-group"></i>
+                <div class="label">Stakeholders</div>
+            </div>
+
+        </div>
+        <div id="stakeholder_management_holder">
+            <h3 id="header">Stakeholder Management</h3>
+            <div id="stakeholder_management_operator_holder">
+                <div id="stakeholder_type_holder">
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div id="stakeholder_type_holder_header_holder">
+                        <div id="stakeholder_type_holder_header">Stakeholders</div>
+                        <i class="fa-solid fa-circle-plus" onclick="location.replace('../../onboarding/index.html')">
+                        </i>
+                    </div>
+                    <div>
+                        <button id="stakeholder_type_menu_opener" onclick="toggle_mobile_stakeholder_type()"
+                            class="btn mobile_view_only">Select Stakeholders <i style="margin-left: 5vw;"
+                                class="fa-sharp fa-solid fa-caret-down"></i></button>
+                        <ul id="stakeholder_type_list" class="list-group-flush">
+                            <li class="list-group-item justify-content-between align-items-center"
+                                onclick="stakeholder_selected('startup')">
+                                <i class="fa-regular fa-folder"></i>
+                                Startups
+                                <span class="badge badge-pill startup-pill"></span>
+                            </li>
+                            <li class="list-group-item justify-content-between align-items-center"
+                                onclick="stakeholder_selected('fund-vc-pe')">
+                                <i class="fa-regular fa-folder"></i>
+                                Investor [ Fund / VC / PE ]
+                                <span class="badge badge-pill investor-pill"></span>
+                            </li>
+                            <li class="list-group-item justify-content-between align-items-center" onclick="stakeholder_selected('innovador')">
+                                <i class="fa-regular fa-folder"></i>
+                                Entreprenuer / Innovator
+                                <span class="badge badge-pill innovador-pill"></span>
+                            </li>
+
+                            <li class="list-group-item justify-content-between align-items-center">
+                                <i class="fa-regular fa-folder"></i>
+                                University/ College/ Research Center
+                                <span class="badge badge-pill">0</span>
+                            </li>
+
+
+                            <li class="list-group-item justify-content-between align-items-center">
+                                <i class="fa-regular fa-folder"></i>
+                                Incubation Center
+                                <span class="badge badge-pill">0</span>
+                            </li>
+
+                            <li class="list-group-item justify-content-between align-items-center">
+                                <i class="fa-regular fa-folder"></i>
+                                Operator / Investment Banker
+                                <span class="badge badge-pill">0</span>
+                            </li>
+
+                            <li class="list-group-item justify-content-between align-items-center">
+                                <i class="fa-regular fa-folder"></i>
+                                Operator / Venture Partner
+                                <span class="badge badge-pill">0</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stakeholder_view_holder" id="startup_view_holder" style="display: none;">
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div class="stakeholder_holder">
+                        <div>
+                            <div class="stakeholder_list_holder">
+                                <div class="dfb">
+                                    <input class="form-control stakeholders_search_box" id="startup_list_search_box"
+                                        type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                                    <div class="dropdown">
+                                        <button style="background:#3342AE;border-color: #3342AE;"
+                                            class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Status List
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <h6 class="dropdown-header">Just for Refernece</h6>
+                                            <div class="dropdown-item"><span class="badge bg-notready0">Profile
+                                                    Created</span>
+                                            </div>
+                                            <div class="dropdown-item"><span class="badge bg-notready1">Profile
+                                                    Completed</span>
+                                            </div>
+                                            <div class="dropdown-item"><span class="badge bg-notready2">Under
+                                                    Engagement</span>
+                                            </div>
+                                            <div class="dropdown-item"><span class="badge bg-notready3">Engaged</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-wrap">
+                                    <table id="startup_table" class="table table-hover stakeholder_table">
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Sector</th>
+                                                <th>Location</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="startup_profile_holder" style="display: none;">
+                                <h2> Startup Name</h2>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="stakeholder_view_holder" id="investors_view_holder" style="display: none;">
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div class="stakeholder_holder">
+                        <div>
+                            <div class="stakeholder_list_holder">
+                                <div class="dfb">
+                                    <input class="form-control stakeholders_search_box" id="investor_list_search_box"
+                                        type="text" placeholder="Search Investors" style="margin-bottom: 1vh;">
+                                    <div class="dropdown">
+                                        <button style="background:#3342AE;border-color: #3342AE;"
+                                            class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Status List
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <h6 class="dropdown-header">Just for Refernece</h6>
+                                            <div class="dropdown-item"><span class="badge bg-notready0">Profile
+                                                    Created</span>
+                                            </div>
+                                            <div class="dropdown-item"><span class="badge bg-notready1">Onboarding
+                                                    Completed</span>
+                                            </div>
+                                            <div class="dropdown-item"><span class="badge bg-notready2">Under
+                                                    Engagement</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="investor_table" class="table table-hover stakeholder_table">
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th>Sector</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="stakeholder_view_holder" id="innovadors_view_holder" style="display: none;">
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div id="divider"></div>
+                    <div class="stakeholder_holder">
+                        <div>
+                            <div class="stakeholder_list_holder">
+                                <div class="dfb">
+                                    <input class="form-control stakeholders_search_box" id="innovador_list_search_box"
+                                        type="text" placeholder="Search People" style="margin-bottom: 1vh;">
+                                    <div class="dropdown">
+                                        <button style="background:#3342AE;border-color: #3342AE;"
+                                            class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Status List
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <h6 class="dropdown-header">Just for Refernece</h6>
+                                            <div class="dropdown-item"><span class="badge bg-notready0">Profile
+                                                    Created</span>
+                                            </div>
+                                            <div class="dropdown-item"><span class="badge bg-notready1">Profile
+                                                    Verified</span>
+                                            </div>
+                                            <div class="dropdown-item"><span class="badge bg-notready2">Under
+                                                    Engagement</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="innovadors_table" class="table table-hover stakeholder_table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Company</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="modal" id="complete_startup_profile" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="display: block;">
+                        <h5 class="modal-title" style="color: grey;">Complete Profile</h5>
+                        <h6 id="company_name"></h6>
+                    </div>
+
+                    <i onclick="close_complete_startup_profile_dialog()"
+                        style="cursor: pointer;font-size: larger;color: #3342AE;" class="fa-solid fa-circle-xmark"></i>
+                </div>
+                <div class="modal-body">
+                    <form id="#complete_startup_fundamental_details_form">
+                        <div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Fundamenatal Details</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted" id="createdon_label">Created On</h6>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Stakeholder Type</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="stakeholder_type"
+                                            placeholder="Stakeholder Type" disabled aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">CIN</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="cin" placeholder="Enter CIN"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Company Name</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="company_name"
+                                            placeholder="Company Name" disabled aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Incorporated At</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="stakeholder_location"
+                                            placeholder="Country Of Incorporation" disabled aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Brand Name</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="brand_name"
+                                            placeholder="Enter Brand Name" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Website</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="website"
+                                            placeholder="Enter Brand Name" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Logo Url</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="company_logo"
+                                            placeholder="Enter Image Url" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" style="margin-top: 1vh;" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer" style="display: none;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn"
+                        style="color: white;background-color: #3342AE;background: #3342AE;">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="loader_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-top: 30vh;">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align: center!important;">
+                    <h5 style="font-size: large!important;" class="modal-title" id="exampleModalLabel">Hold On, Sending/
+                        Receiving Data from Severs.</span>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div style="height:2vh;width:1px"></div>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" style="color: rgb(50, 52, 122);" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <div style="height:2vh;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $('document').ready(function () {
+
+
+            if (is_logged_in()) 
+            {
+                
+                setup_stakeholder_management_operator_module(true, []);
+                //align_stakeholder_object();
+                /*
+                $('#loader_modal').modal();
+                setup_stakeholders_type_list();
+                var url_string = location.href;
+                var url = new URL(url_string);
+                var action = url.searchParams.get("action");
+                console.log(url,action);
+                if(action)
+                {
+                    stakeholder_selected(action);
+                }    
+                */
+            }
+            else {
+
+            }
+        });
+
+        function detectMob() {
+            return ((window.innerWidth <= 480));
+        }
+    </script>
+</body>
+
+</html>

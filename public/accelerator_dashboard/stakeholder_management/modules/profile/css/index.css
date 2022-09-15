@@ -1,0 +1,75 @@
+.main_holder{
+    background: #f0f0f0;
+    height: 100vh;
+    width: 100vw;
+    font-family: Poppins;
+}
+
+.side_menu{
+    background: white;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-radius: 5px;
+}
+
+.side_menu_block_holder{
+    margin-right: 2vw;
+    margin-left: 2vw;
+    height: 90vh;
+    overflow-y: scroll;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-radius: 5px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link
+{
+    background-color: #3342AE!important;
+    color: white!important;
+}
+
+.nav-pills a{
+    color: #3342AE!important;
+}
+
+.main_menu_holder {
+    height: 7vh;
+    width: 100vw;
+    background: white;
+    display: inline-flex;
+}
+
+.logo_menu_item {
+    height: 5vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
+}
+
+.logo_menu_item img {
+    height: 5vh;
+}
+
+.main_menu_item{
+    text-align: center;
+    padding-left: 1vw;   
+    padding-right: 1vw;
+    cursor: pointer;
+    font-size: small;
+}
+
+.main_menu_item i{
+   color: #3342AE;
+}
+
+.main_menu_item :hover{
+  
+  background: #f0f0f0;
+}
+
+.profile_management_holder{
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
