@@ -1,0 +1,146 @@
+[debug] [2022-09-16T10:00:02.928Z] ----------------------------------------------------------------------
+[debug] [2022-09-16T10:00:02.931Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2022-09-16T10:00:02.932Z] CLI Version:   11.8.1
+[debug] [2022-09-16T10:00:02.932Z] Platform:      win32
+[debug] [2022-09-16T10:00:02.932Z] Node Version:  v18.0.0
+[debug] [2022-09-16T10:00:02.958Z] Time:          Fri Sep 16 2022 15:30:02 GMT+0530 (India Standard Time)
+[debug] [2022-09-16T10:00:02.958Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-09-16T10:00:03.217Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-09-16T10:00:03.219Z] > authorizing via signed-in user (yuvithakur7707@gmail.com)
+[debug] [2022-09-16T10:00:03.219Z] [iam] checking project portfoliomate-e14a8 for permissions ["firebase.projects.get"]
+[debug] [2022-09-16T10:00:03.222Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions [none]
+[debug] [2022-09-16T10:00:03.222Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions x-goog-quota-user=projects/portfoliomate-e14a8
+[debug] [2022-09-16T10:00:03.223Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-09-16T10:00:09.040Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions 200
+[debug] [2022-09-16T10:00:09.041Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-09-16T10:00:09.046Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8 [none]
+[debug] [2022-09-16T10:00:09.623Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8 200
+[debug] [2022-09-16T10:00:09.624Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8 {"projectId":"portfoliomate-e14a8","projectNumber":"410908578001","displayName":"Portfoliomate","name":"projects/portfoliomate-e14a8","resources":{"hostingSite":"portfoliomate-e14a8","storageBucket":"portfoliomate-e14a8.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_6510af68-a9e4-4728-b6f9-ec3a64fabcea"}
+[info] 
+[info] === Serving from 'D:\internship\Portfoliomate\portfoliomate_development'...
+[info] 
+[debug] [2022-09-16T10:00:09.682Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/portfoliomate-e14a8/sites 
+[warn] !  Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"18\". Using node@18 from host."}}
+[debug] [2022-09-16T10:00:09.786Z] defaultcredentials: writing to file C:\Users\Hp\AppData\Roaming\firebase\yuvithakur7707_gmail_com_application_default_credentials.json
+[debug] [2022-09-16T10:00:09.795Z] Setting GAC to C:\Users\Hp\AppData\Roaming\firebase\yuvithakur7707_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\Hp\\AppData\\Roaming\\firebase\\yuvithakur7707_gmail_com_application_default_credentials.json"}}
+[debug] [2022-09-16T10:00:09.797Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8/adminSdkConfig [none]
+[debug] [2022-09-16T10:00:10.545Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8/adminSdkConfig 200
+[debug] [2022-09-16T10:00:10.545Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8/adminSdkConfig {"projectId":"portfoliomate-e14a8","storageBucket":"portfoliomate-e14a8.appspot.com","locationId":"us-central"}
+[debug] [2022-09-16T10:00:11.158Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/portfoliomate-e14a8/sites 200
+[debug] [2022-09-16T10:00:11.158Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/portfoliomate-e14a8/sites {"sites":[{"name":"projects/portfoliomate-e14a8/sites/portfoliomate-e14a8","defaultUrl":"https://portfoliomate-e14a8.web.app","appId":"1:410908578001:web:b4ea082fd4482e801535f0","type":"DEFAULT_SITE"}]}
+[debug] [2022-09-16T10:00:11.159Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8/webApps/1:410908578001:web:b4ea082fd4482e801535f0/config [none]
+[debug] [2022-09-16T10:00:12.496Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8/webApps/1:410908578001:web:b4ea082fd4482e801535f0/config 200
+[debug] [2022-09-16T10:00:12.496Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8/webApps/1:410908578001:web:b4ea082fd4482e801535f0/config {"projectId":"portfoliomate-e14a8","appId":"1:410908578001:web:b4ea082fd4482e801535f0","storageBucket":"portfoliomate-e14a8.appspot.com","locationId":"us-central","apiKey":"AIzaSyCUk2ijQQSjGaZ4VrDFjq6iHTDdWxhe1GM","authDomain":"portfoliomate-e14a8.firebaseapp.com","messagingSenderId":"410908578001","measurementId":"G-C2KPMT6C8Z"}
+[info] i  functions: Watching "D:\internship\Portfoliomate\portfoliomate_development\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"D:\\internship\\Portfoliomate\\portfoliomate_development\\functions\" for Cloud Functions..."}}
+[info] i  hosting: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[debug] [2022-09-16T10:00:12.541Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2022-09-16T10:00:19.418Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-09-16T10:00:19.418Z] Building nodejs source
+[debug] [2022-09-16T10:00:19.418Z] Analyzing nodejs backend spec
+[debug] [2022-09-16T10:00:19.421Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-09-16T10:00:22.017Z] Serving at port 9005
+
+[debug] [2022-09-16T10:00:22.811Z] Got response from /__/functions.yaml {"endpoints":{},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-09-16T10:00:22.824Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: . {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: ."}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] "GET /onBoarding/ HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] \"GET /onBoarding/ HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] "GET /onBoarding/js/index.js HTTP/1.1" 200 - "http://localhost:5000/onBoarding/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] \"GET /onBoarding/js/index.js HTTP/1.1\" 200 - \"http://localhost:5000/onBoarding/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] "GET /onBoarding/js/onboarding_db_functions.js HTTP/1.1" 404 - "http://localhost:5000/onBoarding/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] \"GET /onBoarding/js/onboarding_db_functions.js HTTP/1.1\" 404 - \"http://localhost:5000/onBoarding/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] "GET /assets/sectors_list.js HTTP/1.1" 200 - "http://localhost:5000/onBoarding/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] \"GET /assets/sectors_list.js HTTP/1.1\" 200 - \"http://localhost:5000/onBoarding/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] "GET /configurations/upload_image.js HTTP/1.1" 404 - "http://localhost:5000/onBoarding/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] \"GET /configurations/upload_image.js HTTP/1.1\" 404 - \"http://localhost:5000/onBoarding/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] "GET /onBoarding/css/index.css HTTP/1.1" 200 - "http://localhost:5000/onBoarding/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:00:55 +0000] \"GET /onBoarding/css/index.css HTTP/1.1\" 200 - \"http://localhost:5000/onBoarding/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:00:56 +0000] "GET /__/firebase/init.js?useEmulator=true HTTP/1.1" 200 - "http://localhost:5000/onBoarding/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:00:56 +0000] \"GET /__/firebase/init.js?useEmulator=true HTTP/1.1\" 200 - \"http://localhost:5000/onBoarding/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:01:07 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:01:07 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:01:07 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/js/index.js HTTP/1.1" 200 - "http://localhost:5000/accelerator_dashboard/stakeholder_management/modules/profile/index.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:01:07 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/js/index.js HTTP/1.1\" 200 - \"http://localhost:5000/accelerator_dashboard/stakeholder_management/modules/profile/index.html\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:02:22 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:02:22 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:05:29 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:05:29 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:05:29 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/js/index.js HTTP/1.1" 200 - "http://localhost:5000/accelerator_dashboard/stakeholder_management/modules/profile/index.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:05:29 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/js/index.js HTTP/1.1\" 200 - \"http://localhost:5000/accelerator_dashboard/stakeholder_management/modules/profile/index.html\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:05:44 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:05:44 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:05:58 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:05:58 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:06:06 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:06:06 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:06:12 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:06:12 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:06:13 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:06:13 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:06:13 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:06:13 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:06:33 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:06:33 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:06:57 +0000] "GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:06:57 +0000] \"GET /accelerator_dashboard/stakeholder_management/modules/profile/index.html HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[debug] [2022-09-16T10:07:30.017Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/9.9.2/firebase-app-compat.js.map [none]
+[debug] [2022-09-16T10:07:30.192Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/9.9.2/firebase-auth-compat.js.map [none]
+[debug] [2022-09-16T10:07:30.205Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/9.9.2/firebase-database-compat.js.map [none]
+[debug] [2022-09-16T10:07:30.215Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore-compat.js.map [none]
+[debug] [2022-09-16T10:07:30.226Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/9.9.2/firebase-functions-compat.js.map [none]
+[debug] [2022-09-16T10:07:30.234Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/9.9.2/firebase-messaging-compat.js.map [none]
+[warn] !  hosting: Could not load Firebase SDK firebase-app-compat.js.map v9.9.2, check your internet connection. 
+[debug] Failed to make request to https://www.gstatic.com/firebasejs/9.9.2/firebase-app-compat.js.map
+[warn] !  hosting: Could not load Firebase SDK firebase-auth-compat.js.map v9.9.2, check your internet connection. 
+[debug] Failed to make request to https://www.gstatic.com/firebasejs/9.9.2/firebase-auth-compat.js.map
+[warn] !  hosting: Could not load Firebase SDK firebase-database-compat.js.map v9.9.2, check your internet connection. 
+[debug] Failed to make request to https://www.gstatic.com/firebasejs/9.9.2/firebase-database-compat.js.map
+[warn] !  hosting: Could not load Firebase SDK firebase-firestore-compat.js.map v9.9.2, check your internet connection. 
+[debug] Failed to make request to https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore-compat.js.map
+[warn] !  hosting: Could not load Firebase SDK firebase-functions-compat.js.map v9.9.2, check your internet connection. 
+[debug] Failed to make request to https://www.gstatic.com/firebasejs/9.9.2/firebase-functions-compat.js.map
+[warn] !  hosting: Could not load Firebase SDK firebase-messaging-compat.js.map v9.9.2, check your internet connection. 
+[debug] Failed to make request to https://www.gstatic.com/firebasejs/9.9.2/firebase-messaging-compat.js.map
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] "GET /__/firebase/9.9.2/firebase-app-compat.js.map HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] \"GET /__/firebase/9.9.2/firebase-app-compat.js.map HTTP/1.1\" - - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] "GET /__/firebase/9.9.2/firebase-firestore-compat.js.map HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] \"GET /__/firebase/9.9.2/firebase-firestore-compat.js.map HTTP/1.1\" - - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] "GET /__/firebase/9.9.2/firebase-messaging-compat.js.map HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] \"GET /__/firebase/9.9.2/firebase-messaging-compat.js.map HTTP/1.1\" - - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] "GET /__/firebase/9.9.2/firebase-auth-compat.js.map HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] \"GET /__/firebase/9.9.2/firebase-auth-compat.js.map HTTP/1.1\" - - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] "GET /__/firebase/9.9.2/firebase-functions-compat.js.map HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] \"GET /__/firebase/9.9.2/firebase-functions-compat.js.map HTTP/1.1\" - - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] "GET /__/firebase/9.9.2/firebase-database-compat.js.map HTTP/1.1" - - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [16/Sep/2022:10:07:56 +0000] \"GET /__/firebase/9.9.2/firebase-database-compat.js.map HTTP/1.1\" - - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\""}}
+[info] Shutting down...
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[debug] [2022-09-16T10:08:22.165Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\Hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2022-09-16T10:08:33.629Z] ----------------------------------------------------------------------
+[debug] [2022-09-16T10:08:33.632Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2022-09-16T10:08:33.633Z] CLI Version:   11.8.1
+[debug] [2022-09-16T10:08:33.633Z] Platform:      win32
+[debug] [2022-09-16T10:08:33.633Z] Node Version:  v18.0.0
+[debug] [2022-09-16T10:08:33.660Z] Time:          Fri Sep 16 2022 15:38:33 GMT+0530 (India Standard Time)
+[debug] [2022-09-16T10:08:33.661Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-09-16T10:08:33.937Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-09-16T10:08:33.938Z] > authorizing via signed-in user (yuvithakur7707@gmail.com)
+[debug] [2022-09-16T10:08:33.938Z] [iam] checking project portfoliomate-e14a8 for permissions ["firebase.projects.get"]
+[debug] [2022-09-16T10:08:33.943Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions [none]
+[debug] [2022-09-16T10:08:33.943Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions x-goog-quota-user=projects/portfoliomate-e14a8
+[debug] [2022-09-16T10:08:33.944Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-09-16T10:08:33.960Z] [iam] error while checking permissions, command may fail: FirebaseError: Failed to make request to https://cloudresourcemanager.googleapis.com/v1/projects/portfoliomate-e14a8:testIamPermissions
+[debug] [2022-09-16T10:08:33.964Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8 [none]
+[debug] [2022-09-16T10:08:45.019Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects/portfoliomate-e14a8
+[debug] [2022-09-16T10:08:50.083Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\Hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -125,3 +125,18 @@ function openurl(url)
     window.location.href =url;
 }
 
+// Yuvraj Started here
+
+$(document).ready(function(){ //Make script DOM ready
+    $('#user_type_select').change(function() { //jQuery Change Function
+        var opval = $(this).val(); //Get value from select element
+        if(opval=="existing_user"){ //Compare it and if true
+            $('#existing_user_modal').modal("show"); //Open Modal
+            get_stakeholders('innovador', {}, populate_innovadors_table );
+        }
+    });
+});
+
+
+
+
