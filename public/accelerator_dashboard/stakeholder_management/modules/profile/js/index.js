@@ -9,6 +9,7 @@ $('document').ready(function () {
         //console.log(url);
         //alert(stakeholder_id);
         get_stakeholders('single_profile', { id: stakeholder_id }, populate_profile);
+        
     }
     else {
 
@@ -23,9 +24,9 @@ function detectMob() {
     return ((window.innerWidth <= 480));
 }
 
-function populate_profile(stakeholder) {
+function populate_profile(stakeholder) {    
     console.log("clientside", stakeholder);
-
+    console.log
     if (stakeholder.status == "Profile Created") {
 
     }
@@ -124,4 +125,78 @@ function openurl(url)
     alert(url);
     window.location.href =url;
 }
+
+// Yuvraj Started here
+
+$(document).ready(function(){ //Make script DOM ready
+    $('#user_type_select').change(function() { //jQuery Change Function
+        var opval = $(this).val(); //Get value from select element
+        if(opval=="existing_user"){ //Compare it and if true
+            $('#existing_user_modal').modal("show"); //Open Modal
+           
+        }
+    });
+});
+
+$(document).ready(function(){ //Make script DOM ready
+    $('#check').click(function() { //jQuery Change Function
+        opval = is_submission_valid()
+        if(opval != ''){ 
+
+            alert("Please fill the following :"+ opval)
+        }
+        else{
+            $('#submit').attr("disabled", false) 
+            alert("That works fine , you can now submit")
+        }
+    });
+});
+
+function is_submission_valid(){
+    alert('working')
+    var arr = []
+    if(document.getElementById('cin').value == ''){
+       arr.push("Cin");
+    }
+    if(document.getElementById('brand_name').value == ''){
+        arr.push("Brand Name");
+     }
+    if(document.getElementById('website').value == ''){
+        arr.push("Website");
+     }
+    if(document.getElementById('description').value == ''){
+        arr.push("Description");
+     }
+    if(document.getElementById('pincode').value == ''){
+        arr.push("Pincode");
+     }
+    if(document.getElementById('address').value == ''){
+        arr.push("Address");
+     }
+    console.log(arr);
+    return arr;
+}
+
+/* function populate_existing_people(people) 
+{
+    $("#stakeholders_people_list").show();
+    
+    if(people.stakeholder_type == 'innovador' ){
+        for(i=0;i<people.length;i++)
+    {
+        console.log(people[i]);
+        var li=
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">'+
+            '<div>'+
+                '<a class="my-0" style="cursor:pointer;" href="'+people[i].linkedIn+'"  onclick="openurl("'+people[i].linkedIn+'")">'+people[i].name+'</a><br>'+
+                '<small class="text-muted">'+people[i].designation+'</small>'+
+            '</div>'+
+            '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("'+people[i].id+'")">Edit</span>'+
+        '</li>';
+        $("#stakeholders_people_list").append(li);
+    }
+    }
+    
+} */
+
 
