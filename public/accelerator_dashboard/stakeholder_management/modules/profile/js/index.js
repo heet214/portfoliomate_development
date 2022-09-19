@@ -1,4 +1,5 @@
 var stakeholder_id;
+var data_innovadors;
 $('document').ready(function () {
     if (is_logged_in()) {
         $('#stakeholders_no_people').hide();
@@ -15,6 +16,8 @@ $('document').ready(function () {
 
     }
 });
+
+
 
 function is_logged_in() {
     return true;
@@ -133,7 +136,15 @@ $(document).ready(function(){ //Make script DOM ready
         var opval = $(this).val(); //Get value from select element
         if(opval=="existing_user"){ //Compare it and if true
             $('#existing_user_modal').modal("show"); //Open Modal
-           
+            $.ajax({
+                url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    data_innovadors = data;
+                    display_data_innovadors(data_innovadors);
+                }
+              });
         }
     });
 });
@@ -177,26 +188,51 @@ function is_submission_valid(){
     return arr;
 }
 
-/* function populate_existing_people(people) 
-{
-    $("#stakeholders_people_list").show();
-    
-    if(people.stakeholder_type == 'innovador' ){
-        for(i=0;i<people.length;i++)
+function display_data_innovadors(data_innovadors){
+    for(i=0;i<data_innovadors.length;i++)
     {
-        console.log(people[i]);
-        var li=
-        '<li class="list-group-item d-flex justify-content-between lh-condensed">'+
-            '<div>'+
-                '<a class="my-0" style="cursor:pointer;" href="'+people[i].linkedIn+'"  onclick="openurl("'+people[i].linkedIn+'")">'+people[i].name+'</a><br>'+
-                '<small class="text-muted">'+people[i].designation+'</small>'+
-            '</div>'+
-            '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("'+people[i].id+'")">Edit</span>'+
-        '</li>';
-        $("#stakeholders_people_list").append(li);
-    }
-    }
-    
-} */
+        if(data_innovadors[i].stakeholder_type == "innovador")
+        {
 
-
+            for (var i = 0; i < data_innovadors.length; i++) 
+            {
+                var status_badge_color = 'bg-danger';
+                if (data_innovadors[i].status == 'Profile Created') 
+                {
+                    itemshow[0] = '';
+                    itemshow[1] = '';
+                    status_badge_color = 'bg-notready0';
+                }
+        
+                table.append(
+                    '<tr class="shadow">' +
+                    "<td>" +
+                    '<div class="company_logo_title_holder">' +
+                    '<div class="circular--landscape">' +
+                    '<img src="' + innovadors[i].logo + '">' +
+                    '</div>' +
+                    '<div class="company_title_holder">' + data_innovadors[i].name + '</div>' +
+                    '</div>' +
+                    "</td>" +
+                    "<td>" + data_innovadors[i].parent.company_name + "</td>" +
+                    "<td>" + data_innovadors[i].stakeholder_location + "</td>" +
+                    '<td><span class="badge ' + status_badge_color + '">' + data_innovadors[i].status + '</span></td>' +
+                    '<td>' +
+                    '<div class="dropdown dropleft">' +
+                    '<i class="fa-solid fa-ellipsis" class="dropdown-toggle" data-toggle="dropdown"></i>' +
+                    '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                    '<h6 class="dropdown-header">Just for ' + data_innovadors[i].name + '</h6>' +
+                    '<div onclick="complete_stakeholder_profile(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[0] + ' ">Complete Profile</div>' +
+                    '<div onclick="view_stakeholder_profile(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[1] + '">View Profile</div>' +
+                    '<div onclick="start_enagagement(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[2] + '">Start Enagement</div>' +
+                    '<div onclick="view_enagement(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[3] + '">View Enagagements</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</td>' +
+                    "</tr>");
+            }
+        
+            $("#populate_existing_people").append(li);
+        }
+    }
+}
