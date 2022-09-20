@@ -1,5 +1,7 @@
 var stakeholder_id;
 var data_innovadors;
+var temp_stakeholder;
+var count=1;
 $('document').ready(function () {
     if (is_logged_in()) {
         $('#stakeholders_no_people').hide();
@@ -28,6 +30,7 @@ function detectMob() {
 }
 
 function populate_profile(stakeholder) {    
+    temp_stakeholder=stakeholder;
     console.log("clientside", stakeholder);
     console.log
     if (stakeholder.status == "Profile Created") {
@@ -190,15 +193,16 @@ function is_submission_valid(){
     console.log(arr);
     return arr;
 }
-
+var data_innovadors_search_by_id=[];
 function display_data_innovadors(data_innovadors){
     var table = $("#populate_existing_people");
     table.empty();
-    var itemshow = ['disabled', 'disabled', 'disabled', 'disabled'];
     for(i=0;i<data_innovadors.length;i++)
     {
         if(data_innovadors[i].stakeholder_type == "innovador")
         {
+            data_innovadors_search_by_id.push(data_innovadors[i]);
+
             console.log(data_innovadors[i]);
         
                 table.append(
@@ -214,7 +218,7 @@ function display_data_innovadors(data_innovadors){
                      +"</td>" +
                      '<div>' +
                     "<td>" + data_innovadors[i].stakeholder_location + "</td>" +'</div>' +
-                    '<td><Button class="btn btn-primary" onclick="save_user_data(\'' + data_innovadors[i] + '\' )"> Add </Button></td>' +
+                    '<td><Button class="btn btn-primary" onclick="profile(\'' + data_innovadors[i].id + '\')"> Add </Button></td>' +
                     '<td>' +
                     '</div>' +
                     '</td>' +
@@ -223,6 +227,55 @@ function display_data_innovadors(data_innovadors){
         }
 }
 
+function profile(id) {
+    count=1;
+    
+    if(window.location.href.indexOf('#populate_existing_people') != -1)
+     {
+        $('#populate_existing_people').modal('show');
+      }
+      console.log(data_innovadors_search_by_id);
+    for(i=0;i<data_innovadors_search_by_id.length;i++)
+    {
+        if(id==data_innovadors_search_by_id[i].id)
+        {
+            var temp=data_innovadors_search_by_id[i];
+            console.log(temp)
+        }
+    }
+    for(i=0;i<temp_stakeholder.people.length;i++)
+    {
+        console.log(temp_stakeholder.people[i].id)
+        if(temp_stakeholder.people[i].id==temp.id){
+            count=0;
+            console.log(count);
+            break;
+        }   
+
+    }
+    if(count==1){
+        count=1;
+        console.log(count);
+        temp_stakeholder.people.push(temp);
+       
+    }
+     console.log(temp_stakeholder);
+    url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: temp_stakeholder,
+            dataType: 'json',
+            success: function (data) {
+                console.log("https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder", data);
+            },
+            error: function (request, error) {
+                $('#loader_modal').modal('hide');
+                location.reload();
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+}
 function addperson() {
     if (stakeholder_id) {
         var type = "innovador";
@@ -281,43 +334,23 @@ function addExistingPerson(id,name,designation,linkedIn) {
 }*/
 
 
-function save_user_data(data){
-    console.log(data);
-    data.id = moment().format('YYYY|MMM|DD,HH:mm A');
-    data.created_on =
-    {
-        day: moment().format('DD'),
-        month: moment().format('MM'),
-        year: moment().format('YYYY'),
-        time: moment().format('hh:mm A'),
-        datetime: moment().toISOString(),
-        showdate: moment().format('DD MMM, YYYY hh:mm A')
-    };
 
-    data.id = data.stakeholder_type + "_" + data.id;
-    console.log(data);
-    $.ajax({
-        url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/createStakeHolder',
-        type: 'POST',
-        data: data,
-        dataType: 'json',
-        success: function (data) 
-        {
-          if(parent_stakeholder)
-                    {
-                        if(parent_stakeholder.people)
-                        {
-                            var people=parent_stakeholder.people;
-                            people.push(data);
-                        }
-                        else 
-                        {
-                            var people=[];
-                            people.push(data);
-                            parent_stakeholder.people=people;
-                        }
-                        updatestakeHolder('startup',parent_stakeholder,open_stakeholder_profile);
-                    }  
-        }
- })
-} 
+function save_user_data(){
+
+        url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            //data: data_object,
+            dataType: 'json',
+            success: function (data) {
+                console.log("https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder", data);
+                stakeholders = data;
+            },
+            error: function (request, error) {
+                $('#loader_modal').modal('hide');
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    
+    }    
