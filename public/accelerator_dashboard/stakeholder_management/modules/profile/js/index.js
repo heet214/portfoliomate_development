@@ -142,6 +142,7 @@ $(document).ready(function(){ //Make script DOM ready
                 dataType: 'json',
                 success: function (data) {
                     data_innovadors = data;
+                    console.log(data_innovadors)
                     display_data_innovadors(data_innovadors);
                 }
               });
@@ -189,50 +190,33 @@ function is_submission_valid(){
 }
 
 function display_data_innovadors(data_innovadors){
+    var table = $("#populate_existing_people");
+    table.empty();
+    var itemshow = ['disabled', 'disabled', 'disabled', 'disabled'];
     for(i=0;i<data_innovadors.length;i++)
     {
         if(data_innovadors[i].stakeholder_type == "innovador")
         {
-
-            for (var i = 0; i < data_innovadors.length; i++) 
-            {
-                var status_badge_color = 'bg-danger';
-                if (data_innovadors[i].status == 'Profile Created') 
-                {
-                    itemshow[0] = '';
-                    itemshow[1] = '';
-                    status_badge_color = 'bg-notready0';
-                }
+            console.log(data_innovadors[i]);
         
                 table.append(
                     '<tr class="shadow">' +
                     "<td>" +
                     '<div class="company_logo_title_holder">' +
-                    '<div class="circular--landscape">' +
-                    '<img src="' + innovadors[i].logo + '">' +
-                    '</div>' +
-                    '<div class="company_title_holder">' + data_innovadors[i].name + '</div>' +
+                    '<div class="wrapper">' +
+                    '<img class= "image--cover" src="' + data_innovadors[i].logo + '">' +
                     '</div>' +
                     "</td>" +
-                    "<td>" + data_innovadors[i].parent.company_name + "</td>" +
-                    "<td>" + data_innovadors[i].stakeholder_location + "</td>" +
-                    '<td><span class="badge ' + status_badge_color + '">' + data_innovadors[i].status + '</span></td>' +
+                    "<td>" +
+                    '<div class="company_title_holder">' + data_innovadors[i].designation + '</div>'
+                     +"</td>" +
+                     '<div>' +
+                    "<td>" + data_innovadors[i].stakeholder_location + "</td>" +'</div>' +
+                    '<td><Button class="btn btn-danger"> Add </Button></td>' +
                     '<td>' +
-                    '<div class="dropdown dropleft">' +
-                    '<i class="fa-solid fa-ellipsis" class="dropdown-toggle" data-toggle="dropdown"></i>' +
-                    '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
-                    '<h6 class="dropdown-header">Just for ' + data_innovadors[i].name + '</h6>' +
-                    '<div onclick="complete_stakeholder_profile(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[0] + ' ">Complete Profile</div>' +
-                    '<div onclick="view_stakeholder_profile(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[1] + '">View Profile</div>' +
-                    '<div onclick="start_enagagement(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[2] + '">Start Enagement</div>' +
-                    '<div onclick="view_enagement(\'' + data_innovadors[i].id + '\')" class="dropdown-item ' + itemshow[3] + '">View Enagagements</div>' +
-                    '</div>' +
                     '</div>' +
                     '</td>' +
                     "</tr>");
             }
-        
-            $("#populate_existing_people").append(li);
         }
-    }
 }
