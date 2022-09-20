@@ -104,6 +104,8 @@ function addperson() {
     else alert("Try Again, In a Minute");
 }
 
+
+
 function populate_people(people) 
 {
     $("#stakeholders_people_list").show();
@@ -111,7 +113,7 @@ function populate_people(people)
     for(i=0;i<people.length;i++)
     {
         console.log(people[i]);
-        var li=
+        var li= 
         '<li class="list-group-item d-flex justify-content-between lh-condensed">'+
             '<div>'+
                 '<a class="my-0" style="cursor:pointer;" href="'+people[i].linkedIn+'"  onclick="openurl("'+people[i].linkedIn+'")">'+people[i].name+'</a><br>'+
@@ -204,7 +206,7 @@ function display_data_innovadors(data_innovadors){
                     "<td>" +
                     '<div class="company_logo_title_holder">' +
                     '<div class="wrapper">' +
-                    '<img class= "image--cover" src="' + data_innovadors[i].logo + '">' +
+                    '<img class= "image--cover" src="' + data_innovadors[i].logo +  '">' +
                     '</div>' +
                     "</td>" +
                     "<td>" +
@@ -212,7 +214,7 @@ function display_data_innovadors(data_innovadors){
                      +"</td>" +
                      '<div>' +
                     "<td>" + data_innovadors[i].stakeholder_location + "</td>" +'</div>' +
-                    '<td><Button class="btn btn-danger"> Add </Button></td>' +
+                    '<td><Button class="btn btn-primary" onclick="save_user_data(\'' + data_innovadors[i] + '\' )"> Add </Button></td>' +
                     '<td>' +
                     '</div>' +
                     '</td>' +
@@ -220,3 +222,102 @@ function display_data_innovadors(data_innovadors){
             }
         }
 }
+
+function addperson() {
+    if (stakeholder_id) {
+        var type = "innovador";
+        if ($("#add_new_person_input").val().length > 3) {
+            window.location.href = "../../../../onboarding/?parent_id=" + stakeholder_id + "?stakeholder_type=" + type + "?name=" + $("#add_new_person_input").val();
+        }
+        else alert("Enter Valid Name");
+
+    }
+    else alert("Try Again, In a Minute");
+}
+
+function addExistingPerson(id,name,designation,linkedIn) {
+    console.log(name)
+    console.log(designation)
+    console.log(id)
+    console.log(linkedIn)
+    console.log(linkedIn.name)
+    
+       
+        var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">'+
+            '<div>'+
+                '<a class="my-0" style="cursor:pointer;" href="'+linkedIn+'"  onclick="openurl("'+linkedIn+'")">'+name+'</a><br>'+
+                '<small class="text-muted">'+designation+'</small>'+
+            '</div>'+
+            '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("'+id+'")">Edit</span>'+
+        '</li>';
+        $("#stakeholders_people_list").append(li); 
+}
+
+/* function populate_profile(stakeholder_type, parent) {
+    //alert(stakeholder_type);
+    console.log("populate_profile", parent);
+    var params = get_params_from_url();
+    switch (stakeholder_type) {
+        case 'innovador':
+            {
+                console.log('parent', parent);
+                if (parent == null) {
+                    //alert("Calling Stakeholders");
+                    get_stakeholders('single_profile', { id: params.parent_id, internal_type: "innovador" }, populate_profile);
+                }
+                else {
+                    $('#loader_modal').modal('hide');
+                    parent_stakeholder = parent;
+                    user_data.organization = parent;
+                    $('#organization_name').val(parent.company_name);
+                    $('#person_name').val(params.name);
+                    $('#stakeholder_type option[value=' + stakeholder_type + ']').attr('selected', 'selected');
+                    $('#stakeholder_type').trigger("change");
+                }
+                break;
+            }
+    }
+}*/
+
+
+function save_user_data(data){
+    console.log(data);
+    data.id = moment().format('YYYY|MMM|DD,HH:mm A');
+    data.created_on =
+    {
+        day: moment().format('DD'),
+        month: moment().format('MM'),
+        year: moment().format('YYYY'),
+        time: moment().format('hh:mm A'),
+        datetime: moment().toISOString(),
+        showdate: moment().format('DD MMM, YYYY hh:mm A')
+    };
+
+    data.id = data.stakeholder_type + "_" + data.id;
+    console.log(data);
+    $.ajax({
+        url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/createStakeHolder',
+        type: 'POST',
+        data: data,
+        dataType: 'json',
+        success: function (data) 
+        {
+          if(parent_stakeholder)
+                    {
+                        if(parent_stakeholder.people)
+                        {
+                            var people=parent_stakeholder.people;
+                            people.push(data);
+                        }
+                        else 
+                        {
+                            var people=[];
+                            people.push(data);
+                            parent_stakeholder.people=people;
+                        }
+                        updatestakeHolder('startup',parent_stakeholder,open_stakeholder_profile);
+                    }  
+        }
+ })
+} 
