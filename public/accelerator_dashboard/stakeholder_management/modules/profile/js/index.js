@@ -1,6 +1,7 @@
 var stakeholder_id;
 var data_innovadors;
 var temp_stakeholder;
+var people_list_count = 0 ;
 var count=1;
 $('document').ready(function () {
     if (is_logged_in()) {
@@ -69,6 +70,7 @@ function populate_profile(stakeholder) {
             $('#stakeholders_no_people').hide();
             //alert("populating people");
             populate_people(stakeholder.people);
+            people_list_count = 1;
         }
         else {
             $('#stakeholders_no_people').show();
@@ -190,6 +192,9 @@ function is_submission_valid(){
     if(document.getElementById('address').value == ''){
         arr.push("Address");
      }
+    if(people_list_count == 0){
+        arr.push("Add People")
+    }
     console.log(arr);
     return arr;
 }
@@ -243,6 +248,8 @@ function profile(id) {
             console.log(temp)
         }
     }
+    console.log(temp_stakeholder);
+    if(temp_stakeholder.people){   
     for(i=0;i<temp_stakeholder.people.length;i++)
     {
         console.log(temp_stakeholder.people[i].id)
@@ -253,11 +260,22 @@ function profile(id) {
         }   
 
     }
+    }
+    else{
+        temp_stakeholder.people=[];
+    }
     if(count==1){
         count=1;
         console.log(count);
         temp_stakeholder.people.push(temp);
+        alert("Data Pushed");
+        close_modal();
+        
        
+    }
+    else{
+        alert("User already Exists !!!");
+        close_modal();
     }
      console.log(temp_stakeholder);
     url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
@@ -268,6 +286,8 @@ function profile(id) {
             dataType: 'json',
             success: function (data) {
                 console.log("https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder", data);
+                location.reload()
+                
             },
             error: function (request, error) {
                 $('#loader_modal').modal('hide');
@@ -307,50 +327,6 @@ function addExistingPerson(id,name,designation,linkedIn) {
         $("#stakeholders_people_list").append(li); 
 }
 
-/* function populate_profile(stakeholder_type, parent) {
-    //alert(stakeholder_type);
-    console.log("populate_profile", parent);
-    var params = get_params_from_url();
-    switch (stakeholder_type) {
-        case 'innovador':
-            {
-                console.log('parent', parent);
-                if (parent == null) {
-                    //alert("Calling Stakeholders");
-                    get_stakeholders('single_profile', { id: params.parent_id, internal_type: "innovador" }, populate_profile);
-                }
-                else {
-                    $('#loader_modal').modal('hide');
-                    parent_stakeholder = parent;
-                    user_data.organization = parent;
-                    $('#organization_name').val(parent.company_name);
-                    $('#person_name').val(params.name);
-                    $('#stakeholder_type option[value=' + stakeholder_type + ']').attr('selected', 'selected');
-                    $('#stakeholder_type').trigger("change");
-                }
-                break;
-            }
-    }
-}*/
-
-
-
-function save_user_data(){
-
-        url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
-        $.ajax({
-            url: url,
-            type: 'POST',
-            //data: data_object,
-            dataType: 'json',
-            success: function (data) {
-                console.log("https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder", data);
-                stakeholders = data;
-            },
-            error: function (request, error) {
-                $('#loader_modal').modal('hide');
-                alert("Request: " + JSON.stringify(request));
-            }
-        });
-    
-    }    
+function close_modal(){
+    $('#existing_user_modal').modal('hide')
+}
