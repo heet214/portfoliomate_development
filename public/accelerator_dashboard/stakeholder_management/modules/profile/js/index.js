@@ -330,3 +330,14 @@ function addExistingPerson(id,name,designation,linkedIn) {
 function close_modal(){
     $('#existing_user_modal').modal('hide')
 }
+
+/* function proceed_pressed() {
+    var data = {};
+    $("#onboarding_form").serializeArray().map(function (x) { data[x.name] = x.value; });
+    //console.log(data);
+
+    if (is_submission_valid(data)) {
+        //console.log(user_data);
+        save_user_data(user_data);
+    }
+} */
