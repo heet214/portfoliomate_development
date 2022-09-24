@@ -154,7 +154,7 @@
                                 </div>
                                 <div class="col-md-8 order-md-2">
                                     <h4 class="mb-3">Basic Details</h4>
-                                    <form name="Form" id="#complete_startup_fundamental_details_form">
+                                    <form id="#complete_startup_details">
                                         <div>
                                             <div class="card">
                                                 <div class="card-body">
@@ -174,7 +174,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" id="basic-addon1">CIN</span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="cin" name="cin"
+                                                        <input type="text" class="form-control" onchange="set_cin(event)" id="cin" name="cin"
                                                             placeholder="Enter CIN" aria-label="Username"
                                                             aria-describedby="basic-addon1">
                                                     </div>
@@ -233,7 +233,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">Description</span>
                                                         </div>
-                                                        <textarea id="description" class="form-control" name="description"
+                                                        <textarea id="description" class="form-control" onchange="set_description(event)" id="description" name="description"
                                                             aria-label="With textarea"></textarea>
                                                     </div>
 
@@ -242,7 +242,7 @@
                                                             <span class="input-group-text"
                                                                 id="basic-addon1">Pincode</span>
                                                         </div>
-                                                        <input type="text" id="pincode" class="form-control" name="pincode"
+                                                        <input type="text" id="pincode" class="form-control" onchange="set_pincode(event)" id="pincode" name="pincode"
                                                             placeholder="Enter PIN" aria-label="Username"
                                                             aria-describedby="basic-addon1">
                                                     </div>
@@ -251,7 +251,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">Address</span>
                                                         </div>
-                                                        <textarea type="text" id="address" class="form-control" name="address"
+                                                        <textarea type="text" id="address" class="form-control" onchange="set_address(event)" id="address" name="address"
                                                             aria-label="With textarea"></textarea>
                                                     </div>
                                                 </div>
@@ -259,7 +259,7 @@
                                         </div>
                                     </form>
                                     <button id="submit" type="submit" style="margin-top: 1vh;"
-                                        class="btn btn-primary" disabled>Submit</button>
+                                        class="btn btn-primary" onclick="submit_complete_profile()" disabled>Submit</button>
                                     <button id="check" type="submit" style="margin-top: 1vh;"
                                     class="btn btn-primary">Check</button> 
                                 </div>

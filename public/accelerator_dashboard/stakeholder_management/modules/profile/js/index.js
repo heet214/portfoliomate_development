@@ -331,13 +331,81 @@ function close_modal(){
     $('#existing_user_modal').modal('hide')
 }
 
-/* function proceed_pressed() {
+ /* function submit_complete_profile() {
     var data = {};
-    $("#onboarding_form").serializeArray().map(function (x) { data[x.name] = x.value; });
-    //console.log(data);
+    $("#complete_startup_details").serializeArray().map(function (x) { data[x.name] = x.value; });
+    console.log(data);
 
-    if (is_submission_valid(data)) {
-        //console.log(user_data);
-        save_user_data(user_data);
+} */ 
+
+
+let complete_profile = {
+
+    id: '',
+    cin: '',
+    description: '',
+    pincode: '',
+    address: ''
+   
+  };
+
+let cin;
+let description;
+let pincode;
+let address;
+
+
+
+function set_cin(event){
+    cin = event.target.value
+     
+  }
+
+function set_description(event){
+    description = event.target.value
+    
+}
+
+function set_pincode(event){
+    pincode = event.target.value
+    
+}
+
+function set_address(event){
+    address = event.target.value
+    
+}
+
+function handle_object(){
+    complete_profile= {
+        id: stakeholder_id,
+        cin: cin,
+        description: description,
+        pincode: pincode,
+        address: address
     }
-} */
+    return complete_profile
+}
+
+
+function submit_complete_profile() {
+    var data_object = handle_object()
+    console.log(data_object);
+    url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data_object,
+            dataType: 'json',
+            success: function (data) {
+                console.log("https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder", data);
+                alert("updated data")
+                
+            },
+            error: function (request, error) {
+                $('#loader_modal').modal('hide');
+                location.reload();
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+}
