@@ -345,7 +345,8 @@ let complete_profile = {
     cin: '',
     description: '',
     pincode: '',
-    address: ''
+    address: '',
+    status: ''
    
   };
 
@@ -353,6 +354,7 @@ let cin;
 let description;
 let pincode;
 let address;
+
 
 
 
@@ -376,20 +378,21 @@ function set_address(event){
     
 }
 
-function handle_object(){
+function handle_object_profile(){
     complete_profile= {
         id: stakeholder_id,
         cin: cin,
         description: description,
         pincode: pincode,
-        address: address
+        address: address,
+        status:'Profile Completed'
     }
     return complete_profile
 }
 
 
 function submit_complete_profile() {
-    var data_object = handle_object()
+    var data_object = handle_object_profile()
     console.log(data_object);
     url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
         $.ajax({
@@ -408,4 +411,195 @@ function submit_complete_profile() {
                 alert("Request: " + JSON.stringify(request));
             }
         });
+}
+
+
+//Heet Started here.
+
+const engagement = {
+    id: '',
+    engagement_type: '',
+    created_on: '',
+    created_by: '',
+    mandate: {
+      type: '',
+      url: '',
+      file_type: '',
+    },
+  };
+  const fundraiser = {
+    ask: {
+      currency_type: '',
+      amount: 0,
+    },
+    expected_value: [{ currency_type: '', amount: '', as_on: '' }],
+  
+    documents: [
+      {
+        type: '',
+        url: '',
+        file_type: '',
+        //  pdf , excel , doc
+        //pitchdeck: '',
+        //  pdf , ppt , url
+      },
+    ],
+  };
+
+  
+const fundraiser_form = document.getElementById('engagement_form-fundraiser');
+const growth_form = document.getElementById('engagement_form-growth');
+
+let engagement_type = 'fundraiser';
+
+function toggleGrowthForm() {
+  growth_form.style.display = 'none';
+  fundraiser_form.style.display = 'block';
+  engagement_type = 'fundraiser';
+}
+function toggleFundraiserForm() {
+  growth_form.style.display = 'block';
+  fundraiser_form.style.display = 'none';
+  engagement_type = 'growth';
+}
+
+// function handleFiles() {}
+
+// let docArr = [];
+// let doc = document.getElementsByClassName('other-file-input');
+// function handleFiles(event) {
+//   console.log(event.target.files);
+//   let fileList = [...event.target.files];
+//   docArr.push(...fileList);
+//   console.log('Document Array: ', docArr);
+//   fileList.forEach((file) => {
+//     const para = document.createElement('ul');
+//     const close = document.createElement('p');
+//     const name = document.createTextNode(file.name);
+//     const close_name = document.createTextNode('x');
+
+//     para.appendChild(name);
+//     close.appendChild(close_name);
+//     close.addEventListener('click', (event) => {
+//       console.log('close', event);
+//       fileList.pop();
+//       console.log(fileList);
+//     });
+//     const element = document.getElementById('file-name');
+
+//     para.appendChild(close);
+//     para.classList.add('singleFile-line');
+//     element.appendChild(para);
+//     console.log('File Name: ', file.name);
+//   });
+// }
+let ask = document.getElementById('ask_evaluation');
+let evaluation = document.getElementById('expected_evaluation');
+let date = document.getElementById('date_as_on');
+let ask_curr = document.getElementById('ask_currency');
+let eval_curr = document.getElementById('evaluation_currency');
+let date_as_on = document.getElementById('date_as_on');
+let data_list_options = document.getElementById('datalistOptions');
+let file_type = [];
+let file_type_option_list = ['file 1', 'file 2', 'pitch deck'];
+let docArray = [];
+let urlsmthn = [];
+let mandate_file;
+let file_placeholder = document.getElementById('inputGroupFile04');
+let text_placeholder = document.getElementById('exampleDataList');
+let mandate_type = '';
+
+function setDocumentType(event) {
+  if (!file_type_option_list.includes(event.target.value)) {
+    const new_option = document.createElement('option');
+    const file_type_name = document.createTextNode(event.target.value);
+
+    new_option.appendChild(file_type_name);
+
+    data_list_options.appendChild(new_option);
+  }
+  file_type.push(event.target.value);
+}
+
+function handleMandate(event) {
+  mandate_file = event.target.files;
+  mandate_type = event.target.files[0].type;
+}
+
+function handleFileChange(event) {
+  docArray.push(...event.target.files);
+}
+
+function handleAddButton() {
+  console.log('file type', file_type);
+  console.log('Files', docArray);
+
+  file_placeholder.value = '';
+  text_placeholder.value = '';
+}
+function handleModalOpen() {
+  docArray = [];
+  file_type = [];
+}
+async function handleSave() {
+  for (i = 0; i < docArray.length; i++) {
+    // urlsmthn[i] = get_url(docArray[i]);
+    var file = docArray[i];
+    let formData = new FormData();
+    formData.append('file', file);
+
+    await $.ajax({
+      url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        urlsmthn.push(data);
+      },
+      error: function (request, error) {
+        alert('Request: ' + JSON.stringify(request));
+        $('.custom-file-label').text('Upload Logo to Proceed');
+        $('.custom-file-label').css({ color: 'maroon' });
+      },
+    });
+  }
+}
+
+function handleClose() {
+  // docArray = [];
+  // file_type = [];
+  file_placeholder.value = '';
+  text_placeholder.value = '';
+}
+function handleObject() {
+  engagement.id = moment().format('YYYY|MMM|DD,HH:mm A');
+  engagement.engagement_type = engagement_type;
+  engagement.created_on = {
+    day: moment().format('DD'),
+    month: moment().format('MM'),
+    year: moment().format('YYYY'),
+    time: moment().format('hh:mm A'),
+    datetime: moment().toISOString(),
+    showdate: moment().format('DD MMM, YYYY hh:mm A'),
+  };
+
+  engagement.mandate.type = 'mandate';
+  engagement.mandate.file_type = mandate_type;
+  console.log('Engagement: ', engagement);
+
+  fundraiser.ask.amount = ask.value;
+  fundraiser.ask.currency_type = ask_curr.value;
+  fundraiser.expected_value[0].currency_type = eval_curr.value;
+  fundraiser.expected_value[0].amount = evaluation.value;
+  fundraiser.expected_value[0].as_on = date_as_on.value;
+
+  for (let i = 0; i < docArray.length; i++) {
+    fundraiser.documents[i] = {
+      type: docArray[i].type,
+      file_type: file_type[i],
+      url: urlsmthn[i],
+    };
+  }
+  console.log('Fundraiser: ', fundraiser);
 }
