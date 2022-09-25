@@ -30,7 +30,7 @@ function get_stakeholders(type, data_object, callback) {
 
                 case 'single_profile':
                     {
-                        //console.log("serverside", data);
+                        console.log("serverside", data);
                         $('#loader_modal').modal('hide');
                         if (data_object.internal_type) {
                             if (data_object.internal_type == "innovador") {

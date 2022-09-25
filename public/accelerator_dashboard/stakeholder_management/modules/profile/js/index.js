@@ -58,6 +58,10 @@ const fundraiser = {
 // }
 
 var stakeholder_id;
+var data_innovadors;
+var temp_stakeholder;
+var people_list_count = 0 ;
+var count=1;
 $('document').ready(function () {
   if (is_logged_in()) {
     $('#stakeholders_no_people').hide();
@@ -75,6 +79,8 @@ $('document').ready(function () {
   } else {
   }
 });
+
+
 
 function is_logged_in() {
   return true;
@@ -145,6 +151,205 @@ function populate_profile(stakeholder) {
   });
 }
 
+// Yuvraj Started here
+
+<<<<<<< HEAD
+$(document).ready(function () {
+  //Make script DOM ready
+  $('#user_type_select').change(function () {
+    //jQuery Change Function
+    var opval = $(this).val(); //Get value from select element
+    if (opval == 'existing_user') {
+      //Compare it and if true
+      $('#existing_user_modal').modal('show'); //Open Modal
+    }
+  });
+=======
+$(document).ready(function(){ //Make script DOM ready
+    $('#user_type_select').change(function() { //jQuery Change Function
+        var opval = $(this).val(); //Get value from select element
+        if(opval=="existing_user"){ //Compare it and if true
+            $('#existing_user_modal').modal("show"); //Open Modal
+            $.ajax({
+                url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    data_innovadors = data;
+                    console.log(data_innovadors)
+                    display_data_innovadors(data_innovadors);
+                }
+              });
+        }
+    });
+>>>>>>> f4f112f9b2d3986fce1d09d5144be5205153298a
+});
+
+$(document).ready(function () {
+  //Make script DOM ready
+  $('#check').click(function () {
+    //jQuery Change Function
+    opval = is_submission_valid();
+    if (opval != '') {
+      alert('Please fill the following :' + opval);
+    } else {
+      $('#submit').attr('disabled', false);
+      alert('That works fine , you can now submit');
+    }
+  });
+});
+
+<<<<<<< HEAD
+function is_submission_valid() {
+  alert('working');
+  var arr = [];
+  if (document.getElementById('cin').value == '') {
+    arr.push('Cin');
+  }
+  if (document.getElementById('brand_name').value == '') {
+    arr.push('Brand Name');
+  }
+  if (document.getElementById('website').value == '') {
+    arr.push('Website');
+  }
+  if (document.getElementById('description').value == '') {
+    arr.push('Description');
+  }
+  if (document.getElementById('pincode').value == '') {
+    arr.push('Pincode');
+  }
+  if (document.getElementById('address').value == '') {
+    arr.push('Address');
+  }
+  console.log(arr);
+  return arr;
+=======
+function is_submission_valid(){
+    alert('working')
+    var arr = []
+    if(document.getElementById('cin').value == ''){
+       arr.push("Cin");
+    }
+    if(document.getElementById('brand_name').value == ''){
+        arr.push("Brand Name");
+     }
+    if(document.getElementById('website').value == ''){
+        arr.push("Website");
+     }
+    if(document.getElementById('description').value == ''){
+        arr.push("Description");
+     }
+    if(document.getElementById('pincode').value == ''){
+        arr.push("Pincode");
+     }
+    if(document.getElementById('address').value == ''){
+        arr.push("Address");
+     }
+    if(people_list_count == 0){
+        arr.push("Add People")
+    }
+    console.log(arr);
+    return arr;
+>>>>>>> f4f112f9b2d3986fce1d09d5144be5205153298a
+}
+var data_innovadors_search_by_id=[];
+function display_data_innovadors(data_innovadors){
+    var table = $("#populate_existing_people");
+    table.empty();
+    for(i=0;i<data_innovadors.length;i++)
+    {
+        if(data_innovadors[i].stakeholder_type == "innovador")
+        {
+            data_innovadors_search_by_id.push(data_innovadors[i]);
+
+            console.log(data_innovadors[i]);
+        
+                table.append(
+                    '<tr class="shadow">' +
+                    "<td>" +
+                    '<div class="company_logo_title_holder">' +
+                    '<div class="wrapper">' +
+                    '<img class= "image--cover" src="' + data_innovadors[i].logo +  '">' +
+                    '</div>' +
+                    "</td>" +
+                    "<td>" +
+                    '<div class="company_title_holder">' + data_innovadors[i].designation + '</div>'
+                     +"</td>" +
+                     '<div>' +
+                    "<td>" + data_innovadors[i].stakeholder_location + "</td>" +'</div>' +
+                    '<td><Button class="btn btn-primary" onclick="profile(\'' + data_innovadors[i].id + '\')"> Add </Button></td>' +
+                    '<td>' +
+                    '</div>' +
+                    '</td>' +
+                    "</tr>");
+            }
+        }
+}
+
+function profile(id) {
+    count=1;
+    
+    if(window.location.href.indexOf('#populate_existing_people') != -1)
+     {
+        $('#populate_existing_people').modal('show');
+      }
+      console.log(data_innovadors_search_by_id);
+    for(i=0;i<data_innovadors_search_by_id.length;i++)
+    {
+        if(id==data_innovadors_search_by_id[i].id)
+        {
+            var temp=data_innovadors_search_by_id[i];
+            console.log(temp)
+        }
+    }
+    console.log(temp_stakeholder);
+    if(temp_stakeholder.people){   
+    for(i=0;i<temp_stakeholder.people.length;i++)
+    {
+        console.log(temp_stakeholder.people[i].id)
+        if(temp_stakeholder.people[i].id==temp.id){
+            count=0;
+            console.log(count);
+            break;
+        }   
+
+    }
+    }
+    else{
+        temp_stakeholder.people=[];
+    }
+    if(count==1){
+        count=1;
+        console.log(count);
+        temp_stakeholder.people.push(temp);
+        alert("Data Pushed");
+        close_modal();
+        
+       
+    }
+    else{
+        alert("User already Exists !!!");
+        close_modal();
+    }
+     console.log(temp_stakeholder);
+    url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: temp_stakeholder,
+            dataType: 'json',
+            success: function (data) {
+                console.log("https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder", data);
+                location.reload()
+                
+            },
+            error: function (request, error) {
+                $('#loader_modal').modal('hide');
+                location.reload();
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+}
 function addperson() {
   if (stakeholder_id) {
     var type = 'innovador';
@@ -192,7 +397,35 @@ function openurl(url) {
   window.location.href = url;
 }
 
-// Yuvraj Started here
+ /* function submit_complete_profile() {
+    var data = {};
+    $("#complete_startup_details").serializeArray().map(function (x) { data[x.name] = x.value; });
+    console.log(data);
+
+} */ 
+
+
+let complete_profile = {
+
+    id: '',
+    cin: '',
+    description: '',
+    pincode: '',
+    address: ''
+   
+  };
+
+let cin;
+let description;
+let pincode;
+let address;
+
+
+
+function set_cin(event){
+    cin = event.target.value
+     
+  }
 
 $(document).ready(function () {
   //Make script DOM ready
@@ -245,27 +478,59 @@ function is_submission_valid() {
   return arr;
 }
 
-/* function populate_existing_people(people) 
-{
-    $("#stakeholders_people_list").show();
-    
-    if(people.stakeholder_type == 'innovador' ){
-        for(i=0;i<people.length;i++)
-    {
-        console.log(people[i]);
-        var li=
-        '<li class="list-group-item d-flex justify-content-between lh-condensed">'+
-            '<div>'+
-                '<a class="my-0" style="cursor:pointer;" href="'+people[i].linkedIn+'"  onclick="openurl("'+people[i].linkedIn+'")">'+people[i].name+'</a><br>'+
-                '<small class="text-muted">'+people[i].designation+'</small>'+
-            '</div>'+
-            '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("'+people[i].id+'")">Edit</span>'+
-        '</li>';
-        $("#stakeholders_people_list").append(li);
-    }
-    }
-    
-} */
+function handleAddButton() {
+  console.log('file type', file_type);
+  console.log('Files', docArray);
+
+  file_placeholder.value = '';
+  text_placeholder.value = '';
+}
+function handleModalOpen() {
+  docArray = [];
+  file_type = [];
+}
+async function handleSave() {
+  for (i = 0; i < docArray.length; i++) {
+    // urlsmthn[i] = get_url(docArray[i]);
+    var file = docArray[i];
+    let formData = new FormData();
+    formData.append('file', file);
+
+    await $.ajax({
+      url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        urlsmthn.push(data);
+      },
+      error: function (request, error) {
+        alert('Request: ' + JSON.stringify(request));
+        $('.custom-file-label').text('Upload Logo to Proceed');
+        $('.custom-file-label').css({ color: 'maroon' });
+      },
+    });
+  }
+}
+
+function handleClose() {
+  // docArray = [];
+  // file_type = [];
+  file_placeholder.value = '';
+  text_placeholder.value = '';
+}
+function handleObject() {
+  engagement.id = moment().format('YYYY|MMM|DD,HH:mm A');
+  engagement.engagement_type = engagement_type;
+  engagement.created_on = {
+    day: moment().format('DD'),
+    month: moment().format('MM'),
+    year: moment().format('YYYY'),
+    time: moment().format('hh:mm A'),
+    datetime: moment().toISOString(),
+    showdate: moment().format('DD MMM, YYYY hh:mm A'),
+  };
 
 const fundraiser_form = document.getElementById('engagement_form-fundraiser');
 const growth_form = document.getElementById('engagement_form-growth');

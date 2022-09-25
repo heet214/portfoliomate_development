@@ -80,3 +80,29 @@
   display: flex;
   column-gap: 10px;
 }
+.wrapper {
+    padding: 5px;
+    margin-left: 3px;
+    margin-right: 10px;
+
+  }
+  
+  .image--cover {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+  
+    object-fit: cover;
+    object-position: center right;
+  }
+
+  .populate_existing_people{
+    height: fit-content;
+    width:  fit-content;
+  }
+  
+td{
+    width: 25%;
+   padding: 5% 10% 5% 5%;
+
+}
