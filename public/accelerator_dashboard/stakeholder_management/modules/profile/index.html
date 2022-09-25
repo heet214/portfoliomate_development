@@ -1,451 +1,599 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portfoliomate / Complete Profile</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="../../../../assets/portfoliomate.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins"
-      rel="stylesheet"
-    />
-    <link href="css/index.css" rel="stylesheet" />
-    <link href="../../../../onboarding/" rel="stylesheet" />
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
-      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/index.js"></script>
+    <link rel="icon" type="image/x-icon" href="../../../../assets/portfoliomate.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link href="../../../../onboarding/" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    
     <script src="../../../../configurations/local_dbfunctions.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- update the version number as needed -->
 
     <script defer src="/__/firebase/9.9.2/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/9.9.2/firebase-auth-compat.js"></script>
     <script defer src="/__/firebase/9.9.2/firebase-database-compat.js"></script>
-    <script
-      defer
-      src="/__/firebase/9.9.2/firebase-firestore-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.9.2/firebase-functions-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.9.2/firebase-messaging-compat.js"
-    ></script>
+    <script defer src="/__/firebase/9.9.2/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-messaging-compat.js"></script>
     <script defer src="/__/firebase/9.9.2/firebase-storage-compat.js"></script>
-    <script
-      defer
-      src="/__/firebase/9.9.2/firebase-analytics-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.9.2/firebase-remote-config-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.9.2/firebase-performance-compat.js"
-    ></script>
+    <script defer src="/__/firebase/9.9.2/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-performance-compat.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"
-    />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <style>
-      #complete_startup_fundamental_details_form {
-        margin: 20px;
-      }
+        #complete_startup_fundamental_details_form {
+            margin: 20px;
+        }
     </style>
-  </head>
 
-  <body>
+</head>
+
+<body>
+
     <div class="main_holder">
-      <div class="main_menu_holder shadow">
-        <div class="logo_menu_item">
-          <img class="img-fluid" src="../../../../assets/portfoliomate.png" />
+        <div class="main_menu_holder shadow">
+            <div class="logo_menu_item">
+                <img class="img-fluid" src="../../../../assets/portfoliomate.png">
+            </div>
+            <div style="display: none;">
+
+            </div>
         </div>
-        <div style="display: none"></div>
-      </div>
-      <div class="row profile_management_holder">
-        <div class="shadow-sm col-md-3 col-sm-12 side_menu">
-          <div
-            class="nav flex-column nav-pills"
-            id="v-pills-tab"
-            role="tablist"
-            aria-orientation="vertical"
-          >
-            <a
-              class="nav-link active"
-              id="v-pills-home-tab"
-              data-toggle="pill"
-              href="#v-pills-home"
-              role="tab"
-              aria-controls="v-pills-home"
-              aria-selected="true"
-              >Profile
-              <i style="color: white" class="fa-solid fa-circle-exclamation"></i
-            ></a>
-            <a
-              class="nav-link"
-              id="v-pills-profile-tab"
-              data-toggle="pill"
-              href="#v-pills-profile"
-              role="tab"
-              aria-controls="v-pills-profile"
-              aria-selected="false"
-              >Enagagements</a
-            >
-            <a
-              class="nav-link"
-              id="v-pills-messages-tab"
-              data-toggle="pill"
-              href="#v-pills-messages"
-              role="tab"
-              aria-controls="v-pills-messages"
-              aria-selected="false"
-              >Documents</a
-            >
-            <a
-              class="nav-link"
-              id="v-pills-settings-tab"
-              data-toggle="pill"
-              href="#v-pills-settings"
-              role="tab"
-              aria-controls="v-pills-settings"
-              aria-selected="false"
-              >Logs</a
-            >
-          </div>
-        </div>
-        <div class="col-md-8 col-sm-12 side_menu_block_holder">
-          <div class="tab-content" id="v-pills-tabContent">
-            <div
-              class="tab-pane fade show active"
-              id="v-pills-home"
-              role="tabpanel"
-              aria-labelledby="v-pills-home-tab"
-            >
-              <div class="container">
-                <div class="py-5 text-center">
-                  <img
-                    id="stakeholder_company_logo"
-                    class="img-fluid d-block mx-auto mb-4"
-                    src=""
-                    alt=""
-                    style="height: 10vh"
-                  />
-                  <h2 id="stakeholder_company_name_label"></h2>
-                  <p
-                    id="stakeholder_company_description_label"
-                    class="lead"
-                  ></p>
+        <div class="row profile_management_holder">
+            <div class="shadow-sm col-md-3 col-sm-12 side_menu">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                        aria-controls="v-pills-home" aria-selected="true">Profile <i style="color: white;"
+                            class="fa-solid fa-circle-exclamation"></i></a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                        aria-controls="v-pills-profile" aria-selected="false">Enagagements</a>
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                        aria-controls="v-pills-messages" aria-selected="false">Documents</a>
+                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                        aria-controls="v-pills-settings" aria-selected="false">Logs</a>
                 </div>
+            </div>
+            <div class="col-md-8 col-sm-12 side_menu_block_holder">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="container">
+                            <div class="py-5 text-center">
+                                <img id="stakeholder_company_logo" class="img-fluid d-block mx-auto mb-4" src="" alt=""
+                                    style="height: 10vh;">
+                                <h2 id="stakeholder_company_name_label"></h2>
+                                <p id="stakeholder_company_description_label" class="lead"></p>
+                            </div>
 
-                <div class="row">
-                  <div class="col-md-4 order-md-1 mb-4">
-                    <h4
-                      class="d-flex justify-content-between align-items-center mb-3"
-                    >
-                      <span class="text-muted">People Associated</span>
-                    </h4>
+                            <div class="row">
+                                <div class="col-md-4 order-md-1 mb-4">
+                                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-muted">People Associated</span>
+                                    </h4>
 
-                    <ul id="stakeholders_no_people" class="list-group mb-3">
-                      <li
-                        class="list-group-item d-flex justify-content-between lh-condensed"
-                      >
-                        <div>
-                          <h6 class="my-0" style="color: crimson">
-                            No Accounts Created
-                          </h6>
-                          <small class="text-muted"
-                            >Create Stakeholders to Complete Profile</small
-                          >
+                                    <ul id="stakeholders_no_people" class="list-group mb-3">
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div>
+                                                <h6 class="my-0" style="color: crimson;">No Accounts Created</h6>
+                                                <small class="text-muted">Create Stakeholders to Complete
+                                                    Profile</small>
+                                            </div>
+                                            <span style="display: none;" class="text-muted">$12</span>
+                                        </li>
+                                    </ul>
+
+                                    <ul id="stakeholders_people_list" style="display: none;" class="list-group mb-3">
+                                      
+                                    </ul>
+
+                                    <form class="card p-2">
+                                        <div class="input-group">
+                                            <input type="text" id="add_new_person_input" class="form-control"
+                                                placeholder="Enter Name">
+                                            <div class="input-group-append">
+                                                <div id="add_people_button" onclick="addperson()" class="btn">Add Person</div>
+                                            </div>
+                                        </div>
+                                        <div class="select-input-type">
+                                            <select class="form-select" id="user_type_select" aria-label="Default select example">
+                                                <option value="new_user">New User</option>
+                                                <option value="existing_user">Existing User</option>
+                                              </select>
+                                        </div>
+                                    </form>
+                                    <div id="existing_user_modal" class="modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title">Modal title</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <ul id="stakeholders_people_list" style="display: none;" class="list-group mb-3">
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-primary">Save changes</button>
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-8 order-md-2">
+                                    <h4 class="mb-3">Basic Details</h4>
+                                    <form name="Form" id="#complete_startup_fundamental_details_form">
+                                        <div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Company Details</h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted" id="createdon_label">
+                                                        Created On</h6>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Stakeholder
+                                                                Type</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="stakeholder_type"
+                                                            placeholder="Stakeholder Type" disabled
+                                                            aria-label="Username" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">CIN</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="cin" name="cin"
+                                                            placeholder="Enter CIN" aria-label="Username"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Company
+                                                                Name</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="company_name"
+                                                            placeholder="Company Name" disabled aria-label="Username"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="basic-addon1">Incorporated At</span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            name="stakeholder_location"
+                                                            placeholder="Country Of Incorporation" disabled
+                                                            aria-label="Username" aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Brand
+                                                                Name</span>
+                                                        </div>
+                                                        <input type="text" id="brand_name" class="form-control" name="brand_name"
+                                                            placeholder="Enter Brand Name" aria-label="Username"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="basic-addon1">Website</span>
+                                                        </div>
+                                                        <input type="text" id="website" class="form-control" name="website"
+                                                            placeholder="Enter Brand Name" aria-label="Username"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Logo
+                                                                Url</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="company_logo"
+                                                            placeholder="Enter Image Url" aria-label="Username"
+                                                            aria-describedby="basic-addon1" disabled>
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Description</span>
+                                                        </div>
+                                                        <textarea id="description" class="form-control" name="description"
+                                                            aria-label="With textarea"></textarea>
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="basic-addon1">Pincode</span>
+                                                        </div>
+                                                        <input type="text" id="pincode" class="form-control" name="pincode"
+                                                            placeholder="Enter PIN" aria-label="Username"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Address</span>
+                                                        </div>
+                                                        <textarea type="text" id="address" class="form-control" name="address"
+                                                            aria-label="With textarea"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <button id="submit" type="submit" style="margin-top: 1vh;"
+                                        class="btn btn-primary" disabled>Submit</button>
+                                    <button id="check" type="submit" style="margin-top: 1vh;"
+                                    class="btn btn-primary">Check</button> 
+                                </div>
+                            </div>
+
+                            <footer class="my-5 pt-5 text-muted text-center text-small">
+                                <p class="mb-1">&copy; 2017-2018 Company Name</p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                                    <li class="list-inline-item"><a href="#">Support</a></li>
+                                </ul>
+                            </footer>
                         </div>
-                        <span style="display: none" class="text-muted"
-                          >$12</span
-                        >
-                      </li>
-                    </ul>
+                    </div>
 
-                    <ul
-                      id="stakeholders_people_list"
-                      style="display: none"
-                      class="list-group mb-3"
-                    ></ul>
 
-                    <form class="card p-2">
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          id="add_new_person_input"
-                          class="form-control"
-                          placeholder="Enter Name"
-                        />
-                        <div class="input-group-append">
-                          <div
-                            id="add_people_button"
-                            onclick="addperson()"
-                            class="btn"
-                          >
-                            Add Person
-                          </div>
+<!-- ENAGEMENTS -->
+
+
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-md-4 order-md-1 mb-4">
+                                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-muted">People Associated</span>
+                                    </h4>
+
+                                    <ul id="stakeholders_no_people" class="list-group mb-3">
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div>
+                                                <h6 class="my-0" style="color: crimson;">No Accounts Created</h6>
+                                                <small class="text-muted">Create Stakeholders to Complete
+                                                    Profile</small>
+                                            </div>
+                                            <span style="display: none;" class="text-muted">$12</span>
+                                        </li>
+                                    </ul>
+
+                                    <ul id="stakeholders_people_list" style="display: none;" class="list-group mb-3">
+                                      
+                                    </ul>
+
+                                    <form class="card p-2">
+                                        <div class="input-group">
+                                            <input type="text" id="add_new_person_input" class="form-control"
+                                                placeholder="Enter Name">
+                                            <div class="input-group-append">
+                                                <div id="add_people_button" onclick="addperson()" class="btn">Add Person</div>
+                                            </div>
+                                        </div>
+                                        <div class="select-input-type">
+                                            <select class="form-select" id="user_type_select" aria-label="Default select example">
+                                                <option value="new_user">New User</option>
+                                                <option value="existing_user">Existing User</option>
+                                              </select>
+                                        </div>
+                                    </form>
+
+                                    <form class="card p-3">
+
+                                        <h5 class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="text-muted">Engagement Type</span>
+                                        </h5>
+
+                                        <div class="input-group">
+                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <button id="growth" class="btn btn-outline-primary active" onclick="toggleGrowthForm()">
+                                                  <input type="radio" name="options"  autocomplete="off" checked> Fundraiser
+                                                </button>
+                                                <button id="fundraiser" class="btn btn-outline-primary" onclick="toggleFundraiserForm()">
+                                                  <input type="radio" name="options"  autocomplete="off"> Growth
+                                                </button>
+                                              </div>
+                                        </div>
+                          
+                                    </form>
+
+                                    <div id="existing_user_modal" class="modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title">Modal title</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <ul id="stakeholders_people_list" style="display: none;" class="list-group mb-3">
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-primary">Save changes</button>
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+
+
+                                <div class="col-md-8 order-md-2">
+                                    <h4 class="mb-3">Engagement</h4>
+
+                                    <form id="engagement_form-growth" style="display: none">
+                                        <div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Growth Details</h5>
+                                                   
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Company
+                                                                Name</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="company_name"
+                                                            placeholder="Company Name" disabled aria-label="Username"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="basic-addon1">Incorporated At</span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            name="stakeholder_location"
+                                                            placeholder="Country Of Incorporation" disabled
+                                                            aria-label="Username" aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Brand
+                                                                Name</span>
+                                                        </div>
+                                                        <input type="text" id="brand_name" class="form-control" name="brand_name"
+                                                            placeholder="Enter Brand Name" aria-label="Username"
+                                                            aria-describedby="basic-addon1" disabled>
+                                                    </div>
+
+
+                                                  <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text">Ask</span>
+                                                          <select class="form-select" aria-label="Default select example">
+                                                            <option value="Rupee" id="rupee" selected>₹</option>
+                                                            <option value="Dollar" id="dollar">$</option>
+                                                            <option value="Euro" id="euro">€</option>
+                                                          </select>
+                                                        </div>
+                                                        <input type="number" class="form-control" aria-label="Rupee amount (with dot and two decimal places)" required>
+                                                    </div>    
+                                                    
+                                               
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text">Expected Evaluation: </span>
+                                                          <select class="form-select" aria-label="Default select example">
+                                                            <option value="Rupee" id="rupee" selected>₹</option>
+                                                            <option value="Dollar" id="dollar">$</option>
+                                                            <option value="Euro" id="euro">€</option>
+                                                          </select>
+                                                        </div>
+                                                        <input type="number" class="form-control" aria-label="Rupee amount (with dot and two decimal places)">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Mandate <span style="color:red">*</span></label>
+                                                        <input class="form-control" type="file" id="formFile" required>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Pitch Deck <span style="color:red">*</span> </label>
+                                                        <input class="form-control" type="file" id="formFile">
+                                                      </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p id="" type="" style="margin-top: 1vh;" class="btn btn-primary" disabled>Submit</p>
+                                        <p id="" type="" style="margin-top: 1vh;" class="btn btn-primary" onclick="handleObject()">Check</p> 
+                                    </form>
+
+
+                                    <form id="engagement_form-fundraiser">
+                                        <div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Fundraiser Details</h5>
+                                                   
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Company Name</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="company_name"
+                                                            placeholder="Company Name" disabled aria-label="Username"
+                                                            aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="basic-addon1">Incorporated At</span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            name="stakeholder_location"
+                                                            placeholder="Country Of Incorporation" disabled
+                                                            aria-label="Username" aria-describedby="basic-addon1">
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">Brand Name</span>
+                                                        </div>
+                                                        <input type="text" id="brand_name" class="form-control" name="brand_name"
+                                                            placeholder="Enter Brand Name" aria-label="Username"
+                                                            aria-describedby="basic-addon1" disabled>
+                                                    </div>
+
+
+                                                  <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text">Ask</span>
+                                                          <select class="form-select" id="ask_currency" aria-label="Default select example">
+                                                            <option value="Rupee" id="rupee" selected>₹</option>
+                                                            <option value="Dollar" id="Dollar">$</option>
+                                                            <option value="Euro" id="Euro">€</option>
+                                                          </select>
+                                                        </div>
+                                                        <input type="number" id="ask_evaluation" class="form-control" aria-label="Rupee amount (with dot and two decimal places)" required>
+                                                    </div>    
+                                                    
+                                               
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text">Expected Evaluation </span>
+                                                          <select class="form-select" id="evaluation_currency" aria-label="Default select example">
+                                                            <option value="Rupee" id="Rupee" selected>₹</option>
+                                                            <option value="Dollar" id="Dollar">$</option>
+                                                            <option value="Euro" id="Euro">€</option>
+                                                          </select>
+                                                        </div>
+                                                        <input type="number" id="expected_evaluation" class="form-control" aria-label="Rupee amount (with dot and two decimal places)" required>
+                                                    </div>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text">Date As on</span>
+                                                          <input type="date" id="date_as_on" class="form-control" aria-label="Date as of from now" required> 
+                                                        </div> 
+                                                    </div>  
+
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Mandate <span style="color:red">*</span></label>
+                                                        <input class="form-control mandate-file-input" onchange="handleMandate(event)" type="file" id="formFile" required>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                        <div class="div">
+                                                            <label for="formFile" class="form-label">Other <span style="color:red">*</span> </label>
+                                                         <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="handleModalOpen()">
+                                                            Upload Files
+                                                        </button>
+                                                        
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Upload Files</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="handleClose()">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <label for="exampleDataList" class="form-label">Choose File Type</label>
+                                                                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." onchange="setDocumentType(event)" required>
+                                                                    <datalist id="datalistOptions" class="file_type-options">
+                                                                      <option value="file 1">
+                                                                      <option value="file 2">
+                                                                      <option value="pitch deck">
+                                                                    </datalist>
+                                                                    <div class="mb-3" style="margin-top: 20px">
+
+                                                                        <div class="input-group">
+                                                                            <input type="file" class="form-control" id="inputGroupFile04" onchange="handleFileChange(event)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                                            <button class="btn btn-outline-secondary" onclick="handleAddButton()" type="button" id="inputGroupFileAddon04">Add</button>
+                                                                          </div>
+                                                                          <div id="file-name">
+                                                         
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="handleClose()">Close</button>
+                                                                <button type="button" class="btn btn-primary" onclick="handleSave()">Save changes</button>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                             
+                                                     
+                                                      </div>
+
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="" type="" style="margin-top: 1vh;" class="btn btn-primary">Submit</button>
+                                        <p id="" type="" style="margin-top: 1vh;" class="btn btn-primary" onclick="handleObject()">Check</p> 
+                                    </form>
+                                </div>
+
+
+
+                            </div>
+                            <footer class="my-5 pt-5 text-muted text-center text-small">
+                                <p class="mb-1">&copy; 2017-2018 Company Name</p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                                    <li class="list-inline-item"><a href="#">Support</a></li>
+                                </ul>
+                            </footer>
                         </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="col-md-8 order-md-2">
-                    <h4 class="mb-3">Basic Details</h4>
-                    <form id="#complete_startup_fundamental_details_form">
-                      <div>
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">Company Details</h5>
-                            <h6
-                              class="card-subtitle mb-2 text-muted"
-                              id="createdon_label"
-                            >
-                              Created On
-                            </h6>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >Stakeholder Type</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                name="stakeholder_type"
-                                placeholder="Stakeholder Type"
-                                disabled
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                              />
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >CIN</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                name="cin"
-                                placeholder="Enter CIN"
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                              />
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >Company Name</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                name="company_name"
-                                placeholder="Company Name"
-                                disabled
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                              />
-                            </div>
+                    </div>
 
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >Incorporated At</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                name="stakeholder_location"
-                                placeholder="Country Of Incorporation"
-                                disabled
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                              />
-                            </div>
-
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >Brand Name</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                name="brand_name"
-                                placeholder="Enter Brand Name"
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                              />
-                            </div>
-
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >Website</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                name="website"
-                                placeholder="Enter Brand Name"
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                              />
-                            </div>
-
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >Logo Url</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="company_logo"
-                                placeholder="Enter Image Url"
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                                disabled
-                              />
-                            </div>
-
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"
-                                  >Description</span
-                                >
-                              </div>
-                              <textarea
-                                class="form-control"
-                                name="description"
-                                aria-label="With textarea"
-                              ></textarea>
-                            </div>
-
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"
-                                  >Pincode</span
-                                >
-                              </div>
-                              <input
-                                type="text"
-                                class="form-control"
-                                name="pincode"
-                                placeholder="Enter PIN"
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                              />
-                            </div>
-
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">Address</span>
-                              </div>
-                              <textarea
-                                class="form-control"
-                                name="address"
-                                aria-label="With textarea"
-                              ></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                    <button
-                      type="submit"
-                      style="margin-top: 1vh"
-                      class="btn btn-primary"
-                    >
-                      Submit
-                    </button>
-                  </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                        aria-labelledby="v-pills-messages-tab">Documents...</div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                        aria-labelledby="v-pills-settings-tab">Logs...</div>
                 </div>
-
-                <footer class="my-5 pt-5 text-muted text-center text-small">
-                  <p class="mb-1">&copy; 2017-2018 Company Name</p>
-                  <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#">Privacy</a></li>
-                    <li class="list-inline-item"><a href="#">Terms</a></li>
-                    <li class="list-inline-item"><a href="#">Support</a></li>
-                  </ul>
-                </footer>
-              </div>
             </div>
-            <div
-              class="tab-pane fade"
-              id="v-pills-profile"
-              role="tabpanel"
-              aria-labelledby="v-pills-profile-tab"
-            >
-              Enagagements...
-            </div>
-            <div
-              class="tab-pane fade"
-              id="v-pills-messages"
-              role="tabpanel"
-              aria-labelledby="v-pills-messages-tab"
-            >
-              Documents...
-            </div>
-            <div
-              class="tab-pane fade"
-              id="v-pills-settings"
-              role="tabpanel"
-              aria-labelledby="v-pills-settings-tab"
-            >
-              Logs...
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </body>
+
+    <script src="js/index.js"></script>
+</body>
+
 </html>
