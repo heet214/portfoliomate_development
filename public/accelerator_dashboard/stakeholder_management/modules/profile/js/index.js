@@ -219,7 +219,7 @@ function display_data_innovadors(data_innovadors){
                     '</div>' +
                     "</td>" +
                     "<td>" +
-                    '<div class="company_title_holder">' + data_innovadors[i].designation + '</div>'
+                    '<div class="company_title_holder">' + data_innovadors[i].name + '</div>'
                      +"</td>" +
                      '<div>' +
                     "<td>" + data_innovadors[i].stakeholder_location + "</td>" +'</div>' +
@@ -603,3 +603,4 @@ function handleObject() {
   }
   console.log('Fundraiser: ', fundraiser);
 }
+
