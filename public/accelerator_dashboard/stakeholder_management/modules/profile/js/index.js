@@ -530,9 +530,30 @@ function setDocumentType(event) {
   }
   file_type.push(event.target.value);
 }
-
+let mandate_url = [];
 function handleMandate(event) {
-  mandate_file = event.target.files;
+  mandate_file = event.target.files[0];
+  console.log(mandate_file);
+  let file = mandate_file;
+  let formData = new FormData();
+  formData.append('file', file);
+
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+      mandate_url.push(data);
+    },
+    error: function (request, error) {
+      alert('Request: ' + JSON.stringify(request));
+      $('.custom-file-label').text('Upload Logo to Proceed');
+      $('.custom-file-label').css({ color: 'maroon' });
+    },
+  });
+  console.log(mandate_url);
   mandate_type = event.target.files[0].type;
 }
 
@@ -577,8 +598,6 @@ async function handleSave() {
 }
 
 function handleClose() {
-  // docArray = [];
-  // file_type = [];
   file_placeholder.value = '';
   text_placeholder.value = '';
 }
@@ -593,7 +612,9 @@ function handleObject() {
     datetime: moment().toISOString(),
     showdate: moment().format('DD MMM, YYYY hh:mm A'),
   };
-
+  for (let i = 0; i < mandate_url.length; i++) {
+    engagement.mandate.url = mandate_url[i];
+  }
   engagement.mandate.type = 'mandate';
   engagement.mandate.file_type = mandate_type;
   console.log('Engagement: ', engagement);
@@ -612,4 +633,30 @@ function handleObject() {
     };
   }
   console.log('Fundraiser: ', fundraiser);
+
+  handleHeet();
+}
+
+function handleHeet() {
+  var data_object = engagement;
+
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/startEngagement',
+    type: 'POST',
+    data: data_object,
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+      getObject(data);
+    },
+    error: function (request, error) {
+      alert('Request: ' + JSON.stringify(request));
+      $('.custom-file-label').text('Upload Logo to Proceed');
+      $('.custom-file-label').css({ color: 'maroon' });
+    },
+  });
+}
+
+function getObject(data) {
+  console.log('i got this id', data.id);
 }
