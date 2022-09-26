@@ -226,7 +226,7 @@ function display_data_innovadors(data_innovadors) {
           '</td>' +
           '<td>' +
           '<div class="company_title_holder">' +
-          data_innovadors[i].designation +
+          data_innovadors[i].name +
           '</div>' +
           '</td>' +
           '<div>' +
@@ -362,6 +362,8 @@ let complete_profile = {
   id: '',
   cin: '',
   description: '',
+  brand_name: '',
+  website: '',
   pincode: '',
   address: '',
   status: '',
@@ -371,6 +373,9 @@ let cin;
 let description;
 let pincode;
 let address;
+let brand_name;
+let website;
+
 
 function set_cin(event) {
   cin = event.target.value;
@@ -395,6 +400,8 @@ function handle_object_profile() {
     description: description,
     pincode: pincode,
     address: address,
+    brand_name:document.getElementById("brand_name"),
+    website:document.getElementById("website"),
     status: 'Profile Completed',
   };
   return complete_profile;
@@ -416,6 +423,9 @@ function submit_complete_profile() {
         data
       );
       alert('updated data');
+      alert("redirecting to another page !!!")
+      
+      location.replace("../../index.html")
     },
     error: function (request, error) {
       $('#loader_modal').modal('hide');
@@ -424,6 +434,7 @@ function submit_complete_profile() {
     },
   });
 }
+
 
 //Heet Started here.
 
