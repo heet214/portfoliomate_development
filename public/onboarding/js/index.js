@@ -92,10 +92,10 @@ function proceed_pressed() {
     .map(function (x) {
       data[x.name] = x.value;
     });
-  //console.log(data);
+  console.log(data);
 
   if (is_submission_valid(data)) {
-    //console.log(user_data);
+    console.log(user_data);
     save_user_data(user_data);
   }
 }
