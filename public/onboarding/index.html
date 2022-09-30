@@ -96,11 +96,11 @@
                                 <option value="venture_partner">Operator / Venture Partner</option>
                             </select>
 
-                            <select name="stakeholder_location" id="country" title="Choose Country" class="bm"
+                            <select name="stakeholder_location" id="country" style="display: none;" title="Choose Country" class="bm"
                                 data-live-search="true"></select>
 
 
-                            <div class="input-group mb-3" id="company_sector_div">
+                            <div class="input-group mb-3" id="company_sector_div" style="display: none;">
                                 <select name="company_sector" id="company_sector" multiple class="bm"
                                     data-live-search="true" title="Select Main Operating Sector">
                                 </select>
@@ -112,7 +112,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Company Name</span>
                                     </div>
-                                    <input type="text" class="form-control" name="company_name" id="company_name"
+                                    <input type="text" class="form-control startup" name="company_name" id="company_name"
                                         placeholder="Enter Name">
                                 </div>
 
@@ -120,7 +120,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Brand Name</span>
                                     </div>
-                                    <input type="text" class="form-control" name="brand_name" id="brand_name"
+                                    <input type="text" class="form-control startup" name="brand_name" id="brand_name"
                                         placeholder="Brand Name">
                                 </div>
 
@@ -128,13 +128,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Website</span>
                                     </div>
-                                    <input type="text" class="form-control" name="website" id="website"
+                                    <input type="text" class="form-control startup" name="website" id="website"
                                         placeholder="Website">
                                 </div>
 
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="logo_input">
+                                        <input type="file" class="custom-file-input startup" id="logo_input">
                                         <label class="custom-file-label" style="color: maroon;" for="logo_input">Upload
                                             Logo to Proceed</label>
                                     </div>
@@ -152,7 +152,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Fund Organization Name</span>
                                     </div>
-                                    <input type="text" class="form-control" name="company_name" id="company_name"
+                                    <input type="text" class="form-control fund-vc-pe" name="company_name" id="company_name"
                                         placeholder="Enter Name">
                                 </div>
 
@@ -160,7 +160,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Brand Name</span>
                                     </div>
-                                    <input type="text" class="form-control" name="brand_name" id="brand_name"
+                                    <input type="text" class="form-control fund-vc-pe" name="brand_name" id="brand_name"
                                         placeholder="Brand Name">
                                 </div>
 
@@ -168,13 +168,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Website</span>
                                     </div>
-                                    <input type="text" class="form-control" name="website" id="website"
+                                    <input type="text" class="form-control fund-vc-pe" name="website" id="website"
                                         placeholder="Website">
                                 </div>
 
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input logo_input" id="fund_logo_input">
+                                        <input type="file" class="custom-file-input fund-vc-pe logo_input" id="fund_logo_input">
                                         <label class="custom-file-label" style="color: maroon;" for="logo_input">Upload
                                             Logo to Proceed</label>
                                     </div>
@@ -192,7 +192,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Organization</span>
                                     </div>
-                                    <input type="text" class="form-control" name="organization_name"
+                                    <input type="text" class="form-control innovador" name="organization_name"
                                         id="organization_name" placeholder="Enter Organization" disabled>
                                 </div>
 
@@ -200,12 +200,12 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Name</span>
                                     </div>
-                                    <input type="text" class="form-control" name="name" id="person_name"
+                                    <input type="text" class="form-control innovador" name="name" id="person_name"
                                         placeholder="Enter Name">
                                 </div>
 
                                 <select name="designation" title="Choose Designation" id="designation"
-                                    class="selectpicker bm">
+                                    class="selectpicker innovador bm">
                                     <option value="Promoter">Promoter</option>
                                     <option value="Founder">Founder</option>
                                     <option value="Co-founder">Co-Founder</option>
@@ -218,7 +218,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Email</span>
                                     </div>
-                                    <input type="email" class="form-control" name="email" id="person_email"
+                                    <input type="email" class="innovador form-control" name="email" id="person_email"
                                         placeholder="Enter Email">
                                 </div>
 
@@ -226,7 +226,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">Mobile</span>
                                     </div>
-                                    <input type="tel" class="form-control" name="mobile" id="person_email"
+                                    <input type="tel" class="innovador form-control" name="mobile" id="person_email"
                                         placeholder="Enter Mobile">
                                 </div>
 
@@ -234,13 +234,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">LinkedIn</span>
                                     </div>
-                                    <input type="url" class="form-control" name="linkedIn" id="person_linkedin"
+                                    <input type="url" class="innovador form-control" name="linkedIn" id="person_linkedin"
                                         placeholder="Enter LinkedIn">
                                 </div>
 
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input logo_input" id="person_image_input">
+                                        <input type="file" class="innovador custom-file-input logo_input" id="person_image_input">
                                         <label class="custom-file-label" style="color: maroon;" for="logo_input">Upload
                                             Profile Image to Proceed</label>
                                     </div>

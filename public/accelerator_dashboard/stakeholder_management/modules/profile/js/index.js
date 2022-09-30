@@ -3,15 +3,20 @@ var data_innovadors;
 var temp_stakeholder;
 var people_list_count = 0;
 var count = 1;
+var isEdit = false;
+
 $('document').ready(function () {
   if (is_logged_in()) {
     $('#stakeholders_no_people').hide();
-    var url_string = location.href;
-    var url = new URL(url_string);
-    stakeholder_id = url.searchParams.get('action');
-    //console.log(url.searchParams);
-    //console.log(url);
-    //alert(stakeholder_id);
+    var params = get_params_from_url();
+    //alert("Reading Url");
+    console.log(params);
+    stakeholder_id = params.stakeholder_id;
+    if (params.action == "edit") {
+      isEdit = true;
+    }
+    else if (params.action == "complete") { isEdit = true; }
+
     get_stakeholders(
       'single_profile',
       { id: stakeholder_id },
@@ -30,10 +35,30 @@ function detectMob() {
 }
 
 function populate_profile(stakeholder) {
+  if (isEdit) {
+    $('#save').hide();
+    $(".add-people-card").show();
+  }
+  else {
+    alert("Don't Allow to Edit")
+    $('#save').hide();
+    $(".add-people-card").hide();
+    $('.basic-details .form-control').attr('readonly', 'readonly');
+  }
+  $('.status-indicator').text(stakeholder.status);
+
   temp_stakeholder = stakeholder;
   console.log('clientside', stakeholder);
-  console.log;
+
   if (stakeholder.status == 'Profile Created') {
+    $('#save').hide();
+    $('#check').show();
+    $('#submit').hide();
+    $(".add-people-card").show();
+  }
+  else {
+    $('#check').hide();
+    $('#submit').hide();
   }
 
   $('#stakeholder_company_name_label').text(stakeholder.company_name);
@@ -93,16 +118,12 @@ function populate_profile(stakeholder) {
 }
 
 function addperson() {
-  if (stakeholder_id) {
+  if (stakeholder_id) 
+  {
     var type = 'innovador';
-    if ($('#add_new_person_input').val().length > 3) {
-      window.location.href =
-        '../../../../onboarding/?parent_id=' +
-        stakeholder_id +
-        '?stakeholder_type=' +
-        type +
-        '?name=' +
-        $('#add_new_person_input').val();
+    if ($('#add_new_person_input').val().length > 3) 
+    {
+      window.location.href ='../../../../onboarding/?parent_id=' +stakeholder_id +'?stakeholder_type=' +type +'?name='+$('#add_new_person_input').val();
     } else alert('Enter Valid Name');
   } else alert('Try Again, In a Minute');
 }
@@ -114,7 +135,11 @@ function populate_people(people) {
     console.log(people[i]);
     var li =
       '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+      '<div style="display:inline-flex";>' +
       '<div>' +
+      '<img class="rounded-circle img-fluid" width=50 height=50 src="' + people[i].logo + '"></img>' +
+      '</div>' +
+      '<div style="padding-left:10px;">' +
       '<a class="my-0" style="cursor:pointer;" href="' +
       people[i].linkedIn +
       '"  onclick="openurl("' +
@@ -125,6 +150,7 @@ function populate_people(people) {
       '<small class="text-muted">' +
       people[i].designation +
       '</small>' +
+      '</div>' +
       '</div>' +
       '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
       people[i].id +
@@ -169,8 +195,10 @@ $(document).ready(function () {
     //jQuery Change Function
     opval = is_submission_valid();
     if (opval != '') {
+      $('#submit').hide();
       alert('Please fill the following :' + opval);
     } else {
+      $('#submit').show();
       $('#submit').attr('disabled', false);
       alert('That works fine , you can now submit');
     }
@@ -178,8 +206,11 @@ $(document).ready(function () {
 });
 
 function is_submission_valid() {
-  alert('working');
+  alert('We\'re Checking the profile object if completed or not.');
   var arr = [];
+  if (people_list_count == 0) {
+    arr.push('Add People');
+  }
   if (document.getElementById('cin').value == '') {
     arr.push('Cin');
   }
@@ -198,9 +229,6 @@ function is_submission_valid() {
   if (document.getElementById('address').value == '') {
     arr.push('Address');
   }
-  if (people_list_count == 0) {
-    arr.push('Add People');
-  }
   console.log(arr);
   return arr;
 }
@@ -216,31 +244,31 @@ function display_data_innovadors(data_innovadors) {
 
       table.append(
         '<tr class="shadow">' +
-          '<td>' +
-          '<div class="company_logo_title_holder">' +
-          '<div class="wrapper">' +
-          '<img class= "image--cover" src="' +
-          data_innovadors[i].logo +
-          '">' +
-          '</div>' +
-          '</td>' +
-          '<td>' +
-          '<div class="company_title_holder">' +
-          data_innovadors[i].name +
-          '</div>' +
-          '</td>' +
-          '<div>' +
-          '<td>' +
-          data_innovadors[i].stakeholder_location +
-          '</td>' +
-          '</div>' +
-          '<td><Button class="btn btn-primary" onclick="profile(\'' +
-          data_innovadors[i].id +
-          '\')"> Add </Button></td>' +
-          '<td>' +
-          '</div>' +
-          '</td>' +
-          '</tr>'
+        '<td>' +
+        '<div class="company_logo_title_holder">' +
+        '<div class="wrapper">' +
+        '<img class= "image--cover" src="' +
+        data_innovadors[i].logo +
+        '">' +
+        '</div>' +
+        '</td>' +
+        '<td>' +
+        '<div class="company_title_holder">' +
+        data_innovadors[i].name +
+        '</div>' +
+        '</td>' +
+        '<div>' +
+        '<td>' +
+        data_innovadors[i].stakeholder_location +
+        '</td>' +
+        '</div>' +
+        '<td><Button class="btn btn-primary" onclick="profile(\'' +
+        data_innovadors[i].id +
+        '\')"> Add </Button></td>' +
+        '<td>' +
+        '</div>' +
+        '</td>' +
+        '</tr>'
       );
     }
   }
@@ -351,12 +379,7 @@ function close_modal() {
   $('#existing_user_modal').modal('hide');
 }
 
-/* function submit_complete_profile() {
-    var data = {};
-    $("#complete_startup_details").serializeArray().map(function (x) { data[x.name] = x.value; });
-    console.log(data);
 
-} */
 
 let complete_profile = {
   id: '',
@@ -399,8 +422,8 @@ function handle_object_profile() {
     description: description,
     pincode: pincode,
     address: address,
-    brand_name: document.getElementById('brand_name'),
-    website: document.getElementById('website'),
+    brand_name: document.getElementById('brand_name').value,
+    website: document.getElementById('website').value,
     status: 'Profile Completed',
   };
   return complete_profile;

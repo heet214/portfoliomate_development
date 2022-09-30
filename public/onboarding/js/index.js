@@ -12,6 +12,9 @@ function setup_onboarding_form(value) {
       setup_country_list();
       setup_startup_sector_list();
       $('#company_sector_div').show();
+      $(".fund-vc-pe").prop("disabled", true);
+      $(".innovador").prop("disabled", true);
+      $(".startup").prop("disabled", false);
       break;
     }
 
@@ -19,12 +22,18 @@ function setup_onboarding_form(value) {
       setup_country_list();
       setup_startup_sector_list();
       $('#company_sector_div').show();
+      $(".fund-vc-pe").prop("disabled", false);
+      $(".innovador").prop("disabled", true);
+      $(".startup").prop("disabled", true);
       break;
     }
 
     case 'innovador': {
       setup_country_list();
       $('#company_sector_div').hide();
+      $(".fund-vc-pe").prop("disabled", true);
+      $(".innovador").prop("disabled", false);
+      $(".startup").prop("disabled", true);
       break;
     }
   }

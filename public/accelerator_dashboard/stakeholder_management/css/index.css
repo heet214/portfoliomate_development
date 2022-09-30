@@ -74,23 +74,23 @@ body {
 
 .stakeholder_table tbody td .bg-notready0 {
     background-color: rgb(232, 130, 71);
-    color: white;
+    color: white!important;
 }
 
 .bg-notready0 {
     background-color: rgb(232, 130, 71);
-    color: white;
+    color: white!important;
 }
 
 
 .bg-notready1 {
     background-color: rgb(222, 160, 54);
-    color: white;
+    color: white!important;
 }
 
 
 .bg-notready2 {
-    background-color: rgb(232, 189, 71);
+    background-color: rgb(232, 219, 71);
     color: white;
 }
 

@@ -35,7 +35,7 @@ function get_stakeholders(type, data_object, callback) {
                         if (data_object.internal_type) {
                             if (data_object.internal_type == "innovador") {
                                 if (data.length > 0)
-                                callback(data_object.internal_type, data[0]);
+                                    callback(data_object.internal_type, data[0]);
                             }
                         }
                         else {
@@ -44,6 +44,12 @@ function get_stakeholders(type, data_object, callback) {
                             break;
                         }
                     }
+
+                case 'delete_profile': {
+                    console.log("serverside", data);
+                    callback(data.id, true, data);
+                    break;
+                }
 
                 case 'fund-vc-pe': {
                     var filtered_array = stakeholders.filter(function (el) {
@@ -86,7 +92,8 @@ function save_stakeholders_list(stakeholders_string) {
 
 
 function updatestakeHolder(type, data_object, callback) {
-    //alert("Making Network Call");
+    alert("Making Network Call");
+    console.log("ServerSide, Object to be updated", data_object );
     var stakeholders = [];
     $('#loader_modal').modal('show');
     url = "https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder";
@@ -110,6 +117,12 @@ function updatestakeHolder(type, data_object, callback) {
                         break;
                     }
 
+                case 'delete': {
+                    alert("Deleted Successfully");
+                    callback();
+                    break;
+                }
+
                 case 'single_profile':
                     {
                         //console.log("serverside", data);
@@ -117,12 +130,12 @@ function updatestakeHolder(type, data_object, callback) {
                         if (data_object.internal_type) {
                             if (data_object.internal_type == "innovador") {
                                 if (data.length > 0)
-                                callback(data_object.internal_type, data[0]);
+                                    callback(data_object.internal_type, data[0]);
                             }
                         }
                         else {
                             if (data.length > 0)
-                            callback(data[0]);
+                                callback(data[0]);
                             break;
                         }
                     }
