@@ -1,6 +1,8 @@
 var stakeholder_id;
 var data_innovadors;
+var data_refference;
 var temp_stakeholder;
+var temp_refference;
 var people_list_count = 0;
 var count = 1;
 var isEdit = false;
@@ -26,6 +28,27 @@ $('document').ready(function () {
   }
 });
 
+$('document').ready(function () {
+  if (is_logged_in()) {
+    $('#stakeholders_no_refferences').hide();
+    var params = get_params_from_url();
+    //alert("Reading Url");
+    console.log(params);
+    stakeholder_id = params.stakeholder_id;
+    if (params.action == "edit") {
+      isEdit = true;
+    }
+    else if (params.action == "complete") { isEdit = true; }
+
+    get_stakeholders(
+      'single_profile',
+      { id: stakeholder_id },
+      populate_refferences
+    );
+  } else {
+  }
+});
+
 function is_logged_in() {
   return true;
 }
@@ -36,7 +59,7 @@ function detectMob() {
 
 function populate_profile(stakeholder) {
   if (isEdit) {
-    $('#save').hide();
+    $('#save').show();
     $(".add-people-card").show();
   }
   else {
@@ -48,6 +71,7 @@ function populate_profile(stakeholder) {
   $('.status-indicator').text(stakeholder.status);
 
   temp_stakeholder = stakeholder;
+  temp_refference = stakeholder;
   console.log('clientside', stakeholder);
 
   if (stakeholder.status == 'Profile Created') {
@@ -100,6 +124,22 @@ function populate_profile(stakeholder) {
   } else {
     alert('No People in this Account, Looks Incomplete');
     $('#stakeholders_no_people').show();
+  }
+
+  //refference Check
+  if(stakeholder.refferences){
+    alert("first if check")
+    if(stakeholder.refferences.length > 0){
+      $('#stakeholders_no_refferences').hide();
+      populate_refferences(stakeholder.refferences)
+      refferences_list_count = 1;
+    }else{
+      
+      $('#stakeholders_no_refferences').show();
+    }
+  }else{
+    alert("No refferences in Account !!!")
+    $('#stakeholders_no_refferences').show()
   }
 
   $('#add_new_person_input').on('change keyup paste', function () {
@@ -160,6 +200,70 @@ function populate_people(people) {
   }
 }
 
+//Populate refference div
+function populate_refferences(refferences) {
+  $('#stakeholders_refference_list').show();
+  alert('populate refferences function called')
+  for (i = 0; i < refferences.length; i++) {
+    console.log(refferences[i]);
+    if(refferences[i].stakeholder_type == 'innovador'){
+      var li =
+      '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+      '<div style="display:inline-flex";>' +
+      '<div>' +
+      '<img class="rounded-circle img-fluid" width=50 height=50 src="' + refferences[i].logo + '"></img>' +
+      '</div>' +
+      '<div style="padding-left:10px;">' +
+      '<a class="my-0" style="cursor:pointer;" href="' +
+      refferences[i].linkedIn +
+      '"  onclick="openurl("' +
+      refferences[i].linkedIn +
+      '")">' +
+      refferences[i].name +
+      '</a><br>' +
+      '<small class="text-muted">' +
+      refferences[i].designation +
+      '</small>' +
+      '</div>' +
+      '</div>' +
+      '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+      refferences[i].id +
+      '")">Edit</span>' +
+      '</li>';
+    
+    }
+    else if(refferences[i].stakeholder_type == 'startup' || refferences[i].stakeholder_type == 'fund-vc-pe'){
+      var li =
+      '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+      '<div style="display:inline-flex";>' +
+      '<div>' +
+      '<img class="rounded-circle img-fluid" width=50 height=50 src="' + refferences[i].logo + '"></img>' +
+      '</div>' +
+      '<div style="padding-left:10px;">' +
+      '<a class="my-0" style="cursor:pointer;" href="' +
+      refferences[i].website +
+      '"  onclick="openurl("' +
+      refferences[i].website +
+      '")">' +
+      refferences[i].brand_name +
+      '</a><br>' +
+      '<small class="text-muted">' +
+      refferences[i].company_name +
+      '</small>' +
+      '</div>' +
+      '</div>' +
+      '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+      refferences[i].id +
+      '")">Edit</span>' +
+      '</li>';
+    
+    }
+    $('#stakeholders_refference_list').append(li);
+    
+  }
+}
+
+
 function openurl(url) {
   alert(url);
   window.location.href = url;
@@ -183,6 +287,33 @@ $(document).ready(function () {
           data_innovadors = data;
           console.log(data_innovadors);
           display_data_innovadors(data_innovadors);
+        },
+      });
+    }
+  });
+});
+
+
+//refference type select
+
+$(document).ready(function () {
+  //Make script DOM ready
+  $('#refference_type_select').change(function () {
+    //jQuery Change Function
+    alert("working")
+    var opval = $(this).val(); //Get value from select element
+    if (opval == 'existing_refference') {
+      //Compare it and if true
+      $('#existing_refference_modal').modal('show'); //Open Modal
+      $.ajax({
+        url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+          data_refference = data;
+          console.log("reffer")
+          console.log(data_refference);
+          display_data_refference(data_refference);
         },
       });
     }
@@ -274,6 +405,85 @@ function display_data_innovadors(data_innovadors) {
   }
 }
 
+//refference modal populate
+var data_refference_search_by_id = [];
+function display_data_refference(data_refference) {
+  var table = $('#populate_existing_refference');
+  alert("working populate")
+  table.empty();
+  for (i = 0; i < data_refference.length; i++) {
+    if (data_refference[i].stakeholder_type == 'innovador') {
+      
+      data_refference_search_by_id.push(data_refference[i]);
+      console.log(data_refference[i]);
+
+      table.append(
+        '<tr class="shadow">' +
+        '<td>' +
+        '<div class="company_logo_title_holder">' +
+        '<div class="wrapper">' +
+        '<img class= "image--cover" src="' +
+        data_refference[i].logo +
+        '">' +
+        '</div>' +
+        '</td>' +
+        '<td>' +
+        '<div class="company_title_holder">' +
+        data_refference[i].name +
+        '</div>' +
+        '</td>' +
+        '<div>' +
+        '<td>' +
+        data_refference[i].stakeholder_location +
+        '</td>' +
+        '</div>' +
+        '<td><Button class="btn btn-primary" onclick="refferences(\'' +
+        data_refference[i].id +
+        '\')"> Add </Button></td>' +
+        '<td>' +
+        '</div>' +
+        '</td>' +
+        '</tr>'
+      );
+    }
+    else if(data_refference[i].stakeholder_type == 'startup' || data_refference[i].stakeholder_type == 'fund-vc-pe' )
+    {
+      data_refference_search_by_id.push(data_refference[i]);
+      table.append(
+        '<tr class="shadow">' +
+        '<td>' +
+        '<div class="company_logo_title_holder">' +
+        '<div class="wrapper">' +
+        '<img class= "image--cover" src="' +
+        data_refference[i].logo +
+        '">' +
+        '</div>' +
+        '</td>' +
+        '<td>' +
+        '<div class="company_title_holder">' +
+        data_refference[i].brand_name +
+        '</div>' +
+        '</td>' +
+        '<div>' +
+        '<td>' +
+        data_refference[i].stakeholder_location +
+        '</td>' +
+        '</div>' +
+        '<td><Button class="btn btn-primary" onclick="refferences(\'' +
+        data_refference[i].id +
+        '\')"> Add </Button></td>' +
+        '<td>' +
+        '</div>' +
+        '</td>' +
+        '</tr>'
+      );
+
+    }
+  }
+}
+
+
+
 function profile(id) {
   count = 1;
 
@@ -332,9 +542,72 @@ function profile(id) {
     },
   });
 }
+
+//add refference 
+function refferences(id) {
+  count = 1;
+  alert("refferences called")
+  if (window.location.href.indexOf('#populate_existing_refference') != -1) {
+    $('#populate_existing_refference').modal('show');
+  }
+  console.log("refference list")
+  console.log(data_refference_search_by_id);
+  for (i = 0; i < data_refference_search_by_id.length; i++) {
+    if (id == data_refference_search_by_id[i].id) {
+      var temp = data_refference_search_by_id[i];
+      console.log(temp);
+    }
+  }
+  console.log(temp_refference);
+  if (temp_refference.refferences) {
+    for (i = 0; i < temp_refference.refferences.length; i++) {
+      console.log(temp_refference.refferences[i].id);
+      if (temp_refference.refferences[i].id == temp.id) {
+        count = 0;
+        console.log(count);
+        break;
+      }
+    }
+  } else {
+    temp_refference.refferences = [];
+  }
+  if (count == 1) {
+    count = 1;
+    console.log(count);
+    temp_refference.refferences.push(temp);
+    alert('Data Pushed');
+    close_modal();
+  } else {
+    alert('User already Exists !!!');
+    close_modal();
+  }
+  console.log(temp_refference);
+  url =
+    'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder';
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: temp_refference,
+    dataType: 'json',
+    success: function (data) {
+      console.log(
+        'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder',
+        data
+      );
+      location.reload();
+    },
+    error: function (request, error) {
+      $('#loader_modal').modal('hide');
+      location.reload();
+      alert('Request: ' + JSON.stringify(request));
+    },
+  });
+}
+
 function addperson() {
   if (stakeholder_id) {
     var type = 'innovador';
+    var action = 'addperson'
     if ($('#add_new_person_input').val().length > 3) {
       window.location.href =
         '../../../../onboarding/?parent_id=' +
@@ -342,10 +615,31 @@ function addperson() {
         '?stakeholder_type=' +
         type +
         '?name=' +
-        $('#add_new_person_input').val();
+        $('#add_new_person_input').val() +
+        '?action=' +
+        action;
     } else alert('Enter Valid Name');
   } else alert('Try Again, In a Minute');
 }
+
+function addrefferences() {
+  if (stakeholder_id) {
+    var type = 'innovador';
+    var action = 'addrefferences'
+    if ($('#add_new_reference_input').val().length > 3) {
+      window.location.href =
+        '../../../../onboarding/?parent_id=' +
+        stakeholder_id +
+        '?stakeholder_type=' +
+        type +
+        '?name=' +
+        $('#add_new_person_input').val() +
+        '?action=' +
+        action;
+    } else alert('Enter Valid Name');
+  } else alert('Try Again, In a Minute');
+}
+
 
 function addExistingPerson(id, name, designation, linkedIn) {
   console.log(name);
@@ -377,6 +671,10 @@ function addExistingPerson(id, name, designation, linkedIn) {
 
 function close_modal() {
   $('#existing_user_modal').modal('hide');
+  
+}
+function close_refference_modal(){
+  $('#existing_refference_modal').modal('hide')
 }
 
 
@@ -384,6 +682,10 @@ function close_modal() {
 let complete_profile = {
   id: '',
   cin: '',
+
+
+
+
   description: '',
   brand_name: '',
   website: '',
@@ -457,239 +759,3 @@ function submit_complete_profile() {
   });
 }
 
-//Heet Started here.
-
-const engagement = {
-  id: '',
-  engagement_type: '',
-  created_on: '',
-  created_by: '',
-  mandate: {
-    type: '',
-    url: '',
-    file_type: '',
-  },
-};
-const fundraiser = {
-  ask: {
-    currency_type: '',
-    amount: 0,
-  },
-  expected_value: [{ currency_type: '', amount: '', as_on: '' }],
-
-  documents: [
-    {
-      type: '',
-      url: '',
-      file_type: '',
-      //  pdf , excel , doc
-      //pitchdeck: '',
-      //  pdf , ppt , url
-    },
-  ],
-};
-
-const fundraiser_form = document.getElementById('engagement_form-fundraiser');
-const growth_form = document.getElementById('engagement_form-growth');
-
-let engagement_type = 'fundraiser';
-
-function toggleGrowthForm() {
-  growth_form.style.display = 'none';
-  fundraiser_form.style.display = 'block';
-  engagement_type = 'fundraiser';
-}
-function toggleFundraiserForm() {
-  growth_form.style.display = 'block';
-  fundraiser_form.style.display = 'none';
-  engagement_type = 'growth';
-}
-
-// function handleFiles() {}
-
-// let docArr = [];
-// let doc = document.getElementsByClassName('other-file-input');
-// function handleFiles(event) {
-//   console.log(event.target.files);
-//   let fileList = [...event.target.files];
-//   docArr.push(...fileList);
-//   console.log('Document Array: ', docArr);
-//   fileList.forEach((file) => {
-//     const para = document.createElement('ul');
-//     const close = document.createElement('p');
-//     const name = document.createTextNode(file.name);
-//     const close_name = document.createTextNode('x');
-
-//     para.appendChild(name);
-//     close.appendChild(close_name);
-//     close.addEventListener('click', (event) => {
-//       console.log('close', event);
-//       fileList.pop();
-//       console.log(fileList);
-//     });
-//     const element = document.getElementById('file-name');
-
-//     para.appendChild(close);
-//     para.classList.add('singleFile-line');
-//     element.appendChild(para);
-//     console.log('File Name: ', file.name);
-//   });
-// }
-let ask = document.getElementById('ask_evaluation');
-let evaluation = document.getElementById('expected_evaluation');
-let date = document.getElementById('date_as_on');
-let ask_curr = document.getElementById('ask_currency');
-let eval_curr = document.getElementById('evaluation_currency');
-let date_as_on = document.getElementById('date_as_on');
-let data_list_options = document.getElementById('datalistOptions');
-let file_type = [];
-let file_type_option_list = ['file 1', 'file 2', 'pitch deck'];
-let docArray = [];
-let urlsmthn = [];
-let mandate_file;
-let file_placeholder = document.getElementById('inputGroupFile04');
-let text_placeholder = document.getElementById('exampleDataList');
-let mandate_type = '';
-
-function setDocumentType(event) {
-  if (!file_type_option_list.includes(event.target.value)) {
-    const new_option = document.createElement('option');
-    const file_type_name = document.createTextNode(event.target.value);
-
-    new_option.appendChild(file_type_name);
-
-    data_list_options.appendChild(new_option);
-  }
-  file_type.push(event.target.value);
-}
-let mandate_url = [];
-function handleMandate(event) {
-  mandate_file = event.target.files[0];
-  console.log(mandate_file);
-  let file = mandate_file;
-  let formData = new FormData();
-  formData.append('file', file);
-
-  $.ajax({
-    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
-    type: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-    success: function (data) {
-      mandate_url.push(data);
-    },
-    error: function (request, error) {
-      alert('Request: ' + JSON.stringify(request));
-      $('.custom-file-label').text('Upload Logo to Proceed');
-      $('.custom-file-label').css({ color: 'maroon' });
-    },
-  });
-  console.log(mandate_url);
-  mandate_type = event.target.files[0].type;
-}
-
-function handleFileChange(event) {
-  docArray.push(...event.target.files);
-}
-
-function handleAddButton() {
-  console.log('file type', file_type);
-  console.log('Files', docArray);
-
-  file_placeholder.value = '';
-  text_placeholder.value = '';
-}
-function handleModalOpen() {
-  docArray = [];
-  file_type = [];
-}
-async function handleSave() {
-  for (i = 0; i < docArray.length; i++) {
-    // urlsmthn[i] = get_url(docArray[i]);
-    var file = docArray[i];
-    let formData = new FormData();
-    formData.append('file', file);
-
-    await $.ajax({
-      url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
-      type: 'POST',
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (data) {
-        urlsmthn.push(data);
-        console.log(data);
-      },
-      error: function (request, error) {
-        alert('Request: ' + JSON.stringify(request));
-        $('.custom-file-label').text('Upload Logo to Proceed');
-        $('.custom-file-label').css({ color: 'maroon' });
-      },
-    });
-  }
-}
-
-function handleClose() {
-  file_placeholder.value = '';
-  text_placeholder.value = '';
-}
-function handleObject() {
-  engagement.id = moment().format('YYYY|MMM|DD,HH:mm A');
-  engagement.engagement_type = engagement_type;
-  engagement.created_on = {
-    day: moment().format('DD'),
-    month: moment().format('MM'),
-    year: moment().format('YYYY'),
-    time: moment().format('hh:mm A'),
-    datetime: moment().toISOString(),
-    showdate: moment().format('DD MMM, YYYY hh:mm A'),
-  };
-  for (let i = 0; i < mandate_url.length; i++) {
-    engagement.mandate.url = mandate_url[i];
-  }
-  engagement.mandate.type = 'mandate';
-  engagement.mandate.file_type = mandate_type;
-  console.log('Engagement: ', engagement);
-
-  fundraiser.ask.amount = ask.value;
-  fundraiser.ask.currency_type = ask_curr.value;
-  fundraiser.expected_value[0].currency_type = eval_curr.value;
-  fundraiser.expected_value[0].amount = evaluation.value;
-  fundraiser.expected_value[0].as_on = date_as_on.value;
-
-  for (let i = 0; i < docArray.length; i++) {
-    fundraiser.documents[i] = {
-      type: docArray[i].type,
-      file_type: file_type[i],
-      url: urlsmthn[i],
-    };
-  }
-  console.log('Fundraiser: ', fundraiser);
-
-  pushObjectEngagement();
-}
-
-function pushObjectEngagement() {
-  var data_object = engagement;
-
-  $.ajax({
-    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/startEngagement',
-    type: 'POST',
-    data: data_object,
-    dataType: 'json',
-    success: function (data) {
-      console.log(data);
-      getObject(data);
-    },
-    error: function (request, error) {
-      alert('Request: ' + JSON.stringify(request));
-      $('.custom-file-label').text('Upload Logo to Proceed');
-      $('.custom-file-label').css({ color: 'maroon' });
-    },
-  });
-}
-
-function getObject(data) {
-  console.log('i got this id', data.id);
-}

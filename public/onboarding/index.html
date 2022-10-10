@@ -293,7 +293,9 @@
 
 
     <script>
-
+        function is_logged_in() {
+         return true;
+        }
         $('#stakeholder_type').on('change', function () {
             //alert(this.value);
             $(".stakeholder_details").hide();
@@ -305,7 +307,7 @@
 
         if (is_logged_in()) {
             var params = get_params_from_url();
-
+            var action = params.action
             //console.log(`stakeholder_type=${args.get('stakeholder_type')}) parent_id=${args.get('parent_id')}`);
             populate_profile(params.stakeholder_type, null);
         }

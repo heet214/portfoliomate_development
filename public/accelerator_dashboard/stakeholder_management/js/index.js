@@ -204,7 +204,7 @@ function populate_investors_table(stakeholders) {
 }
 
 function populate_innovadors_table(stakeholders) {
-    //alert("Populating Startups Table");
+    alert("Populating Startups Table");
     console.log("Populating Tables ", stakeholders);
     var table = $("#innovadors_table tbody");
     table.empty();

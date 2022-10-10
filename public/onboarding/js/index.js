@@ -251,14 +251,27 @@ function save_user_data(data) {
         case 'innovador': {
           //add innovador to parent, if parent had called to add people in it from profile page
           if (parent_stakeholder) {
-            if (parent_stakeholder.people) {
-              var people = parent_stakeholder.people;
-              people.push(data);
-            } else {
-              var people = [];
-              people.push(data);
-              parent_stakeholder.people = people;
-            }
+            if(action == 'addrefferences'){
+              console.log(parent_stakeholder.refferences);
+              if (parent_stakeholder.refferences) {
+                alert("adding")
+                var refferences = parent_stakeholder.refferences;
+                refferences.push(data);
+              } else if(!parent_stakeholder.refferences) {
+                var refferences = [];
+                refferences.push(data);
+                parent_stakeholder.refferences = refferences;
+              }
+            }else if(action == 'addperson'){
+              if (parent_stakeholder.people) {
+                var people = parent_stakeholder.people;
+                people.push(data);
+              } else if(!parent_stakeholder.people) {
+                var people = [];
+                people.push(data);
+                parent_stakeholder.people = people;
+              }
+            }            
             updatestakeHolder(
               'startup',
               parent_stakeholder,
