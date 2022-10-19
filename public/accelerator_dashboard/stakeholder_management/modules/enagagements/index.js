@@ -138,9 +138,16 @@ let mandate_file = [];
 let mandate_type = [];
 let mandate_description;
 let mandate_status;
+let mandate_status_value = document.getElementById('mandate_status');
+let mandate_description_placeholder = document.getElementById(
+  'mandate_description_input'
+);
+let closeMandateModal = document.getElementById('hanldeCloseMandateModal');
+let mandate_file_placeholder = document.getElementById('mandateFileInput');
 
-let file_placeholder = document.getElementById('inputGroupFile04');
-let text_placeholder = document.getElementById('exampleDataList');
+let other_files_close = document.getElementById('handleOtherFilesClose');
+let file_placeholder = document.getElementById('otherFiles_file_input');
+let text_placeholder = document.getElementById('otherFiles_input');
 
 let fees_radio = document.getElementById('fees');
 let equity_radio = document.getElementById('equity');
@@ -148,21 +155,16 @@ let fees_amount;
 let fees_comments;
 let payment_type;
 
-function setDocumentType(event) {
-  if (!file_type_option_list.includes(event.target.value)) {
-    const new_option = document.createElement('option');
-    const file_type_name = document.createTextNode(event.target.value);
-
-    new_option.appendChild(file_type_name);
-
-    data_list_options.appendChild(new_option);
-  }
-  file_type.push(event.target.value);
-}
+// MANDATE KE FUNCTIONS
 
 function handleMandate(event) {
   mandate_file.push(event.target.files[0]);
   console.log(mandate_file);
+
+  mandate_type.push(event.target.files[0].type);
+  console.log(mandate_type);
+}
+function handleMandateSave() {
   let file = mandate_file[0];
   let formData = new FormData();
   formData.append('file', file);
@@ -183,8 +185,11 @@ function handleMandate(event) {
     },
   });
   console.log(mandate_url);
-  mandate_type.push(event.target.files[0].type);
-  console.log(mandate_type);
+
+  mandate_status_value.checked = false;
+  mandate_description_placeholder.value = '';
+  mandate_file_placeholder.value = '';
+  closeMandateModal.click();
 }
 function handleMandateDescription(event) {
   mandate_description = event.target.value;
@@ -197,6 +202,19 @@ function handlePaymentDescription(event) {
   fees_comments = event.target.value;
 }
 
+// ADD OTHER FILES KE FUNCTIONS
+
+function setDocumentType(event) {
+  if (!file_type_option_list.includes(event.target.value)) {
+    const new_option = document.createElement('option');
+    const file_type_name = document.createTextNode(event.target.value);
+
+    new_option.appendChild(file_type_name);
+
+    data_list_options.appendChild(new_option);
+  }
+  file_type.push(event.target.value);
+}
 function handleFileChange(event) {
   docArray.push(...event.target.files);
 }
@@ -212,7 +230,7 @@ function handleModalOpen() {
   docArray = [];
   file_type = [];
 }
-async function handleSave() {
+async function handleFilesSave() {
   for (i = 0; i < docArray.length; i++) {
     // urlsmthn[i] = get_url(docArray[i]);
 
@@ -237,12 +255,18 @@ async function handleSave() {
       },
     });
   }
+
+  file_placeholder.value = '';
+  text_placeholder.value = '';
+  other_files_close.click();
 }
 
 function handleClose() {
   file_placeholder.value = '';
   text_placeholder.value = '';
 }
+
+// OBJECT HANDLING Functions
 
 function handleObject() {
   let mandate_radios = document.getElementsByName('mandate_status');

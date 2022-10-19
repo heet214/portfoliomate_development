@@ -603,38 +603,9 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="mb-3">
-                                                            <label for="formFile" class="form-label">Mandate <span
-                                                                    style="color:red">*</span></label>
-                                                            <input class="form-control mb-2 mandate-file-input"
-                                                                onchange="handleMandate(event)" type="file" id="formFile"
-                                                                required>
-                                                                
-                                                                <label for="mandate-status">Status</label>
-                                                                <div class="d-flex" id="mandate-status">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="mandate_status" value="mandate_proposed" id="mandate_status" />
-                                                                        <label class="form-check-label" for="mandate_proposed">
-                                                                          proposed
-                                                                        </label>
-                                                                      </div>
-                                                                      <div class="form-check ml-5">
-                                                                        <input class="form-check-input" type="radio" name="mandate_status" value="mandate_signed" id="mandate_status" />
-                                                                        <label class="form-check-label" for="mandate_signed">
-                                                                          signed
-                                                                        </label>
-                                                                      </div>
-                                                                     
-                                                                </div>
-                                                       
-                                                        </div>
+
                                                         <div class="mb-4">     
-                                                            
-                                                            <!-- <label for="mandate_description_input" class="form-label">Add a description:</label> -->
-                                                            <div class="form-floating">
-                                                                <textarea class="form-control" rows="50" style="height: 100px; resize: none" onchange="handleMandateDescription(event)" id="mandate_description_input"></textarea>
-                                                                <label for="mandate_description_input">Add a Description</label>
-                                                              </div>    
+                                                             
                                                           
                                                         </div>
 
@@ -674,95 +645,170 @@
                                                                 <label for="formFile" class="form-label">Other Documents <span
                                                                         style="color:red">*</span> </label>
 
-                                                                <button type="button" class="btn btn-primary"
-                                                                    data-toggle="modal" data-target="#exampleModalCenter"
-                                                                    onclick="handleModalOpen()">
-                                                                    Upload Files
+                                      
+
+
+                                                            </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="card mt-4">
+                                                    <div class="card-body">
+                                                        <div class="header d-flex justify-items-space-between flex-row">
+                                                            <h4 class="card-title">Mandate</h4>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMandateModal">
+                                                                    Add Mandate
                                                                 </button>
+                                                        </div>
+                                                        <div class="main-body">
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="addMandateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Add Mandate</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="mb-3">
+                                                                            <label for="mandateFileInput" class="form-label">Mandate <span style="color:red">*</span></label>
+                                                                            <input class="form-control mb-2 mandate-file-input"
+                                                                                onchange="handleMandate(event)" type="file" id="mandateFileInput"
+                                                                                required>
+                                                                                
+                                                                                <label for="mandate-status">Status</label>
+                                                                                <div class="d-flex mb-3" id="mandate-status">
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="radio" name="mandate_status" value="mandate_proposed" id="mandate_status" />
+                                                                                        <label class="form-check-label" for="mandate_proposed">
+                                                                                          proposed
+                                                                                        </label>
+                                                                                      </div>
+                                                                                      <div class="form-check ml-5">
+                                                                                        <input class="form-check-input" type="radio" name="mandate_status" value="mandate_signed" id="mandate_status" />
+                                                                                        <label class="form-check-label" for="mandate_signed">
+                                                                                          signed
+                                                                                        </label>
+                                                                                      </div>                                                                                      
+                                                                                </div>
+                                                                                <div class="form-floating">
+                                                                                    <textarea class="form-control" rows="50" style="height: 100px; resize: none" onchange="handleMandateDescription(event)" id="mandate_description_input"></textarea>
+                                                                                    <label for="mandate_description_input">Add a Description</label>
+                                                                                </div>  
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" id="hanldeCloseMandateModal" data-dismiss="modal">Close</button>
+                                                                        <button type="button" class="btn btn-primary"  onclick="handleMandateSave()">Save changes</button>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="exisisting-files">
+                                                                
+                                                            </div>
+                                                        </div>
 
 
-                                                                <div class="modal fade" id="exampleModalCenter"
-                                                                    data-backdrop="static" data-keyboard="false"
-                                                                    tabindex="-1" role="dialog"
-                                                                    aria-labelledby="exampleModalCenterTitle"
-                                                                    aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered"
-                                                                        role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title"
-                                                                                    id="exampleModalLongTitle">Upload Files
-                                                                                </h5>
-                                                                                <button type="button" class="close"
-                                                                                    data-dismiss="modal" aria-label="Close"
-                                                                                    onclick="handleClose()">
-                                                                                    <span aria-hidden="true">&times;</span>
-                                                                                </button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <label for="exampleDataList"
-                                                                                    class="form-label">Choose File Type</label>
-                                                                                <input class="form-control"
-                                                                                    list="datalistOptions"
-                                                                                    id="exampleDataList"
-                                                                                    placeholder="Type to search..."
-                                                                                    onchange="setDocumentType(event)">
-                                                                                <datalist id="datalistOptions"
-                                                                                    class="file_type-options">
-                                                                                    <option value="file 1">
-                                                                                    <option value="file 2">
-                                                                                    <option value="pitch deck">
-                                                                                </datalist>
-                                                                                <!-- <div class="form-floating">
-                                                                                    <select class="form-select" id="floatingSelect" onchange="setDocumentType(event)"  aria-label="Floating label for file type" required>
-                                                                                      <option selected>Choose File Type</option>
-                                                                                      <option value="1">One</option>
-                                                                                      <option value="2">Two</option>
-                                                                                      <option value="3">Three</option>
-                                                                                    </select>
-                                                                                    <label for="floatingSelect">File Type</label>
-                                                                                  </div> -->
+                                                    </div>  
+                                                </div>
 
-                                                                                <div class="mb-3" style="margin-top: 20px">
+                                                <div class="card mt-4">
+                                                    <div class="card-body">
+                                                        <div class="header d-flex justify-items-space-between flex-row">
+                                                            <h4 class="card-title">Other Files</h4>
+                                                                <!-- Button trigger modal -->
+                                                               
+                                                                <button type="button" class="btn btn-primary"
+                                                                data-toggle="modal" data-target="#exampleModalCenter"
+                                                                onclick="handleModalOpen()">
+                                                                Upload Files
+                                                            </button>
+                                                        </div>
+                                                        <div class="main-body">
+                                                            <!-- Modal -->
+                                                            
+                                                            <div class="modal fade" id="exampleModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="exampleModalLongTitle">Upload Files
+                                                                            </h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close"
+                                                                                onclick="handleClose()">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <label for="otherFiles_input"
+                                                                                class="form-label">Choose File Type</label>
+                                                                            <input class="form-control"
+                                                                                list="datalistOptions"
+                                                                                id="otherFiles_input"
+                                                                                placeholder="Type to search..."
+                                                                                onchange="setDocumentType(event)">
+                                                                            <datalist id="datalistOptions"
+                                                                                class="file_type-options">
+                                                                                <option value="file 1">
+                                                                                <option value="file 2">
+                                                                                <option value="pitch deck">
+                                                                            </datalist>
+                                                                            <!-- <div class="form-floating">
+                                                                                <select class="form-select" id="floatingSelect" onchange="setDocumentType(event)"  aria-label="Floating label for file type" required>
+                                                                                <option selected>Choose File Type</option>
+                                                                                <option value="1">One</option>
+                                                                                <option value="2">Two</option>
+                                                                                <option value="3">Three</option>
+                                                                                </select>
+                                                                                <label for="floatingSelect">File Type</label>
+                                                                            </div> -->
 
-                                                                                    <div class="input-group">
-                                                                                        <input type="file"
-                                                                                            class="form-control"
-                                                                                            id="inputGroupFile04"
-                                                                                            onchange="handleFileChange(event)"
-                                                                                            aria-describedby="inputGroupFileAddon04"
-                                                                                            aria-label="Upload">
-                                                                                        <button
-                                                                                            class="btn btn-outline-secondary"
-                                                                                            onclick="handleAddButton()"
-                                                                                            type="button"
-                                                                                            id="inputGroupFileAddon04">Add</button>
-                                                                                    </div>
-                                                                                    <div id="file-details"
-                                                                                        style="margin-top: 20px">
+                                                                            <div class="mb-3" style="margin-top: 20px">
 
-                                                                                    </div>
+                                                                                <div class="input-group">
+                                                                                    <input type="file"
+                                                                                        class="form-control"
+                                                                                        id="otherFiles_file_input"
+                                                                                        onchange="handleFileChange(event)"
+                                                                                        aria-describedby="inputGroupFileAddon04"
+                                                                                        aria-label="Upload">
+                                                                                    <button
+                                                                                        class="btn btn-outline-secondary"
+                                                                                        onclick="handleAddButton()"
+                                                                                        type="button"
+                                                                                        id="inputGroupFileAddon04">Add</button>
+                                                                                </div>
+                                                                                <div id="file-details"
+                                                                                    style="margin-top: 20px">
+
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button"
-                                                                                    class="btn btn-secondary"
-                                                                                    data-dismiss="modal"
-                                                                                    onclick="handleClose()">Close</button>
-                                                                                <button type="button"
-                                                                                    class="btn btn-primary"
-                                                                                    onclick="handleSave()">Save
-                                                                                    changes</button>
-                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" id="handleOtherFilesClose" data-dismiss="modal" onclick="handleClose()">Close</button>
+                                                                            <button type="button"
+                                                                                class="btn btn-primary"
+                                                                                onclick="handleFilesSave()">Save
+                                                                                changes
+                                                                            </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            
-
-
+                                                            </div>
+                                                            <div class="exisisting-files">
+                                                                
+                                                            </div>
                                                         </div>
 
-                                                    </div>
+
+                                                    </div>  
                                                 </div>
                                             </div>
                                             <button id="" type="" style="margin-top: 1vh;"
