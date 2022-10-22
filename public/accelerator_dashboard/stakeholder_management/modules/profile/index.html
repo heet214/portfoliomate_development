@@ -723,7 +723,7 @@
                                                                 <!-- Button trigger modal -->
                                                                
                                                                 <button type="button" class="btn btn-primary"
-                                                                data-toggle="modal" data-target="#exampleModalCenter"
+                                                                data-toggle="modal" data-target="#filesModal"
                                                                 onclick="handleModalOpen()">
                                                                 Upload Files
                                                             </button>
@@ -731,7 +731,7 @@
                                                         <div class="main-body">
                                                             <!-- Modal -->
                                                             
-                                                            <div class="modal fade" id="exampleModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal fade" id="filesModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered"
                                                                     role="document">
                                                                     <div class="modal-content">
@@ -774,7 +774,7 @@
                                                                                 <div class="input-group">
                                                                                     <input type="file"
                                                                                         class="form-control"
-                                                                                        id="otherFiles_file_input"
+                                                                                        id="inputGroupFile04"
                                                                                         onchange="handleFileChange(event)"
                                                                                         aria-describedby="inputGroupFileAddon04"
                                                                                         aria-label="Upload">
@@ -791,20 +791,63 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" id="handleOtherFilesClose" data-dismiss="modal" onclick="handleClose()">Close</button>
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-dismiss="modal"
+                                                                                onclick="handleClose()">Close</button>
                                                                             <button type="button"
                                                                                 class="btn btn-primary"
-                                                                                onclick="handleFilesSave()">Save
-                                                                                changes
+                                                                                onclick="handleFileSave()">Save changes
                                                                             </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="exisisting-files">
-                                                                
-                                                            </div>
                                                         </div>
+
+
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="card mt-4">
+                                                    <div class="card-body">
+                                                        <div class="header d-flex justify-items-space-between flex-row">
+                                                            <h4 class="card-title">Add investors</h4>
+                                                                <!-- Button trigger modal -->
+                                                               
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#investorModal">
+                                                                    Add Investor
+                                                                </button>
+                                                        </div>
+                                                        <div class="main-body">
+                                                            <!-- Modal -->
+
+                                                            <div class="modal fade" id="investorModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Add New Investor </h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close"
+                                                                                onclick="handleClose()">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-dismiss="modal"
+                                                                                onclick="handleClose()">Close</button>
+                                                                            <button type="button" class="btn btn-primary" onclick="">
+                                                                                Save changes
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -816,8 +859,7 @@
                                                 </div>
 
                                             </div>
-                                            <button id="" type="" style="margin-top: 1vh;"
-                                                class="btn btn-primary">Submit</button>
+                                            <button id="" type="" style="margin-top: 1vh;" class="btn btn-primary">Submit</button>
                                             <p id="" type="" style="margin-top: 1vh;" class="btn btn-primary" onclick="handleObject()">Check</p>
                                         </form>
                                 </div>
