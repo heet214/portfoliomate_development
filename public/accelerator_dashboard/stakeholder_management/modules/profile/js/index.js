@@ -14,10 +14,11 @@ $('document').ready(function () {
     //alert("Reading Url");
     console.log(params);
     stakeholder_id = params.stakeholder_id;
-    if (params.action == "edit") {
+    if (params.action == 'edit') {
+      isEdit = true;
+    } else if (params.action == 'complete') {
       isEdit = true;
     }
-    else if (params.action == "complete") { isEdit = true; }
 
     get_stakeholders(
       'single_profile',
@@ -35,10 +36,11 @@ $('document').ready(function () {
     //alert("Reading Url");
     console.log(params);
     stakeholder_id = params.stakeholder_id;
-    if (params.action == "edit") {
+    if (params.action == 'edit') {
+      isEdit = true;
+    } else if (params.action == 'complete') {
       isEdit = true;
     }
-    else if (params.action == "complete") { isEdit = true; }
 
     get_stakeholders(
       'single_profile',
@@ -60,12 +62,11 @@ function detectMob() {
 function populate_profile(stakeholder) {
   if (isEdit) {
     $('#save').show();
-    $(".add-people-card").show();
-  }
-  else {
-    alert("Don't Allow to Edit")
+    $('.add-people-card').show();
+  } else {
+    alert("Don't Allow to Edit");
     $('#save').hide();
-    $(".add-people-card").hide();
+    $('.add-people-card').hide();
     $('.basic-details .form-control').attr('readonly', 'readonly');
   }
   $('.status-indicator').text(stakeholder.status);
@@ -78,9 +79,8 @@ function populate_profile(stakeholder) {
     $('#save').hide();
     $('#check').show();
     $('#submit').hide();
-    $(".add-people-card").show();
-  }
-  else {
+    $('.add-people-card').show();
+  } else {
     $('#check').hide();
     $('#submit').hide();
   }
@@ -127,19 +127,18 @@ function populate_profile(stakeholder) {
   }
 
   //refference Check
-  if(stakeholder.refferences){
-    alert("first if check")
-    if(stakeholder.refferences.length > 0){
+  if (stakeholder.refferences) {
+    alert('first if check');
+    if (stakeholder.refferences.length > 0) {
       $('#stakeholders_no_refferences').hide();
-      populate_refferences(stakeholder.refferences)
+      populate_refferences(stakeholder.refferences);
       refferences_list_count = 1;
-    }else{
-      
+    } else {
       $('#stakeholders_no_refferences').show();
     }
-  }else{
-    alert("No refferences in Account !!!")
-    $('#stakeholders_no_refferences').show()
+  } else {
+    alert('No refferences in Account !!!');
+    $('#stakeholders_no_refferences').show();
   }
 
   $('#add_new_person_input').on('change keyup paste', function () {
@@ -158,12 +157,16 @@ function populate_profile(stakeholder) {
 }
 
 function addperson() {
-  if (stakeholder_id) 
-  {
+  if (stakeholder_id) {
     var type = 'innovador';
-    if ($('#add_new_person_input').val().length > 3) 
-    {
-      window.location.href ='../../../../onboarding/?parent_id=' +stakeholder_id +'?stakeholder_type=' +type +'?name='+$('#add_new_person_input').val();
+    if ($('#add_new_person_input').val().length > 3) {
+      window.location.href =
+        '../../../../onboarding/?parent_id=' +
+        stakeholder_id +
+        '?stakeholder_type=' +
+        type +
+        '?name=' +
+        $('#add_new_person_input').val();
     } else alert('Enter Valid Name');
   } else alert('Try Again, In a Minute');
 }
@@ -177,7 +180,9 @@ function populate_people(people) {
       '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
       '<div style="display:inline-flex";>' +
       '<div>' +
-      '<img class="rounded-circle img-fluid" width=50 height=50 src="' + people[i].logo + '"></img>' +
+      '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+      people[i].logo +
+      '"></img>' +
       '</div>' +
       '<div style="padding-left:10px;">' +
       '<a class="my-0" style="cursor:pointer;" href="' +
@@ -203,66 +208,68 @@ function populate_people(people) {
 //Populate refference div
 function populate_refferences(refferences) {
   $('#stakeholders_refference_list').show();
-  alert('populate refferences function called')
+  alert('populate refferences function called');
   for (i = 0; i < refferences.length; i++) {
     console.log(refferences[i]);
-    if(refferences[i].stakeholder_type == 'innovador'){
+    if (refferences[i].stakeholder_type == 'innovador') {
       var li =
-      '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
-      '<div style="display:inline-flex";>' +
-      '<div>' +
-      '<img class="rounded-circle img-fluid" width=50 height=50 src="' + refferences[i].logo + '"></img>' +
-      '</div>' +
-      '<div style="padding-left:10px;">' +
-      '<a class="my-0" style="cursor:pointer;" href="' +
-      refferences[i].linkedIn +
-      '"  onclick="openurl("' +
-      refferences[i].linkedIn +
-      '")">' +
-      refferences[i].name +
-      '</a><br>' +
-      '<small class="text-muted">' +
-      refferences[i].designation +
-      '</small>' +
-      '</div>' +
-      '</div>' +
-      '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
-      refferences[i].id +
-      '")">Edit</span>' +
-      '</li>';
-    
-    }
-    else if(refferences[i].stakeholder_type == 'startup' || refferences[i].stakeholder_type == 'fund-vc-pe'){
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        refferences[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        refferences[i].linkedIn +
+        '"  onclick="openurl("' +
+        refferences[i].linkedIn +
+        '")">' +
+        refferences[i].name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        refferences[i].designation +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        refferences[i].id +
+        '")">Edit</span>' +
+        '</li>';
+    } else if (
+      refferences[i].stakeholder_type == 'startup' ||
+      refferences[i].stakeholder_type == 'fund-vc-pe'
+    ) {
       var li =
-      '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
-      '<div style="display:inline-flex";>' +
-      '<div>' +
-      '<img class="rounded-circle img-fluid" width=50 height=50 src="' + refferences[i].logo + '"></img>' +
-      '</div>' +
-      '<div style="padding-left:10px;">' +
-      '<a class="my-0" style="cursor:pointer;" href="' +
-      refferences[i].website +
-      '"  onclick="openurl("' +
-      refferences[i].website +
-      '")">' +
-      refferences[i].brand_name +
-      '</a><br>' +
-      '<small class="text-muted">' +
-      refferences[i].company_name +
-      '</small>' +
-      '</div>' +
-      '</div>' +
-      '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
-      refferences[i].id +
-      '")">Edit</span>' +
-      '</li>';
-    
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        refferences[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        refferences[i].website +
+        '"  onclick="openurl("' +
+        refferences[i].website +
+        '")">' +
+        refferences[i].brand_name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        refferences[i].company_name +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        refferences[i].id +
+        '")">Edit</span>' +
+        '</li>';
     }
     $('#stakeholders_refference_list').append(li);
-    
   }
 }
-
 
 function openurl(url) {
   alert(url);
@@ -293,14 +300,13 @@ $(document).ready(function () {
   });
 });
 
-
 //refference type select
 
 $(document).ready(function () {
   //Make script DOM ready
   $('#refference_type_select').change(function () {
     //jQuery Change Function
-    alert("working")
+    alert('working');
     var opval = $(this).val(); //Get value from select element
     if (opval == 'existing_refference') {
       //Compare it and if true
@@ -311,7 +317,7 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (data) {
           data_refference = data;
-          console.log("reffer")
+          console.log('reffer');
           console.log(data_refference);
           display_data_refference(data_refference);
         },
@@ -337,7 +343,7 @@ $(document).ready(function () {
 });
 
 function is_submission_valid() {
-  alert('We\'re Checking the profile object if completed or not.');
+  alert("We're Checking the profile object if completed or not.");
   var arr = [];
   if (people_list_count == 0) {
     arr.push('Add People');
@@ -375,31 +381,31 @@ function display_data_innovadors(data_innovadors) {
 
       table.append(
         '<tr class="shadow">' +
-        '<td>' +
-        '<div class="company_logo_title_holder">' +
-        '<div class="wrapper">' +
-        '<img class= "image--cover" src="' +
-        data_innovadors[i].logo +
-        '">' +
-        '</div>' +
-        '</td>' +
-        '<td>' +
-        '<div class="company_title_holder">' +
-        data_innovadors[i].name +
-        '</div>' +
-        '</td>' +
-        '<div>' +
-        '<td>' +
-        data_innovadors[i].stakeholder_location +
-        '</td>' +
-        '</div>' +
-        '<td><Button class="btn btn-primary" onclick="profile(\'' +
-        data_innovadors[i].id +
-        '\')"> Add </Button></td>' +
-        '<td>' +
-        '</div>' +
-        '</td>' +
-        '</tr>'
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data_innovadors[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data_innovadors[i].name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data_innovadors[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="profile(\'' +
+          data_innovadors[i].id +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
       );
     }
   }
@@ -409,80 +415,77 @@ function display_data_innovadors(data_innovadors) {
 var data_refference_search_by_id = [];
 function display_data_refference(data_refference) {
   var table = $('#populate_existing_refference');
-  alert("working populate")
+  alert('working populate');
   table.empty();
   for (i = 0; i < data_refference.length; i++) {
     if (data_refference[i].stakeholder_type == 'innovador') {
-      
       data_refference_search_by_id.push(data_refference[i]);
       console.log(data_refference[i]);
 
       table.append(
         '<tr class="shadow">' +
-        '<td>' +
-        '<div class="company_logo_title_holder">' +
-        '<div class="wrapper">' +
-        '<img class= "image--cover" src="' +
-        data_refference[i].logo +
-        '">' +
-        '</div>' +
-        '</td>' +
-        '<td>' +
-        '<div class="company_title_holder">' +
-        data_refference[i].name +
-        '</div>' +
-        '</td>' +
-        '<div>' +
-        '<td>' +
-        data_refference[i].stakeholder_location +
-        '</td>' +
-        '</div>' +
-        '<td><Button class="btn btn-primary" onclick="refferences(\'' +
-        data_refference[i].id +
-        '\')"> Add </Button></td>' +
-        '<td>' +
-        '</div>' +
-        '</td>' +
-        '</tr>'
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data_refference[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data_refference[i].name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data_refference[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="refferences(\'' +
+          data_refference[i].id +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
       );
-    }
-    else if(data_refference[i].stakeholder_type == 'startup' || data_refference[i].stakeholder_type == 'fund-vc-pe' )
-    {
+    } else if (
+      data_refference[i].stakeholder_type == 'startup' ||
+      data_refference[i].stakeholder_type == 'fund-vc-pe'
+    ) {
       data_refference_search_by_id.push(data_refference[i]);
       table.append(
         '<tr class="shadow">' +
-        '<td>' +
-        '<div class="company_logo_title_holder">' +
-        '<div class="wrapper">' +
-        '<img class= "image--cover" src="' +
-        data_refference[i].logo +
-        '">' +
-        '</div>' +
-        '</td>' +
-        '<td>' +
-        '<div class="company_title_holder">' +
-        data_refference[i].brand_name +
-        '</div>' +
-        '</td>' +
-        '<div>' +
-        '<td>' +
-        data_refference[i].stakeholder_location +
-        '</td>' +
-        '</div>' +
-        '<td><Button class="btn btn-primary" onclick="refferences(\'' +
-        data_refference[i].id +
-        '\')"> Add </Button></td>' +
-        '<td>' +
-        '</div>' +
-        '</td>' +
-        '</tr>'
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data_refference[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data_refference[i].brand_name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data_refference[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="refferences(\'' +
+          data_refference[i].id +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
       );
-
     }
   }
 }
-
-
 
 function profile(id) {
   count = 1;
@@ -543,14 +546,14 @@ function profile(id) {
   });
 }
 
-//add refference 
+//add refference
 function refferences(id) {
   count = 1;
-  alert("refferences called")
+  alert('refferences called');
   if (window.location.href.indexOf('#populate_existing_refference') != -1) {
     $('#populate_existing_refference').modal('show');
   }
-  console.log("refference list")
+  console.log('refference list');
   console.log(data_refference_search_by_id);
   for (i = 0; i < data_refference_search_by_id.length; i++) {
     if (id == data_refference_search_by_id[i].id) {
@@ -607,7 +610,7 @@ function refferences(id) {
 function addperson() {
   if (stakeholder_id) {
     var type = 'innovador';
-    var action = 'addperson'
+    var action = 'addperson';
     if ($('#add_new_person_input').val().length > 3) {
       window.location.href =
         '../../../../onboarding/?parent_id=' +
@@ -625,7 +628,7 @@ function addperson() {
 function addrefferences() {
   if (stakeholder_id) {
     var type = 'innovador';
-    var action = 'addrefferences'
+    var action = 'addrefferences';
     if ($('#add_new_reference_input').val().length > 3) {
       window.location.href =
         '../../../../onboarding/?parent_id=' +
@@ -639,7 +642,6 @@ function addrefferences() {
     } else alert('Enter Valid Name');
   } else alert('Try Again, In a Minute');
 }
-
 
 function addExistingPerson(id, name, designation, linkedIn) {
   console.log(name);
@@ -671,20 +673,14 @@ function addExistingPerson(id, name, designation, linkedIn) {
 
 function close_modal() {
   $('#existing_user_modal').modal('hide');
-  
 }
-function close_refference_modal(){
-  $('#existing_refference_modal').modal('hide')
+function close_refference_modal() {
+  $('#existing_refference_modal').modal('hide');
 }
-
-
 
 let complete_profile = {
   id: '',
   cin: '',
-
-
-
 
   description: '',
   brand_name: '',
@@ -758,4 +754,3 @@ function submit_complete_profile() {
     },
   });
 }
-

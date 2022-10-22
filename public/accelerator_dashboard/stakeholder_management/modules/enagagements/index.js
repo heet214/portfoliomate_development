@@ -1,4 +1,5 @@
 //Heet Started here.
+
 let engagement = {
   id: '',
   engagement_type: '',
@@ -158,14 +159,15 @@ let payment_type;
 // MANDATE KE FUNCTIONS
 
 function handleMandate(event) {
-  mandate_file.push(event.target.files[0]);
+  mandate_file.push(event.target.files[mandate_file.length - 1]);
   console.log(mandate_file);
 
-  mandate_type.push(event.target.files[0].type);
+  mandate_type.push(event.target.files[mandate_file.length - 1].type);
   console.log(mandate_type);
 }
+
 function handleMandateSave() {
-  let file = mandate_file[0];
+  let file = mandate_file[mandate_file.length - 1];
   let formData = new FormData();
   formData.append('file', file);
 
@@ -186,11 +188,16 @@ function handleMandateSave() {
   });
   console.log(mandate_url);
 
+  console.log('getting logged');
+  let li = '<p>GOT the file</p>';
+  $('#exisisting-mandate_files').append(li);
+
   mandate_status_value.checked = false;
   mandate_description_placeholder.value = '';
   mandate_file_placeholder.value = '';
   closeMandateModal.click();
 }
+
 function handleMandateDescription(event) {
   mandate_description = event.target.value;
 }
