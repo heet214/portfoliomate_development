@@ -732,8 +732,7 @@
                                                             <!-- Modal -->
                                                             
                                                             <div class="modal fade" id="filesModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered"
-                                                                    role="document">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title"
@@ -759,22 +758,14 @@
                                                                                 <option value="file 2">
                                                                                 <option value="pitch deck">
                                                                             </datalist>
-                                                                            <!-- <div class="form-floating">
-                                                                                <select class="form-select" id="floatingSelect" onchange="setDocumentType(event)"  aria-label="Floating label for file type" required>
-                                                                                <option selected>Choose File Type</option>
-                                                                                <option value="1">One</option>
-                                                                                <option value="2">Two</option>
-                                                                                <option value="3">Three</option>
-                                                                                </select>
-                                                                                <label for="floatingSelect">File Type</label>
-                                                                            </div> -->
+
 
                                                                             <div class="mb-3" style="margin-top: 20px">
 
                                                                                 <div class="input-group">
                                                                                     <input type="file"
                                                                                         class="form-control"
-                                                                                        id="inputGroupFile04"
+                                                                                        id="otherFiles_file_input"
                                                                                         onchange="handleFileChange(event)"
                                                                                         aria-describedby="inputGroupFileAddon04"
                                                                                         aria-label="Upload">
@@ -794,7 +785,7 @@
                                                                             <button type="button"
                                                                                 class="btn btn-secondary"
                                                                                 data-dismiss="modal"
-                                                                                onclick="handleClose()">Close</button>
+                                                                                onclick="handleClose()" id="handleOtherFilesClose">Close</button>
                                                                             <button type="button"
                                                                                 class="btn btn-primary"
                                                                                 onclick="handleFileSave()">Save changes

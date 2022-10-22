@@ -239,7 +239,7 @@ function handleModalOpen() {
   docArray = [];
   file_type = [];
 }
-async function handleFilesSave() {
+async function handleFileSave() {
   for (i = 0; i < docArray.length; i++) {
     // urlsmthn[i] = get_url(docArray[i]);
 
