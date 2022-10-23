@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kanban Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/portfoliomate.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../../configurations/common.css">
+    <script src="js/index.js"></script>
+    <script src="js/mobile_functions.js"></script>
+    <script src="../../configurations/local_dbfunctions.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- update the version number as needed -->
+
+    <script defer src="/__/firebase/9.9.2/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.9.2/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-performance-compat.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <div>
+            <div id="main_holder">
+                <div class="main_menu_holder shadow">
+                    <div class="logo_menu_item">
+                        <img class="img-fluid" src="../../../../assets/portfoliomate.png">
+                    </div>
+
+                    <div class="menu_item_divider"></div>
+                    <div class="main_menu_item inactive">
+                        <i class="fa-solid fa-user-group"></i>
+                        <div class="label">Stakeholders</div>
+                    </div>
+
+                    <div class="menu_item_divider"></div>
+                    <div class="main_menu_item active">
+                        <i style="font-size: xx-large;" class="fa-solid fa-cubes-stacked"></i>
+                        <div class="label">Work</div>
+                    </div>
+
+
+                    <div class="menu_item_divider"></div>
+                    <div class="main_menu_item inactive">
+                        <i class="fa-solid fa-user-group"></i>
+                        <div class="label">Stakeholders</div>
+                    </div>
+
+                </div>
+                <div class="container">
+                <div id="kanban-board-holder">
+                    <div class="status-holders">
+                        <div class="status-header" id="notApproached-header">
+                            <div>Not Approached</div>
+                            <div id="notApproached-addbtn">+</div>
+                        </div>
+                        <div class="notApproached-card">
+                            <div class="notApproached-card-header">
+                                <div class="mandate_id">#5678sui</div>
+                                <div class="notApproaced-options">&#10247;</div>
+                            </div>
+                            <div class="engagement">
+                                <div class="profiles">
+                                    <div style="display:flex;align-items: center;justify-content: space-between;">
+                                        <div class="stakeholder">
+                                    <div ><img class="user" src="../../../../assets/portfoliomate.png"/></div>
+                                    <div >AV</div>
+                                </div>
+                                
+                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                    <div class="investor"> 
+                                    <div ><img class="user" src="https://via.placeholder.com/400x200"/></div>
+                                    <div style="color:#ccc">NA</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-holders">
+                        <div class="status-header" id="Approached-header">
+                            <div>Approached</div>
+                            <div id="Approached-addbtn">+</div>
+                        </div>
+                        <div class="Approached-card">
+                            <div class="Approached-card-header">
+                                <div class="mandate_id">#987sui</div>
+                                <div class="Approaced-options">&#10247;</div>
+                            </div>
+                            <div class="engagement">
+                                <div class="profiles">
+                                    <div style="display:flex;align-items: center;justify-content: space-between;">
+                                        <div class="stakeholder">
+                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C4E0BAQFjt-1nLwlOpQ/company-logo_100_100/0/1650172931140?e=1674691200&v=beta&t=_2keAqXsPMhVkyqkddKQD-d07_QgdCH3oS1HOfV76KI"/></div>
+                                    <div >GG</div>
+                                </div>
+                                
+                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                    <div class="investor"> 
+                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFkvPfZimZfvg/company-logo_200_200/0/1633642402672?e=2147483647&v=beta&t=BI6cnHr_7iAsgqhizFUgtsIyrgtUrsbFL_bAYcWIlUo"/></div>
+                                    <div >EA</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-holders">
+                        <div class="status-header" id="Interested-header">
+                            <div>Interested</div>
+                            <div id="Interested-addbtn">+</div>
+                        </div>
+                        <div class="Interested-card">
+                            <div class="Interested-card-header">
+                                <div class="mandate_id">#9978sui</div>
+                                <div class="Interested-options">&#10247;</div>
+                            </div>
+                            <div class="engagement">
+                                <div class="profiles">
+                                    <div style="display:flex;align-items: center;justify-content: space-between;">
+                                        <div class="stakeholder">
+                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C560BAQE_llJyX8kcmA/company-logo_200_200/0/1604661338098?e=1674691200&v=beta&t=Aj0YMHoNMQFVeHwLLBB7WlqyX1_6WDdPdAKpuPT8_o4"/></div>
+                                    <div >AV</div>
+                                </div>
+                                
+                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                    <div class="investor"> 
+                                    <div ><img class="user" src="https://image.pitchbook.com/th1kekrNmIPlxl8eYNqE2cOCasy1646661102582_200x200"/></div>
+                                    <div >SV</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-holders">
+                        <div class="status-header" id="meet-header">
+                            <div>Meeting Scheduled</div>
+                            <div id="notApproached-addbtn">+</div>
+                        </div>
+                        <div class="meet-card">
+                            <div class="meet-card-header">
+                                <div class="mandate_id">#56899sui</div>
+                                <div class="meet-options">&#10247;</div>
+                            </div>
+                            <div class="engagement">
+                                <div class="profiles">
+                                    <div style="display:flex;align-items: center;justify-content: space-between;">
+                                        <div class="stakeholder">
+                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C560BAQF-spj2q9XIGA/company-logo_200_200/0/1648084855940?e=2147483647&v=beta&t=mahb3Kp7VPbbJViwSwZYJOe28wAQW0bPZ4To2NbdY7A"/></div>
+                                    <div >AV</div>
+                                </div>
+                                
+                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                    <div class="investor"> 
+                                    <div ><img class="user" src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd"/></div>
+                                    <div >SVC</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-holders">
+                        <div class="status-header" id="notInterested-header">
+                            <div>Not Interested</div>
+                            <div id="notInterested-addbtn">+</div>
+                        </div>
+                        <div class="notApproached-card">
+                            <div class="notInterested-card-header">
+                                <div class="mandate_id">#5678sui</div>
+                                <div class="notInterested-options">&#10247;</div>
+                            </div>
+                            <div class="engagement">
+                                <div class="profiles">
+                                    <div style="display:flex;align-items: center;justify-content: space-between;">
+                                        <div class="stakeholder">
+                                    <div ><img class="user" src="../../../../assets/portfoliomate.png"/></div>
+                                    <div >AV</div>
+                                </div>
+                                
+                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                    <div class="investor"> 
+                                    <div ><img class="user" src="https://via.placeholder.com/400x200"/></div>
+                                    <div style="color:#ccc">NA</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</body>
+<script src="./js/index.js"></script>
+
+</html>
