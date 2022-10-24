@@ -1,10 +1,31 @@
 //Heet Started here.
+function get_params_from_url() {
+  console.log(decodeURI(url));
+  var url_string = location.href;
+  var url = new URL(url_string);
+  var stakeholder_id = url.searchParams.get('stakeholder_type');
+  var params = url.search.split('?');
+  var tempparams = params.filter(function (el) {
+    return el != '';
+  });
+  params = {};
+  for (i = 0; i < tempparams.length; i++) {
+    var key = tempparams[i].split('=')[0];
+    var value = tempparams[i].split('=')[1].replace('%20', ' ');
+    var paramobject = {};
+    params[key] = value;
+  }
+  console.log(params);
+  return params;
+}
+let id = get_params_from_url();
 
 let engagement = {
   id: '',
   engagement_type: '',
   created_on: '',
-  created_by: '',
+  //created_by: '',
+  stakeholder_id: id.stakeholder_id,
 };
 let fundraiser = {
   ask: {
@@ -91,36 +112,6 @@ function toggleEngagementButtons() {
   }
 }
 
-// function handleFiles() {}
-
-// let docArr = [];
-// let doc = document.getElementsByClassName('other-file-input');
-// function handleFiles(event) {
-//   console.log(event.target.files);
-//   let fileList = [...event.target.files];
-//   docArr.push(...fileList);
-//   console.log('Document Array: ', docArr);
-//   fileList.forEach((file) => {
-//     const para = document.createElement('ul');
-//     const close = document.createElement('p');
-//     const name = document.createTextNode(file.name);
-//     const close_name = document.createTextNode('x');
-
-//     para.appendChild(name);
-//     close.appendChild(close_name);
-//     close.addEventListener('click', (event) => {
-//       console.log('close', event);
-//       fileList.pop();
-//       console.log(fileList);
-//     });
-//     const element = document.getElementById('file-name');
-
-//     para.appendChild(close);
-//     para.classList.add('singleFile-line');
-//     element.appendChild(para);
-//     console.log('File Name: ', file.name);
-//   });
-// }
 let ask = document.getElementById('ask_evaluation');
 let evaluation = document.getElementById('expected_evaluation');
 let date = document.getElementById('date_as_on');
@@ -145,6 +136,7 @@ let mandate_description_placeholder = document.getElementById(
 );
 let closeMandateModal = document.getElementById('hanldeCloseMandateModal');
 let mandate_file_placeholder = document.getElementById('mandateFileInput');
+let getMandateSelectedValue;
 
 let other_files_close = document.getElementById('handleOtherFilesClose');
 let file_placeholder = document.getElementById('otherFiles_file_input');
@@ -155,6 +147,20 @@ let equity_radio = document.getElementById('equity');
 let fees_amount;
 let fees_comments;
 let payment_type;
+let all_engagements;
+
+$('document').ready(function () {
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getAllEngagements',
+    type: 'POST',
+    dataType: 'json',
+    success: function (data) {
+      all_engagements = data;
+      console.log('ALL ENGAGEMENTS LOADED');
+      populateEngagement(all_engagements);
+    },
+  });
+});
 
 // MANDATE KE FUNCTIONS
 
@@ -167,6 +173,9 @@ function handleMandate(event) {
 }
 
 function handleMandateSave() {
+  getMandateSelectedValue = document.querySelector(
+    'input[name="mandate_status"]:checked'
+  );
   let file = mandate_file[0];
   console.log(file);
   let formData = new FormData();
@@ -194,7 +203,7 @@ function handleMandateSave() {
 
   $('#exisisting-mandate_files').append(li);
 
-  mandate_status_value.checked = false;
+  getMandateSelectedValue.checked = false;
   mandate_description_placeholder.value = '';
   mandate_file_placeholder.value = '';
   closeMandateModal.click();
@@ -275,14 +284,13 @@ function handleClose() {
   text_placeholder.value = '';
 }
 
+// Investors ke functions
+function handleInvestorButton() {}
+
 // OBJECT HANDLING Functions
 
 function handleObject() {
-  let mandate_radios = document.getElementsByName('mandate_status');
-  let mandate_selected = Array.from(mandate_radios).find(
-    (radio) => radio.checked
-  );
-  mandate_status = mandate_selected.value;
+  mandate_status = getMandateSelectedValue.value;
   console.log(mandate_status);
 
   let payment_radios = document.getElementsByName('fees_type');
@@ -379,8 +387,9 @@ function pushObjectEngagement(engagement) {
     data: data_object,
     dataType: 'json',
     success: function (data) {
+      location.reload();
+      alert('reloading');
       console.log(data);
-      getObject(data);
     },
     error: function (request, error) {
       alert('Request: ' + JSON.stringify(request));
@@ -390,6 +399,160 @@ function pushObjectEngagement(engagement) {
   });
 }
 
-function getObject(data) {
-  console.log('i got this id', data.id);
+function populateEngagement(data) {
+  console.log('These are all engagements ', data);
+  let filtered_engagements = data.filter(function (element) {
+    return element.stakeholder_id === id.stakeholder_id;
+  });
+  console.log('Yeh hai mere companies ke engagements', filtered_engagements);
+
+  var table = $('#populate_exsisting_engagements');
+  table.empty();
+  for (i = 0; i < filtered_engagements.length; i++) {
+    table.append(
+      // '<tr class="shadow mb-3">' +
+      //   '<div class="wrapper">' +
+      //   '<td>' +
+      //   '<div class="company_title_holder">' +
+      //   filtered_engagements[i].id +
+      //   '</div>' +
+      //   '</td>' +
+      //   '<div>' +
+      //   '<td>' +
+      //   filtered_engagements[i].stakeholder_id +
+      //   '</td>' +
+      //   '</div>' +
+      //   '</div>' +
+      //   '</tr>'
+
+      '<tr class="shadow mb-4" style="cursor:pointer;" onclick="handleSingleEngagement(\'' +
+        filtered_engagements[i].id +
+        '\')">' +
+        '<div class="wrapper">' +
+        '<td>' +
+        '<div class="company_title_holder">' +
+        filtered_engagements[i].id +
+        '</div>' +
+        '</td>' +
+        '<td>' +
+        filtered_engagements[i].stakeholder_id +
+        '</td>' +
+        '</div>' +
+        '</tr>'
+    );
+  }
+}
+function handleSingleEngagement(id) {
+  console.log('something id mil gaya bhai', id);
+
+  $('#populate_engagements-form').attr('style', 'display:none');
+  $('#engagement_form-group').attr('style', 'display:none');
+  $('#create_engagement-form').attr('style', 'display:none');
+  $('#engagement_type_buttons').attr('style', 'display:none');
+
+  $('#single_engagement_page-container').attr('style', 'display:block');
+
+  var form = document.getElementById(
+    'single_engagement_form-fundraiser-disabled'
+  );
+  var elements = form.elements;
+  for (var i = 0, len = elements.length; i < len; ++i) {
+    elements[i].disabled = true;
+  }
+}
+
+function handleSingleEngagementClose() {
+  $('#populate_engagements-form').attr('style', 'display:show');
+  $('#engagement_form-group').attr('style', 'display:show');
+  $('#create_engagement-form').attr('style', 'display:show');
+  //$('#engagement_type_buttons').attr('style', 'display:show');
+
+  $('#single_engagement_page-container').attr('style', 'display:none');
+}
+function investor_Modal() {
+  alert('function called');
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+    type: 'POST',
+    dataType: 'json',
+    success: function (data) {
+      console.log('investor');
+      console.log(data);
+      populate_Investor_modal(data);
+    },
+  });
+}
+
+function populate_Investor_modal(data) {
+  var table = $('#populate_investor_modal');
+  alert('working populate');
+  table.empty();
+  for (i = 0; i < data.length; i++) {
+    if (data[i].stakeholder_type == 'innovador') {
+      table.append(
+        '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data[i].name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="heetkafunction(\'' +
+          data[i].id +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+      );
+    } else if (
+      data[i].stakeholder_type == 'startup' ||
+      data[i].stakeholder_type == 'fund-vc-pe'
+    ) {
+      table.append(
+        '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data[i].brand_name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="heetkafunction(\'' +
+          data[i].id +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+      );
+    }
+  }
+}
+
+function heetkafunction(id) {
+  console.log(id);
 }
