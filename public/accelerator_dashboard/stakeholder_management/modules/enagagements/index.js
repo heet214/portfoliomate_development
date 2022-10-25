@@ -399,13 +399,17 @@ function pushObjectEngagement(engagement) {
   });
 }
 
+let parent_id = [];
+let filtered_engagements;
 function populateEngagement(data) {
   console.log('These are all engagements ', data);
-  let filtered_engagements = data.filter(function (element) {
-    return element.stakeholder_id === id.stakeholder_id;
+  filtered_engagements = data.filter((element) => {
+    if (element.stakeholder_id === id.stakeholder_id) {
+      return element;
+    }
   });
   console.log('Yeh hai mere companies ke engagements', filtered_engagements);
-
+  console.log(parent_id);
   var table = $('#populate_exsisting_engagements');
   table.empty();
   for (i = 0; i < filtered_engagements.length; i++) {
@@ -443,6 +447,7 @@ function populateEngagement(data) {
   }
 }
 function handleSingleEngagement(id) {
+  //console.log('Engagement mil gaya', engagement);
   console.log('something id mil gaya bhai', id);
 
   $('#populate_engagements-form').attr('style', 'display:none');
