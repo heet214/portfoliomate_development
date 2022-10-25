@@ -16,8 +16,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="../../configurations/common.css">
-    <script src="js/index.js"></script>
-    <script src="js/mobile_functions.js"></script>
+
+
     <script src="../../configurations/local_dbfunctions.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -53,6 +53,12 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+        </script>
+    <script src="context-menu.js"></script>
+    <link href="context-menu.css" rel="stylesheet">
 
 </head>
 
@@ -86,150 +92,338 @@
 
                 </div>
                 <div class="container">
-                <div id="kanban-board-holder">
-                    <div class="status-holders">
-                        <div class="status-header" id="notApproached-header">
-                            <div>Not Approached</div>
-                            <div id="notApproached-addbtn">+</div>
-                        </div>
-                        <div class="notApproached-card">
-                            <div class="notApproached-card-header">
-                                <div class="mandate_id">#5678sui</div>
-                                <div class="notApproaced-options">&#10247;</div>
+                    <div id="kanban-board-holder">
+
+                        <div class="status-holders">
+
+                            <div class="status-header" id="notApproached-header">
+                                <div>Not Approached</div>
+                                <div id="notApproached-addbtn">+</div>
                             </div>
-                            <div class="engagement">
-                                <div class="profiles">
-                                    <div style="display:flex;align-items: center;justify-content: space-between;">
-                                        <div class="stakeholder">
-                                    <div ><img class="user" src="../../../../assets/portfoliomate.png"/></div>
-                                    <div >AV</div>
-                                </div>
-                                
-                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
-                                    <div class="investor"> 
-                                    <div ><img class="user" src="https://via.placeholder.com/400x200"/></div>
-                                    <div style="color:#ccc">NA</div>
+
+
+                            <!-- Modal Not Approached-->
+                            <div class="modal " id="openApproachedModal" tabindex="-1" role="dialog"
+                                aria-labelledby="openApproachedModal" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Approached Details</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="notApproached-card">
+                                <div class="notApproached-card-header">
+                                    <div class="mandate_id">#5678sui</div>
+                                    <div class="notApproaced-options" onclick="displayOptions_notApproached()">&#10247;
+                                    </div>
+
+                                </div>
+                                <div id="dropdown-menu-notApproached" style="display:none">
+                                    <h6 class="dropdown-header">Move to</h6>
+                                    <div class="dropdown-item" data-toggle="modal" data-target="#openApproachedModal"
+                                        onclick="openApproachedModal()">Approached</div>
+                                    <div class="dropdown-item" href="#">Interested</div>
+                                    <div class="dropdown-item" href="#">Not Interested</div>
+                                    <div class="dropdown-item" href="#">Meeting Scheduled</div>
+                                    <div class="dropdown-item" href="#">Negotiation</div>
+                                    <div class="dropdown-item" href="#">Committed</div>
+                                    <div class="dropdown-item" href="#">Due Diligence</div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user" src="../../../../assets/portfoliomate.png" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user" src="https://via.placeholder.com/400x200" />
+                                                </div>
+                                                <div style="color:#ccc">NA</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="status-holders">
+                            <div class="status-header" id="Approached-header">
+                                <div>Approached</div>
+                                <div id="Approached-addbtn">+</div>
+                            </div>
+                            <div class="Approached-card">
+                                <div class="Approached-card-header">
+                                    <div class="mandate_id">#987sui</div>
+                                    <div class="Approaced-options" onclick="displayOptions_Approached()">&#10247;</div>
+                                    <div id="dropdown-menu-Approached" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <!-- <a class="dropdown-item" href="#">Approached</a> -->
+                                        <a class="dropdown-item" href="#">Interested</a>
+                                        <a class="dropdown-item" href="#">Not Interested</a>
+                                        <a class="dropdown-item" href="#">Meeting Scheduled</a>
+                                        <a class="dropdown-item" href="#">Negotiation</a>
+                                        <a class="dropdown-item" href="#">Committed</a>
+                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                    </div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C4E0BAQFjt-1nLwlOpQ/company-logo_100_100/0/1650172931140?e=1674691200&v=beta&t=_2keAqXsPMhVkyqkddKQD-d07_QgdCH3oS1HOfV76KI" />
+                                                </div>
+                                                <div>GG</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C4D0BAQFkvPfZimZfvg/company-logo_200_200/0/1633642402672?e=2147483647&v=beta&t=BI6cnHr_7iAsgqhizFUgtsIyrgtUrsbFL_bAYcWIlUo" />
+                                                </div>
+                                                <div>EA</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="status-holders">
+                            <div class="status-header" id="Interested-header">
+                                <div>Interested</div>
+                                <div id="Interested-addbtn">+</div>
+                            </div>
+                            <div class="Interested-card">
+                                <div class="Interested-card-header">
+                                    <div class="mandate_id">#9978sui</div>
+                                    <div class="Interested-options" onclick="displayOptions_Interested()">&#10247;</div>
+                                    <div id="dropdown-menu-Interested" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <a class="dropdown-item" href="#">Not Interested</a>
+                                        <a class="dropdown-item" href="#">Meeting Scheduled</a>
+                                        <a class="dropdown-item" href="#">Negotiation</a>
+                                        <a class="dropdown-item" href="#">Committed</a>
+                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                    </div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C560BAQE_llJyX8kcmA/company-logo_200_200/0/1604661338098?e=1674691200&v=beta&t=Aj0YMHoNMQFVeHwLLBB7WlqyX1_6WDdPdAKpuPT8_o4" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user"
+                                                        src="https://image.pitchbook.com/th1kekrNmIPlxl8eYNqE2cOCasy1646661102582_200x200" />
+                                                </div>
+                                                <div>SV</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-holders">
+                            <div class="status-header" id="notInterested-header">
+                                <div>Not Interested</div>
+                                <div id="notInterested-addbtn">+</div>
+                            </div>
+                            <div class="notApproached-card">
+                                <div class="notInterested-card-header">
+                                    <div class="mandate_id">#5678sui</div>
+                                    <div class="notInterested-options">&#10247;</div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user" src="../../../../assets/portfoliomate.png" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user" src="https://via.placeholder.com/400x200" />
+                                                </div>
+                                                <div style="color:#ccc">NA</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-holders">
+                            <div class="status-header" id="meet-header">
+                                <div>Meeting Scheduled</div>
+                                <div id="meet-addbtn">+</div>
+                            </div>
+                            <div class="meet-card">
+                                <div class="meet-card-header">
+                                    <div class="mandate_id">#56899sui</div>
+                                    <div class="meet-options" onclick="displayOptions_meet()">&#10247;</div>
+                                    <div id="dropdown-menu-meet" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <a class="dropdown-item" href="#">Negotiation</a>
+                                        <a class="dropdown-item" href="#">Committed</a>
+                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                    </div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C560BAQF-spj2q9XIGA/company-logo_200_200/0/1648084855940?e=2147483647&v=beta&t=mahb3Kp7VPbbJViwSwZYJOe28wAQW0bPZ4To2NbdY7A" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user"
+                                                        src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd" />
+                                                </div>
+                                                <div>SVC</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-holders">
+                            <div class="status-header" id="negotiation-header">
+                                <div>Negotiation</div>
+                                <div id="negotiation-addbtn">+</div>
+                            </div>
+                            <div class="negotiation-card">
+                                <div class="negotiation-card-header">
+                                    <div class="mandate_id">#56899sui</div>
+                                    <div class="negotiation-options" onclick="displayOptions_negotiation()">&#10247;
+                                    </div>
+                                    <div id="dropdown-menu-negotiation" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <a class="dropdown-item" href="#">Committed</a>
+                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                    </div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C560BAQF-spj2q9XIGA/company-logo_200_200/0/1648084855940?e=2147483647&v=beta&t=mahb3Kp7VPbbJViwSwZYJOe28wAQW0bPZ4To2NbdY7A" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user"
+                                                        src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd" />
+                                                </div>
+                                                <div>SVC</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-holders">
+                            <div class="status-header" id="commit-header">
+                                <div>Committed</div>
+                                <div id="commit-addbtn">+</div>
+                            </div>
+                            <div class="commit-card">
+                                <div class="commit-card-header">
+                                    <div class="mandate_id">#56899sui</div>
+                                    <div class="commit-options" onclick="displayOptions_commit()">&#10247;</div>
+                                    <div id="dropdown-menu-commit" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                    </div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C560BAQF-spj2q9XIGA/company-logo_200_200/0/1648084855940?e=2147483647&v=beta&t=mahb3Kp7VPbbJViwSwZYJOe28wAQW0bPZ4To2NbdY7A" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user"
+                                                        src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd" />
+                                                </div>
+                                                <div>SVC</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-holders">
+                            <div class="status-header" id="dd-header">
+                                <div>Due Diligence</div>
+                                <div id="dd-addbtn">+</div>
+                            </div>
+                            <div class="dd-card">
+                                <div class="dd-card-header">
+                                    <div class="mandate_id">#56899sui</div>
+                                    <div class="dd-options">&#10247;</div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C560BAQF-spj2q9XIGA/company-logo_200_200/0/1648084855940?e=2147483647&v=beta&t=mahb3Kp7VPbbJViwSwZYJOe28wAQW0bPZ4To2NbdY7A" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user"
+                                                        src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd" />
+                                                </div>
+                                                <div>SVC</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="status-holders">
-                        <div class="status-header" id="Approached-header">
-                            <div>Approached</div>
-                            <div id="Approached-addbtn">+</div>
-                        </div>
-                        <div class="Approached-card">
-                            <div class="Approached-card-header">
-                                <div class="mandate_id">#987sui</div>
-                                <div class="Approaced-options">&#10247;</div>
-                            </div>
-                            <div class="engagement">
-                                <div class="profiles">
-                                    <div style="display:flex;align-items: center;justify-content: space-between;">
-                                        <div class="stakeholder">
-                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C4E0BAQFjt-1nLwlOpQ/company-logo_100_100/0/1650172931140?e=1674691200&v=beta&t=_2keAqXsPMhVkyqkddKQD-d07_QgdCH3oS1HOfV76KI"/></div>
-                                    <div >GG</div>
-                                </div>
-                                
-                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
-                                    <div class="investor"> 
-                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFkvPfZimZfvg/company-logo_200_200/0/1633642402672?e=2147483647&v=beta&t=BI6cnHr_7iAsgqhizFUgtsIyrgtUrsbFL_bAYcWIlUo"/></div>
-                                    <div >EA</div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status-holders">
-                        <div class="status-header" id="Interested-header">
-                            <div>Interested</div>
-                            <div id="Interested-addbtn">+</div>
-                        </div>
-                        <div class="Interested-card">
-                            <div class="Interested-card-header">
-                                <div class="mandate_id">#9978sui</div>
-                                <div class="Interested-options">&#10247;</div>
-                            </div>
-                            <div class="engagement">
-                                <div class="profiles">
-                                    <div style="display:flex;align-items: center;justify-content: space-between;">
-                                        <div class="stakeholder">
-                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C560BAQE_llJyX8kcmA/company-logo_200_200/0/1604661338098?e=1674691200&v=beta&t=Aj0YMHoNMQFVeHwLLBB7WlqyX1_6WDdPdAKpuPT8_o4"/></div>
-                                    <div >AV</div>
-                                </div>
-                                
-                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
-                                    <div class="investor"> 
-                                    <div ><img class="user" src="https://image.pitchbook.com/th1kekrNmIPlxl8eYNqE2cOCasy1646661102582_200x200"/></div>
-                                    <div >SV</div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status-holders">
-                        <div class="status-header" id="meet-header">
-                            <div>Meeting Scheduled</div>
-                            <div id="notApproached-addbtn">+</div>
-                        </div>
-                        <div class="meet-card">
-                            <div class="meet-card-header">
-                                <div class="mandate_id">#56899sui</div>
-                                <div class="meet-options">&#10247;</div>
-                            </div>
-                            <div class="engagement">
-                                <div class="profiles">
-                                    <div style="display:flex;align-items: center;justify-content: space-between;">
-                                        <div class="stakeholder">
-                                    <div ><img class="user" src="https://media-exp1.licdn.com/dms/image/C560BAQF-spj2q9XIGA/company-logo_200_200/0/1648084855940?e=2147483647&v=beta&t=mahb3Kp7VPbbJViwSwZYJOe28wAQW0bPZ4To2NbdY7A"/></div>
-                                    <div >AV</div>
-                                </div>
-                                
-                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
-                                    <div class="investor"> 
-                                    <div ><img class="user" src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd"/></div>
-                                    <div >SVC</div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status-holders">
-                        <div class="status-header" id="notInterested-header">
-                            <div>Not Interested</div>
-                            <div id="notInterested-addbtn">+</div>
-                        </div>
-                        <div class="notApproached-card">
-                            <div class="notInterested-card-header">
-                                <div class="mandate_id">#5678sui</div>
-                                <div class="notInterested-options">&#10247;</div>
-                            </div>
-                            <div class="engagement">
-                                <div class="profiles">
-                                    <div style="display:flex;align-items: center;justify-content: space-between;">
-                                        <div class="stakeholder">
-                                    <div ><img class="user" src="../../../../assets/portfoliomate.png"/></div>
-                                    <div >AV</div>
-                                </div>
-                                
-                                    <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
-                                    <div class="investor"> 
-                                    <div ><img class="user" src="https://via.placeholder.com/400x200"/></div>
-                                    <div style="color:#ccc">NA</div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     
                 </div>
-            </div>
             </div>
         </div>
 
