@@ -583,6 +583,7 @@ function handleSingleEngagementClose() {
 
   $('#single_engagement_page-container').attr('style', 'display:none');
 }
+
 function investor_Modal() {
   alert('function called');
   $.ajax({
@@ -675,9 +676,114 @@ function populate_Investor_modal(data) {
   }
 }
 
+function exclusion_investor_Modal() {
+  alert('exclusion function called');
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+    type: 'POST',
+    dataType: 'json',
+    success: function (data) {
+      console.log('investor');
+      console.log("Exclusion",data);
+      populate_exclusion_investor_modal(data);
+    },
+  });
+}
+
+function populate_exclusion_investor_modal(data) {
+  var table = $('#populate_Exclusion_investor_modal');
+  alert('excluion working populate');
+  table.empty();
+  for (i = 0; i < data.length; i++) {
+    if (data[i].stakeholder_type == 'innovador') {
+      table.append(
+        '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data[i].name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
+          data[i].id +
+          ',' +
+          data[i].name +
+          ',' +
+          data[i].logo +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+      );
+    } else if (
+      data[i].stakeholder_type == 'startup' ||
+      data[i].stakeholder_type == 'fund-vc-pe'
+    ) {
+      table.append(
+        '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data[i].brand_name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
+          data[i].id +
+          ',' +
+          data[i].brand_name +
+          ',' +
+          data[i].logo +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+      );
+    }
+  }
+}
+
+let temp_exclude_Investor = [];
+function excludeInvestor(id,name,logo){
+  console.log("Exclude vala :" ,id,name,logo)
+  temp_exclude_Investor.push({
+    temp_id : id,
+    temp_name: name,
+    temp_logo: logo,
+  });
+
+  console.log(temp_exclude_Investor);
+}
+
+
 let temp_sub_engagement = [];
 function createSubEngagement(id, name, logo) {
-  console.log(id, name, logo);
+  console.log("sub engagement",id, name, logo);
 
   temp_sub_engagement.push({
     temp_id: id,
