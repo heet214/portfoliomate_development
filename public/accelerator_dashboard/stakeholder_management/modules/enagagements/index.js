@@ -18,7 +18,7 @@ function get_params_from_url() {
   console.log(params);
   return params;
 }
-let id = get_params_from_url();
+const id = get_params_from_url();
 
 let engagement = {
   id: '',
@@ -54,6 +54,22 @@ let fundraiser = {
       quantity_unit: '',
       isConditional: true,
       comment: '',
+    },
+  ],
+  sub_engagements: [
+    {
+      parent_id: '',
+      sub_engagement_id: '',
+      engagement_from: [
+        {
+          company_logo: '',
+          company_name: '',
+          company_id: '',
+        },
+      ],
+      engagement_to: [{ company_logo: '', company_name: '', company_id: '' }],
+      status: [{ type: '', description: '', timestamp: '' }],
+      created_on: '',
     },
   ],
   // documents: [
@@ -158,6 +174,35 @@ $('document').ready(function () {
       all_engagements = data;
       console.log('ALL ENGAGEMENTS LOADED');
       populateEngagement(all_engagements);
+    },
+  });
+});
+
+let current_company;
+$('document').ready(function () {
+  let file = id.stakeholder_id;
+  console.log('YEH HAI MERE COMPANY KA ID', file);
+  let formData = new FormData();
+  formData.append('file', file);
+
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+      current_company = data.find((company) => {
+        if (company.id === id.stakeholder_id) {
+          return company;
+        }
+      });
+      console.log('COMPANY MIL GAYI BHAI', current_company);
+    },
+    error: function (request, error) {
+      alert('Request: ' + JSON.stringify(request));
+      $('.custom-file-label').text('Upload Logo to Proceed');
+      $('.custom-file-label').css({ color: 'maroon' });
     },
   });
 });
@@ -399,7 +444,6 @@ function pushObjectEngagement(engagement) {
   });
 }
 
-let parent_id = [];
 let filtered_engagements;
 function populateEngagement(data) {
   console.log('These are all engagements ', data);
@@ -409,7 +453,7 @@ function populateEngagement(data) {
     }
   });
   console.log('Yeh hai mere companies ke engagements', filtered_engagements);
-  console.log(parent_id);
+
   var table = $('#populate_exsisting_engagements');
   table.empty();
   for (i = 0; i < filtered_engagements.length; i++) {
@@ -446,16 +490,70 @@ function populateEngagement(data) {
     );
   }
 }
-function handleSingleEngagement(id) {
-  //console.log('Engagement mil gaya', engagement);
-  console.log('something id mil gaya bhai', id);
 
+let single_engagement_object;
+function handleSingleEngagement(selected_engagement_id) {
+  //console.log('Engagement mil gaya', engagement);
+  console.log('something id mil gaya bhai', selected_engagement_id);
+
+  single_engagement_object = filtered_engagements.find((obj) => {
+    if (obj.id === selected_engagement_id) {
+      return obj;
+    }
+  });
+  console.log('me hu wo engagement object', single_engagement_object);
   $('#populate_engagements-form').attr('style', 'display:none');
   $('#engagement_form-group').attr('style', 'display:none');
   $('#create_engagement-form').attr('style', 'display:none');
   $('#engagement_type_buttons').attr('style', 'display:none');
 
   $('#single_engagement_page-container').attr('style', 'display:block');
+
+  $('#ask_evaluation-disabled').val(
+    single_engagement_object.fundraiser.ask.amount
+  );
+
+  $(
+    `#ask_currency-disabled option[value=${single_engagement_object.fundraiser.ask.currency_type}]`
+  ).attr('selected', 'selected');
+
+  $('#expected_evaluation-disabled').val(
+    `${
+      single_engagement_object.fundraiser.expected_value[
+        single_engagement_object.fundraiser.expected_value.length - 1
+      ].amount
+    }`
+  );
+  $(
+    `#evaluation_currency-disabled option[value=${
+      single_engagement_object.fundraiser.expected_value[
+        single_engagement_object.fundraiser.expected_value.length - 1
+      ].currency_type
+    }]`
+  ).attr('selected', 'selected');
+
+  // $('#date_as_on-disabled').value(
+  //   single_engagement_object.fundraiser.expected_value[
+  //     single_engagement_object.fundraiser.expected_value.length - 1
+  //   ].as_on
+  // );
+  $('input[type=radio][name=fees_type]').val([
+    single_engagement_object.fundraiser.fees[
+      single_engagement_object.fundraiser.fees.length - 1
+    ].payment_mode,
+  ]);
+
+  $('#fees_amount-disabled').val(
+    single_engagement_object.fundraiser.fees[
+      single_engagement_object.fundraiser.fees.length - 1
+    ].quantity
+  );
+
+  $('#fees_comments-disabled').val(
+    single_engagement_object.fundraiser.fees[
+      single_engagement_object.fundraiser.fees.length - 1
+    ].comment
+  );
 
   var form = document.getElementById(
     'single_engagement_form-fundraiser-disabled'
@@ -464,9 +562,23 @@ function handleSingleEngagement(id) {
   for (var i = 0, len = elements.length; i < len; ++i) {
     elements[i].disabled = true;
   }
+
+  populate_Mandate(single_engagement_object);
+  populate_Files(single_engagement_object);
 }
 
 function handleSingleEngagementClose() {
+  $(
+    `#ask_currency-disabled option[value=${single_engagement_object.fundraiser.ask.currency_type}]`
+  ).attr('selected', null);
+  $(
+    `#evaluation_currency-disabled option[value=${
+      single_engagement_object.fundraiser.expected_value[
+        single_engagement_object.fundraiser.expected_value.length - 1
+      ].currency_type
+    }]`
+  ).attr('selected', null);
+
   $('#populate_engagements-form').attr('style', 'display:show');
   $('#engagement_form-group').attr('style', 'display:show');
   $('#create_engagement-form').attr('style', 'display:show');
@@ -474,6 +586,7 @@ function handleSingleEngagementClose() {
 
   $('#single_engagement_page-container').attr('style', 'display:none');
 }
+
 function investor_Modal() {
   alert('function called');
   $.ajax({
@@ -514,8 +627,12 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="heetkafunction(\'' +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
           data[i].id +
+          ',' +
+          data[i].name +
+          ',' +
+          data[i].logo +
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -546,8 +663,12 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="heetkafunction(\'' +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
           data[i].id +
+          ',' +
+          data[i].brand_name +
+          ',' +
+          data[i].logo +
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -558,6 +679,350 @@ function populate_Investor_modal(data) {
   }
 }
 
-function heetkafunction(id) {
-  console.log(id);
+function exclusion_investor_Modal() {
+  alert('exclusion function called');
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+    type: 'POST',
+    dataType: 'json',
+    success: function (data) {
+      console.log('investor');
+      console.log("Exclusion",data);
+      populate_exclusion_investor_modal(data);
+    },
+  });
+}
+
+function populate_exclusion_investor_modal(data) {
+  var table = $('#populate_Exclusion_investor_modal');
+  alert('excluion working populate');
+  table.empty();
+  for (i = 0; i < data.length; i++) {
+    if (data[i].stakeholder_type == 'innovador') {
+      table.append(
+        '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data[i].name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
+          data[i].id +
+          ',' +
+          data[i].name +
+          ',' +
+          data[i].logo +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+      );
+    } else if (
+      data[i].stakeholder_type == 'startup' ||
+      data[i].stakeholder_type == 'fund-vc-pe'
+    ) {
+      table.append(
+        '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          data[i].logo +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div class="company_title_holder">' +
+          data[i].brand_name +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          data[i].stakeholder_location +
+          '</td>' +
+          '</div>' +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
+          data[i].id +
+          ',' +
+          data[i].brand_name +
+          ',' +
+          data[i].logo +
+          '\')"> Add </Button></td>' +
+          '<td>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+      );
+    }
+  }
+}
+
+let temp_exclude_Investor = [];
+function excludeInvestor(id,name,logo){
+  console.log("Exclude vala :" ,id,name,logo)
+  temp_exclude_Investor.push({
+    temp_id : id,
+    temp_name: name,
+    temp_logo: logo,
+  });
+
+  console.log(temp_exclude_Investor);
+}
+
+
+let temp_sub_engagement = [];
+function createSubEngagement(id, name, logo) {
+  console.log("sub engagement",id, name, logo);
+
+  temp_sub_engagement.push({
+    temp_id: id,
+    temp_name: name,
+    temp_logo: logo,
+  });
+
+  console.log(temp_sub_engagement);
+
+  // if (docArray.length > 0) {
+  //   fundraiser.documents = [
+  //     {
+  //       type: '',
+  //       url: '',
+  //       file_type: '',
+  //     },
+  //   ];
+}
+
+function handleObjectUpdate() {
+  for (let i = 0; i < temp_sub_engagement.length; i++) {
+    fundraiser.sub_engagements[i] = {
+      id: temp_id,
+      name: temp_name,
+      logo: temp_logo,
+    };
+  }
+  console.log('YEH AFTER ADDING SUBENG', fundraiser);
+}
+// company_logo: current_company.logo,
+// company_name: current_company.company_name,
+// company_id: current_company.id,
+ 
+
+function populate_Mandate(data){
+  
+  var table = $('#populate_mandate')
+  table.empty();
+  if(data.engagement_type == "fundraiser"){
+    var target = data.fundraiser.mandate.files;
+    console.log("mandate",target)
+    for(var i =0 ;i< target.length;i++){
+      console.log("target type",target[i].file_type)
+      
+
+
+    table.append(
+      '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          file_icon(target[i].file_type) +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div style="padding-left:10px;">' +
+          '<a class="my-0" style="cursor:pointer;" href="' +
+          target[i].url +
+          '"  onclick="openurl("' +
+          target[i].url +
+          '")">' +
+          target[i].type +
+          '</a><br>' +
+          '<small class="text-muted">' +
+          target[i].created_on.showdate
+          +
+          '</small>' +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          target[i].status +
+          '</td>' +
+          '</div>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+    )
+    }
+    
+
+
+  }
+  
+}
+function populate_Files(data){
+  console.log("Files",data);
+  var table = $('#populate_files')
+  table.empty();
+  if(data.engagement_type == "fundraiser"){
+    var target = data.fundraiser.documents;
+    console.log(target);
+    for(var i =0 ;i<target.length;i++){
+      console.log("Target File type",target[i].type)
+
+      table.append(
+        '<tr class="shadow">' +
+            '<td>' +
+            '<div class="company_logo_title_holder">' +
+            '<div class="wrapper">' +
+            '<img class= "image--cover" src="' +
+            file_icon(target[i].type) +
+            '">' +
+            '</div>' +
+            '</td>' +
+            '<td>' +
+            '<div style="padding-left:10px;">' +
+            '<a class="my-0" style="cursor:pointer;" href="' +
+            target[i].url +
+            '"  onclick="openurl("' +
+            target[i].url +
+            '")">' +
+            target[i].type +
+            '</a><br>' +
+            '<small class="text-muted">' +
+            target[i].created_on
+            +
+            '</small>' +
+            '</div>' +
+            '</td>' +
+            '<div>' +
+            '<td>' +
+            target[i].status +
+            '</td>' +
+            '</div>' +
+            '</div>' +
+            '</td>' +
+            '</tr>'
+      )
+
+    }
+
+  }
+  
+}
+
+function populate_Investor(data){
+  if(data.sub_engagements.length > 0){
+    $('#investor_no_people').hide();
+
+    $('#investor_approached_list').show();
+    alert("populate references function called")
+    var target = data.sub_engagements;
+    for(var i =0 ; i<target.length;i++){
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].link +
+        '"  onclick="openurl("' +
+        target[i].link +
+        '")">' +
+        target[i].name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].id +
+        '")">Edit</span>' +
+        '</li>';
+    }
+    $('#investor_approached_list').append(li);
+  }
+}
+
+function populate_exclusion_list(data){
+  if(data.exclusion_list.length > 0){
+    $('#exclusion_list_no_people').hide();
+
+    $('#investor_exclusion_list').show();
+    alert("populate references function called")
+    var target = data.exclusion_list;
+    for(var i =0 ; i<target.length;i++){
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].link +
+        '"  onclick="openurl("' +
+        target[i].link +
+        '")">' +
+        target[i].name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].id +
+        '")">Edit</span>' +
+        '</li>';
+    }
+    $('#investor_exclusion_list').append(li);
+  }
+}
+
+function file_icon(file_type){
+  var src;
+  switch (file_type){
+    case "application/pdf" :
+      src = "../../../../assets/pdf-file.png";
+      console.log("PDF")
+      break;
+    case "application/csv":
+      src = "../../../../assets/csv-file.png";
+      break;
+    case "application/ppt":
+      src = "../../../../assets/ppt-file.png";
+      break;
+    case "application/jpg":
+      src = "../../../../assets/jpg.png";
+      break;
+    case "application/jpeg":
+      src = "../../../../assets/jpeg.png";
+      break;
+    case "application/xls":
+      src = "../../../../assets/xls-file.png";
+      break;
+  }
+  return src;
 }
