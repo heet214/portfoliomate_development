@@ -562,6 +562,9 @@ function handleSingleEngagement(selected_engagement_id) {
   for (var i = 0, len = elements.length; i < len; ++i) {
     elements[i].disabled = true;
   }
+
+  populate_Mandate(single_engagement_object);
+  populate_Files(single_engagement_object);
 }
 
 function handleSingleEngagementClose() {
@@ -817,3 +820,210 @@ function handleObjectUpdate() {
 // company_logo: current_company.logo,
 // company_name: current_company.company_name,
 // company_id: current_company.id,
+ 
+
+function populate_Mandate(data){
+  
+  var table = $('#populate_mandate')
+  table.empty();
+  if(data.engagement_type == "fundraiser"){
+    var target = data.fundraiser.mandate.files;
+    console.log("mandate",target)
+    for(var i =0 ;i< target.length;i++){
+      console.log("target type",target[i].file_type)
+      
+
+
+    table.append(
+      '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          file_icon(target[i].file_type) +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div style="padding-left:10px;">' +
+          '<a class="my-0" style="cursor:pointer;" href="' +
+          target[i].url +
+          '"  onclick="openurl("' +
+          target[i].url +
+          '")">' +
+          target[i].type +
+          '</a><br>' +
+          '<small class="text-muted">' +
+          target[i].created_on.showdate
+          +
+          '</small>' +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          target[i].status +
+          '</td>' +
+          '</div>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+    )
+    }
+    
+
+
+  }
+  
+}
+function populate_Files(data){
+  console.log("Files",data);
+  var table = $('#populate_files')
+  table.empty();
+  if(data.engagement_type == "fundraiser"){
+    var target = data.fundraiser.documents;
+    console.log(target);
+    for(var i =0 ;i<target.length;i++){
+      console.log("Target File type",target[i].type)
+
+      table.append(
+        '<tr class="shadow">' +
+            '<td>' +
+            '<div class="company_logo_title_holder">' +
+            '<div class="wrapper">' +
+            '<img class= "image--cover" src="' +
+            file_icon(target[i].type) +
+            '">' +
+            '</div>' +
+            '</td>' +
+            '<td>' +
+            '<div style="padding-left:10px;">' +
+            '<a class="my-0" style="cursor:pointer;" href="' +
+            target[i].url +
+            '"  onclick="openurl("' +
+            target[i].url +
+            '")">' +
+            target[i].type +
+            '</a><br>' +
+            '<small class="text-muted">' +
+            target[i].created_on
+            +
+            '</small>' +
+            '</div>' +
+            '</td>' +
+            '<div>' +
+            '<td>' +
+            target[i].status +
+            '</td>' +
+            '</div>' +
+            '</div>' +
+            '</td>' +
+            '</tr>'
+      )
+
+    }
+
+  }
+  
+}
+
+function populate_Investor(data){
+  if(data.sub_engagements.length > 0){
+    $('#investor_no_people').hide();
+
+    $('#investor_approached_list').show();
+    alert("populate references function called")
+    var target = data.sub_engagements;
+    for(var i =0 ; i<target.length;i++){
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].link +
+        '"  onclick="openurl("' +
+        target[i].link +
+        '")">' +
+        target[i].name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].id +
+        '")">Edit</span>' +
+        '</li>';
+    }
+    $('#investor_approached_list').append(li);
+  }
+}
+
+function populate_exclusion_list(data){
+  if(data.exclusion_list.length > 0){
+    $('#exclusion_list_no_people').hide();
+
+    $('#investor_exclusion_list').show();
+    alert("populate references function called")
+    var target = data.exclusion_list;
+    for(var i =0 ; i<target.length;i++){
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].link +
+        '"  onclick="openurl("' +
+        target[i].link +
+        '")">' +
+        target[i].name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].id +
+        '")">Edit</span>' +
+        '</li>';
+    }
+    $('#investor_exclusion_list').append(li);
+  }
+}
+
+function file_icon(file_type){
+  var src;
+  switch (file_type){
+    case "application/pdf" :
+      src = "../../../../assets/pdf-file.png";
+      console.log("PDF")
+      break;
+    case "application/csv":
+      src = "../../../../assets/csv-file.png";
+      break;
+    case "application/ppt":
+      src = "../../../../assets/ppt-file.png";
+      break;
+    case "application/jpg":
+      src = "../../../../assets/jpg.png";
+      break;
+    case "application/jpeg":
+      src = "../../../../assets/jpeg.png";
+      break;
+    case "application/xls":
+      src = "../../../../assets/xls-file.png";
+      break;
+  }
+  return src;
+}
