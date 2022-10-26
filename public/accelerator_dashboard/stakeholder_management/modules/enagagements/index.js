@@ -18,7 +18,7 @@ function get_params_from_url() {
   console.log(params);
   return params;
 }
-let id = get_params_from_url();
+const id = get_params_from_url();
 
 let engagement = {
   id: '',
@@ -54,6 +54,22 @@ let fundraiser = {
       quantity_unit: '',
       isConditional: true,
       comment: '',
+    },
+  ],
+  sub_engagements: [
+    {
+      parent_id: '',
+      sub_engagement_id: '',
+      engagement_from: [
+        {
+          company_logo: '',
+          company_name: '',
+          company_id: '',
+        },
+      ],
+      engagement_to: [{ company_logo: '', company_name: '', company_id: '' }],
+      status: [{ type: '', description: '', timestamp: '' }],
+      created_on: '',
     },
   ],
   // documents: [
@@ -158,6 +174,35 @@ $('document').ready(function () {
       all_engagements = data;
       console.log('ALL ENGAGEMENTS LOADED');
       populateEngagement(all_engagements);
+    },
+  });
+});
+
+let current_company;
+$('document').ready(function () {
+  let file = id.stakeholder_id;
+  console.log('YEH HAI MERE COMPANY KA ID', file);
+  let formData = new FormData();
+  formData.append('file', file);
+
+  $.ajax({
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+      current_company = data.find((company) => {
+        if (company.id === id.stakeholder_id) {
+          return company;
+        }
+      });
+      console.log('COMPANY MIL GAYI BHAI', current_company);
+    },
+    error: function (request, error) {
+      alert('Request: ' + JSON.stringify(request));
+      $('.custom-file-label').text('Upload Logo to Proceed');
+      $('.custom-file-label').css({ color: 'maroon' });
     },
   });
 });
@@ -399,7 +444,6 @@ function pushObjectEngagement(engagement) {
   });
 }
 
-let parent_id = [];
 let filtered_engagements;
 function populateEngagement(data) {
   console.log('These are all engagements ', data);
@@ -409,7 +453,7 @@ function populateEngagement(data) {
     }
   });
   console.log('Yeh hai mere companies ke engagements', filtered_engagements);
-  console.log(parent_id);
+
   var table = $('#populate_exsisting_engagements');
   table.empty();
   for (i = 0; i < filtered_engagements.length; i++) {
@@ -446,16 +490,70 @@ function populateEngagement(data) {
     );
   }
 }
-function handleSingleEngagement(id) {
-  //console.log('Engagement mil gaya', engagement);
-  console.log('something id mil gaya bhai', id);
 
+let single_engagement_object;
+function handleSingleEngagement(selected_engagement_id) {
+  //console.log('Engagement mil gaya', engagement);
+  console.log('something id mil gaya bhai', selected_engagement_id);
+
+  single_engagement_object = filtered_engagements.find((obj) => {
+    if (obj.id === selected_engagement_id) {
+      return obj;
+    }
+  });
+  console.log('me hu wo engagement object', single_engagement_object);
   $('#populate_engagements-form').attr('style', 'display:none');
   $('#engagement_form-group').attr('style', 'display:none');
   $('#create_engagement-form').attr('style', 'display:none');
   $('#engagement_type_buttons').attr('style', 'display:none');
 
   $('#single_engagement_page-container').attr('style', 'display:block');
+
+  $('#ask_evaluation-disabled').val(
+    single_engagement_object.fundraiser.ask.amount
+  );
+
+  $(
+    `#ask_currency-disabled option[value=${single_engagement_object.fundraiser.ask.currency_type}]`
+  ).attr('selected', 'selected');
+
+  $('#expected_evaluation-disabled').val(
+    `${
+      single_engagement_object.fundraiser.expected_value[
+        single_engagement_object.fundraiser.expected_value.length - 1
+      ].amount
+    }`
+  );
+  $(
+    `#evaluation_currency-disabled option[value=${
+      single_engagement_object.fundraiser.expected_value[
+        single_engagement_object.fundraiser.expected_value.length - 1
+      ].currency_type
+    }]`
+  ).attr('selected', 'selected');
+
+  // $('#date_as_on-disabled').value(
+  //   single_engagement_object.fundraiser.expected_value[
+  //     single_engagement_object.fundraiser.expected_value.length - 1
+  //   ].as_on
+  // );
+  $('input[type=radio][name=fees_type]').val([
+    single_engagement_object.fundraiser.fees[
+      single_engagement_object.fundraiser.fees.length - 1
+    ].payment_mode,
+  ]);
+
+  $('#fees_amount-disabled').val(
+    single_engagement_object.fundraiser.fees[
+      single_engagement_object.fundraiser.fees.length - 1
+    ].quantity
+  );
+
+  $('#fees_comments-disabled').val(
+    single_engagement_object.fundraiser.fees[
+      single_engagement_object.fundraiser.fees.length - 1
+    ].comment
+  );
 
   var form = document.getElementById(
     'single_engagement_form-fundraiser-disabled'
@@ -467,6 +565,17 @@ function handleSingleEngagement(id) {
 }
 
 function handleSingleEngagementClose() {
+  $(
+    `#ask_currency-disabled option[value=${single_engagement_object.fundraiser.ask.currency_type}]`
+  ).attr('selected', null);
+  $(
+    `#evaluation_currency-disabled option[value=${
+      single_engagement_object.fundraiser.expected_value[
+        single_engagement_object.fundraiser.expected_value.length - 1
+      ].currency_type
+    }]`
+  ).attr('selected', null);
+
   $('#populate_engagements-form').attr('style', 'display:show');
   $('#engagement_form-group').attr('style', 'display:show');
   $('#create_engagement-form').attr('style', 'display:show');
@@ -514,8 +623,12 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="heetkafunction(\'' +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
           data[i].id +
+          ',' +
+          data[i].name +
+          ',' +
+          data[i].logo +
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -546,8 +659,12 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="heetkafunction(\'' +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
           data[i].id +
+          ',' +
+          data[i].brand_name +
+          ',' +
+          data[i].logo +
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -558,6 +675,38 @@ function populate_Investor_modal(data) {
   }
 }
 
-function heetkafunction(id) {
-  console.log(id);
+let temp_sub_engagement = [];
+function createSubEngagement(id, name, logo) {
+  console.log(id, name, logo);
+
+  temp_sub_engagement.push({
+    temp_id: id,
+    temp_name: name,
+    temp_logo: logo,
+  });
+
+  console.log(temp_sub_engagement);
+
+  // if (docArray.length > 0) {
+  //   fundraiser.documents = [
+  //     {
+  //       type: '',
+  //       url: '',
+  //       file_type: '',
+  //     },
+  //   ];
 }
+
+function handleObjectUpdate() {
+  for (let i = 0; i < temp_sub_engagement.length; i++) {
+    fundraiser.sub_engagements[i] = {
+      id: temp_id,
+      name: temp_name,
+      logo: temp_logo,
+    };
+  }
+  console.log('YEH AFTER ADDING SUBENG', fundraiser);
+}
+// company_logo: current_company.logo,
+// company_name: current_company.company_name,
+// company_id: current_company.id,
