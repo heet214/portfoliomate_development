@@ -562,6 +562,9 @@ function handleSingleEngagement(selected_engagement_id) {
   for (var i = 0, len = elements.length; i < len; ++i) {
     elements[i].disabled = true;
   }
+
+  populate_Mandate(single_engagement_object);
+  populate_Files(single_engagement_object);
 }
 
 function handleSingleEngagementClose() {
@@ -816,3 +819,134 @@ function handleObjectUpdate() {
 // company_logo: current_company.logo,
 // company_name: current_company.company_name,
 // company_id: current_company.id,
+ 
+
+function populate_Mandate(data){
+  
+  var table = $('#populate_mandate')
+  table.empty();
+  if(data.engagement_type == "fundraiser"){
+    var target = data.fundraiser.mandate.files;
+    console.log("mandate",target)
+    for(var i =0 ;i< target.length;i++){
+      console.log("target type",target[i].file_type)
+      
+
+
+    table.append(
+      '<tr class="shadow">' +
+          '<td>' +
+          '<div class="company_logo_title_holder">' +
+          '<div class="wrapper">' +
+          '<img class= "image--cover" src="' +
+          file_icon(target[i].file_type) +
+          '">' +
+          '</div>' +
+          '</td>' +
+          '<td>' +
+          '<div style="padding-left:10px;">' +
+          '<a class="my-0" style="cursor:pointer;" href="' +
+          target[i].url +
+          '"  onclick="openurl("' +
+          target[i].url +
+          '")">' +
+          target[i].type +
+          '</a><br>' +
+          '<small class="text-muted">' +
+          target[i].created_on.showdate
+          +
+          '</small>' +
+          '</div>' +
+          '</td>' +
+          '<div>' +
+          '<td>' +
+          target[i].status +
+          '</td>' +
+          '</div>' +
+          '</div>' +
+          '</td>' +
+          '</tr>'
+    )
+    }
+    
+
+
+  }
+  
+}
+function populate_Files(data){
+  console.log("Files",data);
+  var table = $('#populate_files')
+  table.empty();
+  if(data.engagement_type == "fundraiser"){
+    var target = data.fundraiser.documents;
+    console.log(target);
+    for(var i =0 ;i<target.length;i++){
+      console.log("Target File type",target[i].type)
+
+      table.append(
+        '<tr class="shadow">' +
+            '<td>' +
+            '<div class="company_logo_title_holder">' +
+            '<div class="wrapper">' +
+            '<img class= "image--cover" src="' +
+            file_icon(target[i].type) +
+            '">' +
+            '</div>' +
+            '</td>' +
+            '<td>' +
+            '<div style="padding-left:10px;">' +
+            '<a class="my-0" style="cursor:pointer;" href="' +
+            target[i].url +
+            '"  onclick="openurl("' +
+            target[i].url +
+            '")">' +
+            target[i].type +
+            '</a><br>' +
+            '<small class="text-muted">' +
+            target[i].created_on
+            +
+            '</small>' +
+            '</div>' +
+            '</td>' +
+            '<div>' +
+            '<td>' +
+            target[i].status +
+            '</td>' +
+            '</div>' +
+            '</div>' +
+            '</td>' +
+            '</tr>'
+      )
+
+    }
+
+  }
+  
+}
+
+function file_icon(file_type){
+  var src;
+  switch (file_type){
+    case "application/pdf" :
+      src = "../../../../assets/pdf-file.png";
+      console.log("PDF")
+      break;
+    case "application/csv":
+      src = "../../../../assets/csv-file.png";
+      break;
+    case "application/ppt":
+      src = "../../../../assets/ppt-file.png";
+      break;
+    case "application/jpg":
+      src = "../../../../assets/jpg.png";
+      break;
+    case "application/jpeg":
+      src = "../../../../assets/jpeg.png";
+      break;
+    case "application/xls":
+      src = "../../../../assets/xls-file.png";
+      break;
+  }
+  return src;
+}
