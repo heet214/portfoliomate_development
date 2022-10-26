@@ -684,7 +684,7 @@ function exclusion_investor_Modal() {
     dataType: 'json',
     success: function (data) {
       console.log('investor');
-      console.log("Exclusion",data);
+      console.log('Exclusion', data);
       populate_exclusion_investor_modal(data);
     },
   });
@@ -769,10 +769,10 @@ function populate_exclusion_investor_modal(data) {
 }
 
 let temp_exclude_Investor = [];
-function excludeInvestor(id,name,logo){
-  console.log("Exclude vala :" ,id,name,logo)
+function excludeInvestor(id, name, logo) {
+  console.log('Exclude vala :', id, name, logo);
   temp_exclude_Investor.push({
-    temp_id : id,
+    temp_id: id,
     temp_name: name,
     temp_logo: logo,
   });
@@ -780,10 +780,11 @@ function excludeInvestor(id,name,logo){
   console.log(temp_exclude_Investor);
 }
 
-
-let temp_sub_engagement = [];
+let temp_sub_engagement_id = [];
+let temp_sub_engagement_name = [];
+let temp_sub_engagement_logo = [];
 function createSubEngagement(id, name, logo) {
-  console.log("sub engagement",id, name, logo);
+  console.log('sub engagement', id, name, logo);
 
   temp_sub_engagement.push({
     temp_id: id,
