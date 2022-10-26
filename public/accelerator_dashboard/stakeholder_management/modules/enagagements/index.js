@@ -925,6 +925,82 @@ function populate_Files(data){
   
 }
 
+function populate_Investor(data){
+  if(data.sub_engagements.length > 0){
+    $('#investor_no_people').hide();
+
+    $('#investor_approached_list').show();
+    alert("populate references function called")
+    var target = data.sub_engagements;
+    for(var i =0 ; i<target.length;i++){
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].link +
+        '"  onclick="openurl("' +
+        target[i].link +
+        '")">' +
+        target[i].name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].id +
+        '")">Edit</span>' +
+        '</li>';
+    }
+    $('#investor_approached_list').append(li);
+  }
+}
+
+function populate_exclusion_list(data){
+  if(data.exclusion_list.length > 0){
+    $('#exclusion_list_no_people').hide();
+
+    $('#investor_exclusion_list').show();
+    alert("populate references function called")
+    var target = data.exclusion_list;
+    for(var i =0 ; i<target.length;i++){
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].link +
+        '"  onclick="openurl("' +
+        target[i].link +
+        '")">' +
+        target[i].name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].id +
+        '")">Edit</span>' +
+        '</li>';
+    }
+    $('#investor_exclusion_list').append(li);
+  }
+}
+
 function file_icon(file_type){
   var src;
   switch (file_type){
