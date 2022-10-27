@@ -267,7 +267,7 @@ function populate_refferences(refferences) {
         '")">Edit</span>' +
         '</li>';
     }
-    $('#stakeholders_refference_list').append(li);
+    
   }
 }
 

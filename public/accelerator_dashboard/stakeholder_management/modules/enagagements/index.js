@@ -627,13 +627,10 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
-          data[i].id +
-          ',' +
-          data[i].name +
-          ',' +
-          data[i].logo +
-          '\')"> Add </Button></td>' +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\''+data[i].id +'\',\'' +
+          data[i].name + '\',\'' +
+          data[i].logo + 
+          '\')">Add </Button></td>' +
           '<td>' +
           '</div>' +
           '</td>' +
@@ -663,12 +660,9 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
-          data[i].id +
-          ',' +
-          data[i].brand_name +
-          ',' +
-          data[i].logo +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\''+data[i].id +'\',\'' +
+          data[i].brand_name + '\',\'' +
+          data[i].logo + 
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -719,12 +713,9 @@ function populate_exclusion_investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
-          data[i].id +
-          ',' +
-          data[i].name +
-          ',' +
-          data[i].logo +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\''+data[i].id +'\',\'' +
+          data[i].name + '\',\'' +
+          data[i].logo + 
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -755,12 +746,9 @@ function populate_exclusion_investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
-          data[i].id +
-          ',' +
-          data[i].brand_name +
-          ',' +
-          data[i].logo +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\''+data[i].id +'\',\'' +
+          data[i].brand_name + '\',\'' +
+          data[i].logo + 
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -784,26 +772,28 @@ function excludeInvestor(id,name,logo){
 }
 
 
-let temp_sub_engagement = [];
-function createSubEngagement(id, name, logo) {
-  console.log("sub engagement",id, name, logo);
 
-  temp_sub_engagement.push({
+function createSubEngagement(id, name, logo) {
+  console.log("sub engagement vala console",name,logo);
+
+  let temp_sub_engagement = {
+    
     temp_id: id,
     temp_name: name,
     temp_logo: logo,
-  });
+  }
 
   console.log(temp_sub_engagement);
+  
+  if(single_engagement_object.fundraiser.sub_engagements){
+    single_engagement_object.fundraiser.sub_engagements.push(temp_sub_engagement);
+  }else
+  {
+     single_engagement_object.fundraiser.sub_engagements = [];
+    single_engagement_object.fundraiser.sub_engagements.push(temp_sub_engagement)
+  }
+  console.log(single_engagement_object);
 
-  // if (docArray.length > 0) {
-  //   fundraiser.documents = [
-  //     {
-  //       type: '',
-  //       url: '',
-  //       file_type: '',
-  //     },
-  //   ];
 }
 
 function handleObjectUpdate() {
