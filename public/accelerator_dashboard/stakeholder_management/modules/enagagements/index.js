@@ -627,13 +627,10 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
-          data[i].id +
-          "','" +
-          data[i].name +
-          "','" +
-          data[i].logo +
-          '\')"> Add </Button></td>' +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\''+data[i].id +'\',\'' +
+          data[i].name + '\',\'' +
+          data[i].logo + 
+          '\')">Add </Button></td>' +
           '<td>' +
           '</div>' +
           '</td>' +
@@ -663,12 +660,9 @@ function populate_Investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
-          data[i].id +
-          "','" +
-          data[i].brand_name +
-          "','" +
-          data[i].logo +
+          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\''+data[i].id +'\',\'' +
+          data[i].brand_name + '\',\'' +
+          data[i].logo + 
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -687,7 +681,7 @@ function exclusion_investor_Modal() {
     dataType: 'json',
     success: function (data) {
       console.log('investor');
-      console.log('Exclusion', data);
+      console.log("Exclusion",data);
       populate_exclusion_investor_modal(data);
     },
   });
@@ -719,12 +713,9 @@ function populate_exclusion_investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
-          data[i].id +
-          "','" +
-          data[i].name +
-          "','" +
-          data[i].logo +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\''+data[i].id +'\',\'' +
+          data[i].name + '\',\'' +
+          data[i].logo + 
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -755,12 +746,9 @@ function populate_exclusion_investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
-          data[i].id +
-          "','" +
-          data[i].brand_name +
-          "','" +
-          data[i].logo +
+          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\''+data[i].id +'\',\'' +
+          data[i].brand_name + '\',\'' +
+          data[i].logo + 
           '\')"> Add </Button></td>' +
           '<td>' +
           '</div>' +
@@ -772,10 +760,10 @@ function populate_exclusion_investor_modal(data) {
 }
 
 let temp_exclude_Investor = [];
-function excludeInvestor(id, name, logo) {
-  console.log('Exclude vala :', id, name, logo);
+function excludeInvestor(id,name,logo){
+  console.log("Exclude vala :" ,id,name,logo)
   temp_exclude_Investor.push({
-    temp_id: id,
+    temp_id : id,
     temp_name: name,
     temp_logo: logo,
   });
@@ -783,77 +771,60 @@ function excludeInvestor(id, name, logo) {
   console.log(temp_exclude_Investor);
 }
 
-let temp_sub_engagement_id = [];
-let temp_sub_engagement_name = [];
-let temp_sub_engagement_logo = [];
+
 
 function createSubEngagement(id, name, logo) {
-  console.log('sub engagement', id, name, logo);
+  console.log("sub engagement vala console",name,logo);
 
-  temp_sub_engagement_id.push(id);
-  temp_sub_engagement_name.push(name);
-  temp_sub_engagement_logo.push(logo);
+  let temp_sub_engagement = {
+    
+    temp_id: id,
+    temp_name: name,
+    temp_logo: logo,
+  }
 
-  console.log(temp_sub_engagement_id);
-  console.log(temp_sub_engagement_name);
-  console.log(temp_sub_engagement_logo);
+  console.log(temp_sub_engagement);
+  
+  if(single_engagement_object.fundraiser.sub_engagements){
+    single_engagement_object.fundraiser.sub_engagements.push(temp_sub_engagement);
+  }else
+  {
+     single_engagement_object.fundraiser.sub_engagements = [];
+    single_engagement_object.fundraiser.sub_engagements.push(temp_sub_engagement)
+  }
+  console.log(single_engagement_object);
 
-  // if (docArray.length > 0) {
-  //   fundraiser.documents = [
-  //     {
-  //       type: '',
-  //       url: '',
-  //       file_type: '',
-  //     },
-  //   ];
 }
 
 function handleObjectUpdate() {
-  // console.log(single_engagement_object);
-
-  for (let i = 0; i < temp_sub_engagement_id.length; i++) {
-    fundraiser.sub_engagements.engagement_to[i].company_id =
-      temp_sub_engagement_id[i];
-    fundraiser.sub_engagements.engagement_to[i].company_name =
-      temp_sub_engagement_name[i];
-    fundraiser.sub_engagements.engagement_to[i].company_logo =
-      temp_sub_engagement_logo[i];
+  for (let i = 0; i < temp_sub_engagement.length; i++) {
+    fundraiser.sub_engagements[i] = {
+      id: temp_id,
+      name: temp_name,
+      logo: temp_logo,
+    };
   }
-
-  console.log('sub_engagements', sub_engagements);
-
-  // if (temp_sub_engagement_id.length > 0) {
-  //   single_engagement_object.fundraiser.sub_engagements = [
-  //     {
-  //       id: '',
-  //       name: '',
-  //       logo: '',
-  //     },
-  //   ];
-  //   for (let i = 0; i < temp_sub_engagement_id.length; i++) {
-  //     single_engagement_object.fundraiser.sub_engagements[i] = {
-  //       id: temp_sub_engagement_id[i],
-  //       name: temp_sub_engagement_name[i],
-  //       logo: temp_sub_engagement_logo[i],
-  //     };
-  //   }
-  // }
+  console.log('YEH AFTER ADDING SUBENG', fundraiser);
 }
 // company_logo: current_company.logo,
 // company_name: current_company.company_name,
 // company_id: current_company.id,
+ 
 
-function populate_Mandate(data) {
-  var table = $('#populate_mandate');
+function populate_Mandate(data){
+  
+  var table = $('#populate_mandate')
   table.empty();
-  if (data.engagement_type == 'fundraiser') {
+  if(data.engagement_type == "fundraiser"){
     var target = data.fundraiser.mandate.files;
-    console.log('mandate', target);
-    for (var i = 0; i < target.length; i++) {
-      console.log('target type', target[i].file_type);
+    console.log("mandate",target)
+    for(var i =0 ;i< target.length;i++){
+      console.log("target type",target[i].file_type)
+      
 
-      table.append(
-        '<tr class="shadow">' +
+
+    table.append(
+      '<tr class="shadow">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
@@ -872,7 +843,8 @@ function populate_Mandate(data) {
           target[i].type +
           '</a><br>' +
           '<small class="text-muted">' +
-          target[i].created_on.showdate +
+          target[i].created_on.showdate
+          +
           '</small>' +
           '</div>' +
           '</td>' +
@@ -884,65 +856,73 @@ function populate_Mandate(data) {
           '</div>' +
           '</td>' +
           '</tr>'
-      );
+    )
     }
+    
+
+
   }
+  
 }
-function populate_Files(data) {
-  console.log('Files', data);
-  var table = $('#populate_files');
+function populate_Files(data){
+  console.log("Files",data);
+  var table = $('#populate_files')
   table.empty();
-  if (data.engagement_type == 'fundraiser') {
+  if(data.engagement_type == "fundraiser"){
     var target = data.fundraiser.documents;
     console.log(target);
-    for (var i = 0; i < target.length; i++) {
-      console.log('Target File type', target[i].type);
+    for(var i =0 ;i<target.length;i++){
+      console.log("Target File type",target[i].type)
 
       table.append(
         '<tr class="shadow">' +
-          '<td>' +
-          '<div class="company_logo_title_holder">' +
-          '<div class="wrapper">' +
-          '<img class= "image--cover" src="' +
-          file_icon(target[i].type) +
-          '">' +
-          '</div>' +
-          '</td>' +
-          '<td>' +
-          '<div style="padding-left:10px;">' +
-          '<a class="my-0" style="cursor:pointer;" href="' +
-          target[i].url +
-          '"  onclick="openurl("' +
-          target[i].url +
-          '")">' +
-          target[i].type +
-          '</a><br>' +
-          '<small class="text-muted">' +
-          target[i].created_on +
-          '</small>' +
-          '</div>' +
-          '</td>' +
-          '<div>' +
-          '<td>' +
-          target[i].status +
-          '</td>' +
-          '</div>' +
-          '</div>' +
-          '</td>' +
-          '</tr>'
-      );
+            '<td>' +
+            '<div class="company_logo_title_holder">' +
+            '<div class="wrapper">' +
+            '<img class= "image--cover" src="' +
+            file_icon(target[i].type) +
+            '">' +
+            '</div>' +
+            '</td>' +
+            '<td>' +
+            '<div style="padding-left:10px;">' +
+            '<a class="my-0" style="cursor:pointer;" href="' +
+            target[i].url +
+            '"  onclick="openurl("' +
+            target[i].url +
+            '")">' +
+            target[i].type +
+            '</a><br>' +
+            '<small class="text-muted">' +
+            target[i].created_on
+            +
+            '</small>' +
+            '</div>' +
+            '</td>' +
+            '<div>' +
+            '<td>' +
+            target[i].status +
+            '</td>' +
+            '</div>' +
+            '</div>' +
+            '</td>' +
+            '</tr>'
+      )
+
     }
+
   }
+  
 }
 
-function populate_Investor(data) {
-  if (data.sub_engagements.length > 0) {
+function populate_Investor(data){
+  if(data.sub_engagements.length > 0){
     $('#investor_no_people').hide();
 
     $('#investor_approached_list').show();
-    alert('populate references function called');
+    alert("populate references function called")
     var target = data.sub_engagements;
-    for (var i = 0; i < target.length; i++) {
+    for(var i =0 ; i<target.length;i++){
       var li =
         '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
         '<div style="display:inline-flex";>' +
@@ -973,14 +953,14 @@ function populate_Investor(data) {
   }
 }
 
-function populate_exclusion_list(data) {
-  if (data.exclusion_list.length > 0) {
+function populate_exclusion_list(data){
+  if(data.exclusion_list.length > 0){
     $('#exclusion_list_no_people').hide();
 
     $('#investor_exclusion_list').show();
-    alert('populate references function called');
+    alert("populate references function called")
     var target = data.exclusion_list;
-    for (var i = 0; i < target.length; i++) {
+    for(var i =0 ; i<target.length;i++){
       var li =
         '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
         '<div style="display:inline-flex";>' +
@@ -1011,27 +991,27 @@ function populate_exclusion_list(data) {
   }
 }
 
-function file_icon(file_type) {
+function file_icon(file_type){
   var src;
-  switch (file_type) {
-    case 'application/pdf':
-      src = '../../../../assets/pdf-file.png';
-      console.log('PDF');
+  switch (file_type){
+    case "application/pdf" :
+      src = "../../../../assets/pdf-file.png";
+      console.log("PDF")
       break;
-    case 'application/csv':
-      src = '../../../../assets/csv-file.png';
+    case "application/csv":
+      src = "../../../../assets/csv-file.png";
       break;
-    case 'application/ppt':
-      src = '../../../../assets/ppt-file.png';
+    case "application/ppt":
+      src = "../../../../assets/ppt-file.png";
       break;
-    case 'application/jpg':
-      src = '../../../../assets/jpg.png';
+    case "application/jpg":
+      src = "../../../../assets/jpg.png";
       break;
-    case 'application/jpeg':
-      src = '../../../../assets/jpeg.png';
+    case "application/jpeg":
+      src = "../../../../assets/jpeg.png";
       break;
-    case 'application/xls':
-      src = '../../../../assets/xls-file.png';
+    case "application/xls":
+      src = "../../../../assets/xls-file.png";
       break;
   }
   return src;
