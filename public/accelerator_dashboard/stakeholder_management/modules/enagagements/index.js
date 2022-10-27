@@ -631,9 +631,7 @@ function populate_Investor_modal(data) {
           data[i].name + '\',\'' +
           data[i].logo + 
           '\')">Add </Button></td>' +
-          '<td>' +
-          '</div>' +
-          '</td>' +
+           
           '</tr>'
       );
     } else if (
@@ -664,9 +662,7 @@ function populate_Investor_modal(data) {
           data[i].brand_name + '\',\'' +
           data[i].logo + 
           '\')"> Add </Button></td>' +
-          '<td>' +
-          '</div>' +
-          '</td>' +
+          
           '</tr>'
       );
     }
@@ -717,9 +713,7 @@ function populate_exclusion_investor_modal(data) {
           data[i].name + '\',\'' +
           data[i].logo + 
           '\')"> Add </Button></td>' +
-          '<td>' +
-          '</div>' +
-          '</td>' +
+           
           '</tr>'
       );
     } else if (
@@ -824,16 +818,16 @@ function populate_Mandate(data){
 
 
     table.append(
-      '<tr class="shadow">' +
-          '<td>' +
-          '<div class="company_logo_title_holder">' +
+      '<tr class="shadow mandate-card" >' +
+          '<td class="mandate-td td-img">' +
+          '<div class="mandate-img">' +
           '<div class="wrapper">' +
           '<img class= "image--cover" src="' +
           file_icon(target[i].file_type) +
           '">' +
           '</div>' +
           '</td>' +
-          '<td>' +
+          '<td class="mandate-td">' +
           '<div style="padding-left:10px;">' +
           '<a class="my-0" style="cursor:pointer;" href="' +
           target[i].url +
@@ -842,14 +836,13 @@ function populate_Mandate(data){
           '")">' +
           target[i].type +
           '</a><br>' +
-          '<small class="text-muted">' +
-          target[i].created_on.showdate
-          +
-          '</small>' +
+          '<div class="text-muted" style="font-size:0.7rem;line-height:normal">' +
+          target[i].created_on.showdate +
+          '</div>' +
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="mandate-td">' +
           target[i].status +
           '</td>' +
           '</div>' +
