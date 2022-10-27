@@ -2,6 +2,10 @@
 <html>
 
 <head>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+        </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kanban Dashboard</title>
@@ -16,12 +20,9 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="../../configurations/common.css">
-
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="../../configurations/local_dbfunctions.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -53,10 +54,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
-        </script>
+
     <script src="context-menu.js"></script>
     <link href="context-menu.css" rel="stylesheet">
 
@@ -94,6 +92,261 @@
                 <div class="container">
                     <div id="kanban-board-holder">
 
+                        <!-- Modal Not Approached-->
+                        <div class="modal" id="openNotApproachedModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Not Approached Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+
+                                            <label for="notApproachedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="notApproachedNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Approached-->
+                        <div class="modal" id="openApproachedModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Approached Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <span><b>Approached </b><select class="form-select"
+                                                    aria-label="Default select example">
+                                                    <option selected>Select Investor</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select></span>
+                                            <br>
+                                            <br>
+                                            <label for="approachedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="approachedNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Interested-->
+                        <div class="modal" id="openInterestedModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Interested Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="interestedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="interestedNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal MeetingScheduled-->
+                        <div class="modal" id="openMeetModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Meet Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="dateandtime"
+                                                style="display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="date">
+                                                    <label for="meetdate"><b>Date:</b></label>
+                                                    <input type="date" id="meetdate" name="meetdate">
+                                                </div>
+                                                <div class="time"> <label for="meettime"><b>Time:</b></label>
+                                                    <input type="time" id="meettime" name="meettime">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <label for="meetlink"><b>Meet Link:</b></label>
+                                            <input type="url" id="meetlink" style="width:23.5rem" name="meetlink">
+                                            <br>
+                                            <br>
+                                            <label for="meetingScheduledNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="meetingScheduledNote"
+                                                rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Not Interested-->
+                        <div class="modal" id="openNotInterestedModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Not Interested Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="notinterestedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="notinterestedNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Negotiation-->
+                        <div class="modal" id="openNegotiationModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Negotiation Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+
+                                            <label for="negotiationNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="negotiationNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Committed-->
+                        <div class="modal" id="openCommittedModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Commitment Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+
+                                            <label for="commitNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="commitNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Due Diligence-->
+                        <div class="modal" id="openDDModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Due Diligence Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+
+                                            <label for="ddNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="ddNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Signed-->
+                        <div class="modal" id="openSignedModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Signed Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+
+                                            <label for="signedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="signNote" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="status-holders">
 
                             <div class="status-header" id="notApproached-header">
@@ -102,28 +355,8 @@
                             </div>
 
 
-                            <!-- Modal Not Approached-->
-                            <div class="modal " id="openApproachedModal" tabindex="-1" role="dialog"
-                                aria-labelledby="openApproachedModal" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Approached Details</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+
                             <div class="notApproached-card">
                                 <div class="notApproached-card-header">
                                     <div class="mandate_id">#5678sui</div>
@@ -131,16 +364,16 @@
                                     </div>
 
                                 </div>
-                                <div id="dropdown-menu-notApproached" style="display:none">
+                                <div id="dropdown-menu-notApproached" class="all-dd" style="display:none">
                                     <h6 class="dropdown-header">Move to</h6>
-                                    <div class="dropdown-item" data-toggle="modal" data-target="#openApproachedModal"
-                                        onclick="openApproachedModal()">Approached</div>
-                                    <div class="dropdown-item" href="#">Interested</div>
-                                    <div class="dropdown-item" href="#">Not Interested</div>
-                                    <div class="dropdown-item" href="#">Meeting Scheduled</div>
-                                    <div class="dropdown-item" href="#">Negotiation</div>
-                                    <div class="dropdown-item" href="#">Committed</div>
-                                    <div class="dropdown-item" href="#">Due Diligence</div>
+                                    <div class="dropdown-item" onclick="openApproachedModal()">Approached</div>
+                                    <div class="dropdown-item" onclick="openInterestedModal()">Interested</div>
+                                    <div class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</div>
+                                    <div class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</div>
+                                    <div class="dropdown-item" onclick="openNegotiationModal()">Negotiation</div>
+                                    <div class="dropdown-item" onclick="openCommittedModal()">Committed</div>
+                                    <div class="dropdown-item" onclick="openDDModal()">Due Diligence</div>
+                                    <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
                                 </div>
                                 <div class="engagement">
                                     <div class="profiles">
@@ -172,15 +405,16 @@
                                 <div class="Approached-card-header">
                                     <div class="mandate_id">#987sui</div>
                                     <div class="Approaced-options" onclick="displayOptions_Approached()">&#10247;</div>
-                                    <div id="dropdown-menu-Approached" style="display:none">
+                                    <div id="dropdown-menu-Approached" class="all-dd" style="display:none">
                                         <h6 class="dropdown-header">Move to</h6>
-                                        <!-- <a class="dropdown-item" href="#">Approached</a> -->
-                                        <a class="dropdown-item" href="#">Interested</a>
-                                        <a class="dropdown-item" href="#">Not Interested</a>
-                                        <a class="dropdown-item" href="#">Meeting Scheduled</a>
-                                        <a class="dropdown-item" href="#">Negotiation</a>
-                                        <a class="dropdown-item" href="#">Committed</a>
-                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openInterestedModal()" href="#">Interested</a>
+                                        <a class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</a>
+                                        <a class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</a>
+                                        <a class="dropdown-item" onclick="openNegotiationModal()">Negotiation</a>
+                                        <a class="dropdown-item" onclick="openCommittedModal()">Committed</a>
+                                        <a class="dropdown-item" onclick="openDDModal()">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
                                     </div>
                                 </div>
                                 <div class="engagement">
@@ -216,13 +450,16 @@
                                 <div class="Interested-card-header">
                                     <div class="mandate_id">#9978sui</div>
                                     <div class="Interested-options" onclick="displayOptions_Interested()">&#10247;</div>
-                                    <div id="dropdown-menu-Interested" style="display:none">
+                                    <div id="dropdown-menu-Interested" class="all-dd" style="display:none">
                                         <h6 class="dropdown-header">Move to</h6>
-                                        <a class="dropdown-item" href="#">Not Interested</a>
-                                        <a class="dropdown-item" href="#">Meeting Scheduled</a>
-                                        <a class="dropdown-item" href="#">Negotiation</a>
-                                        <a class="dropdown-item" href="#">Committed</a>
-                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openApproachedModal()">Approached</a>
+                                        <a class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</a>
+                                        <a class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</a>
+                                        <a class="dropdown-item" onclick="openNegotiationModal()">Negotiation</a>
+                                        <a class="dropdown-item" onclick="openCommittedModal()">Committed</a>
+                                        <a class="dropdown-item" onclick="openDDModal()">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
                                     </div>
                                 </div>
                                 <div class="engagement">
@@ -256,7 +493,19 @@
                             <div class="notApproached-card">
                                 <div class="notInterested-card-header">
                                     <div class="mandate_id">#5678sui</div>
-                                    <div class="notInterested-options">&#10247;</div>
+                                    <div class="notInterested-options" onclick="displayOptions_notInterested()">&#10247;
+                                    </div>
+                                    <div id="dropdown-menu-notInterested" class="all-dd" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openApproachedModal()">Approached</a>
+                                        <a class="dropdown-item" onclick="openInterestedModal()">Interested</a>
+                                        <a class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</a>
+                                        <a class="dropdown-item" onclick="openNegotiationModal()">Negotiation</a>
+                                        <a class="dropdown-item" onclick="openCommittedModal()">Committed</a>
+                                        <a class="dropdown-item" onclick="openDDModal()">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
+                                    </div>
                                 </div>
                                 <div class="engagement">
                                     <div class="profiles">
@@ -287,11 +536,16 @@
                                 <div class="meet-card-header">
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="meet-options" onclick="displayOptions_meet()">&#10247;</div>
-                                    <div id="dropdown-menu-meet" style="display:none">
+                                    <div id="dropdown-menu-meet" class="all-dd" style="display:none">
                                         <h6 class="dropdown-header">Move to</h6>
-                                        <a class="dropdown-item" href="#">Negotiation</a>
-                                        <a class="dropdown-item" href="#">Committed</a>
-                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openApproachedModal()">Approached</a>
+                                        <a class="dropdown-item" onclick="openInterestedModal()">Interested</a>
+                                        <a class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</a>
+                                        <a class="dropdown-item" onclick="openNegotiationModal()">Negotiation</a>
+                                        <a class="dropdown-item" onclick="openCommittedModal()">Committed</a>
+                                        <a class="dropdown-item" onclick="openDDModal()">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
                                     </div>
                                 </div>
                                 <div class="engagement">
@@ -326,10 +580,16 @@
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="negotiation-options" onclick="displayOptions_negotiation()">&#10247;
                                     </div>
-                                    <div id="dropdown-menu-negotiation" style="display:none">
+                                    <div id="dropdown-menu-negotiation" class="all-dd" style="display:none">
                                         <h6 class="dropdown-header">Move to</h6>
-                                        <a class="dropdown-item" href="#">Committed</a>
-                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openApproachedModal()">Approached</a>
+                                        <a class="dropdown-item" onclick="openInterestedModal()">Interested</a>
+                                        <a class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</a>
+                                        <a class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</a>
+                                        <a class="dropdown-item" onclick="openCommittedModal()">Committed</a>
+                                        <a class="dropdown-item" onclick="openDDModal()">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
                                     </div>
                                 </div>
                                 <div class="engagement">
@@ -363,9 +623,16 @@
                                 <div class="commit-card-header">
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="commit-options" onclick="displayOptions_commit()">&#10247;</div>
-                                    <div id="dropdown-menu-commit" style="display:none">
+                                    <div id="dropdown-menu-commit" class="all-dd" style="display:none">
                                         <h6 class="dropdown-header">Move to</h6>
-                                        <a class="dropdown-item" href="#">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openApproachedModal()">Approached</a>
+                                        <a class="dropdown-item" onclick="openInterestedModal()">Interested</a>
+                                        <a class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</a>
+                                        <a class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</a>
+                                        <a class="dropdown-item" onclick="openNegotiationModal()">Negotiation</a>
+                                        <a class="dropdown-item" onclick="openDDModal()">Due Diligence</a>
+                                        <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
                                     </div>
                                 </div>
                                 <div class="engagement">
@@ -398,7 +665,63 @@
                             <div class="dd-card">
                                 <div class="dd-card-header">
                                     <div class="mandate_id">#56899sui</div>
-                                    <div class="dd-options">&#10247;</div>
+                                    <div class="dd-options" onclick="displayOptions_dd()">&#10247;</div>
+                                    <div id="dropdown-menu-dd" class="all-dd" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openApproachedModal()">Approached</a>
+                                        <a class="dropdown-item" onclick="openInterestedModal()">Interested</a>
+                                        <a class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</a>
+                                        <a class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</a>
+                                        <a class="dropdown-item" onclick="openNegotiationModal()">Negotiation</a>
+                                        <a class="dropdown-item" onclick="openCommittedModal()">Committed</a>
+                                        <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
+                                    </div>
+                                </div>
+                                <div class="engagement">
+                                    <div class="profiles">
+                                        <div style="display:flex;align-items: center;justify-content: space-between;">
+                                            <div class="stakeholder">
+                                                <div><img class="user"
+                                                        src="https://media-exp1.licdn.com/dms/image/C560BAQF-spj2q9XIGA/company-logo_200_200/0/1648084855940?e=2147483647&v=beta&t=mahb3Kp7VPbbJViwSwZYJOe28wAQW0bPZ4To2NbdY7A" />
+                                                </div>
+                                                <div>AV</div>
+                                            </div>
+
+                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
+                                            <div class="investor">
+                                                <div><img class="user"
+                                                        src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd" />
+                                                </div>
+                                                <div>SVC</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-holders">
+                            <div class="status-header" id="sign-header">
+                                <div>Signed</div>
+                                <div id="sign-addbtn">+</div>
+                            </div>
+                            <div class="sign-card">
+                                <div class="sign-card-header">
+                                    <div class="mandate_id">#56899sui</div>
+                                    <div class="sign-options" onclick="displayOptions_sign()">&#10247;</div>
+                                    <div id="dropdown-menu-sign" class="all-dd" style="display:none">
+                                        <h6 class="dropdown-header">Move to</h6>
+                                        <a class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</a>
+                                        <a class="dropdown-item" onclick="openApproachedModal()">Approached</a>
+                                        <a class="dropdown-item" onclick="openInterestedModal()">Interested</a>
+                                        <a class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</a>
+                                        <a class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</a>
+                                        <a class="dropdown-item" onclick="openNegotiationModal()">Negotiation</a>
+                                        <a class="dropdown-item" onclick="openCommittedModal()">Committed</a>
+                                        <a class="dropdown-item" onclick="openDDModal()">Due Diligence</a>
+
+
+                                    </div>
                                 </div>
                                 <div class="engagement">
                                     <div class="profiles">
