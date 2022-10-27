@@ -88,10 +88,9 @@
   }
   
   .image--cover {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-  
+    width: 52px;
+    height: 52px;
+    border-radius: 0;
     object-fit: cover;
     object-position: center right;
   }
@@ -102,7 +101,33 @@
   }
   
 td{
-    width: 25%;
-   padding: 5% 10% 5% 5%;
+  width: 7rem;
+  padding: 7% 5% 7% 5%;
 
+}
+.mandate-card{
+  width: 75%;
+  /* height: 12rem; */
+  display:flex
+  
+}
+.single_mandate{
+  align-items: center;
+  justify-content: center;
+  /* margin-left: 9rem; */
+  padding: 0;
+}
+.mandate-card-body{
+  margin:0;
+  padding:0;
+}
+.mandate-td{
+  padding: 0.5rem;
+}
+.mandate-img{
+  width:1rem;
+  height:1rem;
+}
+.td-img{
+  width:4rem
 }

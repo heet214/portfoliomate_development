@@ -1623,22 +1623,45 @@
                             </div>
 
                             <!-- YUVRAJ START HERE -->
-
-                            <div class="card mt-4">
-                              <div class="card-body">
-                                <div
-                                  class="header d-flex justify-items-space-between flex-row">
-                                  <h4 class="card-title">Mandate</h4>
+                            <div style="display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-right: 0.5rem;
+                            margin-left: 0.5rem;">
+                              <div>
+                            <h4 class="card-title mt-4">Mandate</h4>
+                          </div>
+                            <div
+                           style="     border-radius: 21px;
+                           background-color: #3342ae;
+                           width: 2.5rem;
+                           height: 2.5rem;
+                           margin-left: 1rem;
+                           font-size: large;
+                           font-weight: 600;
+                           padding-left: 0.9rem;
+                           padding-top: 0.4rem;
+                           color: white;cursor: pointer;"
+                           data-toggle="modal"
+                           id="add_mandate_button-disabled"
+                           data-target="#addMandateModal"
+                           >+
+                          </div>
+                          </div>
+                          
+                                  
                                   <!-- Button trigger modal -->
-                                  <button
+                                  <!-- <button
                                     type="button"
                                     class="btn btn-primary"
-                                    data-toggle="modal"
-                                    id="add_mandate_button-disabled"
-                                    data-target="#addMandateModal">
+                                    >
                                     Add Mandate
-                                  </button>
-                                </div>
+                                  </button> -->
+                                <!-- </div> -->
+                                <div class="card mandate-card">
+                                  <div class="card-body mandate-card-body">
+                                  
+                                    <div  class="header d-flex justify-items-space-between flex-row">
 
                                 <div class="main-body">
                                   <!-- Modal -->
@@ -1763,6 +1786,7 @@
                                     id="populate_mandate">
                                 </ul>
                               
+                            </div>
                             </div>
 
                             <div class="card mt-4">
