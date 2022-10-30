@@ -59,15 +59,16 @@
             </div>
 
             <div class="menu_item_divider"></div>
-            <div class="main_menu_item active">
-                <i class="fa-solid fa-user-group"></i>
-                <div class="label">Stakeholders</div>
+            <div class="main_menu_item active" id="stakeholder_icon">
+                <i class="fa-solid fa-user-group" ></i>
+                <div class="label">sbbakjs</div>   
             </div>
 
             <div class="menu_item_divider"></div>
-            <div class="main_menu_item active">
-                <i style="font-size: xx-large;" class="fa-solid fa-cubes-stacked"></i>
+            <div class="main_menu_item inactive" id="work_icon">
+                <i style="font-size: xx-large;" class="fa-solid fa-cubes-stacked" ></i>
                 <div class="label">Work</div>
+                <!-- <img src="../stakeholder_management/modules/kanbanBoard/index.html" alt=""> -->
             </div>
 
 
@@ -425,6 +426,7 @@
                         </div>
                     </div>
                     <div style="height:2vh;"></div>
+                    
                 </div>
             </div>
         </div>
@@ -432,6 +434,11 @@
 
     <script>
 
+        
+        $('#work_icon').click(function () {
+            alert("hello There")
+            location.href = "../stakeholder_management/modules/kanbanBoard/index.html"
+        });
         $('document').ready(function () {
 
 

@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="menu_item_divider"></div>
-                    <div class="main_menu_item inactive">
+                    <div class="main_menu_item inactive" id="stakeholder_icon">
                         <i class="fa-solid fa-user-group"></i>
                         <div class="label">Stakeholders</div>
                     </div>
@@ -355,53 +355,20 @@
                             </div>
 
 
-
-
-                            <div class="notApproached-card">
-                                <div class="notApproached-card-header">
-                                    <div class="mandate_id">#5678sui</div>
-                                    <div class="notApproaced-options" onclick="displayOptions_notApproached()">&#10247;
-                                    </div>
-
-                                </div>
-                                <div id="dropdown-menu-notApproached" class="all-dd" style="display:none">
-                                    <h6 class="dropdown-header">Move to</h6>
-                                    <div class="dropdown-item" onclick="openApproachedModal()">Approached</div>
-                                    <div class="dropdown-item" onclick="openInterestedModal()">Interested</div>
-                                    <div class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</div>
-                                    <div class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</div>
-                                    <div class="dropdown-item" onclick="openNegotiationModal()">Negotiation</div>
-                                    <div class="dropdown-item" onclick="openCommittedModal()">Committed</div>
-                                    <div class="dropdown-item" onclick="openDDModal()">Due Diligence</div>
-                                    <a class="dropdown-item" onclick="openSignedModal()">Signed</a>
-                                </div>
-                                <div class="engagement">
-                                    <div class="profiles">
-                                        <div style="display:flex;align-items: center;justify-content: space-between;">
-                                            <div class="stakeholder">
-                                                <div><img class="user" src="../../../../assets/portfoliomate.png" />
-                                                </div>
-                                                <div>AV</div>
-                                            </div>
-
-                                            <div style="font-size:2.5rem;color: #3342ae;margin-top:-1rem"> ⇋ </div>
-                                            <div class="investor">
-                                                <div><img class="user" src="https://via.placeholder.com/400x200" />
-                                                </div>
-                                                <div style="color:#ccc">NA</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ul class="list-group list-group-flush notApproached-container">
+                              
+                             
+                            </ul>
 
                         </div>
+
                         <div class="status-holders">
                             <div class="status-header" id="Approached-header">
                                 <div>Approached</div>
                                 <div id="Approached-addbtn">+</div>
                             </div>
-                            <div class="Approached-card">
+                            <ul class="Approached-container">
+                                <!-- <div class="Approached-card">
                                 <div class="Approached-card-header">
                                     <div class="mandate_id">#987sui</div>
                                     <div class="Approaced-options" onclick="displayOptions_Approached()">&#10247;</div>
@@ -439,14 +406,16 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
+                            </ul>
                         </div>
                         <div class="status-holders">
                             <div class="status-header" id="Interested-header">
                                 <div>Interested</div>
                                 <div id="Interested-addbtn">+</div>
                             </div>
-                            <div class="Interested-card">
+                            <ul class="Interested-container">
+                                <!-- <div class="Interested-card">
                                 <div class="Interested-card-header">
                                     <div class="mandate_id">#9978sui</div>
                                     <div class="Interested-options" onclick="displayOptions_Interested()">&#10247;</div>
@@ -482,7 +451,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+                            </ul>
                         </div>
 
                         <div class="status-holders">
@@ -490,7 +460,8 @@
                                 <div>Not Interested</div>
                                 <div id="notInterested-addbtn">+</div>
                             </div>
-                            <div class="notApproached-card">
+                            <ul class="notInterested-container">
+                                <!-- <div class="notInterested-card">
                                 <div class="notInterested-card-header">
                                     <div class="mandate_id">#5678sui</div>
                                     <div class="notInterested-options" onclick="displayOptions_notInterested()">&#10247;
@@ -525,14 +496,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+                            </ul>
                         </div>
                         <div class="status-holders">
                             <div class="status-header" id="meet-header">
                                 <div>Meeting Scheduled</div>
                                 <div id="meet-addbtn">+</div>
                             </div>
-                            <div class="meet-card">
+                            <div class="meet-container">
+                                <!-- <div class="meet-card">
                                 <div class="meet-card-header">
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="meet-options" onclick="displayOptions_meet()">&#10247;</div>
@@ -568,6 +541,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
                             </div>
                         </div>
                         <div class="status-holders">
@@ -575,7 +549,8 @@
                                 <div>Negotiation</div>
                                 <div id="negotiation-addbtn">+</div>
                             </div>
-                            <div class="negotiation-card">
+                            <div class="negotiation-container">
+                                <!-- <div class="negotiation-card">
                                 <div class="negotiation-card-header">
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="negotiation-options" onclick="displayOptions_negotiation()">&#10247;
@@ -612,6 +587,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
                             </div>
                         </div>
                         <div class="status-holders">
@@ -619,7 +595,8 @@
                                 <div>Committed</div>
                                 <div id="commit-addbtn">+</div>
                             </div>
-                            <div class="commit-card">
+                            <div class="commit-container">
+                                <!-- <div class="commit-card">
                                 <div class="commit-card-header">
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="commit-options" onclick="displayOptions_commit()">&#10247;</div>
@@ -655,6 +632,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
                             </div>
                         </div>
                         <div class="status-holders">
@@ -662,7 +640,8 @@
                                 <div>Due Diligence</div>
                                 <div id="dd-addbtn">+</div>
                             </div>
-                            <div class="dd-card">
+                            <div class="dd-container">
+                                <!-- <div class="dd-card">
                                 <div class="dd-card-header">
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="dd-options" onclick="displayOptions_dd()">&#10247;</div>
@@ -698,6 +677,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
                             </div>
                         </div>
                         <div class="status-holders">
@@ -705,7 +685,8 @@
                                 <div>Signed</div>
                                 <div id="sign-addbtn">+</div>
                             </div>
-                            <div class="sign-card">
+                            <div class="sign-container">
+                                <!-- <div class="sign-card">
                                 <div class="sign-card-header">
                                     <div class="mandate_id">#56899sui</div>
                                     <div class="sign-options" onclick="displayOptions_sign()">&#10247;</div>
@@ -739,10 +720,13 @@
                                                         src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/x2fovih8clxi7uhphqzd" />
                                                 </div>
                                                 <div>SVC</div>
+                                                
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
                             </div>
                         </div>
                     </div>
