@@ -188,6 +188,9 @@ z-index: 9;
 #dd-header{
   background-color: #483D8B;
 }
+#sign-header{
+  background-color: #6c1e61;
+}
 #notApproached-addbtn , #Approached-addbtn , #Interested-addbtn ,#meet-addbtn,#notInterested-addbtn,#negotiation-addbtn,#commit-addbtn,#dd-addbtn{
   cursor: pointer;
 }
@@ -265,6 +268,7 @@ z-index: 9;
     line-height: 3vh;
     margin-bottom: 2vh;
     width: max-content;
+
   }
 
   .logo_menu_item {
