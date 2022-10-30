@@ -267,7 +267,7 @@ function populate_refferences(refferences) {
         '")">Edit</span>' +
         '</li>';
     }
-    $('#stakeholders_refference_list').append(li);
+    
   }
 }
 
@@ -402,9 +402,6 @@ function display_data_innovadors(data_innovadors) {
           '<td><Button class="btn btn-primary" onclick="profile(\'' +
           data_innovadors[i].id +
           '\')"> Add </Button></td>' +
-          '<td>' +
-          '</div>' +
-          '</td>' +
           '</tr>'
       );
     }
@@ -442,12 +439,7 @@ function display_data_refference(data_refference) {
           data_refference[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="refferences(\'' +
-          data_refference[i].id +
-          '\')"> Add </Button></td>' +
-          '<td>' +
-          '</div>' +
-          '</td>' +
+          '<td>'+'<Button class="btn btn-primary"'+' onclick="refferences(\'' + data_refference[i].id + '\')">'+' Add'+' </Button>'+'</td>' +
           '</tr>'
       );
     } else if (
@@ -478,9 +470,6 @@ function display_data_refference(data_refference) {
           '<td><Button class="btn btn-primary" onclick="refferences(\'' +
           data_refference[i].id +
           '\')"> Add </Button></td>' +
-          '<td>' +
-          '</div>' +
-          '</td>' +
           '</tr>'
       );
     }

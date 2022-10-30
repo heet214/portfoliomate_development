@@ -34,17 +34,6 @@ function displayOptions_Approached() {
     }
 
 }
-function displayOptions_notInterested() {
-    if (dropdown_hidden) {
-        dropdown_hidden = false;
-        return ($('#dropdown-menu-notInterested').css("display", "block"))
-    }
-    if (!dropdown_hidden) {
-        dropdown_hidden = true;
-        return ($("#dropdown-menu-notInterested").css("display", "none"))
-    }
-
-}
 function displayOptions_Interested() {
     if (dropdown_hidden) {
         dropdown_hidden = false;
