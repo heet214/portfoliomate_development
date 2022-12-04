@@ -1,0 +1,175 @@
+.main_holder {
+  background: #f0f0f0;
+  height: 100vh;
+  width: 100vw;
+  font-family: Poppins;
+}
+
+.side_menu {
+  background: white;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  border-radius: 5px;
+}
+
+.side_menu_block_holder {
+  margin-right: 2vw;
+  margin-left: 2vw;
+  height: 90vh;
+  overflow-y: scroll;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  border-radius: 5px;
+  background: white;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #3342ae !important;
+  color: white !important;
+}
+
+.nav-pills a {
+  color: #3342ae !important;
+}
+
+.main_menu_holder {
+  height: 7vh;
+  width: 100vw;
+  background: white;
+  display: inline-flex;
+}
+
+.logo_menu_item {
+  height: 5vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 2vw;
+}
+
+.logo_menu_item img {
+  height: 5vh;
+}
+
+.main_menu_item {
+  text-align: center;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  cursor: pointer;
+  font-size: small;
+}
+
+.main_menu_item i {
+  color: #3342ae;
+}
+
+.main_menu_item :hover {
+  background: #f0f0f0;
+}
+
+.profile_management_holder {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
+#file-name {
+  display: flex;
+  flex-direction: column;
+}
+.singleFile-line {
+  display: flex;
+  column-gap: 10px;
+}
+.wrapper {
+  padding: 5px;
+  margin-left: 3px;
+  margin-right: 10px;
+}
+
+.image--cover {
+  width: 52px;
+  height: 52px;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center right;
+}
+
+.populate_existing_people {
+  height: fit-content;
+  width: fit-content;
+}
+
+td {
+  width: 7rem;
+  padding: 7% 5% 7% 5%;
+}
+.mandate-card {
+  width: 75%;
+  height: 4.7rem;
+  display: flex;
+  background-color: #EFEFEF;
+  border-radius: 5px;
+  
+}
+.single_mandate {
+  align-items: center;
+  justify-content: center;
+  /* margin-left: 9rem; */
+  padding: 0;
+}
+.mandate-card-body {
+  margin: 0;
+  padding: 0;
+}
+.mandate-td {
+  padding: 0.5rem;
+}
+.mandate-img {
+  width: 1rem;
+  height: 1rem;
+}
+.td-img {
+  width: 4rem;
+}
+.fundraiser-card-titles {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #6f6f6f;
+}
+.mandate-status {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13.6482px;
+  line-height: 20px;
+
+  color: #02ca16;
+}
+.engagement-close-btn {
+  font-size: 2rem;
+  padding-left: 0.8rem;
+  cursor: pointer;
+}
+.engagement-close-btn-div {
+  width: 3rem;
+  height: 3rem;
+}
+.engagement-close-btn-div:hover {
+  background-color: #c41e3a;
+}
+ #populate_engagements-form{
+  width:49rem
+ }
+ .engagement-type-close {
+  font-size: 2rem;
+  padding-left: 0.8rem;
+  cursor: pointer;
+}
+.engagement-type-close-div {
+  width: 3rem;
+  height: 3rem;
+}
+.engagement-type-close-div:hover {
+  background-color: #c41e3a;
+}

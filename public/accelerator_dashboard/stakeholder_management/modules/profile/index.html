@@ -1,0 +1,2900 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfoliomate / Complete Profile</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../../../assets/portfoliomate.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins"
+      rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="../../../../onboarding/" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"></script>
+
+    <script src="../../../../configurations/local_dbfunctions.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- update the version number as needed -->
+
+    <script defer src="/__/firebase/9.9.2/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.9.2/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-database-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-firestore-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-functions-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-storage-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-analytics-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-remote-config-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-performance-compat.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- Google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      #complete_startup_fundamental_details_form {
+        margin: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main_holder">
+      <div class="main_menu_holder shadow">
+        <div class="logo_menu_item">
+          <img class="img-fluid" src="../../../../assets/portfoliomate.png" />
+        </div>
+        <div style="display: none"></div>
+      </div>
+      <div class="row profile_management_holder">
+        <div class="shadow-sm col-md-3 col-sm-12 side_menu">
+          <div
+            class="nav flex-column nav-pills"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical">
+            <a
+              class="nav-link active"
+              id="v-pills-home-tab"
+              data-toggle="pill"
+              href="#v-pills-home"
+              role="tab"
+              aria-controls="v-pills-home"
+              aria-selected="true"
+              >Profile
+              <i style="color: white" class="fa-solid fa-circle-exclamation"></i
+            ></a>
+            <a
+              class="nav-link"
+              id="v-pills-profile-tab"
+              data-toggle="pill"
+              href="#v-pills-profile"
+              role="tab"
+              aria-controls="v-pills-profile"
+              aria-selected="false"
+              >Engagements</a
+            >
+            <a
+              class="nav-link"
+              id="v-pills-messages-tab"
+              data-toggle="pill"
+              href="#v-pills-messages"
+              role="tab"
+              aria-controls="v-pills-messages"
+              aria-selected="false"
+              >Documents</a
+            >
+            <a
+              class="nav-link"
+              id="v-pills-settings-tab"
+              data-toggle="pill"
+              href="#v-pills-settings"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+              >Logs</a
+            >
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-12 side_menu_block_holder">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="v-pills-home"
+              role="tabpanel"
+              aria-labelledby="v-pills-home-tab">
+              <div class="container">
+                <div class="py-5 text-center">
+                  <img
+                    id="stakeholder_company_logo"
+                    class="img-fluid d-block mx-auto mb-4"
+                    src=""
+                    alt=""
+                    style="height: 10vh" />
+                  <h2 id="stakeholder_company_name_label"></h2>
+                  <p
+                    id="stakeholder_company_description_label"
+                    class="lead"></p>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 order-md-1 mb-4">
+                    <h4
+                      class="d-flex justify-content-between align-items-center mb-3">
+                      <span class="text-muted">People Associated</span>
+                    </h4>
+
+                    <ul id="stakeholders_no_people" class="list-group mb-3">
+                      <li
+                        class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                          <h6 class="my-0" style="color: crimson">
+                            No Accounts Created
+                          </h6>
+                          <small class="text-muted"
+                            >Create Stakeholders to Complete Profile</small
+                          >
+                        </div>
+                        <span style="display: none" class="text-muted"
+                          >$12</span
+                        >
+                      </li>
+                    </ul>
+
+                    <ul
+                      id="stakeholders_people_list"
+                      style="display: none"
+                      class="list-group mb-3"></ul>
+
+                    <form class="card p-2 add-people-card">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          id="add_new_person_input"
+                          class="form-control"
+                          placeholder="Enter Name" />
+                        <div class="input-group-append">
+                          <div
+                            id="add_people_button"
+                            onclick="addperson()"
+                            class="btn">
+                            Add Person
+                          </div>
+                        </div>
+                      </div>
+                      <div class="select-input-type">
+                        <select
+                          class="form-select"
+                          id="user_type_select"
+                          aria-label="Default select example">
+                          <option value="new_user">New User</option>
+                          <option value="existing_user">Existing User</option>
+                        </select>
+                      </div>
+                    </form>
+                    <div
+                      id="existing_user_modal"
+                      class="modal"
+                      tabindex="-1"
+                      role="dialog">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Existing User</h5>
+                            <input class="form-control stakeholders_search_box" id="user_list_search_box"
+                            type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                              onclick="close_modal()">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body" id="populate_stake_holders">
+                            <ul
+                              id="populate_existing_people"
+                              class="list-group mb-3"></ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              onclick="close_modal()"
+                              class="btn btn-secondary"
+                              data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--  Refernece vala section -->
+
+                    <h4
+                      class="d-flex justify-content-between align-items-center mb-3"
+                      style="margin-top: 5vh">
+                      <span class="text-muted">Reffered By</span>
+                    </h4>
+
+                    <ul
+                      id="stakeholders_no_refferences"
+                      class="list-group mb-3">
+                      <li
+                        class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                          <h6 class="my-0" style="color: crimson">
+                            No Refference Added
+                          </h6>
+                          <small class="text-muted"
+                            >Add Refference to Complete Profile</small
+                          >
+                        </div>
+                        <span style="display: none" class="text-muted"
+                          >$12</span
+                        >
+                      </li>
+                    </ul>
+
+                    <ul
+                      id="stakeholders_refference_list"
+                      style="display: none"
+                      class="list-group mb-3"></ul>
+
+                    <form class="card p-2 add-people-card">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          id="add_new_reference_input"
+                          class="form-control"
+                          placeholder="Enter Name" />
+                        <div class="input-group-append">
+                          <div
+                            id="add_people_button"
+                            onclick="addrefferences()"
+                            class="btn">
+                            Add Refernece
+                          </div>
+                        </div>
+                      </div>
+                      <div class="select-input-type">
+                        <select
+                          class="form-select"
+                          id="refference_type_select"
+                          aria-label="Default select example">
+                          <option value="new_refference">New Refference</option>
+                          <option value="existing_refference">
+                            Existing Refference
+                          </option>
+                        </select>
+                      </div>
+                    </form>
+
+                    <div
+                      id="existing_refference_modal"
+                      class="modal"
+                      tabindex="-1"
+                      role="dialog">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Modal <title></title></h5>
+                            <input class="form-control stakeholders_search_box" id="reference_list_search_box"
+                              type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                              onclick="close_refference_modal()">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body" id="populate_stake_holders">
+                            <ul
+                              id="populate_existing_refference"
+                              class="list-group mb-3">
+                              <li>Test</li>
+                            </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              onclick="close_refference_modal()"
+                              class="btn btn-secondary"
+                              data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-8 order-md-2">
+                    <h4 class="mb-3">Basic Details</h4>
+                    <form id="#complete_startup_details">
+                      <div>
+                        <div class="card basic-details">
+                          <div class="card-body">
+                            <h5 class="card-title">Company Details</h5>
+
+                            <span
+                              style="
+                                padding: 7px;
+                                border-radius: 7px;
+                                float: right;
+                                margin-bottom: 15px;
+                              "
+                              class="badge badge-pill badge-primary status-indicator"></span>
+
+                            <h6
+                              class="card-subtitle mb-2 text-muted"
+                              id="createdon_label">
+                              Created On
+                            </h6>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >Stakeholder Type</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="stakeholder_type"
+                                placeholder="Stakeholder Type"
+                                disabled
+                                aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >CIN</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                onchange="set_cin(event)"
+                                id="cin"
+                                name="cin"
+                                placeholder="Enter CIN"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >Company Name</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="company_name"
+                                placeholder="Company Name"
+                                disabled
+                                aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >Incorporated At</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                name="stakeholder_location"
+                                placeholder="Country Of Incorporation"
+                                disabled
+                                aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >Brand Name</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                id="brand_name"
+                                class="form-control"
+                                name="brand_name"
+                                placeholder="Enter Brand Name"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >Website</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                id="website"
+                                class="form-control"
+                                name="website"
+                                placeholder="Enter Brand Name"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >Logo Url</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="company_logo"
+                                placeholder="Enter Image Url"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                disabled />
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                  >Description</span
+                                >
+                              </div>
+                              <textarea
+                                id="description"
+                                class="form-control"
+                                onchange="set_description(event)"
+                                id="description"
+                                name="description"
+                                aria-label="With textarea"></textarea>
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"
+                                  >Pincode</span
+                                >
+                              </div>
+                              <input
+                                type="text"
+                                id="pincode"
+                                class="form-control"
+                                onchange="set_pincode(event)"
+                                id="pincode"
+                                name="pincode"
+                                placeholder="Enter PIN"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            </div>
+
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">Address</span>
+                              </div>
+                              <textarea
+                                type="text"
+                                id="address"
+                                class="form-control"
+                                onchange="set_address(event)"
+                                id="address"
+                                name="address"
+                                aria-label="With textarea"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <div style="display: flex">
+                      <button
+                        id="submit"
+                        type="submit"
+                        style="margin-top: 1vh; width: 12rem"
+                        class="btn btn-primary"
+                        onclick="submit_complete_profile()"
+                        disabled>
+                        Submit
+                      </button>
+                      <button
+                        id="check"
+                        type="submit"
+                        style="margin-top: 1vh"
+                        class="btn btn-warning">
+                        Add Details & Complete Profile
+                      </button>
+                      <button
+                        id="save"
+                        type="submit"
+                        style="width: 12rem"
+                        onclick="submit_complete_profile()"
+                        class="btn btn-warning">
+                        Save Profile
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <footer class="my-5 pt-5 text-muted text-center text-small">
+                  <p class="mb-1">&copy; 2017-2018 Company Name</p>
+                  <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                  </ul>
+                </footer>
+              </div>
+            </div>
+
+            <div
+              class="tab-pane fade"
+              id="v-pills-profile"
+              role="tabpanel"
+              aria-labelledby="v-pills-profile-tab">
+              <div class="container">
+                <div class="row">
+                  <!-- <div class="col-md-4 order-md-1 mb-4">
+                                    <h5 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-muted">Existing Engagements</span>
+                                    </h5>
+
+                                    <ul id="stakeholders_no_people" class="list-group mb-3">
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div>
+                                                <h6 class="my-0" style="color: crimson;">No Accounts Created</h6>
+                                                <small class="text-muted">Create Stakeholders to Complete
+                                                    Profile</small>
+                                            </div>
+                                            <span style="display: none;" class="text-muted">$12</span>
+                                        </li>
+                                    </ul>
+
+                                    <ul id="stakeholders_people_list" style="display: none;" class="list-group mb-3">
+
+                                    </ul>
+
+                                     <form class="card p-2">
+                                        <div class="input-group">
+                                            <input type="text" id="add_new_person_input" class="form-control"
+                                                placeholder="Enter Name">
+                                            <div class="input-group-append">
+                                                <div id="add_people_button" onclick="addperson()" class="btn">Add Person
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="select-input-type">
+                                            <select class="form-select" id="user_type_select"
+                                                aria-label="Default select example">
+                                                <option value="new_user">New User</option>
+                                                <option value="existing_user">Existing User</option>
+                                            </select>
+                                        </div>
+                                    </form> 
+
+                                    <div id="existing_user_modal" class="modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Modal title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul id="stakeholders_people_list" style="display: none;"
+                                                        class="list-group mb-3">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                  <div class="col-md-8 order-md-2">
+                    <form class="card p-3 mb-3" id="create_engagement-form">
+                      <p
+                        class="btn btn-primary"
+                        onclick="toggleEngagementButtons()">
+                        + Create Engagement
+                      </p>
+                    </form>
+
+                    <form
+                      class="card p-3 mb-4"
+                      id="engagement_type_buttons"
+                      style="display: none">
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: row;
+                          justify-content: space-between;
+                        ">
+                        <h5
+                          class="d-flex justify-content-between align-items-center mb-3">
+                          <span class="text-muted">Engagement Type</span>
+                        </h5>
+                        <div
+                          class="engagement-type-close-div"
+                          onclick="handleCloseEngagementType()">
+                          <span class="engagement-type-close">&times;</span>
+                        </div>
+                      </div>
+
+                      <div class="input-group">
+                        <div
+                          class="btn-group btn-group-toggle"
+                          data-toggle="buttons">
+                          <button
+                            id="growth"
+                            class="btn btn-outline-primary"
+                            onclick="toggleGrowthForm()">
+                            <input
+                              type="radio"
+                              name="options"
+                              autocomplete="off" />
+                            Fundraiser
+                          </button>
+                          <button
+                            id="fundraiser"
+                            class="btn btn-outline-primary"
+                            onclick="toggleFundraiserForm()">
+                            <input
+                              type="radio"
+                              name="options"
+                              autocomplete="off" />
+                            Growth
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    <form class="card p-3 mb-4" id="populate_engagements-form">
+                      <h5
+                        class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Existing engagements </span>
+                      </h5>
+                      <table
+                        id="investor_table"
+                        class="table table-hover stakeholder_table">
+                        <thead>
+                          <tr class="mb-4">
+                            <th style="padding: 1.5rem">Engagement ID</th>
+                            <th style="padding: 1.5rem">Company ID</th>
+                            <th style="padding: 1.5rem">Ask</th>
+                          </tr>
+                        </thead>
+                        <tbody id="populate_exsisting_engagements"></tbody>
+                      </table>
+                      <!-- <ul
+                        id="populate_exsisting_engagements"
+                        class="list-group mb-3"></ul> -->
+                    </form>
+                    <div
+                      class="engagement_form-group"
+                      id="engagement_form-group">
+                      <form id="engagement_form-growth" style="display: none">
+                        <div>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Growth Details</h5>
+
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span
+                                    class="input-group-text"
+                                    id="basic-addon1"
+                                    >Company Name</span
+                                  >
+                                </div>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  name="company_name"
+                                  placeholder="Company Name"
+                                  disabled
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1" />
+                              </div>
+
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span
+                                    class="input-group-text"
+                                    id="basic-addon1"
+                                    >Incorporated At</span
+                                  >
+                                </div>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  name="stakeholder_location"
+                                  placeholder="Country Of Incorporation"
+                                  disabled
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1" />
+                              </div>
+
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span
+                                    class="input-group-text"
+                                    id="basic-addon1"
+                                    >Brand Name</span
+                                  >
+                                </div>
+                                <input
+                                  type="text"
+                                  id="brand_name"
+                                  class="form-control"
+                                  name="brand_name"
+                                  placeholder="Enter Brand Name"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                  disabled />
+                              </div>
+
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">Ask</span>
+                                  <select
+                                    class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="Rupee" id="rupee" selected>
+                                      ₹
+                                    </option>
+                                    <option value="Dollar" id="dollar">
+                                      $
+                                    </option>
+                                    <option value="Euro" id="euro">€</option>
+                                  </select>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  aria-label="Rupee amount (with dot and two decimal places)"
+                                  required />
+                              </div>
+
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"
+                                    >Expected valuation:
+                                  </span>
+                                  <select
+                                    class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="Rupee" id="rupee" selected>
+                                      ₹
+                                    </option>
+                                    <option value="Dollar" id="dollar">
+                                      $
+                                    </option>
+                                    <option value="Euro" id="euro">€</option>
+                                  </select>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  aria-label="Rupee amount (with dot and two decimal places)" />
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label"
+                                  >Mandate
+                                  <span style="color: red">*</span></label
+                                >
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFile"
+                                  required />
+                              </div>
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label"
+                                  >Pitch Deck <span style="color: red">*</span>
+                                </label>
+                                <input
+                                  class="form-control"
+                                  type="file"
+                                  id="formFile" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <p
+                          id=""
+                          type=""
+                          style="margin-top: 1vh"
+                          class="btn btn-primary"
+                          disabled>
+                          Submit
+                        </p> -->
+                        <p
+                          id=""
+                          type=""
+                          style="margin-top: 1vh"
+                          class="btn btn-primary"
+                          onclick="heetLearnsNew()">
+                          Submit
+                        </p>
+                      </form>
+
+                      <form
+                        id="engagement_form-fundraiser"
+                        style="display: none">
+                        <div>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Fundraiser Details</h5>
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">Ask</span>
+                                  <select
+                                    class="form-select"
+                                    id="ask_currency"
+                                    aria-label="Default select example">
+                                    <option value="Rupee" id="rupee" selected>
+                                      ₹
+                                    </option>
+                                    <option value="Dollar" id="Dollar">
+                                      $
+                                    </option>
+                                    <option value="Euro" id="Euro">€</option>
+                                  </select>
+                                </div>
+                                <input
+                                  type="number"
+                                  id="ask_evaluation"
+                                  class="form-control"
+                                  aria-label="Rupee amount (with dot and two decimal places)"
+                                  required />
+                              </div>
+
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"
+                                    >Expected valuation
+                                  </span>
+                                  <select
+                                    class="form-select"
+                                    id="evaluation_currency"
+                                    aria-label="Default select example">
+                                    <option value="Rupee" id="Rupee" selected>
+                                      ₹
+                                    </option>
+                                    <option value="Dollar" id="Dollar">
+                                      $
+                                    </option>
+                                    <option value="Euro" id="Euro">€</option>
+                                  </select>
+                                </div>
+                                <input
+                                  type="number"
+                                  id="expected_evaluation"
+                                  class="form-control"
+                                  aria-label="Rupee amount (with dot and two decimal places)"
+                                  required />
+                              </div>
+
+                              <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"
+                                    >valuation as on</span
+                                  >
+                                  <input
+                                    type="date"
+                                    id="date_as_on"
+                                    class="form-control"
+                                    aria-label="Date as of from now"
+                                    required />
+                                </div>
+                              </div>
+
+                              <div class="mb-4">
+                                <div class="fees">
+                                  <label for="" class="form-label"
+                                    >Payment Mode:
+                                  </label>
+                                  <div class="d-flex mb-2">
+                                    <div class="form-check">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="fees_type"
+                                        value="fees"
+                                        id="fees" />
+                                      <label
+                                        class="form-check-label"
+                                        id="fees-input"
+                                        for="fees">
+                                        Fees
+                                      </label>
+                                    </div>
+                                    <div class="form-check ml-5">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="fees_type"
+                                        value="equity"
+                                        id="equity" />
+                                      <label
+                                        class="form-check-label"
+                                        id="equity-input"
+                                        for="equity">
+                                        Equity
+                                      </label>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-floating mb-3">
+                                    <input
+                                      type="number"
+                                      class="form-control"
+                                      placeholder="Enter the amount here"
+                                      onchange="handlePaymentAmount(event)"
+                                      id="fees_amount" />
+                                    <label for="fees_amount"
+                                      >Enter the Amount</label
+                                    >
+                                  </div>
+                                  <div class="form-floating">
+                                    <textarea
+                                      style="resize: none; height: 80px"
+                                      rows="20"
+                                      class="form-control"
+                                      onchange="handlePaymentDescription(event)"
+                                      id="fees_comments"></textarea>
+                                    <label for="fees_comments"
+                                      >Enter any Comments</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Mrunal -->
+                          <!-- input group -->
+                          <div class="input-group" style="margin-top: 2rem">
+                            <div
+                              class="btn-group btn-group-toggle"
+                              data-toggle="buttons"
+                              style="width: 21rem">
+                              <button
+                                id="mandate-btn-create-eng"
+                                onclick="toggleDocumentsCreateEng()"
+                                class="btn btn-outline-primary active">
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  autocomplete="off" />
+                                Mandate
+                              </button>
+                              <button
+                                id="document-btn-create-eng"
+                                onclick="toggleMandateCreateEng()"
+                                class="btn btn-outline-primary">
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  autocomplete="off" />
+                                Other Files
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- mrunal -->
+                          <!--new mANDATE CONTAINER -->
+
+                          <div
+                            id="mandate-container-create-eng"
+                            style="width: 30rem; margin: 2rem; display: block">
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                width: 23rem;
+                                margin-bottom: 1.5rem;
+                              ">
+                              <div>
+                                <h4 class="fundraiser-card-titles m-3">
+                                  Mandate
+                                </h4>
+                              </div>
+                              <div
+                                style="
+                                  border-radius: 21px;
+                                  background-color: #3342ae;
+                                  width: 2.5rem;
+                                  height: 2.5rem;
+                                  margin-left: 1rem;
+                                  font-size: large;
+                                  font-weight: 600;
+                                  padding-left: 0.9rem;
+                                  padding-top: 0.4rem;
+                                  color: white;
+                                  cursor: pointer;
+                                "
+                                data-toggle="modal"
+                                data-target="#addMandateModal">
+                                +
+                              </div>
+                              <div class="main-body">
+                                <!-- Modal -->
+                                <div
+                                  class="modal fade"
+                                  id="addMandateModal"
+                                  tabindex="-1"
+                                  role="dialog"
+                                  aria-labelledby="exampleModalLabel"
+                                  aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5
+                                          class="modal-title"
+                                          id="exampleModalLabel">
+                                          Add Mandate
+                                        </h5>
+                                        <button
+                                          type="button"
+                                          class="close"
+                                          data-dismiss="modal"
+                                          aria-label="Close">
+                                          <span aria-hidden="true"
+                                            >&times;</span
+                                          >
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="mb-3">
+                                          <label
+                                            for="mandateFileInput"
+                                            class="form-label"
+                                            >Mandate
+                                            <span style="color: red"
+                                              >*</span
+                                            ></label
+                                          >
+                                          <input
+                                            class="form-control mb-2 mandate-file-input"
+                                            onchange="handleMandate(event)"
+                                            type="file"
+                                            id="mandateFileInput"
+                                            required />
+
+                                          <label for="mandate-status"
+                                            >Status</label
+                                          >
+                                          <div
+                                            class="d-flex mb-3"
+                                            id="mandate-status">
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="mandate_status"
+                                                value="proposed"
+                                                id="mandate_status" />
+                                              <label
+                                                class="form-check-label"
+                                                for="proposed">
+                                                proposed
+                                              </label>
+                                            </div>
+                                            <div class="form-check ml-5">
+                                              <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="mandate_status"
+                                                value="signed"
+                                                id="mandate_status" />
+                                              <label
+                                                class="form-check-label"
+                                                for="signed">
+                                                signed
+                                              </label>
+                                            </div>
+                                          </div>
+                                          <div class="form-floating">
+                                            <textarea
+                                              class="form-control"
+                                              rows="50"
+                                              style="
+                                                height: 100px;
+                                                resize: none;
+                                              "
+                                              onchange="handleMandateDescription(event)"
+                                              id="mandate_description_input"></textarea>
+                                            <label
+                                              for="mandate_description_input"
+                                              >Add a Description</label
+                                            >
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="modal-footer">
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          id="hanldeCloseMandateModal"
+                                          data-dismiss="modal">
+                                          Close
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-primary"
+                                          onclick="handleMandateSave()">
+                                          Save changes
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="mandate-populations"
+                              style="width: 30rem">
+                              <ul id="exisisting-mandate_files"></ul>
+                            </div>
+                          </div>
+
+                          <!-- OLD MANDATE -->
+                          <!-- <div class="card mt-4">
+                            <div class="card-body">
+                              <div
+                                class="header d-flex justify-items-space-between flex-row">
+                                <h4 class="card-title">Mandate</h4> -->
+                          <!-- Button trigger modal -->
+                          <!-- <button
+                                  type="button"
+                                  class="btn btn-primary"
+                                  data-toggle="modal"
+                                  data-target="#addMandateModal">
+                                  Add Mandate
+                                </button>
+                              </div>
+
+                              <div class="main-body"> -->
+                          <!-- Modal -->
+                          <!-- <div
+                                  class="modal fade"
+                                  id="addMandateModal"
+                                  tabindex="-1"
+                                  role="dialog"
+                                  aria-labelledby="exampleModalLabel"
+                                  aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5
+                                          class="modal-title"
+                                          id="exampleModalLabel">
+                                          Add Mandate
+                                        </h5>
+                                        <button
+                                          type="button"
+                                          class="close"
+                                          data-dismiss="modal"
+                                          aria-label="Close">
+                                          <span aria-hidden="true"
+                                            >&times;</span
+                                          >
+                                        </button>
+                                      </div> -->
+                          <!-- <div class="modal-body">
+                                        <div class="mb-3">
+                                          <label
+                                            for="mandateFileInput"
+                                            class="form-label"
+                                            >Mandate
+                                            <span style="color: red"
+                                              >*</span
+                                            ></label
+                                          >
+                                          <input
+                                            class="form-control mb-2 mandate-file-input"
+                                            onchange="handleMandate(event)"
+                                            type="file"
+                                            id="mandateFileInput"
+                                            required />
+
+                                          <label for="mandate-status"
+                                            >Status</label
+                                          >
+                                          <div
+                                            class="d-flex mb-3"
+                                            id="mandate-status">
+                                            <div class="form-check">
+                                              <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="mandate_status"
+                                                value="proposed"
+                                                id="mandate_status" />
+                                              <label
+                                                class="form-check-label"
+                                                for="proposed">
+                                                proposed
+                                              </label>
+                                            </div>
+                                            <div class="form-check ml-5">
+                                              <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="mandate_status"
+                                                value="signed"
+                                                id="mandate_status" />
+                                              <label
+                                                class="form-check-label"
+                                                for="signed">
+                                                signed
+                                              </label>
+                                            </div>
+                                          </div>
+                                          <div class="form-floating">
+                                            <textarea
+                                              class="form-control"
+                                              rows="50"
+                                              style="
+                                                height: 100px;
+                                                resize: none;
+                                              "
+                                              onchange="handleMandateDescription(event)"
+                                              id="mandate_description_input"></textarea>
+                                            <label
+                                              for="mandate_description_input"
+                                              >Add a Description</label
+                                            >
+                                          </div>
+                                        </div>
+                                      </div> -->
+
+                          <!-- <div class="modal-footer">
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          id="hanldeCloseMandateModal"
+                                          data-dismiss="modal">
+                                          Close
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-primary"
+                                          onclick="handleMandateSave()">
+                                          Save changes
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+                          <!-- Mrunal -->
+                          <!-- <ul id="exisisting-mandate_files"></ul>
+                          </div> -->
+
+                          <!-- Mrunal -->
+                          <!-- new document container -->
+
+                          <div
+                            id="document_container-create-eng"
+                            style="width: 30rem; margin: 2rem; display: none">
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                width: 17.6rem;
+                                margin-bottom: 1.5rem;
+                              ">
+                              <div>
+                                <h4 class="fundraiser-card-titles m-3">
+                                  Other Files
+                                </h4>
+                              </div>
+                              <div>
+                                <div
+                                  style="
+                                    border-radius: 21px;
+                                    background-color: #3342ae;
+                                    width: 2.5rem;
+                                    height: 2.5rem;
+                                    margin-left: 1rem;
+                                    font-size: large;
+                                    font-weight: 600;
+                                    padding-left: 0.9rem;
+                                    padding-top: 0.4rem;
+                                    color: white;
+                                    cursor: pointer;
+                                  "
+                                  data-toggle="modal"
+                                  data-target="#filesModal"
+                                  onclick="handleModalOpen()">
+                                  +
+                                </div>
+                                <div class="main-body">
+                                  <!-- Modal -->
+
+                                  <div
+                                    class="modal fade"
+                                    id="filesModal"
+                                    data-backdrop="static"
+                                    data-keyboard="false"
+                                    tabindex="-1"
+                                    role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle"
+                                    aria-hidden="true">
+                                    <div
+                                      class="modal-dialog modal-dialog-centered"
+                                      role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5
+                                            class="modal-title"
+                                            id="exampleModalLongTitle">
+                                            Upload Files
+                                          </h5>
+                                          <button
+                                            type="button"
+                                            class="close"
+                                            data-dismiss="modal"
+                                            aria-label="Close"
+                                            onclick="handleClose()">
+                                            <span aria-hidden="true"
+                                              >&times;</span
+                                            >
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <label
+                                            for="otherFiles_input"
+                                            class="form-label"
+                                            >Choose File Type</label
+                                          >
+                                          <input
+                                            class="form-control"
+                                            list="datalistOptions"
+                                            id="otherFiles_input"
+                                            placeholder="Type to search..."
+                                            onchange="setDocumentType(event)" />
+                                          <!-- <datalist
+                                          id="datalistOptions"
+                                          class="file_type-options">
+                                          <option value="file 1"></option>
+                                          <option value="file 2"></option>
+                                          <option value="pitch deck"></option>
+                                        </datalist> -->
+
+                                          <div
+                                            class="mb-3"
+                                            style="margin-top: 20px">
+                                            <div class="input-group">
+                                              <input
+                                                type="file"
+                                                class="form-control"
+                                                id="otherFiles_file_input"
+                                                onchange="handleFileChange(event)"
+                                                aria-describedby="inputGroupFileAddon04"
+                                                aria-label="Upload" />
+                                              <button
+                                                class="btn btn-outline-secondary"
+                                                onclick="handleAddButton()"
+                                                type="button"
+                                                id="inputGroupFileAddon04">
+                                                Add
+                                              </button>
+                                            </div>
+                                            <div
+                                              id="file-details"
+                                              style="margin-top: 20px"></div>
+                                          </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button
+                                            type="button"
+                                            class="btn btn-secondary"
+                                            data-dismiss="modal"
+                                            onclick="handleClose()"
+                                            id="handleOtherFilesClose">
+                                            Close
+                                          </button>
+                                          <button
+                                            type="button"
+                                            class="btn btn-primary"
+                                            onclick="handleFileSave()">
+                                            Save changes
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="document-populations"
+                              style="width: 30rem">
+                              <ul id="existing_document_files"></ul>
+                            </div>
+                          </div>
+
+                          <!-- old documents -->
+
+                          <!-- <div class="card mt-4">
+                            <div class="card-body">
+                              <div
+                                class="header d-flex justify-items-space-between flex-row">
+                                <h4 class="card-title">Other Files</h4> -->
+                          <!-- Button trigger modal -->
+
+                          <!-- <button
+                                  type="button"
+                                  class="btn btn-primary"
+                                  data-toggle="modal"
+                                  data-target="#filesModal"
+                                  onclick="handleModalOpen()">
+                                  Upload Files
+                                </button> -->
+                          <!-- </div> -->
+                          <!-- <div class="main-body"> -->
+                          <!-- Modal -->
+
+                          <!-- <div
+                                  class="modal fade"
+                                  id="filesModal"
+                                  data-backdrop="static"
+                                  data-keyboard="false"
+                                  tabindex="-1"
+                                  role="dialog"
+                                  aria-labelledby="exampleModalCenterTitle"
+                                  aria-hidden="true">
+                                  <div
+                                    class="modal-dialog modal-dialog-centered"
+                                    role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5
+                                          class="modal-title"
+                                          id="exampleModalLongTitle">
+                                          Upload Files
+                                        </h5>
+                                        <button
+                                          type="button"
+                                          class="close"
+                                          data-dismiss="modal"
+                                          aria-label="Close"
+                                          onclick="handleClose()">
+                                          <span aria-hidden="true"
+                                            >&times;</span
+                                          >
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <label
+                                          for="otherFiles_input"
+                                          class="form-label"
+                                          >Choose File Type</label
+                                        >
+                                        <input
+                                          class="form-control"
+                                          list="datalistOptions"
+                                          id="otherFiles_input"
+                                          placeholder="Type to search..."
+                                          onchange="setDocumentType(event)" /> -->
+                          <!-- <datalist
+                                          id="datalistOptions"
+                                          class="file_type-options">
+                                          <option value="file 1"></option>
+                                          <option value="file 2"></option>
+                                          <option value="pitch deck"></option>
+                                        </datalist> -->
+
+                          <!-- <div
+                                          class="mb-3"
+                                          style="margin-top: 20px">
+                                          <div class="input-group">
+                                            <input
+                                              type="file"
+                                              class="form-control"
+                                              id="otherFiles_file_input"
+                                              onchange="handleFileChange(event)"
+                                              aria-describedby="inputGroupFileAddon04"
+                                              aria-label="Upload" />
+                                            <button
+                                              class="btn btn-outline-secondary"
+                                              onclick="handleAddButton()"
+                                              type="button"
+                                              id="inputGroupFileAddon04">
+                                              Add
+                                            </button>
+                                          </div>
+                                          <div
+                                            id="file-details"
+                                            style="margin-top: 20px"></div>
+                                        </div> -->
+                          <!-- </div> -->
+                          <!-- <div class="modal-footer">
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          data-dismiss="modal"
+                                          onclick="handleClose()"
+                                          id="handleOtherFilesClose">
+                                          Close
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-primary"
+                                          onclick="handleFileSave()">
+                                          Save changes
+                                        </button>
+                                      </div> -->
+                          <!-- </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+
+                          <!-- <div class="card mt-4">
+                            <div class="card-body">
+                              <div
+                                class="header d-flex justify-items-space-between flex-row">
+                                <h4 class="card-title">Add investors</h4>
+                                Button trigger modal
+
+                                <button
+                                  type="button"
+                                  class="btn btn-primary"
+                                  data-toggle="modal"
+                                  data-target="#existing_refference_modal">
+                                  Add Investor
+                                </button>
+                              </div>
+                              <div class="main-body">
+                                Modal
+
+                                <div
+                                  class="modal fade"
+                                  id="investorModal"
+                                  data-backdrop="static"
+                                  data-keyboard="false"
+                                  tabindex="-1"
+                                  role="dialog"
+                                  aria-labelledby="exampleModalCenterTitle"
+                                  aria-hidden="true">
+                                  <div
+                                    class="modal-dialog modal-dialog-centered"
+                                    role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5
+                                          class="modal-title"
+                                          id="exampleModalLongTitle">
+                                          Add New Investor
+                                        </h5>
+                                        <button
+                                          type="button"
+                                          class="close"
+                                          data-dismiss="modal"
+                                          aria-label="Close"
+                                          onclick="handleClose()">
+                                          <span aria-hidden="true"
+                                            >&times;</span
+                                          >
+                                        </button>
+                                      </div>
+
+                                      <div class="modal-body">
+                                        <button
+                                          id="addInvest"
+                                          onclick="handleInvestorButton()">
+                                          addInvestor
+                                        </button>
+                                      </div>
+
+                                      <div class="modal-footer">
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          data-dismiss="modal"
+                                          onclick="handleClose()">
+                                          Close
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-primary"
+                                          onclick="">
+                                          Save changes
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+                        </div>
+                        <!-- <button
+                          id=""
+                          type=""
+                          style="margin-top: 1vh"
+                          class="btn btn-primary">
+                          Submit
+                        </button> -->
+                        <p
+                          id=""
+                          type=""
+                          style="margin-top: 1vh"
+                          class="btn btn-primary"
+                          onclick="handleObject()">
+                          Submit
+                        </p>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div
+                    class=""
+                    style="display: none"
+                    id="single_engagement_page-container">
+                    <div class="row">
+                      <div class="col-md-4 order-md-1 mb-4">
+                        <div
+                          class="d-flex justify-content-between align-items-center mb-3">
+                          <div class="input-group">
+                            <div
+                              class="btn-group btn-group-toggle"
+                              data-toggle="buttons">
+                              <button
+                                id="investor-btn"
+                                class="btn btn-outline-primary active"
+                                onclick="toggleExistingInvestor()">
+                                <input
+                                  type="radio"
+                                  name="InvestorExclusionOptions"
+                                  autocomplete="off" />
+                                Investors
+                              </button>
+                              <button
+                                id="exclusion-btn"
+                                class="btn btn-outline-primary"
+                                onclick="toggleExclusionList()">
+                                <input
+                                  type="radio"
+                                  name="InvestorExclusionOptions"
+                                  autocomplete="off" />
+                                Exclusion List
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Investors -->
+
+                        <div
+                          style="display: block"
+                          class="investor-container"
+                          id="investor_list">
+                          <div
+                            style="
+                              display: flex;
+                              justify-content: space-between;
+                              align-items: flex-start;
+                              width: 15.2rem;
+                              margin-bottom: 1rem;
+                            ">
+                            <div>
+                              <h4 class="fundraiser-card-titles">Investor</h4>
+                            </div>
+                            <div>
+                              <div
+                                style="
+                                  border-radius: 21px;
+                                  background-color: #3342ae;
+                                  width: 2rem;
+                                  height: 2rem;
+                                  margin-left: 0;
+                                  font-size: large;
+                                  font-weight: 600;
+                                  padding-left: 0.65rem;
+                                  padding-top: 0.2rem;
+                                  color: white;
+                                  cursor: pointer;
+                                "
+                                onclick="investor_Modal()"
+                                data-bs-toggle="modal"
+                                data-bs-target="#investor_modal">
+                                +
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="investor-populations"
+                            style="width: 30rem">
+                            <ul id="investor_no_people" class="list-group mb-3">
+                              <li
+                                class="list-group-item d-flex justify-content-between lh-condensed"
+                                style="width: 15rem">
+                                <div>
+                                  <h6 class="my-0" style="color: crimson">
+                                    No investors Approached
+                                  </h6>
+                                  <small class="text-muted"
+                                    >Approach investors to create
+                                    engagement</small
+                                  >
+                                </div>
+                              </li>
+                            </ul>
+
+                            <ul
+                              id="investor_approached_list"
+                              style="display: none; width: 15rem"
+                              class="list-group list-group-flush"></ul>
+                          </div>
+                        </div>
+
+                        <!-- <h5 class="text-muted">Existing Engagements</h5>
+                        <button type="button" class="btn btn-primary" onclick="investor_Modal()" data-bs-toggle="modal"
+                          data-bs-target="#investor_modal">
+                          Add Investor
+                        </button> -->
+
+                        <!-- <ul id="investor_no_people" class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                            <h6 class="my-0" style="color: crimson">
+                              No investors Approached
+                            </h6>
+                            <small class="text-muted">Approach investors to create engagement</small>
+                          </div>
+                        </li>
+                      </ul>
+
+                      <ul id="investor_approached_list" style="display: none" class="list-group mb-3"></ul> -->
+
+                        <!-- add investor modal -->
+                        <div
+                          class="modal fade"
+                          id="investor_modal"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalLabel">
+                                  Investors
+                                </h1>
+                                <input class="form-control stakeholders_search_box" id="investor_list_search_box"
+                                  type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <ul
+                                  id="populate_investor_modal"
+                                  class="list-group mb-3">
+                                  <li>Test</li>
+                                </ul>
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal">
+                                  Close
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Exclusion vala part -->
+
+                        <div
+                          style="display: none"
+                          class="exclusion-container"
+                          id="exclusion_list">
+                          <div
+                            style="
+                              display: flex;
+                              justify-content: space-between;
+                              align-items: flex-start;
+                              width: 15.2rem;
+                              margin-bottom: 1rem;
+                            ">
+                            <div>
+                              <h4 class="fundraiser-card-titles">
+                                Exclusion List
+                              </h4>
+
+                            </div>
+                            <div>
+                              <div
+                                style="
+                                  border-radius: 21px;
+                                  background-color: #3342ae;
+                                  width: 2rem;
+                                  height: 2rem;
+                                  margin-left: 0;
+                                  font-size: large;
+                                  font-weight: 600;
+                                  padding-left: 0.65rem;
+                                  padding-top: 0.2rem;
+                                  color: white;
+                                  cursor: pointer;
+                                "
+                                onclick="exclusion_investor_Modal()"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exclusion_investor_modal">
+                                +
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="exclusion-populations"
+                            style="width: 30rem">
+                            <ul
+                              id="exclusion_list_no_people"
+                              class="list-group mb-3">
+                              <li
+                                class="list-group-item d-flex justify-content-between lh-condensed"
+                                style="width: 15rem">
+                                <div>
+                                  <h6 class="my-0" style="color: crimson">
+                                    No Accounts Excluded
+                                  </h6>
+                                  <small class="text-muted"
+                                    >Add investors you want to Exclude</small
+                                  >
+                                </div>
+                              </li>
+                            </ul>
+
+                            <ul
+                              id="investor_exclusion_list"
+                              style="display: none; width: 15rem"
+                              class="list-group list-group-flush"></ul>
+                          </div>
+                        </div>
+                        <!-- <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="text-muted">Exclusion List</h5>
+                        <button type="button" class="btn btn-primary" onclick="exclusion_investor_Modal()"
+                          data-bs-toggle="modal" data-bs-target="#exclusion_investor_modal">
+                          exclude investor
+                        </button>
+                      </div> -->
+
+                        <!-- exclusion list modal -->
+                        <div
+                          class="modal fade"
+                          id="exclusion_investor_modal"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalLabel">
+                                  Investors
+                                </h1>
+                                <input class="form-control stakeholders_search_box" id="exclusion_list_search_box"
+                                  type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <ul
+                                  id="populate_Exclusion_investor_modal"
+                                  class="list-group mb-3">
+                                  <li>Exclude Test</li>
+                                </ul>
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal">
+                                  Close
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="disabled-form_group-container col-md-8 order-md-2">
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                          "
+                          class="mb-5">
+                          <div>
+                            <h3>Fundraiser Details</h3>
+                          </div>
+                          <div
+                            class="engagement-close-btn-div"
+                            onclick="handleSingleEngagementClose()">
+                            <span class="engagement-close-btn">&times;</span>
+                          </div>
+                        </div>
+                        <div class="ask mb-3">
+                          <h4 class="fundraiser-card-titles mb-3">Ask</h4>
+                          <div class="card">
+                            <div
+                              class="card-body"
+                              style="
+                                background: #efefef;
+                                border-radius: 8.96815px;
+                                padding: 0;
+                              ">
+                              <div
+                                style="
+                                  display: flex;
+                                  justify-content: space-between;
+                                  align-items: center;
+                                ">
+                                <div class="content" style="padding: 1rem">
+                                  <div
+                                    class="ask-content mb-4"
+                                    style="
+                                      line-height: 36px;
+                                      letter-spacing: 0.03em;
+                                    ">
+                                    <span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 15.0507px;
+                                      "
+                                      id="single_engagement_ask_currency"></span>
+                                    <span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="single_engagement_ask_amount"></span>
+                                    <span
+                                      style="
+                                        color: #6f6f6f;
+                                        font-weight: 600;
+                                        font-family: 'Poppins', sans-serif;
+                                      "
+                                      class="ml-2">
+                                      Total Ask</span
+                                    ><br />
+                                    <span
+                                      style="
+                                        color: #6f6f6f;
+                                        font-weight: 600;
+                                        font-family: 'Poppins', sans-serif;
+                                      "
+                                      class="mr-2"
+                                      >For Fees </span
+                                    ><span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="single_engagement_fees_amount"></span>
+                                    <span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="single_engagement_fees_type"></span>
+                                    <span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="single_engagement_fees_method"></span>
+                                  </div>
+                                  <div
+                                    class="ask-details"
+                                    style="
+                                      font-family: 'Sora', sans-serif;
+                                      font-style: normal;
+                                      font-weight: 300;
+                                      font-size: 11.9368px;
+                                      color: #6f6f6f;
+                                      line-height: 14px;
+                                      letter-spacing: 0.03em;
+                                    "
+                                    id="single_engagement_fees_comment"></div>
+                                </div>
+                                <div class="image">
+                                  <img
+                                    src="https://firebasestorage.googleapis.com/v0/b/portfoliomate-e14a8.appspot.com/o/bundles%20of%20money.png?alt=media&token=dc0db3a3-0376-43f6-acaa-3f04e5d644a6" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="evaluation">
+                          <div
+                            style="
+                              display: flex;
+                              justify-content: space-between;
+                            ">
+                            <div>
+                              <h4 class="fundraiser-card-titles mb-3">
+                                Valuation
+                              </h4>
+                            </div>
+                            <div
+                              style="cursor: pointer"
+                              data-toggle="modal"
+                              data-target="#updateValuation">
+                              <img
+                                src="https://firebasestorage.googleapis.com/v0/b/portfoliomate-e14a8.appspot.com/o/re-evaluation-icon.png?alt=media&token=79fda29a-e57a-4a93-add7-7a864555fbf2" />
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div
+                              class="card-body"
+                              style="
+                                background: #efefef;
+                                border-radius: 8.96815px;
+                                padding: 0;
+                              ">
+                              <div
+                                style="
+                                  display: flex;
+                                  justify-content: space-between;
+                                  align-items: center;
+                                ">
+                                <div class="content" style="padding: 1rem">
+                                  <div
+                                    class="valuation-content mb-1"
+                                    style="
+                                      line-height: 36px;
+                                      letter-spacing: 0.03em;
+                                    ">
+                                    <span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="single_engagement_valuation_amount">
+                                    </span>
+                                    <span
+                                      style="
+                                        color: #6f6f6f;
+                                        font-weight: 600;
+                                        font-family: 'Poppins', sans-serif;
+                                      "
+                                      class="ml-2">
+                                      Total Valuation</span
+                                    ><br />
+                                    <span
+                                      style="
+                                        color: #6f6f6f;
+                                        font-weight: 600;
+                                        font-family: 'Poppins', sans-serif;
+                                      "
+                                      class="mr-2">
+                                      Valuation as on </span
+                                    ><span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="single_engagement_valuation_date"></span>
+                                  </div>
+                                </div>
+                                <div class="image">
+                                  <img
+                                    src="https://firebasestorage.googleapis.com/v0/b/portfoliomate-e14a8.appspot.com/o/Vector.png?alt=media&token=16b59d62-1169-4eb7-bb56-73f6bfd89495" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Fundraiser Details</h5>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">Ask</span>
+                                    <select
+                                      class="form-select"
+                                      id="ask_currency-disabled"
+                                      aria-label="Default select example">
+                                      <option value="Rupee" id="rupee">
+                                        ₹
+                                      </option>
+                                      <option value="Dollar" id="Dollar">
+                                        $
+                                      </option>
+                                      <option value="Euro" id="Euro">€</option>
+                                    </select>
+                                  </div>
+                                  <input
+                                    type="number"
+                                    id="ask_evaluation-disabled"
+                                    class="form-control"
+                                    aria-label="Rupee amount (with dot and two decimal places)"
+                                    required />
+                                </div>
+
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"
+                                      >Expected valuation
+                                    </span>
+                                    <select
+                                      class="form-select"
+                                      id="evaluation_currency-disabled"
+                                      aria-label="Default select example">
+                                      <option value="Rupee" id="Rupee">
+                                        ₹
+                                      </option>
+                                      <option value="Dollar" id="Dollar">
+                                        $
+                                      </option>
+                                      <option value="Euro" id="Euro">€</option>
+                                    </select>
+                                  </div>
+                                  <input
+                                    type="number"
+                                    id="expected_evaluation-disabled"
+                                    class="form-control"
+                                    aria-label="Rupee amount (with dot and two decimal places)"
+                                    required />
+                                </div>
+
+                                <div class="input-group mb-4">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"
+                                      >valuation as on</span
+                                    >
+                                    <input
+                                      type="date"
+                                      id="date_as_on-disabled"
+                                      class="form-control"
+                                      aria-label="Date as of from now"
+                                      required />
+                                  </div>
+                                </div>
+
+                                <div class="mb-4">
+                                  <div class="fees">
+                                    <label for="" class="form-label"
+                                      >Payment Mode:
+                                    </label>
+                                    <div class="d-flex mb-2">
+                                      <div class="form-check">
+                                        <input
+                                          class="form-check-input"
+                                          type="radio"
+                                          name="fees_type"
+                                          value="fees"
+                                          id="fees_options-disabled" />
+                                        <label
+                                          class="form-check-label"
+                                          id="fees-input"
+                                          for="fees">
+                                          <b>Fees</b>
+                                        </label>
+                                      </div>
+                                      <div class="form-check ml-5">
+                                        <input
+                                          class="form-check-input"
+                                          type="radio"
+                                          name="fees_type"
+                                          value="equity"
+                                          id="equity" />
+                                        <label
+                                          class="form-check-label"
+                                          id="equity-input"
+                                          for="equity">
+                                          <b>Equity</b>
+                                        </label>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                      <input
+                                        type="number"
+                                        class="form-control"
+                                        id="fees_amount-disabled" />
+                                      <label for="fees_amount-disabled"
+                                        >Amount</label
+                                      >
+                                    </div>
+                                    <div class="form-floating">
+                                      <textarea
+                                        style="resize: none; height: 80px"
+                                        rows="20"
+                                        class="form-control"
+                                        onchange="handlePaymentDescription(event)"
+                                        id="fees_comments-disabled"></textarea>
+                                      <label for="fees_comments"
+                                        >Comments</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+
+                          <!-- YUVRAJ START HERE -->
+                          <!-- documents section which includes mandate and documents -->
+                          <h4 class="fundraiser-card-titles mt-3 mb-3">
+                            Documents
+                          </h4>
+
+                          <div class="input-group">
+                            <div
+                              class="btn-group btn-group-toggle"
+                              data-toggle="buttons"
+                              style="width: 45rem">
+                              <button
+                                id="mandate-btn"
+                                onclick="toggleDocuments()"
+                                class="btn btn-outline-primary active">
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  autocomplete="off" />
+                                Mandate
+                              </button>
+                              <button
+                                id="document-btn"
+                                onclick="toggleMandate()"
+                                class="btn btn-outline-primary">
+                                <input
+                                  type="radio"
+                                  name="options"
+                                  autocomplete="off" />
+                                Documents
+                              </button>
+                            </div>
+                          </div>
+                          <!-- Mrunal -->
+                          <!-- Mandate Container -->
+                          <div
+                            class="mandate-container"
+                            id="mandate_container"
+                            style="width: 30rem; margin: 2rem; display: block">
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                width: 23rem;
+                                margin-bottom: 1.5rem;
+                              ">
+                              <div>
+                                <h4 class="fundraiser-card-titles m-3">
+                                  Mandate
+                                </h4>
+                              </div>
+                              <div
+                                style="
+                                  border-radius: 21px;
+                                  background-color: #3342ae;
+                                  width: 2.5rem;
+                                  height: 2.5rem;
+                                  margin-left: 1rem;
+                                  font-size: large;
+                                  font-weight: 600;
+                                  padding-left: 0.9rem;
+                                  padding-top: 0.4rem;
+                                  color: white;
+                                  cursor: pointer;
+                                "
+                                data-toggle="modal"
+                                id="add_mandate_button-disabled"
+                                data-target="#addMandateModal_update">
+                                +
+                              </div>
+                            </div>
+                            <div
+                              class="mandate-populations"
+                              style="width: 30rem">
+                              <ul
+                                class="single_mandate"
+                                id="populate_mandate"></ul>
+                            </div>
+                          </div>
+                          <!-- Mrunal -->
+                          <!-- Document Container -->
+                          <div
+                            class="document_container"
+                            id="document_container"
+                            style="width: 30rem; margin: 2rem; display: none">
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                width: 23rem;
+                                margin-bottom: 1.5rem;
+                              ">
+                              <div>
+                                <h4 class="fundraiser-card-titles m-3">
+                                  Documents
+                                </h4>
+                              </div>
+                              <div>
+                                <div
+                                  style="
+                                    border-radius: 21px;
+                                    background-color: #3342ae;
+                                    width: 2.5rem;
+                                    height: 2.5rem;
+                                    margin-left: 1rem;
+                                    font-size: large;
+                                    font-weight: 600;
+                                    padding-left: 0.9rem;
+                                    padding-top: 0.4rem;
+                                    color: white;
+                                    cursor: pointer;
+                                  "
+                                  data-toggle="modal"
+                                  data-target="#docsModalUpdate"
+                                  onclick="handleModalOpen()">
+                                  +
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="document-populations"
+                              style="width: 30rem">
+                              <ul
+                                class="single_mandate"
+                                id="populate_files"></ul>
+                            </div>
+                          </div>
+
+                          <!-- Modal add mandate-->
+
+                          <!-- Modal -->
+                          <div
+                            class="modal fade"
+                            id="addMandateModal_update"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5
+                                    class="modal-title"
+                                    id="exampleModalLabel">
+                                    Add Mandate
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="mb-3">
+                                    <label
+                                      for="mandateFileInput_disabled"
+                                      class="form-label"
+                                      >Mandate
+                                      <span style="color: red">*</span></label
+                                    >
+                                    <input
+                                      class="form-control mb-2 mandate-file-input"
+                                      onchange="handleMandateUpdate(event)"
+                                      type="file"
+                                      id="mandateFileInput_disabled"
+                                      required />
+
+                                    <label for="mandate-status">Status</label>
+                                    <div
+                                      class="d-flex mb-3"
+                                      id="mandate-status">
+                                      <div class="form-check">
+                                        <input
+                                          class="form-check-input"
+                                          type="radio"
+                                          name="mandate_status_update"
+                                          value="proposed"
+                                          id="mandate_status" />
+                                        <label
+                                          class="form-check-label"
+                                          for="proposed">
+                                          proposed
+                                        </label>
+                                      </div>
+                                      <div class="form-check ml-5">
+                                        <input
+                                          class="form-check-input"
+                                          type="radio"
+                                          name="mandate_status_update"
+                                          value="signed"
+                                          id="mandate_status" />
+                                        <label
+                                          class="form-check-label"
+                                          for="signed">
+                                          signed
+                                        </label>
+                                      </div>
+                                    </div>
+                                    <div class="form-floating">
+                                      <textarea
+                                        class="form-control"
+                                        rows="50"
+                                        style="height: 100px; resize: none"
+                                        onchange="handleMandateDescriptionUpdate(event)"
+                                        id="mandate_description_input_disabled"></textarea>
+                                      <label
+                                        for="mandate_description_input_disabled"
+                                        >Add a Description</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                  <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    id="hanldeCloseMandateModal_disabled"
+                                    onclick="handleCloseUpdate()"
+                                    data-dismiss="modal">
+                                    Close
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    onclick="handleMandateSaveUpdate()">
+                                    Save changes
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Modal add files-->
+
+                          <div
+                            class="modal fade"
+                            id="docsModalUpdate"
+                            data-backdrop="static"
+                            data-keyboard="false"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="exampleModalCenterTitle"
+                            aria-hidden="true">
+                            <div
+                              class="modal-dialog modal-dialog-centered"
+                              role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5
+                                    class="modal-title"
+                                    id="exampleModalLongTitle">
+                                    Upload Files
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                    onclick="handleClose()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <label
+                                    for="otherFiles_input_update"
+                                    class="form-label"
+                                    >Choose File Type</label
+                                  >
+                                  <input
+                                    class="form-control"
+                                    list="datalistOptions"
+                                    id="otherFiles_input_update"
+                                    placeholder="Type to search..."
+                                    onchange="setDocumentTypeUpdate(event)" />
+                                  <datalist
+                                    id="datalistOptions"
+                                    class="file_type-options">
+                                    <option value="file 1"></option>
+                                    <option value="file 2"></option>
+                                    <option value="pitch deck"></option>
+                                  </datalist>
+
+                                  <div class="mb-3" style="margin-top: 20px">
+                                    <div class="input-group">
+                                      <input
+                                        type="file"
+                                        class="form-control"
+                                        id="otherFiles_file_input_udpate"
+                                        onchange="handleFileChangeUpdate(event)"
+                                        aria-describedby="inputGroupFileAddon04"
+                                        aria-label="Upload" />
+                                      <button
+                                        class="btn btn-outline-secondary"
+                                        onclick="handleAddButtonUpdate()"
+                                        type="button"
+                                        id="inputGroupFileAddon04">
+                                        Add
+                                      </button>
+                                    </div>
+                                    <div
+                                      id="file-details"
+                                      style="margin-top: 20px"></div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                    onclick="handleDocCloseUpdate()"
+                                    id="handleOtherFilesClose_udpate">
+                                    Close
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    onclick="handleFileSaveUpdate()">
+                                    Save changes
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div style="display: flex">
+                            <!-- <button
+                              id=""
+                              type=""
+                              style="
+                                margin-top: 1vh;
+                                margin-bottom: 0.5rem;
+                                width: 15rem;
+                              "
+                              class="btn btn-primary">
+                              Submit
+                            </button> -->
+                            <button
+                              id=""
+                              type=""
+                              style="
+                                margin-top: 1vh;
+                                margin-bottom: 0.5rem;
+                                width: 15rem;
+                                margin-left: 1.5rem;
+                              "
+                              class="btn btn-primary"
+                              onclick="handleObjectUpdate()">
+                              `
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Update Valuation Modal -->
+                  <!-- Button trigger modal -->
+
+                  <!-- Modal Update Valuation-->
+                  <div
+                    class="modal fade"
+                    id="updateValuation"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="updateValuation"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Update Valuation
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                            id="close_update_valuation_modal"
+                           >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="card">
+                            <div
+                              class="card-body"
+                              style="
+                                background: #efefef;
+                                border-radius: 8.96815px;
+                                padding: 0;
+                              ">
+                              <div
+                                style="
+                                  display: flex;
+                                  justify-content: space-between;
+                                  align-items: center;
+                                ">
+                                <div class="content" style="padding: 1rem">
+                                  <div
+                                    class="valuation-content mb-1"
+                                    style="
+                                      line-height: 36px;
+                                      letter-spacing: 0.03em;
+                                    ">
+                                    <span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="modal_valuation_amount"
+                                      ></span
+                                    >
+                                    <span
+                                      style="
+                                        color: #6f6f6f;
+                                        font-weight: 600;
+                                        font-family: 'Poppins', sans-serif;
+                                        font-size: 0.5rem;
+                                      "
+                                      class="ml-2">
+                                      Total Valuation</span
+                                    ><br />
+                                    <span
+                                      style="
+                                        color: #6f6f6f;
+                                        font-weight: 600;
+                                        font-family: 'Poppins', sans-serif;
+                                        font-size: 0.5rem;
+                                      "
+                                      class="mr-2">
+                                      Valuation as on </span
+                                    ><span
+                                      style="
+                                        font-family: 'Sora', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 30.0507px;
+                                      "
+                                      id="modal_valuation_date"
+                                      ></span
+                                    >
+                                  </div>
+                                </div>
+                                <div class="image">
+                                  <img src="https://firebasestorage.googleapis.com/v0/b/portfoliomate-e14a8.appspot.com/o/Vector.png?alt=media&token=16b59d62-1169-4eb7-bb56-73f6bfd89495" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <form>
+                            <div class="form-group">
+                              <label for="new-valuation">New Valuation</label>
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="evaluation_amount_update"
+                                placeholder=" $ 0"
+                                onchange="handleEvaluationAmountUpdate(event)" />
+                            </div>
+                            <div class="form-group">
+                              <label for="evaluation_date_update"
+                                >Date as on</label
+                              >
+                              <input
+                                type="date"
+                                data-provide="datepicker"
+                                name="date_selected"
+                                data-date-format="dd-mm-yyyy"
+                                class="form-control"
+                                id="evaluation_date_update"
+                                onchange="handleEvaluationDateUpdate(event)" />
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                            id="expected_eval_update_close"
+                            >
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            >
+                            Update Valuation
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">&copy; 2017-2018 Company Name</p>
+                <ul class="list-inline">
+                  <li class="list-inline-item"><a href="#">Privacy</a></li>
+                  <li class="list-inline-item"><a href="#">Terms</a></li>
+                  <li class="list-inline-item"><a href="#">Support</a></li>
+                </ul>
+              </footer>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-messages"
+              role="tabpanel"
+              aria-labelledby="v-pills-messages-tab">
+              Documents...
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-settings"
+              role="tabpanel"
+              aria-labelledby="v-pills-settings-tab">
+              Logs...
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="loader_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-top: 30vh;">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align: center!important;">
+                    <h5 style="font-size: large!important;" class="modal-title" id="exampleModalLabel">Hold On, Sending/
+                        Receiving Data from Severs.</span>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div style="height:2vh;width:1px"></div>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" style="color: rgb(50, 52, 122);" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <div style="height:2vh;"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script src="js/index.js"></script>
+    <script src="../enagagements/index.js"></script>
+
+    <script>
+      function get_params_from_url() {
+        console.log(decodeURI(url));
+        var url_string = location.href;
+        var url = new URL(url_string);
+        var stakeholder_id = url.searchParams.get('stakeholder_type');
+        var params = url.search.split('?');
+        var tempparams = params.filter(function (el) {
+          return el != '';
+        });
+        params = {};
+        for (i = 0; i < tempparams.length; i++) {
+          var key = tempparams[i].split('=')[0];
+          var value = tempparams[i].split('=')[1].replace('%20', ' ');
+          var paramobject = {};
+          params[key] = value;
+        }
+        console.log(params);
+        return params;
+      }
+    </script>
+  </body>
+</html>

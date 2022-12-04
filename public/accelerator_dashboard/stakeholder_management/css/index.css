@@ -1,0 +1,378 @@
+body {
+    font-family: Poppins;
+}
+
+#main_holder {
+    width: 100vw;
+    height: 100vh;
+    background: #f0f0f0;
+}
+
+.btn-primary {
+    background-color: #3342AE !important;
+    background: #3342AE !important;
+}
+
+.dfb {
+    display: inline-flex;
+    width: -webkit-fill-available;
+}
+
+.main_menu_holder {
+    background: white;
+}
+
+.main_menu_item {
+    text-align: center;
+    cursor: pointer;
+}
+
+.main_menu_holder .inactive {
+    color: #cecece;
+}
+
+
+.main_menu_holder .active {
+    color: #3342AE !important;
+}
+
+.main_menu_item .label {
+    font-size: x-small !important;
+}
+
+.main_menu_item i {
+    font-size: large;
+}
+
+
+#stakeholder_type_holder .badge {
+    background-color: #3342AE !important;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: right;
+}
+
+#stakeholder_type_holder .list-group-flush .active {
+    background: #f0f0f0;
+    color: #3342AE !important;
+    font-weight: bold;
+    border-color: #f0f0f0 !important;
+}
+
+.stakeholder_table thead {
+    background: #e0e0e0;
+    color: grey;
+}
+
+
+.stakeholder_table tbody td i:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+
+}
+
+.stakeholder_table tbody td .bg-notready0 {
+    background-color: rgb(232, 130, 71);
+    color: white!important;
+}
+
+.bg-notready0 {
+    background-color: rgb(232, 130, 71);
+    color: white!important;
+}
+
+
+.bg-notready1 {
+    background-color: rgb(222, 160, 54);
+    color: white!important;
+}
+
+
+.bg-notready2 {
+    background-color: rgb(232, 219, 71);
+    color: white;
+}
+
+
+.bg-notready3 {
+    background-color: rgb(57, 196, 138);
+    color: white;
+}
+
+
+@media (min-width: 992px) {
+    #main_holder {
+        display: inline-flex;
+    }
+
+    .main_menu_holder {
+        height: 100vh;
+        width: 6vw;
+    }
+
+    #stakeholder_management_holder {
+        padding-left: 2vw;
+        height: 100vh;
+    }
+
+    #stakeholder_management_operator_holder {
+        display: inline-flex;
+    }
+
+    #stakeholder_type_holder #divider {
+        height: 2vh;
+        width: 25vw;
+    }
+
+    #stakeholder_list_holder #divider {
+        height: 2vh;
+
+    }
+
+    .stakeholder_table {
+        background-color: #f0f0f0 !important;
+        background: #f0f0f0 !important;
+        border-collapse: separate !important;
+        border-spacing: 0 1vh;
+        max-width: 65vw;
+        width: 60vw;
+        max-height: 75vh;
+        overflow-y: scroll;
+    }
+
+    .stakeholder_table tbody td {
+        background: white;
+        padding-top: 2.5vh;
+        padding-bottom: 2.5vh;
+        border-top-color: white;
+    }
+
+    .stakeholder_view_holder {
+        padding-left: 2vw;
+    }
+
+    .stakeholder_table tbody td .company_logo_title_holder {
+        display: inline-flex;
+    }
+
+    .stakeholder_table tbody td i {
+        margin-left: 1vw;
+        margin-right: 1vw;
+        font-size: large;
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .company_title_holder {
+        cursor: pointer;
+    }
+
+    .company_logo_holder {
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+
+    #stakeholder_management_holder #header {
+        font-weight: bold;
+        margin-top: 3vh;
+        line-height: 3vh;
+        margin-bottom: 2vh;
+        width: max-content;
+    }
+
+    #stakeholder_type_holder_header {
+        font-size: large;
+        line-height: 4vh;
+    }
+
+    #stakeholder_type_holder_header_holder {
+        line-height: 4vh;
+        width: -webkit-fill-available;
+        display: inline-flex;
+        margin-bottom: 2vh;
+    }
+
+    #stakeholder_type_holder_header_holder i {
+        color: #3342AE;
+        line-height: 4vh;
+        margin-right: 2vh;
+        margin-left: auto;
+        cursor: pointer;
+        font-size: x-large;
+    }
+
+    #stakeholder_list_holder {
+        padding-left: 2vw;
+    }
+
+    #stakeholder_type_holder {
+        background: white;
+        height: 90vh;
+        width: 28vw;
+        padding-left: 1.5vw;
+        margin-bottom: 2vh;
+        border-radius: 15px;
+    }
+
+    .logo_menu_item {
+        width: 3vw;
+        margin-left: 1.5vw;
+        margin-right: 1.5vw;
+        padding-top: 2vh;
+        padding-bottom: 2.5vh;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .main_menu_item {
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+    }
+
+    .menu_item_divider {
+        width: 5vw;
+        height: 1px;
+        margin-left: 0.5vw;
+        margin-right: 0.5vw;
+        background: #f0f0f0;
+    }
+
+    #stakeholder_type_holder ul {
+        padding-left: 0px !important;
+    }
+
+
+    .table-wrap {
+        height: 80vh;
+        overflow-y: auto;
+    }
+
+
+    #stakeholder_type_holder .list-group-item {
+        font-size: 0.87rem;
+        cursor: pointer;
+    }
+
+
+    .dropdown-item {
+        cursor: pointer;
+    }
+
+    #complete_startup_profile .modal-dialog {
+        margin: 0px !important;
+        border-radius: 0px !important;
+    }
+
+    #complete_startup_profile .modal-content {
+        border-radius: 0px !important;
+    }
+
+    .mobile_view_only {
+        display: none !important;
+    }
+
+    .stakeholders_search_box {
+        max-width: 25vw;
+        margin-right: 2vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .main_menu_holder {
+        height: 7vh;
+        width: 100vw;
+        display: inline-flex;
+    }
+
+    .logo_menu_item {
+        height: 5vh;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        margin-left: 7vw;
+    }
+
+    .logo_menu_item img {
+        height: 5vh;
+    }
+
+    #stakeholder_management_holder {
+        height: 90vh;
+        margin-top: 1vh;
+        margin-bottom: 2vh;
+        width: 95vw;
+        margin-left: 2.5vw;
+        margin-right: 2.5vw;
+        overflow-x: scroll;
+    }
+
+    #stakeholder_type_holder_header_holder {
+        display: inline-flex;
+        width: -webkit-fill-available;
+        font-size: larger;
+        height: 5vh;
+        line-height: 3vh;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+    }
+
+    #stakeholder_type_holder_header_holder i {
+        line-height: 3vh;
+        margin-left: auto;
+        margin-right: 3vw;
+        color: #3342AE;
+    }
+
+    #stakeholder_type_list {
+        padding-left: 0px;
+    }
+
+    #stakeholder_type_menu_opener {
+        background: #3342AE;
+        width: -webkit-fill-available;
+        color: white;
+    }
+
+    #stakeholder_type_list {
+        display: none;
+    }
+
+    .stakeholders_search_box {
+        max-width: 55vw;
+        margin-right: 2vw;
+    }
+
+    .dfb {
+        margin-top: 2vh;
+        
+    }
+
+    .main_menu_item {
+        display: none;
+    }
+
+    .stakeholder_table {
+        background-color: #f0f0f0 !important;
+        background: #f0f0f0 !important;
+        border-collapse: separate !important;
+        border-spacing: 0 1vh;
+    }
+
+    .stakeholder_table tbody td {
+        background: white;
+        padding-top: 2.5vh;
+        padding-bottom: 2.5vh;
+        border-top-color: white;
+    }
+
+    .table-wrap {
+        width: 95vw;
+        overflow-x: scroll;
+        height: 72vh;
+        overflow-y: scroll;
+    }
+
+    #header{display: none;}
+
+}
