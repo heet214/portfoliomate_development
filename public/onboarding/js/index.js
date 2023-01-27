@@ -1,12 +1,14 @@
-function is_logged_in() {
+import { handleSignUp } from './signup';
+
+export function is_logged_in() {
   return true;
 }
-
 var stakeholder_type = '';
 var is_startup_sector_list_setup = false;
 var is_country_list_setup = false;
 
 function setup_onboarding_form(value) {
+  alert(value);
   switch (value) {
     case 'startup': {
       setup_country_list();
@@ -94,7 +96,7 @@ function setup_startup_sector_list() {
 
 var user_data = {};
 var parent_stakeholder = {};
-function proceed_pressed() {
+export function proceed_pressed() {
   var data = {};
   $('#onboarding_form')
     .serializeArray()
@@ -105,6 +107,10 @@ function proceed_pressed() {
 
   if (is_submission_valid(data)) {
     console.log(user_data);
+    let email = user_data.email;
+    let password = user_data.password;
+    handleSignUp(email, password);
+
     save_user_data(user_data);
   }
 }
@@ -298,7 +304,7 @@ function open_stakeholder_profile(stakeholder_id) {
 
 //const upload = document.getElementsByClassName('upload_logo');
 
-function upload_image(input_id) {
+export function upload_image(input_id) {
   console.log('Upload Image');
   console.log(stakeholder_type, input_id);
   const file_input = document.getElementById(input_id);
@@ -335,10 +341,10 @@ function upload_image(input_id) {
   }
 }
 
-function populate_profile(stakeholder_type, parent) {
+export function populate_profile(stakeholder_type, parent) {
   //alert(stakeholder_type);
   console.log('populate_profile', parent);
-  var params = get_params_from_url();
+  //var params = get_params_from_url();
   switch (stakeholder_type) {
     case 'innovador': {
       console.log('parent', parent);
@@ -364,4 +370,22 @@ function populate_profile(stakeholder_type, parent) {
       break;
     }
   }
+}
+export function handleRegister(id) {
+  let x = id.substring(9);
+
+  //alert(this.value);
+  console.log(x);
+  $('#investor_type_id').hide();
+  $('#main_holder').show();
+  $('.stakeholder_details').hide();
+
+  var y = document.getElementById(x);
+  $('#stakeholder_type option[value= ' + x + ' ').prop('selected', true);
+  $('#stakeholder_type').val(x);
+
+  stakeholder_type = y;
+  y.style.display = 'block';
+
+  setup_onboarding_form(x);
 }

@@ -108,9 +108,8 @@ td {
   width: 75%;
   height: 4.7rem;
   display: flex;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   border-radius: 5px;
-  
 }
 .single_mandate {
   align-items: center;
@@ -157,11 +156,12 @@ td {
 }
 .engagement-close-btn-div:hover {
   background-color: #c41e3a;
+  color: #fff;
 }
- #populate_engagements-form{
-  width:49rem
- }
- .engagement-type-close {
+#populate_engagements-form {
+  width: 49rem;
+}
+.engagement-type-close {
   font-size: 2rem;
   padding-left: 0.8rem;
   cursor: pointer;
@@ -172,4 +172,15 @@ td {
 }
 .engagement-type-close-div:hover {
   background-color: #c41e3a;
+}
+
+.card-body_engagement {
+  padding: 10px;
+  background-color: #514ded;
+  color: white;
+}
+
+.ask_content_division {
+  display: flex;
+  justify-content: start;
 }

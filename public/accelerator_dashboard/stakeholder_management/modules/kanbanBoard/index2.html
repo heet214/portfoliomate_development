@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kanban Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/portfoliomate.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/index2.css">
+    <link rel="stylesheet" href="../../configurations/common.css">
+    <!--  jquery script  -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--  validation script  -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.0/jquery.validate.min.js"></script>
+
+
+    <script src="../../configurations/local_dbfunctions.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- update the version number as needed -->
+
+    <script defer src="/__/firebase/9.9.2/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.9.2/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.9.2/firebase-performance-compat.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- JQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+        </script> -->
+    <script src="context-menu.js"></script>
+    <link href="context-menu.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div>
+        <div>
+            <div id="main_holder">
+                <div class="main_menu_holder shadow">
+                    <div class="logo_menu_item">
+                        <img class="img-fluid" src="../../../../assets/portfoliomate.png">
+                    </div>
+
+                    <div class="menu_item_divider"></div>
+                    <div class="main_menu_item inactive" id="stakeholder_icon">
+                        <i class="fa-solid fa-user-group"></i>
+                        <div class="label">Stakeholders</div>
+                    </div>
+
+                    <div class="menu_item_divider"></div>
+                    <div class="main_menu_item active">
+                        <i style="font-size: xx-large;" class="fa-solid fa-cubes-stacked"></i>
+                        <div class="label">Work</div>
+                    </div>
+
+
+                    <div class="menu_item_divider"></div>
+                    <div class="main_menu_item inactive">
+                        <i class="fa-solid fa-user-group"></i>
+                        <div class="label">Stakeholders</div>
+                    </div>
+
+                </div>
+                <div class="container">
+                    <div id="main_content_holder">
+                        <div class="kanban_content">
+                            <div class="kanban_header">
+                                <nav class="kanban_nav">
+                                    <ul class="nav_options">
+                                        <li class="active" style="color:#864AD0">
+                                            Fund Raiser
+                                        </li>
+                                        <li>
+                                            Curated
+                                        </li>
+                                    </ul>
+                                    <div class="searchbox">
+                                        <input type="search" class="fontAwesome"
+                                            placeholder="&#xF002; Search Engagements" />
+                                    </div>
+                                    <!-- HTML !-->
+                                    <button class="button-36" role="button">Search</button>
+
+                            </div>
+                            </nav>
+
+
+                            <div class="header_divider"></div>
+                            <div class="scrollable_container">
+
+                                <!-- Loader Modal -->
+                                <div class="modal" id="loader_modal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document" style="margin-top: 30vh;">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="text-align: center!important;">
+                                                <h5 style="font-size: large!important;" class="modal-title"
+                                                    id="exampleModalLabel">Hold
+                                                    On, Sending/
+                                                    Receiving Data from Severs.</span>
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div style="height:2vh;width:1px"></div>
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="spinner-border" style="color: rgb(50, 52, 122);"
+                                                        role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <div style="height:2vh;"></div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal Approached-->
+                                <div class="modal" id="openApproachedModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Approached Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+                                            
+                                            <label for="approachedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="approachedNote" rows="3"></textarea>
+                                        </div> -->
+                                                <form class="row g-3 needs-validation" onsubmit="return false" novalidate>
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control" id="approachedNote"
+                                                            style="width: 29rem;" row="5" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <button class="btn btn-primary" type="submit" id="saveApproached">Submit form</button> -->
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="saveApproached"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="saveApproached" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal  Interested-->
+                                <div class="modal" id="openInterestedModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Interested Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <!-- <form class="needs-validation" novalidate>
+                                        <div class="form-group">
+                                            <label for="interestedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="interestedNote" rows="3"></textarea>
+                                        </div> -->
+                                                <!-- <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" id="saveInterested" class="btn btn-primary">Save
+                                                changes</button>
+                                        </div>
+                                    </form> -->
+                                                <form class="row g-3 needs-validation" onsubmit="return false" novalidate>
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control" id="interestedNote"
+                                                            style="width: 29rem;" row="5" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <!-- <button class="btn btn-primary" type="submit" id="saveApproached">Submit form</button> -->
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="saveInterested"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal MeetingScheduled-->
+                                <div class="modal" id="openMeetModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Meet Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="row g-3 needs-validation" novalidate onsubmit="return false;">
+                                                    <div class="dateandtime col-md-12 mb-4"
+                                                        style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <div class="datemodal">
+                                                            <label for="validationCustom02"
+                                                                class="form-label">Date</label>
+                                                            <input type="date" class="form-control" id="meetdate"
+                                                                name="meetdate" required>
+                                                            <div class="invalid-feedback">
+                                                                Please enter the Meet Date!
+                                                            </div>
+                                                        </div>
+                                                        <div class="timemodal">
+                                                            <label for="validationCustom02"
+                                                                class="form-label">Date</label>
+                                                            <input type="time" class="form-control" id="meettime"
+                                                                name="meettime" required>
+                                                            <div class="invalid-feedback">
+                                                                Please enter the Meet Time!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Meet
+                                                            Link</label>
+                                                        <input class="form-control" type="url" id="meetlink"
+                                                            style="width:29rem" name="meetlink" required>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a the meeting Link!
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control"
+                                                            id="meetingScheduledNote" style="width: 29rem;" row="5"
+                                                            required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="saveMeetScheduled"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                                <!-- <div class="form-group">
+                                            <div class="dateandtime"
+                                                style="display: flex;align-items: center;justify-content: space-between;">
+                                                <div class="datemodal">
+                                                    <label for="meetdate"><b>Date:</b></label>
+                                                    <input type="date" id="meetdate" name="meetdate">
+                                                </div>
+                                                <div class="timemodal"> <label for="meettime"><b>Time:</b></label>
+                                                    <input type="time" id="meettime" name="meettime">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <label for="meetlink"><b>Meet Link:</b></label>
+                                            <input type="url" id="meetlink" style="width:23.5rem" name="meetlink">
+                                            <br>
+                                            <br>
+                                            <label for="meetingScheduledNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="meetingScheduledNote"
+                                                rows="3"></textarea>
+                                        </div> -->
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="saveMeetScheduled" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal ReScheduled-->
+                                <div class="modal" id="openRescheduleModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Reschedule Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="modal-body">
+                                                    <form class="row g-3 needs-validation" novalidate onsubmit="return false;">
+                                                        <div class="dateandtime col-md-12 mb-4"
+                                                            style="display: flex;align-items: center;justify-content: space-between;">
+                                                            <div class="datemodal">
+                                                                <label for="validationCustom02"
+                                                                    class="form-label">Date</label>
+                                                                <input type="date" class="form-control"
+                                                                    id="meetingreScheduleddate" name="remeetdate"
+                                                                    required>
+                                                                <div class="invalid-feedback">
+                                                                    Please enter the Meet Date!
+                                                                </div>
+                                                            </div>
+                                                            <div class="timemodal">
+                                                                <label for="validationCustom02"
+                                                                    class="form-label">Date</label>
+                                                                <input type="time" class="form-control"
+                                                                    id="meetingreScheduledtime" name="remeettime"
+                                                                    required>
+                                                                <div class="invalid-feedback">
+                                                                    Please enter the Meet Time!
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="col-md-12 mb-4">
+                                                            <label for="validationCustom02" class="form-label">Meet
+                                                                Link</label>
+                                                            <input type="url" class="form-control"
+                                                                id="meetingreScheduledlink" style="width:29rem"
+                                                                name="remeetlink" required>
+                                                            <div class="invalid-feedback">
+                                                                Please enter a the meeting Link!
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-4">
+                                                            <label for="validationCustom02"
+                                                                class="form-label">Note</label>
+                                                            <textarea type="text" class="form-control"
+                                                                id="meetingreScheduledNote" style="width: 29rem;"
+                                                                row="5" required></textarea>
+                                                            <div class="invalid-feedback">
+                                                                Please enter a note!
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" id="saveMeetreScheduled"
+                                                                class="btn btn-primary">Save
+                                                                changes</button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                                <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" id="saveMeetreScheduled" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal Not Interested-->
+                                <div class="modal" id="openNotInterestedModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Not Interested
+                                                    Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="row g-3 needs-validation" onsubmit="return false;"  novalidate>
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control"
+                                                            id="notinterestedNote" style="width: 29rem;" row="5"
+                                                            required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="saveNotinterested"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal Interest Received Under Dicussion-->
+                                <div class="modal" id="openirudModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Interest Received
+                                                    Under
+                                                    Discussion Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+
+                                            <label for="irudNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="irudNote" rows="3"></textarea>
+                                        </div> -->
+                                                <form class="row g-3 needs-validation" onsubmit="return false;" novalidate>
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control" id="irudNote"
+                                                            style="width: 29rem;" row="5" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="saveirud" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="saveirud" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal Pitching Done-->
+                                <div class="modal" id="openPitchDoneModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Pitching Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+
+                                            <label for="commitNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="pitchDoneNote" rows="3"></textarea>
+                                            
+                                        </div> -->
+                                                <form class="row g-3 needs-validation" novalidate onsubmit="return false;">
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control" id="pitchDoneNote"
+                                                            style="width: 29rem;" row="5" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="pitchdone"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="pitchdone" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal Soft Committed-->
+                                <div class="modal" id="openCommittedModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Soft Commitment
+                                                    Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+
+                                            <label for="commitNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="commitNote" rows="3"></textarea>
+                                        </div> -->
+                                                <form class="row g-3 needs-validation" novalidate onsubmit="return false;">
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control" id="commitNote"
+                                                            style="width: 29rem;" row="5" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="saveCommitted"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="saveCommitted" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Modal Due Diligence-->
+                                <div class="modal" id="openDDModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Due Diligence Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+
+                                            <label for="ddNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="ddNote" rows="3"></textarea>
+                                        </div> -->
+                                                <form class="row g-3 needs-validation" novalidate onsubmit="return false;">
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control" id="ddNote"
+                                                            style="width: 29rem;" row="5" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="saveDD" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="saveDD" class="btn btn-primary">Save changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal termSheetReceived -->
+                                <div class="modal" id="openReceivedModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Term Sheet Received
+                                                    Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+                                                    <label for="Note"><b>Upload File</b></label><br>
+                                                    <input type="file" onchange="termSheetReceivedHandle(event)">
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="termSheetReceivedSave()">Upload</button><br><br>
+                                                    <label for="Note"><b>Note</b></label>
+                                                    <textarea class="form-control" id="receivedNote"
+                                                        rows="3"></textarea>
+                                                </div> -->
+                                                <form class="row g-3 needs-validation" style="align-items: flex-end;" onsubmit="return false" novalidate>
+                                                    <div class="col-md-8 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Upload
+                                                            File</label>
+            
+                                                        <input type="file" id="termSheetSignedFile"
+                                                        onchange="termSheetReceivedHandle(event)" required
+                                                            class="form-control">
+                                                        <div class="invalid-feedback">
+                                                            Please upload a file!
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <button type="button" class="btn btn-primary"
+                                                        onclick="termSheetReceivedSave()">Upload</button>
+                                                        </div>
+                                                    
+                                                    <div class="col-md-12 mb-4">
+                                            <label for="validationCustom02" class="form-label">Note</label>
+                                            <textarea type="text" class="form-control" id="receivedNote"
+                                                style="width: 29rem;" row="5" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a note!
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" id="saveReceived" class="btn btn-primary">Save
+                                                changes</button>
+                                        </div>
+                                        </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" id="saveReceived" class="btn btn-primary" >Save
+                                                    changes</button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal ternSheetSigned-->
+                                <div class="modal" id="openSignedModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Term Sheet Signed
+                                                    Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+                                                    <label for="Note"><b>Upload File</b></label><br>
+
+                                                    <input type="file" id="termSheetSignedFile"
+                                                        onchange="termSheetSignedHandle(event)"><button type="button"
+                                                        class="btn btn-primary"
+                                                        onclick="termSheetSignedSave()">Upload</button><br><br>
+                                                    <label for="Note"><b>Note</b></label>
+                                                    <textarea class="form-control" id="signNote" rows="3"></textarea>
+                                                </div> -->
+                                                <form class="row g-3 needs-validation" style="align-items: flex-end;" onsubmit="return false" novalidate>
+                                                    <div class="col-md-8 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Upload
+                                                            File</label>
+            
+                                                        <input type="file" id="termSheetSignedFile"
+                                                            onchange="termSheetSignedHandle(event)" required
+                                                            class="form-control">
+                                                        <div class="invalid-feedback">
+                                                            Please upload a file!
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <button type="button" class="btn btn-primary"
+                                                        onclick="termSheetSignedSave()">Upload</button>
+                                                        </div>
+                                                    
+                                                    <div class="col-md-12 mb-4">
+                                            <label for="validationCustom02" class="form-label">Note</label>
+                                            <textarea type="text" class="form-control" id="signedNote"
+                                                style="width: 29rem;" row="5" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a note!
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" id="saveSigned" class="btn btn-primary">Save
+                                                changes</button>
+                                        </div>
+                                        </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" id="saveSigned" class="btn btn-primary">Save
+                                                    changes</button>
+                                            </div> -->
+                                            <!-- <form class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-12 mb-4">
+                                            <label for="validationCustom02" class="form-label">Upload
+                                                File</label>
+
+                                            <input type="file" id="termSheetSignedFile"
+                                                onchange="termSheetSignedHandle(event)" required
+                                                class="form-control">
+                                            <div class="invalid-feedback">
+                                                Please upload a file!
+                                            </div>
+                                            <button type="button" class="btn btn-primary"
+                                            onclick="termSheetSignedSave()">Upload</button>
+                                        </div>
+                                        
+                                        <div class="col-md-12 mb-4">
+                                <label for="validationCustom02" class="form-label">Note</label>
+                                <textarea type="text" class="form-control" id="signedNote"
+                                    style="width: 29rem;" row="5" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please enter a note!
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Close</button>
+                                <button type="submit" id="saveSigned" class="btn btn-primary">Save
+                                    changes</button>
+                            </div>
+                            </form> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal FundsTransfered -->
+                                <div class="modal" id="openFundsTranferModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Fund Transfer Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+
+                                            <label for="signedNote"><b>Note</b></label>
+                                            <textarea class="form-control" id="fundsTransferNote" rows="3"></textarea>
+                                        </div> -->
+                                                <form class="row g-3 needs-validation" novalidate onsubmit="return false;">
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control"
+                                                            id="fundsTransferNote" style="width: 29rem;" row="5"
+                                                            required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="fundsTransfer"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="fundsTransfer" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Modal openRoundClosed -->
+                                <div class="modal" id="openRoundClosed" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Round Closed Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- <div class="form-group">
+
+                                            <label for="roundClosed"><b>Note</b></label>
+                                            <textarea class="form-control" id="roundclosednote" rows="3"></textarea>
+                                        </div> -->
+                                                <form class="row g-3 needs-validation" novalidate onsubmit="return false">
+
+                                                    <div class="col-md-12 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Note</label>
+                                                        <textarea type="text" class="form-control" id="roundclosednote"
+                                                            style="width: 29rem;" row="5" required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a note!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" id="roundClosed"
+                                                            class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" id="roundClosed" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="all_status_holder">
+                                    <!-- not approached -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="notApproached-header">
+                                            <div class="header-title">Not Approached</div>
+                                            <div id="notApproached-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush notApproached-container"
+                                                style="list-style-type: none;align-items: center">
+
+                                                <!-- <div class="notApproached_card">
+
+                                                        <div class="card_header">
+                                                        <div class="companies">
+                                                            
+                                                            <div class="from_name from_notapproached from"
+                                                                style="color:#7FBCD2;
+                                                                display: flex;
+                                                                border-top-left-radius:20px;
+                                                                margin-left:6px;
+                                                                width:8.5rem;
+                                                                justify-content: center; 
+                                                                 height: fit-content;padding:5px"> Antennae Ventures
+                                                            </div>
+                                                            <div class="to_name to_shape" style="background-color: #7FBCD2;
+                                                                width: 10rem;
+                                                                border-top-right-radius: 20px;
+                                                                text-align: center;
+                                                                margin-left: 6px;
+                                                                
+                                                                color: #ffffff;
+                                                                height: fit-content;
+                                                                padding: 5px;">Lark AI Health Care
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown card-dropdown">
+                                                            <div style="background-color:white;color:black;border:none;padding:0"
+                                                                class="btn btn-secondary dropdown-toggle"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <img src="/assets/more (1).png"
+                                                                    style="width: 1rem;" />
+
+                                                            </div>
+                                                            <div class="dropdown-menu"
+                                                                aria-labelledby="dropdownMenuButton">
+                                                                <h6 class="dropdown-header">Move to</h6>
+                                                                <a class="dropdown-item" href="#">Approached</a>
+                                                                <a class="dropdown-item" href="#">Interested</a>
+                                                                <a class="dropdown-item" href="#">Not Interested</a>
+                                                                <a class="dropdown-item" href="#">Meeting
+                                                                    Scheduled</a>
+                                                                <a class="dropdown-item" href="#">Negotiation</a>
+                                                                <a class="dropdown-item" href="#">Committed</a>
+                                                                <a class="dropdown-item" href="#">Due Diligence</a>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+
+                                                        <div  class="comments"> 
+                                                         <div class="comment-content"><p class="content" style="margin-bottom:-15px">It is a long established fact that a reader will be distracted.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                                            <span><a onclick="readMore(this)" style="color:#7FBCD2;text-decoration:underline" href="#">Read More</a></span>
+                                                        </div>
+                                                        </div>
+
+                                                        <div class="view_more_block">
+                                                            <hr>
+                                                        </div>
+
+                                                        <div class="info">
+                                                            <div class="last_changed">
+                                                            <div class="last_changedBy"><img src="/assets/changedByexample.jpeg"/></div>
+                                                            <div class="last_changedTime">03 Dec, 2022 11:15 PM</div>
+                                                        </div>
+
+                                                        
+                                                        <div class="options">
+                                                            <div class="edit"><img src="/assets/notApproachedEditIcon.png"/></div>
+                                                            <div class="view_more" onclick="viewMore(this)"><img  class="down" src="/assets/downArrow.png"/></div>
+                                                        </div>
+                                                        </div>
+
+                                                    </div> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- approached -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="Approached-header">
+                                            <div class="header-title">Approached</div>
+                                            <div id="Approached-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush Approached-container"
+                                                style="list-style-type: none;align-items: center;">
+                                                <!-- <div class="Approached_cards">
+                                                    <div class="cards">
+
+                                                        <div class="Approached_card">
+
+                                                            <div class="card_header">
+                                                            <div class="companies">
+                                                                <div class="from_name from_approached from"
+                                                                    style="color:#FFCAC8;
+                                                                    display: flex;
+                                                                    border-top-left-radius:20px;
+                                                                    margin-left:6px;
+                                                                    width:8.5rem;
+                                                                    justify-content: center; 
+                                                                     height: fit-content;padding:5px"> Antennae Ventures
+                                                                </div>
+                                                                <div class="to_name to_shape" style="background-color: #FFCAC8;
+                                                                    width: 10rem;
+                                                                    border-top-right-radius: 20px;
+                                                                    text-align: center;
+                                                                    margin-left: 6px;
+                                                                    
+                                                                    color: #ffffff;
+                                                                    height: fit-content;
+                                                                    padding: 5px;">Lark AI Health Care
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown card-dropdown">
+                                                                <div style="background-color:white;color:black;border:none;padding:0"
+                                                                    class="btn btn-secondary dropdown-toggle"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <img src="/assets/more (1).png"
+                                                                        style="width: 1rem;" />
+
+                                                                </div>
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton">
+                                                                    <h6 class="dropdown-header">Move to</h6>
+                                                                    <a class="dropdown-item" href="#">Approached</a>
+                                                                    <a class="dropdown-item" href="#">Interested</a>
+                                                                    <a class="dropdown-item" href="#">Not Interested</a>
+                                                                    <a class="dropdown-item" href="#">Meeting
+                                                                        Scheduled</a>
+                                                                    <a class="dropdown-item" href="#">Negotiation</a>
+                                                                    <a class="dropdown-item" href="#">Committed</a>
+                                                                    <a class="dropdown-item" href="#">Due Diligence</a>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+
+                                                            <div  class="comments"> 
+                                                             <div class="comment-content"><p class="content" style="margin-bottom:-15px">It is a long established fact that a reader will be distracted.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                                                <span><a onclick="readMore(this)" style="color:#7FBCD2;text-decoration:underline" href="#">Read More</a></span>
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="view_more_block">
+                                                                <hr>
+                                                                <div class="viewMoreContent">
+                                                               <div class="viewMoretexts">Mandate ID : </div> <div class="mandateID"> 2022|Dec|03,15:11 PM</div>
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="info">
+                                                                <div class="last_changed">
+                                                                <div class="last_changedBy"><img src="/assets/changedByexample.jpeg"/></div>
+                                                                <div class="last_changedTime">03 Dec, 2022 11:15 PM</div>
+                                                            </div>
+
+                                                            
+                                                            <div class="options">
+                                                                <div class="edit"><img src="/assets/approachedEditicon.png"/></div>
+                                                                <div class="view_more" onclick="viewMore(this)"><img  class="down" src="/assets/downArrow.png"/></div>
+                                                            </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        
+
+                                                         
+
+
+                                                         
+                                                    </div>
+                                                </div> -->
+
+
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- interested -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="Interested-header">
+                                            <div class="header-title">Interested</div>
+                                            <div id="Interested-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush Interested-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <!-- not interested -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="notInterested-header">
+                                            <div class="header-title">Not Interested</div>
+                                            <div id="notInterested-number" >0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush notInterested-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- meet scheduled -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="meet-header">
+                                            <div class="header-title">Meeting Scheduled</div>
+                                            <div id="meet-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush meet-container"
+                                                style="list-style-type: none;align-items: center;">
+                                                <!-- <div class="Approached_cards">
+                                                    <div class="cards">
+
+                                                        <div class="Approached_card">
+
+                                                            <div class="card_header">
+                                                            <div class="companies">
+                                                                <div class="from_name from_approached from"
+                                                                    style="color:#FFCAC8;
+                                                                    display: flex;
+                                                                    border-top-left-radius:20px;
+                                                                    margin-left:6px;
+                                                                    width:8.5rem;
+                                                                    justify-content: center; 
+                                                                     height: fit-content;padding:5px"> Antennae Ventures
+                                                                </div>
+                                                                <div class="to_name to_shape" style="background-color: #FFCAC8;
+                                                                    width: 10rem;
+                                                                    border-top-right-radius: 20px;
+                                                                    text-align: center;
+                                                                    margin-left: 6px;
+                                                                    
+                                                                    color: #ffffff;
+                                                                    height: fit-content;
+                                                                    padding: 5px;">Lark AI Health Care
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown card-dropdown">
+                                                                <div style="background-color:white;color:black;border:none;padding:0"
+                                                                    class="btn btn-secondary dropdown-toggle"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <img src="/assets/more (1).png"
+                                                                        style="width: 1rem;" />
+
+                                                                </div>
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton">
+                                                                    <h6 class="dropdown-header">Move to</h6>
+                                                                    <a class="dropdown-item" href="#">Approached</a>
+                                                                    <a class="dropdown-item" href="#">Interested</a>
+                                                                    <a class="dropdown-item" href="#">Not Interested</a>
+                                                                    <a class="dropdown-item" href="#">Meeting
+                                                                        Scheduled</a>
+                                                                    <a class="dropdown-item" href="#">Negotiation</a>
+                                                                    <a class="dropdown-item" href="#">Committed</a>
+                                                                    <a class="dropdown-item" href="#">Due Diligence</a>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+
+                                                            <div  class="comments"> 
+                                                             <div class="comment-content"><p class="content" style="margin-bottom:-15px">It is a long established fact that a reader will be distracted.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                                                <span><a onclick="readMore(this)" style="color:#7FBCD2;text-decoration:underline" href="#">Read More</a></span>
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="view_more_block">
+                                                                <hr>
+                                                                <div class="viewMoreContent" style="display:flex;flex-direction:column">
+                                                               <div class="viewMoretexts">Mandate ID : </div> <div class="mandateID"> 2022|Dec|03,15:11 PM</div>
+                                                               <div class="meet-details">
+                                                                <div class="dateTime">
+                                                                    <div class="date">
+                                                                        <div  class="viewMoretexts">Meet Date</div>
+                                                                        <div class="details">2022-12-22</div>
+                                                                    </div>
+                                                                    <div class="time">
+                                                                        <div  class="viewMoretexts">Meet Time</div>
+                                                                        <div class="details">19:24</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="meetlink">
+                                                                    <div  class="viewMoretexts">Meet Link:
+                                                                    </div>
+                                                                    <div class="meetlinkdetails">https://meet.google.com/arg-zeov-uan</div>
+                                                                </div>
+
+                                                               </div>
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="info">
+                                                                <div class="last_changed">
+                                                                <div class="last_changedBy"><img src="/assets/changedByexample.jpeg"/></div>
+                                                                <div class="last_changedTime">03 Dec, 2022 11:15 PM</div>
+                                                            </div>
+
+                                                            
+                                                            <div class="options">
+                                                                <div class="edit"><img src="/assets/approachedEditicon.png"/></div>
+                                                                <div class="view_more" onclick="viewMore(this)"><img  class="down" src="/assets/downArrow.png"/></div>
+                                                            </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        
+
+                                                         
+
+
+                                                         
+                                                    </div>
+                                                </div>  -->
+
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <!-- reschedule  -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="rescheduled-header">
+                                            <div class="header-title">Rescheduled</div>
+                                            <div id="reScheduled-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush rescheduled-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- irud -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="irud-header">
+                                            <div class="header-title">Interest Received Under Discussion</div>
+                                            <div id="irud-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush InterestReceivedUnderDiscussion-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- pitching done -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="pitchingDone-header">
+                                            <div class="header-title">Pitching Done</div>
+                                            <div id="pitchingDone-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush pitchingDone-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- soft commitment -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="softCommit-header">
+                                            <div class="header-title">Soft Commitment</div>
+                                            <div id="commit-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush softCommitment-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- DD -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="dd-header">
+                                            <div class="header-title">Due Diligence</div>
+                                            <div id="dd-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush dd-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- term sheet received -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="received-header">
+                                            <div class="header-title">Term Sheet Received</div>
+                                            <div id="receive-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush termSheetReceived-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                        <!-- term sheet signed -->
+                                    </div>
+                                    <div class="status_holders">
+                                        <div class="status-header" id="sign-header">
+                                            <div class="header-title">Term Sheet Signed</div>
+                                            <div id="sign-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush termSheetSigned-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- funds transfered -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="ft-header">
+                                            <div class="header-title">Funds Transfered</div>
+                                            <div id="ft-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush fundsTransfered-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- round closed -->
+                                    <div class="status_holders">
+                                        <div class="status-header" id="round-closed-header">
+                                            <div class="header-title">Round Closed</div>
+                                            <div id="rc-number">0</div>
+                                        </div>
+                                        <div class="card-holders">
+                                            <ul class="list-group list-group-flush roundClosed-container"
+                                                style="list-style-type: none;align-items: center;">
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    <script type="text/javascript" src="./js/index2.js"></script>
+
+
+</body>
+
+</html>

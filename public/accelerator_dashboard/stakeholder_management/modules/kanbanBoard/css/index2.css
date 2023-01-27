@@ -1,0 +1,694 @@
+body {
+    font-family: Poppins;
+}
+
+#main_holder {
+    width: 100vw;
+    height: 100vh;
+    background: #f0f0f0;
+}
+
+.container {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+.btn-primary {
+    background-color: #3342ae !important;
+    background: #3342ae !important;
+}
+
+.dfb {
+    display: inline-flex;
+    width: -webkit-fill-available;
+}
+
+.main_menu_holder {
+    background: white;
+}
+
+.main_menu_item {
+    text-align: center;
+    cursor: pointer;
+}
+
+.main_menu_holder .inactive {
+    color: #cecece;
+}
+
+.main_menu_holder .active {
+    color: #3342ae !important;
+}
+
+.main_menu_item .label {
+    font-size: x-small !important;
+}
+
+.main_menu_item i {
+    font-size: large;
+}
+
+@media (min-width: 992px) {
+    #main_holder {
+        display: inline-flex;
+    }
+
+    .main_menu_holder {
+        height: 100vh;
+        width: 6vw;
+    }
+
+    .company_title_holder {
+        cursor: pointer;
+    }
+
+    .company_logo_holder {
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    #kanban-board-holder #header {
+        font-weight: bold;
+        margin-top: 3vh;
+        line-height: 3vh;
+        margin-bottom: 2vh;
+        width: max-content;
+
+    }
+
+    .logo_menu_item {
+        width: 3vw;
+        margin-left: 1.5vw;
+        margin-right: 1.5vw;
+        padding-top: 2vh;
+        padding-bottom: 2.5vh;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .main_menu_item {
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+    }
+
+    .menu_item_divider {
+        width: 5vw;
+        height: 1px;
+        margin-left: 0.5vw;
+        margin-right: 0.5vw;
+        background: #f0f0f0;
+    }
+
+    .dropdown-item {
+        cursor: pointer;
+    }
+    
+    .mobile_view_only {
+        display: none !important;
+    }
+}
+
+
+/* new css starts here-Mrunal */
+/* main container that holds the whole kanban */
+#main_content_holder {
+    /* height: 97%; */
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    width: 100%;
+    margin-left: 0rem;
+    margin-right: 0.1rem;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    padding: 0.2rem;
+    padding-top: 1rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #FFFFFF;
+
+}
+
+/* kanban navbar */
+.kanban_header {
+    width: 100%;
+}
+
+.kanban_nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+
+/* styling nav bar ul */
+.nav_options {
+    list-style-type: none;
+    width: 21%;
+    display: flex;
+    justify-content: space-around;
+    /* margin: 0rem; */
+    align-items: center;
+    color: #6F6F6F;
+    padding-left: 0rem;
+
+}
+
+/* kanban search box */
+.searchbox>input {
+    width: 38rem;
+    border-radius: 15px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 3px 6px -3px inset; */
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 2px inset;
+    border: none;
+    height: 1.8rem;
+}
+
+.searchbox>input::placeholder {
+    color: #C5C0C0;
+    font-size: 1rem;
+    padding-left: 1rem;
+    font-weight: 200;
+
+}
+
+.searchbox>input:focus {
+    border: none;
+
+
+}
+
+/* used fontawesome for search icon */
+.fontAwesome {
+    font-family: 'Helvetica', FontAwesome, sans-serif;
+}
+
+.header_divider {
+    width: 99%;
+    height: 3px;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    background: #f0f0f0;
+
+}
+
+/* kanban nav options */
+/* styling the ul li */
+.nav_options li {
+    padding: 0 1rem
+}
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+li.active::after {
+    position: absolute;
+    content: "";
+    height: 4px;
+    width: 100%;
+    background: #864AD0;
+    box-shadow: 0px -3px 11px #864AD0;
+    border-radius: 20px;
+    left: 0;
+    bottom: -18px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    animation: appear 0.2s linear;
+
+}
+
+/* Search button CSS */
+.button-36 {
+    background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 2rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-left: 0.5rem;
+}
+
+.button-36:hover {
+    box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+    transition-duration: .1s;
+}
+
+@media (min-width: 768px) {
+    .button-36 {
+        padding: 0 2.6rem;
+    }
+}
+
+/* scroll */
+.scrollable_container {
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: fit-content;
+    width: 100%;
+}
+
+.scrollable_container::-webkit-scrollbar {
+    height: 12px;
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+.scrollable_container::-webkit-scrollbar-thumb {
+    background: #864AD0;
+    /* box-shadow: 0px -3px 11px #864AD0; */
+    border-radius: 100px;
+}
+
+/* status */
+.all_status_holder {
+    display: flex;
+    flex-shrink: 0;
+    width: max-content;
+    margin-top: 0.5rem;
+
+}
+
+.status_holders {
+    display: flex;
+    flex-direction: column;
+    width: 18rem;
+    height: 31.5rem;
+}
+
+.status-header {
+    padding: 0.5rem;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: white;
+    justify-items: center;
+}
+
+.header-title {
+    font-size: 0.9rem;
+    width: 9rem;
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    -ms-word-break: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+/* custom status colors */
+#notApproached-header {
+    background-color: #C0EEE4;
+}
+
+#Approached-header {
+    background-color:  #FFCAC8;
+}
+
+#Interested-header {
+    background-color: #C5C0C0;
+}
+
+#notInterested-header {
+    background-color:#fdfd96
+}
+
+#meet-header {
+    background-color: #C8DBBE;
+}
+
+#rescheduled-header {
+    background-color: #E7B7A6;
+}
+
+#irud-header {
+    background-color: #A4C9D7;
+}
+
+#pitchingDone-header {
+    background-color: #FFDBA4;
+}
+
+#softCommit-header {
+    background-color: #D2DAFF;
+}
+
+#dd-header {
+    background-color: #EFEAD8;
+}
+
+#received-header {
+    background-color: #FF9F9F;
+}
+
+#sign-header {
+    background-color: #9E7676;
+}
+
+#ft-header {
+    background-color: #9ED2C6;
+}
+
+#round-closed-header {
+    background-color: #AF7AB3;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.card_header {
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* cards */
+
+.companies {
+    display: flex;
+}
+
+.cards {
+    background-color: #ffff;
+    margin-top: 1rem;
+
+
+}
+
+.card-holders {
+    height: 32rem;
+    overflow: auto;
+    display: block;
+    padding-bottom: 0.5rem;
+
+}
+
+
+/* hiding the scrollbar */
+.card-holders::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+/* not approached cards */
+.notApproached_card,.Approached_card,.Interested_card,.notInterested_card,.irud_card,.pd_card,.sc_card,.dd_card,.ft_card,.rc_card,.meet_card,.rs_card,.termSheetReceived_card,.termSheetSigned_card {
+    background: #FFFFFF;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    width: 16.5rem;
+    margin-bottom: 0.5rem
+}
+ 
+.from_approached,.from_interested,.from_notinterested,.from_irud,.from_pd,.from_sc,.from_dd,.from_ft,.from_rc,.from_meet,.from_rs,.from_termSheetReceived,.from_termSheetSigned{
+    background-color: #ffffff;
+}
+
+.from_name,
+.to_name {
+    width: 8rem;
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    /* height: 2rem; */
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    -ms-word-break: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+}
+
+.to_shape {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 10% 100%);
+
+    width: 119px;
+    height: 1rem;
+}
+
+.card-dropdown {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+.dropdown-item{
+    font-size: 0.7rem;
+}
+.comments {
+    background: #EFEFEF;
+    border-radius: 10px;
+    width: 15rem;
+
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.meetlinkdetails{
+    background: #EFEFEF;
+    width: 15rem;
+    margin-top:0.5rem;
+    border-radius: 5px;
+
+}
+.comment-content,
+.content,.meetlinkdetails {
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    -ms-word-break: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 275;
+    font-size: 12px;
+    line-height: 111%;
+    /* or 13px */
+    padding: 4px;
+    text-align: left;
+    color: #6F6F6F;
+}
+
+.hide {
+    display: none
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed #303030;
+    color: #fff;
+    background-color: #fff;
+    height: 1px;
+    width: inherit;
+}
+
+.view_more_block {
+    display: none;
+}
+.show{
+    display: block;
+  }
+
+.up{
+    transform:rotate(180deg)
+
+}
+.info {
+    /* margin:0.3rem; */
+    padding: 0.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.last_changed {
+    display: flex;
+    padding: 0.4rem
+}
+
+.last_changedBy>img {
+    border-radius: 72px;
+    width: 24px;
+}
+
+.last_changedTime {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 3px;
+
+    color: #6F6F6F;
+}
+.options{
+    display: flex;
+}
+.edit > img , .view_more > img{
+    width: 22px;
+    margin:3px
+}
+.viewMoretexts{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 12.15px;
+line-height: 15px;
+
+color: #000000;
+}
+.viewMoreContent{
+    padding:0.5rem;
+    display: flex;
+}
+.mandateID,.details{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 300;
+font-size: 10.15px;
+line-height: 15px;
+/* identical to box height */
+color: #000000;
+}
+
+.meet-details,.date,.time,.meetlink{
+    display:flex;
+    flex-direction: column;
+    margin:0.5rem 0;
+}
+.date,.time{
+    align-items: center;
+}
+.dateTime{
+    display: flex;
+    justify-content: space-between;
+}
+
+.file-container{
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    -ms-word-break: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    margin: 0.1rem;
+    border: 1px #888888 solid;
+    border-radius: 3px;
+    padding: 5px;
+    background: #ffffff;
+    font-size: 0.7rem;
+    box-shadow: 3px 3px #ccc;
+  }
+  .file-name-container{
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    -ms-word-break: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    margin: 0.1rem;
+    /* border: 1px #f5f5f5 dashed; */
+    border-radius: 3px;
+    padding: 5px;
+    background: #ffffff;
+    font-size: 0.7rem
+  }
+/* .invalid class prevents CSS from automatically applying */
+.error {
+    color: #BE4C54;
+  }
+  
+  /* Mark valid inputs during .invalid state */
+  .invalid input:required:valid {
+    background: #17D654;
+  }
+@media (max-width: 480px) {
+    .main_menu_holder {
+        height: 7vh;
+        width: 100vw;
+        display: inline-flex;
+    }
+
+    .logo_menu_item {
+        height: 5vh;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        margin-left: 7vw;
+    }
+
+    .logo_menu_item img {
+        height: 5vh;
+    }
+
+    .main_menu_item {
+        display: none;
+    }
+
+    #header {
+        display: none;
+    }
+}
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+  /* Styles */.scrollable_container {
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 92vh;
+    width: 100;
+}
+}

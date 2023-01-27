@@ -1,342 +1,1061 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Welcome to Portfoliomate</title>
-    <link rel="icon" type="image/x-icon" href="../assets/portfoliomate.png">
-    <script src="js/index.js"></script>
+    <link rel="icon" type="image/x-icon" href="../assets/portfoliomate.png" />
+
+    <!-- <script type="text/javascript" src="js/signup.js"></script> -->
+    <!-- <script src="js/index.js"></script> -->
+
     <script src="js/onboarding_db_functions.js"></script>
     <script src="../configurations/upload_image.js"></script>
     <script src="../configurations/local_dbfunctions.js"></script>
     <script src="../assets/sectors_list.js"></script>
     <script src="../assets/countries.js"></script>
-    
 
     <script defer src="/__/firebase/9.9.2/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/9.9.2/firebase-auth-compat.js"></script>
     <script defer src="/__/firebase/9.9.2/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.9.2/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.9.2/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.9.2/firebase-messaging-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-firestore-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-functions-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-messaging-compat.js"></script>
     <script defer src="/__/firebase/9.9.2/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.9.2/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.9.2/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.9.2/firebase-performance-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-analytics-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-remote-config-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.9.2/firebase-performance-compat.js"></script>
     <script defer src="/__/firebase/6.0.2/firebase-app.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script> <!-- update the version number as needed -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"></script>
+    <!-- update the version number as needed -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins"
+      rel="stylesheet" />
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="css/signup.css" />
+    <link rel="stylesheet" href="css/index.css" />
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script>
-        $(document).ready(function () {
-            try {
-                console.log("Initializing Firebase");
-                let app = firebase.app();
-                let features = [
-                    'auth',
-                    'database',
-                    'firestore',
-                    'functions',
-                    'messaging',
-                    'storage',
-                    'analytics',
-                    'remoteConfig',
-                    'performance',
-                ].filter(feature => typeof app[feature] === 'function');
-                console.log('Firebase SDK loaded with', features);
-            } catch (e) {
-                console.error(e);
-            }
-        });
-
+      $(document).ready(function () {
+        try {
+          console.log('Initializing Firebase');
+          let app = firebase.app();
+          let features = [
+            'auth',
+            'database',
+            'firestore',
+            'functions',
+            'messaging',
+            'storage',
+            'analytics',
+            'remoteConfig',
+            'performance',
+          ].filter((feature) => typeof app[feature] === 'function');
+          console.log('Firebase SDK loaded with', features);
+        } catch (e) {
+          console.error(e);
+        }
+      });
     </script>
-</head>
+  </head>
 
-<body>
-    <div id="main_holder">
-        <div id="onboarding_holder">
-            <div class="card" id="onboarding_card">
-                <div class="card-body">
-                    <h5 class="card-title">Create Stakeholder's Account</h5>
-                    <p class="card-text">Fill appropriate details to Create account of the Stakeholder</p>
-                  <div id="onboarding_form_div">
-                    <form id="onboarding_form">
-                        <div style="margin-bottom: 2vh;">
-                            <select name="stakeholder_type" title="Choose Stakeholder Type" id="stakeholder_type"
-                                class="selectpicker bm">
-                                <option value="1">Own Company</option>
-                                <option value="startup">Startup</option>
-                                <option value="innovador">Entreprenuer / Innovator</option>
-                                <option value="univerisity/college/research_center">University/ College/ Research Center
-                                </option>
-                                <option value="incubation_center">Incubation Center</option>
-                                <option value="fund-vc-pe">Investor [ Fund / VC / PE ]</option>
-                                <option value="investment_banker">Operator / Investment Banker</option>
-                                <option value="venture_partner">Operator / Venture Partner</option>
-                            </select>
-
-                            <select name="stakeholder_location" id="country" style="display: none;" title="Choose Country" class="bm"
-                                data-live-search="true"></select>
-
-
-                            <div class="input-group mb-3" id="company_sector_div" style="display: none;">
-                                <select name="company_sector" id="company_sector" multiple class="bm"
-                                    data-live-search="true" title="Select Main Operating Sector">
-                                </select>
-                            </div>
-
-                            <div class="stakeholder_details" id="startup" style="display: none;">
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Company Name</span>
-                                    </div>
-                                    <input type="text" class="form-control startup" name="company_name" id="company_name"
-                                        placeholder="Enter Name">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Brand Name</span>
-                                    </div>
-                                    <input type="text" class="form-control startup" name="brand_name" id="brand_name"
-                                        placeholder="Brand Name">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Website</span>
-                                    </div>
-                                    <input type="text" class="form-control startup" name="website" id="website"
-                                        placeholder="Website">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input startup" id="logo_input">
-                                        <label class="custom-file-label" style="color: maroon;" for="logo_input">Upload
-                                            Logo to Proceed</label>
-                                    </div>
-                                    <div class="input-group-append" style="cursor: pointer;"
-                                        onclick="upload_image('logo_input')" id="upload_logo">
-                                        <span class="input-group-text" id="">Upload</span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="stakeholder_details" id="fund-vc-pe" style="display: none;">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Fund Organization Name</span>
-                                    </div>
-                                    <input type="text" class="form-control fund-vc-pe" name="company_name" id="company_name"
-                                        placeholder="Enter Name">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Brand Name</span>
-                                    </div>
-                                    <input type="text" class="form-control fund-vc-pe" name="brand_name" id="brand_name"
-                                        placeholder="Brand Name">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Website</span>
-                                    </div>
-                                    <input type="text" class="form-control fund-vc-pe" name="website" id="website"
-                                        placeholder="Website">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input fund-vc-pe logo_input" id="fund_logo_input">
-                                        <label class="custom-file-label" style="color: maroon;" for="logo_input">Upload
-                                            Logo to Proceed</label>
-                                    </div>
-                                    <div class="input-group-append upload_logo" style="cursor: pointer;"
-                                        onclick="upload_image('fund_logo_input')" id="upload_logo">
-                                        <span class="input-group-text" id="">Upload</span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="stakeholder_details" id="innovador" style="display: none;">
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Organization</span>
-                                    </div>
-                                    <input type="text" class="form-control innovador" name="organization_name"
-                                        id="organization_name" placeholder="Enter Organization" disabled>
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Name</span>
-                                    </div>
-                                    <input type="text" class="form-control innovador" name="name" id="person_name"
-                                        placeholder="Enter Name">
-                                </div>
-
-                                <select name="designation" title="Choose Designation" id="designation"
-                                    class="selectpicker innovador bm">
-                                    <option value="Promoter">Promoter</option>
-                                    <option value="Founder">Founder</option>
-                                    <option value="Co-founder">Co-Founder</option>
-                                    <option value="Advisor">Advisor/ Mentor</option>
-                                    <option value="Director">Director</option>
-                                    <option value="Member">Member</option>
-                                </select>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Email</span>
-                                    </div>
-                                    <input type="email" class="innovador form-control" name="email" id="person_email"
-                                        placeholder="Enter Email">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">Mobile</span>
-                                    </div>
-                                    <input type="tel" class="innovador form-control" name="mobile" id="person_email"
-                                        placeholder="Enter Mobile">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">LinkedIn</span>
-                                    </div>
-                                    <input type="url" class="innovador form-control" name="linkedIn" id="person_linkedin"
-                                        placeholder="Enter LinkedIn">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="innovador custom-file-input logo_input" id="person_image_input">
-                                        <label class="custom-file-label" style="color: maroon;" for="logo_input">Upload
-                                            Profile Image to Proceed</label>
-                                    </div>
-                                    <div class="input-group-append upload_logo" style="cursor: pointer;"
-                                        onclick="upload_image('person_image_input')" id="upload_logo">
-                                        <span class="input-group-text" id="">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                  </div>
-                  
-
-                    <a href="#" class="btn btn-primary" id="submit_stakeholder" style="float: right; display: none; background: #3342AE!important;" onclick="proceed_pressed()">Proceed</a>
+  <body>
+    <div class="signup_container">
+      <div id="investor_type_id" class="investor_type_container">
+        <div class="split-left">
+          <div class="centered">
+            <h2>Join Us!</h2>
+            <p class="subtext">
+              To begin this journey, tell us what type of<br />
+              account you'd be opening
+            </p>
+            <div class="content_holder">
+              <a
+                onclick="handleRegister(this.id)"
+                class="usertype"
+                id="investor_own-company">
+                <img class="icon" src="../assets/company.jpeg" alt="" />
+                <div class="type-label">
+                  <p class="type-title">Own Company</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
                 </div>
+              </a>
+
+              <a
+                onclick="handleRegister(this.id)"
+                value="startup"
+                class="usertype"
+                id="investor_startup">
+                <img class="icon" src="../assets/incubator.jpeg" alt="" />
+                <div class="type-label">
+                  <p class="type-title">Startup</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
+                </div>
+              </a>
+              <a
+                value="fund-vc-pe"
+                onclick="handleRegister(this.id)"
+                class="usertype"
+                id="investor_fund-vc-pe">
+                <img class="icon" src="../assets/investor.jpeg" alt="" />
+                <div class="type-label">
+                  <p class="type-title">Investor [ Fund / VC / PE ]</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
+                </div>
+              </a>
+              <a
+                value="innovador"
+                onclick="handleRegister(this.id)"
+                class="usertype"
+                id="investor_innovador">
+                <img class="icon" src="../assets/individual.jpeg" alt="" />
+                <div class="type-label">
+                  <p class="type-title">Entreprenuer / Innovator</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
+                </div>
+              </a>
+
+              <a
+                value="univerisity/college/research_center"
+                onclick="handleRegister(this.id)"
+                class="usertype"
+                id="investor_univerisity/college/research_center">
+                <img
+                  class="icon"
+                  src="../assets/educationalInstitute.jpeg"
+                  alt="" />
+                <div class="type-label">
+                  <p class="type-title">University/ College/ Research Center</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
+                </div>
+              </a>
+
+              <a
+                value="incubation_center"
+                onclick="handleRegister(this.id)"
+                class="usertype"
+                id="investor_incubation-center">
+                <img class="icon" src="../assets/incubator.jpeg" alt="" />
+                <div class="type-label">
+                  <p class="type-title">Incubation Center</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
+                </div>
+              </a>
+
+              <a
+                value="investment_banker"
+                onclick="handleRegister(this.id)"
+                class="usertype"
+                id="investor_investment-banker">
+                <img class="icon" src="../assets/individual.jpeg" alt="" />
+                <div class="type-label">
+                  <p class="type-title">Operator / Investment Banker</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
+                </div>
+              </a>
+
+              <a
+                value="venture_partner"
+                onclick="handleRegister(this.id)"
+                class="usertype"
+                id="investor_venture-partner">
+                <img class="icon" src="../assets/individual.jpeg" alt="" />
+                <div class="type-label">
+                  <p class="type-title">Operator / Venture Partner</p>
+                  <p class="subtexts">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry.
+                  </p>
+                </div>
+              </a>
             </div>
+          </div>
         </div>
+        <div class="split-right">
+          <img
+            class="loginbackground"
+            src="../assets/loginbackground.png"
+            alt="" />
+        </div>
+      </div>
+
+      <div id="main_holder" style="height: 100vh">
+        <!-- <div id="onboarding_holder"> -->
+        <div class="card" id="onboarding_card" style="height: 90%">
+          <!-- <div class="card-body"> -->
+          <h5 class="card-title">Create Stakeholder's Account</h5>
+          <p class="card-text">
+            Fill appropriate details to Create account of the Stakeholder
+          </p>
+          <div id="onboarding_form_div" style="height: 100%">
+            <form id="onboarding_form" style="height: 100%">
+              <!-- <div style="margin-bottom: 2vh"> -->
+              <select
+                name="stakeholder_type"
+                title="Choose Stakeholder Type"
+                id="stakeholder_type"
+                class="selectpicker bm">
+                <option value="1">Own Company</option>
+                <option value="startup">Startup</option>
+                <option value="innovador">Entreprenuer / Innovator</option>
+                <option value="univerisity/college/research_center">
+                  University/ College/ Research Center
+                </option>
+                <option value="incubation_center">Incubation Center</option>
+                <option value="fund-vc-pe">Investor [ Fund / VC / PE ]</option>
+                <option value="investment_banker">
+                  Operator / Investment Banker
+                </option>
+                <option value="venture_partner">
+                  Operator / Venture Partner
+                </option>
+              </select>
+
+              <select
+                name="stakeholder_location"
+                id="country"
+                style="display: none"
+                title="Choose Country"
+                class="bm"
+                data-live-search="true"></select>
+
+              <div
+                class="input-group mb-3"
+                id="company_sector_div"
+                style="display: none">
+                <select
+                  name="company_sector"
+                  id="company_sector"
+                  multiple
+                  class="bm"
+                  data-live-search="true"
+                  title="Select Main Operating Sector"></select>
+              </div>
+
+              <div
+                class="stakeholder_details"
+                id="startup"
+                style="display: none">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Company Name</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control startup"
+                    name="company_name"
+                    id="company_name"
+                    placeholder="Enter Name" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Brand Name</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control startup"
+                    name="brand_name"
+                    id="brand_name"
+                    placeholder="Brand Name" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Website</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control startup"
+                    name="website"
+                    id="website"
+                    placeholder="Website" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input startup"
+                      id="logo_input" />
+                    <label
+                      class="custom-file-label"
+                      style="color: maroon"
+                      for="logo_input"
+                      >Upload Logo to Proceed</label
+                    >
+                  </div>
+                  <div
+                    class="input-group-append"
+                    style="cursor: pointer"
+                    onclick="upload_image('logo_input')"
+                    id="upload_logo">
+                    <span class="input-group-text" id="">Upload</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="stakeholder_details"
+                id="fund-vc-pe"
+                style="display: none; height: 100%">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Fund Organization Name</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control fund-vc-pe"
+                    name="company_name"
+                    id="company_name"
+                    placeholder="Enter Name" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Brand Name</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control fund-vc-pe"
+                    name="brand_name"
+                    id="brand_name"
+                    placeholder="Brand Name" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Website</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control fund-vc-pe"
+                    name="website"
+                    id="website"
+                    placeholder="Website" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Email</span
+                    >
+                  </div>
+                  <input
+                    type="email"
+                    class="form-control fund-vc-pe"
+                    name="email"
+                    id="email"
+                    placeholder="Email" />
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Password</span
+                    >
+                  </div>
+                  <input
+                    type="password"
+                    class="form-control fund-vc-pe"
+                    name="password"
+                    id="password"
+                    placeholder="Password" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input fund-vc-pe logo_input"
+                      id="fund_logo_input" />
+                    <label
+                      class="custom-file-label"
+                      style="color: maroon"
+                      for="logo_input"
+                      >Upload Logo to Proceed</label
+                    >
+                  </div>
+                  <div
+                    class="input-group-append upload_logo"
+                    style="cursor: pointer"
+                    onclick="upload_image('fund_logo_input')"
+                    id="upload_logo">
+                    <span class="input-group-text" id="">Upload</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="stakeholder_details"
+                id="innovador"
+                style="display: none">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Organization</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control innovador"
+                    name="organization_name"
+                    id="organization_name"
+                    placeholder="Enter Organization"
+                    disabled />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Name</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control innovador"
+                    name="name"
+                    id="person_name"
+                    placeholder="Enter Name" />
+                </div>
+
+                <select
+                  name="designation"
+                  title="Choose Designation"
+                  id="designation"
+                  class="selectpicker innovador bm">
+                  <option value="Promoter">Promoter</option>
+                  <option value="Founder">Founder</option>
+                  <option value="Co-founder">Co-Founder</option>
+                  <option value="Advisor">Advisor/ Mentor</option>
+                  <option value="Director">Director</option>
+                  <option value="Member">Member</option>
+                </select>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Email</span
+                    >
+                  </div>
+                  <input
+                    type="email"
+                    class="innovador form-control"
+                    name="email"
+                    id="person_email"
+                    placeholder="Enter Email" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >Mobile</span
+                    >
+                  </div>
+                  <input
+                    type="tel"
+                    class="innovador form-control"
+                    name="mobile"
+                    id="person_email"
+                    placeholder="Enter Mobile" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"
+                      >LinkedIn</span
+                    >
+                  </div>
+                  <input
+                    type="url"
+                    class="innovador form-control"
+                    name="linkedIn"
+                    id="person_linkedin"
+                    placeholder="Enter LinkedIn" />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="innovador custom-file-input logo_input"
+                      id="person_image_input" />
+                    <label
+                      class="custom-file-label"
+                      style="color: maroon"
+                      for="logo_input"
+                      >Upload Profile Image to Proceed</label
+                    >
+                  </div>
+                  <div
+                    class="input-group-append upload_logo"
+                    style="cursor: pointer"
+                    onclick="upload_image('person_image_input')"
+                    id="upload_logo">
+                    <span class="input-group-text" id="">Upload</span>
+                  </div>
+                </div>
+              </div>
+              <!-- </div> -->
+            </form>
+          </div>
+
+          <a
+            href="#"
+            class="btn btn-primary"
+            id="submit_stakeholder"
+            style="float: right; display: none; background: #3342ae !important"
+            onclick="proceed_pressed()"
+            >Proceed</a
+          >
+          <!-- </div> -->
+        </div>
+        <!-- </div> -->
         <div>
-            <img id="image_holder" class="img-fluid" src="/assets/onboarding_sidebackground.png">
+          <img
+            id="image_holder"
+            class="img-fluid"
+            src="../assets/onboarding_sidebackground.png" />
         </div>
         <div class="horizontal_seperator"></div>
-        <div style="text-align: center;">
-            <img id="mobile_image_holder" class="img-fluid" src="../assets/background3.gif">
+        <div style="text-align: center">
+          <img
+            id="mobile_image_holder"
+            class="img-fluid"
+            src="../assets/background3.gif" />
         </div>
+      </div>
     </div>
 
-
-    <div class="modal" id="loader_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document" style="margin-top: 30vh;">
-            <div class="modal-content">
-                <div class="modal-header" style="text-align: center!important;">
-                    <h5 style="font-size: large!important;" class="modal-title" id="exampleModalLabel">Hold On, Sending/
-                        Receiving Data from Severs.</span>
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    <div style="height:2vh;width:1px"></div>
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border" style="color: rgb(50, 52, 122);" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                    <div style="height:2vh;"></div>
-                </div>
+    <div
+      class="modal"
+      id="loader_modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document" style="margin-top: 30vh">
+        <div class="modal-content">
+          <div class="modal-header" style="text-align: center !important">
+            <h5
+              style="font-size: large !important"
+              class="modal-title"
+              id="exampleModalLabel">
+              <span>Hold On, Sending/ Receiving Data from Severs.</span>
+            </h5>
+          </div>
+          <div class="modal-body">
+            <div style="height: 2vh; width: 1px"></div>
+            <div class="d-flex justify-content-center">
+              <div
+                class="spinner-border"
+                style="color: rgb(50, 52, 122)"
+                role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
+    <script type="module">
+      import { handleSignUp } from './signup.js';
+      function is_logged_in() {
+        return true;
+      }
 
-    <script>
-        function is_logged_in() {
-         return true;
-        }
-        $('#stakeholder_type').on('change', function () {
-            //alert(this.value);
-            $(".stakeholder_details").hide();
-            var x = document.getElementById(this.value);
-            stakeholder_type = x;
-            x.style.display = "block";
-            setup_onboarding_form(this.value);
+      function handleRegister(id) {
+        let x = id.substring(9);
+
+        //alert(this.value);
+        console.log(x);
+        $('#investor_type_id').hide();
+        $('#main_holder').show();
+        $('.stakeholder_details').hide();
+
+        var y = document.getElementById(x);
+        $('#stakeholder_type option[value= ' + x + ' ').prop('selected', true);
+        $('#stakeholder_type').val(x);
+
+        stakeholder_type = y;
+        y.style.display = 'block';
+
+        setup_onboarding_form(x);
+      }
+
+      $('#stakeholder_type').on('change', function () {
+        //alert(this.value);
+        $('.stakeholder_details').hide();
+        var x = document.getElementById(this.value);
+        stakeholder_type = x;
+        x.style.display = 'block';
+        setup_onboarding_form(this.value);
+      });
+
+      if (is_logged_in()) {
+        var params = get_params_from_url();
+        var action = params.action;
+        //console.log(`stakeholder_type=${args.get('stakeholder_type')}) parent_id=${args.get('parent_id')}`);
+        populate_profile(params.stakeholder_type, null);
+      } else {
+      }
+
+      function get_params_from_url() {
+        console.log(decodeURI(url));
+        var url_string = location.href;
+        var url = new URL(url_string);
+        var stakeholder_id = url.searchParams.get('stakeholder_type');
+        var params = url.search.split('?');
+        var tempparams = params.filter(function (el) {
+          return el != '';
         });
-
-        if (is_logged_in()) {
-            var params = get_params_from_url();
-            var action = params.action
-            //console.log(`stakeholder_type=${args.get('stakeholder_type')}) parent_id=${args.get('parent_id')}`);
-            populate_profile(params.stakeholder_type, null);
+        params = {};
+        for (i = 0; i < tempparams.length; i++) {
+          var key = tempparams[i].split('=')[0];
+          var value = tempparams[i].split('=')[1].replace('%20', ' ');
+          var paramobject = {};
+          params[key] = value;
         }
-        else {
+        console.log(params);
+        return params;
+      }
 
+      var stakeholder_type = '';
+      var is_startup_sector_list_setup = false;
+      var is_country_list_setup = false;
+
+      function setup_onboarding_form(value) {
+        alert(value);
+        switch (value) {
+          case 'startup': {
+            setup_country_list();
+            setup_startup_sector_list();
+            $('#company_sector_div').show();
+            $('.fund-vc-pe').prop('disabled', true);
+            $('.innovador').prop('disabled', true);
+            $('.startup').prop('disabled', false);
+            break;
+          }
+
+          case 'fund-vc-pe': {
+            setup_country_list();
+            setup_startup_sector_list();
+            $('#company_sector_div').show();
+            $('.fund-vc-pe').prop('disabled', false);
+            $('.innovador').prop('disabled', true);
+            $('.startup').prop('disabled', true);
+            break;
+          }
+
+          case 'innovador': {
+            setup_country_list();
+            $('#company_sector_div').hide();
+            $('.fund-vc-pe').prop('disabled', true);
+            $('.innovador').prop('disabled', false);
+            $('.startup').prop('disabled', true);
+            break;
+          }
         }
+      }
 
+      function setup_country_list() {
+        if (!is_country_list_setup) {
+          is_country_list_setup = true;
+          //console.log(sectors_data);
+          var output = [];
+          for (var i = 0; i < countries_data.length; i++) {
+            //console.log(countries_data[i]);
+            output.push(
+              '<option data-subtext="' +
+                countries_data[i].code +
+                '" value="' +
+                countries_data[i].name +
+                '">' +
+                countries_data[i].name +
+                '</option>'
+            );
+          }
+          $('#country').html(output.join(''));
+          $('#country').selectpicker();
+        }
+      }
 
+      function get_logo_from_url(stakeholder) {
+        switch (stakeholder) {
+          case 'startup': {
+            if ($('#startuplogourl').val()) {
+            } else alert('Please Enter Valid Url');
+          }
+        }
+      }
 
-        function get_params_from_url() {
-            console.log(decodeURI(url));
-            var url_string = location.href;
-            var url = new URL(url_string);
-            var stakeholder_id = url.searchParams.get("stakeholder_type");
-            var params = (url.search.split("?"));
-            var tempparams = params.filter(function (el) {
-                return el != '';
-            });
-            params = {};
-            for (i = 0; i < tempparams.length; i++) {
-                var key = tempparams[i].split('=')[0];
-                var value = (tempparams[i].split('=')[1]).replace("%20", " ");
-                var paramobject = {};
-                params[key] = value;
+      function setup_startup_sector_list() {
+        if (!is_startup_sector_list_setup) {
+          is_startup_sector_list_setup = true;
+          //console.log(sectors_data);
+          var output = [];
+          for (var i = 0; i < sectors_data.length; i++) {
+            //console.log(sectors_data[i]);
+            output.push(
+              '<option data-subtext="' +
+                sectors_data[i].IndustryGroups +
+                '" value="' +
+                sectors_data[i].IndustryName +
+                '">' +
+                sectors_data[i].IndustryName +
+                '</option>'
+            );
+          }
+          $('#company_sector').html(output.join(''));
+          $('#company_sector').selectpicker();
+        }
+      }
+
+      var user_data = {};
+      var parent_stakeholder = {};
+      function proceed_pressed() {
+        var data = {};
+        $('#onboarding_form')
+          .serializeArray()
+          .map(function (x) {
+            data[x.name] = x.value;
+          });
+        console.log(data);
+
+        if (is_submission_valid(data)) {
+          console.log(user_data);
+          let email = user_data.email;
+          let password = user_data.password;
+          handleSignUp(email, password);
+
+          save_user_data(user_data);
+        }
+      }
+
+      var is_startuplogo_processed = true;
+      function is_submission_valid(data) {
+        if (data.stakeholder_type) {
+          switch (data.stakeholder_type) {
+            case 'startup': {
+              if (!is_startuplogo_processed) {
+                alert('Enter Logo Url & Click Get Logo');
+                return false;
+              }
+
+              if (!data.stakeholder_location) {
+                alert('Enter Country');
+                return false;
+              }
+
+              if (!data.company_name) {
+                alert('Enter Valid Name');
+                return false;
+              }
+
+              if (!data.company_sector) {
+                alert('Enter Valid Sector');
+                return false;
+              }
+
+              if (!data.brand_name) {
+                alert('Enter Brand Name');
+                return false;
+              }
+
+              delete data.fund_name;
+              data.logo = user_data.logo;
+              user_data = data;
+              //console.log("startup user",data);
+              return true;
             }
-            console.log(params);
-            return params;
-        }
-    </script>
-</body>
 
+            case 'fund-vc-pe': {
+              if (!is_startuplogo_processed) {
+                alert('Enter Logo Url & Click Get Logo');
+                return false;
+              }
+
+              if (!data.stakeholder_location) {
+                alert('Enter Country');
+                return false;
+              }
+
+              if (!data.company_name) {
+                alert('Enter Valid Name');
+                return false;
+              }
+
+              if (!data.company_sector) {
+                alert('Enter Valid Sector');
+                return false;
+              }
+
+              if (!data.brand_name) {
+                alert('Enter Brand Name');
+                return false;
+              }
+              data.logo = user_data.logo;
+              user_data = data;
+              //console.log("startup user",data);
+              return true;
+            }
+
+            case 'innovador': {
+              if (!data.stakeholder_location) {
+                alert('Select Location/Country');
+                return false;
+              }
+              data.parent = parent_stakeholder;
+              data.parent.as_of = {
+                day: moment().format('DD'),
+                month: moment().format('MM'),
+                year: moment().format('YYYY'),
+                time: moment().format('hh:mm A'),
+                datetime: moment().toISOString(),
+                showdate: moment().format('DD MMM, YYYY hh:mm A'),
+              };
+              delete data.brand_name;
+              delete data.website;
+              data.logo = user_data.logo;
+              user_data = data;
+              //console.log(data);
+              return true;
+            }
+          }
+        } else {
+          alert('Please Select Stakeholder Type');
+          return false;
+        }
+      }
+
+      function save_user_data(data) {
+        data.id = moment().format('YYYY|MMM|DD,HH:mm A');
+        data.status = 'Profile Created';
+
+        data.created_on = {
+          day: moment().format('DD'),
+          month: moment().format('MM'),
+          year: moment().format('YYYY'),
+          time: moment().format('hh:mm A'),
+          datetime: moment().toISOString(),
+          showdate: moment().format('DD MMM, YYYY hh:mm A'),
+        };
+
+        data.id = data.stakeholder_type + '_' + data.id;
+
+        console.log(data);
+        $('#loader_modal').modal('show');
+        $.ajax({
+          url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/createStakeHolder',
+          type: 'POST',
+          data: data,
+          dataType: 'json',
+          success: function (data) {
+            $('#loader_modal').modal('hide');
+            switch (data.stakeholder_type) {
+              case 'startup': {
+                alert('Sucessfully Added');
+                window.location.href =
+                  '../accelerator_dashboard/stakeholder_management?action=' +
+                  data.stakeholder_type +
+                  '';
+                break;
+              }
+
+              case 'fund-vc-pe': {
+                alert('Sucessfully Added');
+                window.location.href =
+                  '../accelerator_dashboard/stakeholder_management?action=' +
+                  data.stakeholder_type +
+                  '';
+                break;
+              }
+
+              case 'innovador': {
+                //add innovador to parent, if parent had called to add people in it from profile page
+                if (parent_stakeholder) {
+                  if (action == 'addrefferences') {
+                    console.log(parent_stakeholder.refferences);
+                    if (parent_stakeholder.refferences) {
+                      alert('adding');
+                      var refferences = parent_stakeholder.refferences;
+                      refferences.push(data);
+                    } else if (!parent_stakeholder.refferences) {
+                      var refferences = [];
+                      refferences.push(data);
+                      parent_stakeholder.refferences = refferences;
+                    }
+                  } else if (action == 'addperson') {
+                    if (parent_stakeholder.people) {
+                      var people = parent_stakeholder.people;
+                      people.push(data);
+                    } else if (!parent_stakeholder.people) {
+                      var people = [];
+                      people.push(data);
+                      parent_stakeholder.people = people;
+                    }
+                  }
+                  updatestakeHolder(
+                    'startup',
+                    parent_stakeholder,
+                    open_stakeholder_profile
+                  );
+                } else alert('Sucessfully Added');
+                break;
+              }
+            }
+          },
+          error: function (request, error) {
+            $('#loader_modal').modal('hide');
+            alert('Request: ' + JSON.stringify(request));
+          },
+        });
+      }
+
+      function open_stakeholder_profile(stakeholder_id) {
+        window.location.href =
+          '../accelerator_dashboard/stakeholder_management/modules/profile?action=' +
+          stakeholder_id +
+          '';
+      }
+
+      //const upload = document.getElementsByClassName('upload_logo');
+
+      function upload_image(input_id) {
+        console.log('Upload Image');
+        console.log(stakeholder_type, input_id);
+        const file_input = document.getElementById(input_id);
+        var file = file_input.files[0];
+        if (file.type.match('image.*')) {
+          console.log('is an image');
+          console.log('Show type of image: ', file.type.split('/')[1]);
+          let formData = new FormData();
+          formData.append('file', file);
+          $('.custom-file-label').text('Uploading Image');
+          $.ajax({
+            url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+              console.log(data);
+              console.log('Data: ' + data, 'userData', user_data);
+              user_data.logo = data.image;
+              console.log('Image Uploaded', user_data);
+              $('.custom-file-label').text('Uploaded Successfully.');
+              $('.custom-file-label').css({ color: 'green' });
+              $('#submit_stakeholder').show();
+            },
+            error: function (request, error) {
+              alert('Request: ' + JSON.stringify(request));
+              $('.custom-file-label').text('Upload Logo to Proceed');
+              $('.custom-file-label').css({ color: 'maroon' });
+            },
+          });
+        } else {
+          alert('Not An Image');
+        }
+      }
+
+      function populate_profile(stakeholder_type, parent) {
+        //alert(stakeholder_type);
+        console.log('populate_profile', parent);
+        //var params = get_params_from_url();
+        switch (stakeholder_type) {
+          case 'innovador': {
+            console.log('parent', parent);
+            if (parent == null) {
+              //alert("Calling Stakeholders");
+              get_stakeholders(
+                'single_profile',
+                { id: params.parent_id, internal_type: 'innovador' },
+                populate_profile
+              );
+            } else {
+              $('#loader_modal').modal('hide');
+              parent_stakeholder = parent;
+              user_data.organization = parent;
+              $('#organization_name').val(parent.company_name);
+              $('#person_name').val(params.name);
+              $(
+                '#stakeholder_type option[value=' + stakeholder_type + ']'
+              ).attr('selected', 'selected');
+              $('#stakeholder_type').trigger('change');
+            }
+            break;
+          }
+        }
+      }
+    </script>
+  </body>
 </html>

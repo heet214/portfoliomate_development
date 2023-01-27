@@ -28,6 +28,8 @@ var count_termsheetReceived = 0;
 var count_termsheetSigned = 0;
 var count_fundsTransfered = 0;
 var count_roundClosed = 0;
+var signedTermSheet_Signed = [];
+var signedTermSheet_Received = []
 
 $('document').ready(function () {
 
@@ -148,14 +150,14 @@ function displayOptions_sign() {
 function openApproachedModal(dataID) {
     // alert("id"+dataID);
     $(".all-dd").css("display", "none")
-    link="http://127.0.0.1:5500/accelerator_dashboard/stakeholder_management/modules/profile/?stakeholder_id="+dataID+"?action=edit"
+    link = "https://portfoliomate-e14a8.web.app/accelerator_dashboard/stakeholder_management/modules/profile/?stakeholder_id=" + dataID + "?action=edit"
     // alert("http://127.0.0.1:5500/accelerator_dashboard/stakeholder_management/modules/profile/?stakeholder_id="+dataID+"?action=edit");
     // $('#openApproachedModal').modal('show');
     // alert("link"+link)
-    location.href =  link;
-    
+    location.href = link;
+
     // console.log("http://127.0.0.1:5500/accelerator_dashboard/stakeholder_management/modules/profile/?stakeholder_id="+dataID)
-  
+
 
 }
 
@@ -202,6 +204,7 @@ function openReceivedModal() {
     $("#openReceivedModal").modal('show');//Opens the modal
 }
 function openSignedModal() {
+    alert("OPEN SIGNED MODAL ON")
     $(".all-dd").css("display", "none")
     $("#openSignedModal").modal('show');//Opens the modal
 }
@@ -283,7 +286,7 @@ function filter_engagements(data) {
             }
         }
         else {
-            $('.notApproached-container').append(populate_notApproached_kanban(data[i]),j);
+            $('.notApproached-container').append(populate_notApproached_kanban(data[i]), j);
         }
 
     }
@@ -293,14 +296,14 @@ function filter_engagements(data) {
 
 
 
-function populate_notApproached_kanban(data,count) {
+function populate_notApproached_kanban(data, count) {
     // alert("notApproached", data)
     count_notApproached++;
     var url = 'https://firebasestorage.googleapis.com/v0/b/portfoliomate-e14a8.appspot.com/o/WhatsApp%20Image%202022-06-26%20at%204.37.51%20PM.jpeg?alt=media';
     var name = 'Antennae Ventures'
-    var stakeholderID='startup_2022|Sep|30,22:55%20PM'
+    var stakeholderID = 'startup_2022|Sep|30,22:55%20PM'
 
-    var li =
+    let li =
         '<li>' +
         '<div class="notApproached-card">' +
         '<div class="notApproached-card-header">' +
@@ -328,20 +331,18 @@ function populate_notApproached_kanban(data,count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        ' </div>' +
+        '</div>' +
         '</li>';
-    console.log('yo ' + count_notApproached)
+    // console.log('yo ' + count_notApproached)
     // count_notApproached=count_notApproached+1;
-    console.log(count_notApproached)
+    // console.log(count_notApproached)
     $('#notApproached-number').text(count_notApproached)
-    console.log(li);
+    // console.log(li);
     return li;
 }
-
-
 function populate_Approached_kanban(data, count) {
-        
-   
+
+
     count_Approached++;
     var li =
         '<li>' +
@@ -390,30 +391,36 @@ function populate_Approached_kanban(data, count) {
         '<div class="name">' + data.fundraiser.sub_engagements[count].company_to.to_name + '</div>' +
         '</div>' +
         '</div>' +
-        '</div>' +  
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn2'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"' +
-       "onclick='ViewMore("+"2"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn2' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "2" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content2'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content2' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='openApproachedModal(" + JSON.stringify(data) + "," + count + ")'/>"+
+        '</div>'+
+        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
 
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     // console.log(count_Approached)
     $('#Approached-number').text(count_Approached);
@@ -471,35 +478,40 @@ function populate_Interested_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn3'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+
-       "onclick='ViewMore("+"3"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn3' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "3" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content3'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content3' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_Interested(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
 
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     // console.log(count_Interested+"jlaslf")
     $('#Interested-number').text(count_Interested)
@@ -551,42 +563,47 @@ function populate_notInterested_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn4'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"' +
-       "onclick='ViewMore("+"4"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
-       '<div id="content4'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn4' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "4" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div id="content4' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_NotInterested(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
-    console.log(count_notInterested)
+    // console.log(count_notInterested)
     $('#notInterested-number').text(count_notInterested)
 
     return li;
 
 }
 function populate_meetingScheduled_kanban(data, count) {
-    console.log( "meet "+data.fundraiser.sub_engagements[count].sub_engagement_id)
+    console.log("meet " + data.fundraiser.sub_engagements[count].sub_engagement_id)
 
     count_meet++;
     li = '<li>' + '<div class="meet-card">' +
@@ -599,7 +616,7 @@ function populate_meetingScheduled_kanban(data, count) {
         '</div>' +
 
         '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
-        '<h6 class="dropdown-header">Move to</h6>' +        
+        '<h6 class="dropdown-header">Move to</h6>' +
         "<div class='dropdown-item' onclick='openApproachedModal(" + JSON.stringify(data.fundraiser.sub_engagements[count].company_from.from_id) + ")'>Approached</div>" +
         // "<div class='dropdown-item' onclick='update_Status_to_Interested(" + JSON.stringify(data) + "," + count + ")'" + ">Interested</div>" +
         "<div class='dropdown-item' onclick='update_Status_to_NotInterested(" + JSON.stringify(data) + "," + count + ")'" + ">Not Interested</div>" +
@@ -631,59 +648,64 @@ function populate_meetingScheduled_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn5'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"5"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn5' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "5" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
         '</div>' +
-        '</div>' + 
-        '<div id="content5'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-            '<div class="status-details">'+
-                '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-                    '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-                    '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
-        
-                    '</div>'+
-                '</div>'+
-                '<div class="content-details" style="margin-top:0.2rem;">'+
-                   '<div style="display:flex;justify-content: space-between;">'+
-                    '<div style="font-size:0.8rem;font-weight: 600;align-items: center;">Meet Date</div>'+
-                    '<div class="meet-date"style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-                    data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_date+
-
-                    '</div>'+
-                    '</div>'+
-                    '<div style="display:flex;justify-content: space-between;align-items: center;">'+
-                    '<div style="font-size:0.8rem;font-weight: 600;">Meet Time</div>'+
-                   '<div class="meet-time" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-                   data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_time+
-
-                    '</div>'+
-                    '</div>'+
-                    '<div style="font-size:0.8rem;font-weight: 600;margin-top:0.2rem">Meet Link</div>'+
-                    '<div class="meetLink" style="margin:0.2rem">'+
-                   data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].link+
-
-                   '</div>'+
-                      
-                    '<div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-                    '<div class="detailMsg" style="margin:0.2rem">'+
-                    data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-
-                        '</div>'+
-
-                '</div>'+
-            '</div>'+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div id="content5' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_meetScheduled(" + JSON.stringify(data) + "," + count + ")'/>"+ 
         '</div>'+
-    '</div>'+
-    '</li>';
+        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details">' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem;">' +
+        '<div style="display:flex;justify-content: space-between;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;align-items: center;">Meet Date</div>' +
+        '<div class="meet-date"style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_date +
+
+        '</div>' +
+        '</div>' +
+        '<div style="display:flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Meet Time</div>' +
+        '<div class="meet-time" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_time +
+
+        '</div>' +
+        '</div>' +
+        '<div style="font-size:0.8rem;font-weight: 600;margin-top:0.2rem">Meet Link</div>' +
+        '<div class="meetLink" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].link +
+
+        '</div>' +
+
+        '<div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+
+        '</div>' +
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</li>';
     console.log(count_dd)
     $('#meet-number').text(count_meet)
     return li;
@@ -733,61 +755,66 @@ function populate_rescheduled_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn6'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+
-       "onclick='ViewMore("+"6"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn6' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "6" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
         '</div>' +
-        '</div>' + 
-        '<div id="content6'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-            '<div class="status-details">'+
-                '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-                    '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-                    '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
-        
-                    '</div>'+
-                '</div>'+
-                '<div class="content-details" style="margin-top:0.2rem;">'+
-                   '<div style="display:flex;justify-content: space-between;">'+
-                    '<div style="font-size:0.8rem;font-weight: 600;align-items: center;">Meet Date</div>'+
-                    '<div class="meet-date"style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-                    data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_date+
-
-                    '</div>'+
-                    '</div>'+
-                    '<div style="display:flex;justify-content: space-between;align-items: center;">'+
-                    '<div style="font-size:0.8rem;font-weight: 600;">Meet Time</div>'+
-                   '<div class="meet-time" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-                   data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_time+
-
-                    '</div>'+
-                    '</div>'+
-                    '<div style="font-size:0.8rem;font-weight: 600;margin-top:0.2rem">Meet Link</div>'+
-                    '<div class="meetLink" style="margin:0.2rem">'+
-                   data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].link+
-
-                   '</div>'+
-                      
-                    '<div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-                    '<div class="detailMsg" style="margin:0.2rem">'+
-                    data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-
-                        '</div>'+
-
-                '</div>'+
-            '</div>'+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div id="content6' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_reSchedule(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
-    '</div>'+
-    '</li>';
+        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details">' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem;">' +
+        '<div style="display:flex;justify-content: space-between;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;align-items: center;">Meet Date</div>' +
+        '<div class="meet-date"style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_date +
+
+        '</div>' +
+        '</div>' +
+        '<div style="display:flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Meet Time</div>' +
+        '<div class="meet-time" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].meet_time +
+
+        '</div>' +
+        '</div>' +
+        '<div style="font-size:0.8rem;font-weight: 600;margin-top:0.2rem">Meet Link</div>' +
+        '<div class="meetLink" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].link +
+
+        '</div>' +
+
+        '<div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+
+        '</div>' +
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</li>';
     $('#reScheduled-number').text(count_reScheduled)
-    console.log("hiiiiiiii"+li)
+    console.log("hiiiiiiii" + li)
     return li;
 
 }
@@ -837,34 +864,39 @@ function populate_InterestReceivedUnderDiscussion_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn7'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"7"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn7' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "7" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-        '<div id="content7'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content7' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_irud(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     $('#irud-number').text(count_irud)
     return li;
@@ -915,34 +947,39 @@ function populate_pitchingDone_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn8'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"8"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn8' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "8" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content8'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content8' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_pitchingDone(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     $('#pitchingDone-number').text(count_pitchingDone)
     return li;
@@ -993,34 +1030,39 @@ function populate_softCommitment_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn9'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"9"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn9' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "9" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content9'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.8rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content9' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_committed(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.6rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.6rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     // console.log(count_softCommitment)
     $('#commit-number').text(count_softCommitment)
@@ -1058,16 +1100,6 @@ function populate_dd_kanban(data, count) {
         "<div class='dropdown-item' onclick='update_Status_to_termSheetSigned(" + JSON.stringify(data) + "," + count + ")'" + ">Term Sheet Signed</div>" +
         "<div class='dropdown-item' onclick='update_Status_to_fundsTransfer(" + JSON.stringify(data) + "," + count + ")'" + ">Funds Transfered</div>" +
         "<div class='dropdown-item' onclick='update_Status_to_roundClose(" + JSON.stringify(data) + "," + count + ")'" + ">Round Closed</div>" +
-
-        // '<div class="dropdown-item" onclick="openNotApproachedModal()">Not Approached</div>' +
-        // '<div class="dropdown-item" onclick="openApproachedModal()">Approached</div>' +
-        // '<div class="dropdown-item" onclick="openInterestedModal()">Interested</div>' +
-        // '<div class="dropdown-item" onclick="openNotInterestedModal()">Not Interested</div>' +
-        // '<div class="dropdown-item" onclick="openMeetModal()">Meeting Scheduled</div>' +
-        // '<div class="dropdown-item" onclick="openNegotiationModal()">Negotiation</div>' +
-        // '<div class="dropdown-item" onclick="openCommittedModal()">Committed</div>' +
-        // // '<div class="dropdown-item" onclick="openDDModal()">Due Diligence</div>' +
-        // '<div class="dropdown-item" onclick="openSignedModal()">Signed</div>' +
         '</div>' + '</div>' + '</div>' +
         '<div class="engagement">' +
         '<div class="profiles">' +
@@ -1085,34 +1117,39 @@ function populate_dd_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn10'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"10"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn10' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "10" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content10'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content10' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_DD(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>'
         ;
     // console.log('yo '+cou)
@@ -1175,34 +1212,54 @@ function populate_termSheetReceived_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn11'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"11"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn11' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "11" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content11'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content11' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_termSheetReceived(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="file-details" style="display:flex;flex-direction: column;">'+
+            '<div style="font-size:0.8rem;font-weight: 600;">'+
+            'File'+
+            '</div>'+
+            '<a href="'+
+            data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].fileUrl+
+            '" target="_blank">'+
+            '<div style="display: flex;justify-content: space-between;align-items: center;" class="file-container">'+
+            '<img src="/assets/file_icon.png"/>'+
+            '<div class="file-name-container">'+
+            data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].fileName+
+            '</div>'+
+            '</div>'+
+            '</a>'+
+            '</div>'+
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     $('#receive-number').text(count_termsheetReceived)
 
@@ -1261,35 +1318,55 @@ function populate_termSheetSigned_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn12'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"12"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn12' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "12" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content12'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content12' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_termSheetSigned(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</li>';
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="file-details" style="display:flex;flex-direction: column;">'+
+            '<div style="font-size:0.8rem;font-weight: 600;">'+
+            'File'+
+            '</div>'+
+            '<a href="'+
+            data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].fileUrl+
+            '" target="_blank">'+
+            '<div style="display: flex;justify-content: space-between;align-items: center;" class="file-container">'+
+            '<img src="/assets/file_icon.png"/>'+
+            '<div class="file-name-container">'+
+            data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].fileName+
+            '</div>'+
+            '</div>'+
+            '</a>'+
+            '</div>'+
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</li>';;
     $('#sign-number').text(count_termsheetSigned)
 
     return li;
@@ -1348,34 +1425,39 @@ function populate_fundsTransfered_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn13'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"13"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn13' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "13" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content13'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content13' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_fundsTransfer(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     $('#ft-number').text(count_fundsTransfered)
 
@@ -1434,78 +1516,137 @@ function populate_roundClosed_kanban(data, count) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">'+
-        '<button type="button" class="btn btn-dark viewMorebtn" '+
-        'id="viewMorebtn14'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+ 
-       "onclick='ViewMore("+"14"+"," +JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id)+","+JSON.stringify(count) + ")'>"+
-       ' View More'+
-       ' </button>'+
-       '</div>'+
-       '</div>' +
-       '</div>' +
+        '<div class="button-container" style="display: flex;flex-direction: row;justify-content: flex-end;">' +
+        '<button type="button" class="btn btn-dark viewMorebtn" ' +
+        'id="viewMorebtn14' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' +
+        "onclick='ViewMore(" + "14" + "," + JSON.stringify(data.fundraiser.sub_engagements[count].company_to.to_id) + "," + JSON.stringify(count) + ")'>" +
+        ' View More' +
+        ' </button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-       '<div id="content14'+data.fundraiser.sub_engagements[count].company_to.to_id+count+'"'+' class="content">'+
-        '<div style="padding:0.3rem;">'+
-        '<div class="status-details" >'+
-        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">'+
-        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>'+
-        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate+
+        '<div id="content14' + data.fundraiser.sub_engagements[count].company_to.to_id + count + '"' + ' class="content">' +
+        '<div class="edit-details">'+
+        '<div>'+
+        "<img src='/assets/re-evaluation-icon.png' class='edit-details-img' onclick='update_Status_to_roundClose(" + JSON.stringify(data) + "," + count + ")'/>"+
         '</div>'+
         '</div>'+
-        '<div class="content-details" style="margin-top:0.2rem">'+
-        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>'+
-        '<div class="detailMsg" style="margin:0.2rem">'+
-        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
+        '<div style="padding:0.3rem;">' +
+        '<div class="status-details" >' +
+        '<div class="lastmodified-details" style="display: flex;justify-content: space-between;align-items: center;">' +
+        '<div style="font-size:0.8rem;font-weight: 600;">Last Modified</div>' +
+        '<div class="lastModified" style="margin:0.2rem;font-size: 0.6rem;font-weight: 400;">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].timestamp.showdate +
+        '</div>' +
+        '</div>' +
+        '<div class="content-details" style="margin-top:0.2rem">' +
+        ' <div style="font-size:0.8rem;font-weight: 600;">Comments</div>' +
+        '<div class="detailMsg" style="margin:0.2rem">' +
+        data.fundraiser.sub_engagements[count].status[data.fundraiser.sub_engagements[count].status.length - 1].description +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</li>';
     $('#rc-number').text(count_roundClosed)
 
     return li;
 
 }
-//return [notApproached,approached,interested,notIntrested,meetingScheduled,comitted,negotiation,dueDeligence,signed] ;   
-let termSheetSigned_file=[];
-let termSheetSigned_name=[];
-let termSheetSigned_url=[];
 
-   function termSheetSignedHandle(event){
+//termSheet Signed
+//return [notApproached,approached,interested,notIntrested,meetingScheduled,comitted,negotiation,dueDeligence,signed] ;   
+let termSheetSigned_file = [];
+let termSheetSigned_name = [];
+let termSheetSigned_url = [];
+
+function termSheetSignedHandle(event) {
 
     termSheetSigned_file.push(event.target.files[0]);
     console.log(termSheetSigned_file);
-  
+
     termSheetSigned_name.push(event.target.files[0].name);
     console.log(termSheetSigned_name);
-  };
+};
 
-  function termSheetSignedSave(){
+function termSheetSignedSave() {
+    // alert("SIGNED ON");
     let file = termSheetSigned_file[0];
-    console.log("hi"+file);
+    // console.log("hi"+file);
+    let formData = new FormData();
+    formData.append('file', file);
+    // console.log(formData);
+
+    $.ajax({
+        url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            termSheetSigned_url.push(data['image']);
+            // alert("URL:"+termSheetSigned_url);
+            let fileDetails = {
+                name: termSheetSigned_name[0],
+                url: termSheetSigned_url[0],
+            }
+            // alert(JSON.stringify(fileDetails))
+            signedTermSheet_Signed.push(fileDetails);
+        },
+        error: function (request, error) {
+            alert("error hai" + error);
+            alert('Request: ' + JSON.stringify(request));
+        },
+    });
+}
+
+//termSheetRECEIVED 
+let termSheetReceived_file = [];
+let termSheetReceived_name = [];
+let termSheetReceived_url = [];
+
+function termSheetReceivedHandle(event) {
+
+    termSheetReceived_file.push(event.target.files[0]);
+    console.log(termSheetReceived_file);
+
+    termSheetReceived_name.push(event.target.files[0].name);
+    console.log(termSheetReceived_name);
+};
+
+function termSheetReceivedSave() {
+    let file = termSheetReceived_file[0];
+    console.log("hi" + file);
     let formData = new FormData();
     formData.append('file', file);
     console.log(formData);
-  
+
     $.ajax({
-      url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
-      type: 'POST',
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (data) {
-        console.log("GHAR REHNA HAI"+data);
-        termSheetSigned_url.push(data['image']);
-        
-      },
-      error: function (request, error) {
-        alert("error hai" +error);
-        alert('Request: ' + JSON.stringify(request));
-      },
+        url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/uploadFile',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            termSheetReceived_url.push(data['image']);
+            let fileDetails = {
+                name: termSheetReceived_name[0],
+                url: termSheetReceived_url[0],
+            }
+            // alert(JSON.stringify(fileDetails))
+            signedTermSheet_Received.push(fileDetails);
+        },
+
+        error: function (request, error) {
+            alert("error hai" + error);
+            alert('Request: ' + JSON.stringify(request));
+        },
     });
-  }
+
+}
+
 function update_Status_to_approached(data, count) {
     openApproachedModal()
     $('#saveApproached').click(function () {
@@ -1534,6 +1675,28 @@ function update_Status_to_approached(data, count) {
 function update_Status_to_Interested(data, count) {
     openInterestedModal()
     $('#saveInterested').click(function () {
+        
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+// (function () {
+//     'use strict'
+  
+//     // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//     var forms = document.querySelectorAll('.needs-validation')
+  
+//     // Loop over them and prevent submission
+//     Array.prototype.slice.call(forms)
+//       .forEach(function (form) {
+//         form.addEventListener('submit', function (event) {
+//           if (!form.checkValidity()) {
+    // event.preventDefault()
+//             event.stopPropagation()
+//           }
+  
+//           form.classList.add('was-validated')
+//         }, false)
+//       })
+//   })()
         let status = {
             changed_by: '',
             description: document.getElementById('interestedNote').value,
@@ -1723,7 +1886,11 @@ function update_Status_to_DD(data, count) {
 
 function update_Status_to_termSheetReceived(data, count) {
     openReceivedModal();
+
     $('#saveReceived').click(function () {
+        //    let url= termSheetReceivedSave()
+        fileDetails = signedTermSheet_Received;
+        console.log(fileDetails);
         let status = {
             changed_by: '',
             description: document.getElementById('receivedNote').value,
@@ -1735,19 +1902,26 @@ function update_Status_to_termSheetReceived(data, count) {
                 datetime: moment().toISOString(),
                 showdate: moment().format('DD MMM, YYYY hh:mm A'),
             },
+            fileUrl: fileDetails[0].url,
+            fileName: fileDetails[0].name,
             type: "termSheetReceived",
         }
+        console.log(status)
+
         data.fundraiser.sub_engagements[count].status.push(status)
-        console.log(data)
+        // console.log("vaat hai"+data)
         $('#openReceivedModal').modal('hide')
         updateEngagement(data)
     })
 }
 function update_Status_to_termSheetSigned(data, count) {
+
     openSignedModal();
-   
     $('#saveSigned').click(function () {
-        termSheetSignedSave();
+        // termSheetSignedSave();
+        fileDetails = signedTermSheet_Signed;
+        // console.log(fileDetails);
+
         let status = {
             changed_by: '',
             description: document.getElementById('signNote').value,
@@ -1759,10 +1933,13 @@ function update_Status_to_termSheetSigned(data, count) {
                 datetime: moment().toISOString(),
                 showdate: moment().format('DD MMM, YYYY hh:mm A'),
             },
+            fileUrl: fileDetails[0].url,
+            fileName: fileDetails[0].name,
             type: "termSheetSigned",
         }
+        console.log(status)
         data.fundraiser.sub_engagements[count].status.push(status)
-        console.log(data)
+        // console.log("vaat hai part2"+JSON.stringify(data))
         $('#openSignedModal').modal('hide')
         updateEngagement(data)
     })
@@ -1829,13 +2006,15 @@ function updateEngagement(data) {
                 data
             );
             //   alert('updated data');
-            location.reload();
+            alert('update')
+            location.href='../index2.html'
+
             $('#loader_modal').modal("hide")
 
         },
         error: function (request, error) {
             $('#loader_modal').modal('hide');
-            //location.reload();
+            location.reload();
             alert('Request: ' + JSON.stringify(request));
         },
     });
@@ -1845,21 +2024,21 @@ function updateEngagement(data) {
 // Mrunal
 
 let viewMoreCard = false
-function ViewMore(statusUniqueNumber,toCompanyId,id) {
-console.log(id)
+function ViewMore(statusUniqueNumber, toCompanyId, id) {
+    console.log(id)
     if (viewMoreCard) {
         // console.log($('#content'+data.id));
 
-        document.getElementById('content'+statusUniqueNumber+toCompanyId+id).style.display = 'none';
-        document.getElementById('viewMorebtn'+statusUniqueNumber+toCompanyId+id).innerHTML = "View More"
+        document.getElementById('content' + statusUniqueNumber + toCompanyId + id).style.display = 'none';
+        document.getElementById('viewMorebtn' + statusUniqueNumber + toCompanyId + id).innerHTML = "View More"
         return (viewMoreCard = false);
 
     }
     if (!viewMoreCard) {
-console.log(document.getElementById('content'+statusUniqueNumber+toCompanyId+id).innerHTML);
+        console.log(document.getElementById('content' + statusUniqueNumber + toCompanyId + id).innerHTML);
 
-        document.getElementById('content'+statusUniqueNumber+toCompanyId+id).style.display = "block";
-        document.getElementById('viewMorebtn'+statusUniqueNumber+toCompanyId+id).innerHTML = "View Less"
+        document.getElementById('content' + statusUniqueNumber + toCompanyId + id).style.display = "block";
+        document.getElementById('viewMorebtn' + statusUniqueNumber + toCompanyId + id).innerHTML = "View Less"
         return (viewMoreCard = true);
 
     }

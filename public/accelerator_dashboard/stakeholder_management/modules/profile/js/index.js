@@ -405,12 +405,12 @@ function display_data_innovadors(data_innovadors) {
           '</tr>'
       );
     }
-    $("#user_list_search_box").on("keyup", function () {
+    $('#user_list_search_box').on('keyup', function () {
       var value = $(this).val().toLowerCase();
-      $("#populate_existing_people tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $('#populate_existing_people tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
       });
-  });
+    });
   }
 }
 
@@ -486,12 +486,12 @@ function display_data_refference(data_refference) {
           '</tr>'
       );
     }
-    $("#reference_list_search_box").on("keyup", function () {
+    $('#reference_list_search_box').on('keyup', function () {
       var value = $(this).val().toLowerCase();
-      $("#populate_existing_refference tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $('#populate_existing_refference tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
       });
-  });
+    });
   }
 }
 

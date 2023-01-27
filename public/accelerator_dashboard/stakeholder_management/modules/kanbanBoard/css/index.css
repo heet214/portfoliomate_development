@@ -11,11 +11,23 @@ body {
 .container {
   display: block;
   /* flex-direction: row; */
-  overflow-x: scroll;
-  overflow-y: scroll;
-  width: 98vw;
-  height: 95vh;
+  /* overflow-x: scroll;
+  overflow-y: scroll; */
+  width: 100vw;
+  height: 100vh;
 }
+#kanban-board-holder
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  #kanban-board-holder::-webkit-scrollbar-thumb:hover {
+background-color: #a8bbbf;
+}
+
 
 .btn-primary {
   background-color: #3342ae !important;
@@ -54,11 +66,11 @@ body {
 
 #kanban-board-holder {
   height: 100%;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  width: fit-content;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  /* margin-top: 1vh; */
+  /* margin-bottom: 1vh; */
+  /* width: 100vh; */
+  margin-left: 0rem;
+  margin-right: 0.1rem;
   overflow-x: auto;
   overflow-y: hidden;
   background-color: #fff;
@@ -67,7 +79,8 @@ body {
   /* overflow-x: scroll; */
   /* overflow-y: scroll; */
   white-space: nowrap;
-  padding: 1rem;
+  padding: 0.2rem;
+  padding-top:1rem;
   /* background-color: #333; */
   border-radius: 5px;
 
@@ -151,15 +164,16 @@ body {
   border-radius: 5px;
   border: 1px solid #ccc
 }
-
+/* 
 ::-webkit-scrollbar {
   width: 0;
   /* Remove scrollbar space */
-  background: transparent;
+  /* background: transparent; */
   /* Optional: just make scrollbar invisible */
-}
+/* }  */
 
 .status-holders {
+
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: #f0f0f0;
   width: 15rem;
@@ -172,6 +186,13 @@ body {
   /* position: relative; */
   display: block;
   padding-bottom: 0.5rem;
+  
+}
+.status-holders::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
 .status-header {
@@ -358,7 +379,7 @@ body {
   flex-direction: column;
 }
 
-.profiles {}
+/* .profiles {} */
 
 .engagement {
   margin-bottom: 0.1rem
@@ -392,7 +413,41 @@ body {
   padding:0.4rem
 
 }
-
+.file-container{
+  word-break: break-word;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  margin: 0.1rem;
+  border: 1px #888888 solid;
+  border-radius: 3px;
+  padding: 5px;
+  background: #ffffff;
+  font-size: 0.7rem;
+  box-shadow: 3px 3px #ccc;
+}
+.file-name-container{
+  word-break: break-word;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  margin: 0.1rem;
+  /* border: 1px #f5f5f5 dashed; */
+  border-radius: 3px;
+  padding: 5px;
+  background: #ffffff;
+  font-size: 0.7rem
+}
 .detailMsg,.meetLink {
   word-break: break-word;
   white-space: pre-line;
@@ -410,7 +465,19 @@ body {
   background: #f5f5f5;
   font-size: 0.7rem
 }
-
+.edit-details{
+      display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-top:0;
+    padding:0;
+    /* padding-bottom: 0.1rem; */
+    margin-bottom: 0.1rem;
+}
+.edit-details-img{
+  width: 1.3rem;
+  padding: 0;
+}
 .viewMorebtn {
   font-size: 11px;
   width: 193px;

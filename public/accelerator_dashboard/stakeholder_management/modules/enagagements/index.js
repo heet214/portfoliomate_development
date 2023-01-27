@@ -285,7 +285,7 @@ function handleMandateSave() {
 
   console.log('getting logged');
   let updated_file =
-    '<tr class="mandate-card mb-4" >' +
+    '<tr style="width: 100%;display:flex; justify-content: space-between;" class="mandate-card mb-4" >' +
     '<td class="mandate-td td-img">' +
     '<div class="mandate-img">' +
     '<div class="wrapper">' +
@@ -294,7 +294,7 @@ function handleMandateSave() {
     '">' +
     '</div>' +
     '</td>' +
-    '<td class="mandate-td">' +
+    '<td style="width:250px;" class="mandate-td">' +
     '<div style="padding-left:10px;">' +
     '<a class="my-0" style="cursor:pointer;" href="' +
     mandate_url[mandate_url.length - 1] +
@@ -391,7 +391,7 @@ async function handleFileSave() {
     });
 
     let updated_file =
-      '<tr class="mandate-card mb-4"  >' +
+      '<tr style="width: 100%;display:flex; justify-content: space-between;" class="mandate-card mb-4"  >' +
       '<td class="mandate-td td-img">' +
       '<div class="mandate-img">' +
       '<div class="wrapper">' +
@@ -400,7 +400,7 @@ async function handleFileSave() {
       '">' +
       '</div>' +
       '</td>' +
-      '<td class="mandate-td">' +
+      '<td style="width:250px;" class="mandate-td">' +
       '<div style="padding-left:10px;">' +
       '<a class="my-0" style="cursor:pointer;" href="' +
       urlsmthn[i] +
@@ -540,6 +540,7 @@ function handleObject() {
         type: '',
         url: '',
         file_type: '',
+        created_on: '',
       },
     ];
     for (let i = 0; i < docArray.length; i++) {
@@ -547,6 +548,14 @@ function handleObject() {
         type: docArray[i].type,
         file_type: file_type[i],
         url: urlsmthn[i],
+        created_on: {
+          day: moment().format('DD'),
+          month: moment().format('MM'),
+          year: moment().format('YYYY'),
+          time: moment().format('hh:mm A'),
+          datetime: moment().toISOString(),
+          showdate: moment().format('DD MMM, YYYY hh:mm A'),
+        },
       };
     }
   }
@@ -720,10 +729,21 @@ function handleSingleEngagement(selected_engagement_id) {
     )}`
   );
 
+  $('#single_engagement_valuation_amount_currency').text(
+    `${handleCurrency(
+      single_engagement_object.fundraiser.expected_value[
+        single_engagement_object.fundraiser.expected_value.length - 1
+      ].currency_type
+    )}`
+  );
+
   $('#single_engagement_valuation_date').text(
-    single_engagement_object.fundraiser.expected_value[
+    `${single_engagement_object.fundraiser.expected_value[
       single_engagement_object.fundraiser.expected_value.length - 1
     ].as_on
+      .split('-')
+      .reverse()
+      .join('-')}`
   );
 
   // $(
@@ -819,48 +839,80 @@ function investor_Modal() {
   });
 }
 
+let investorsToShow;
 function populate_Investor_modal(data) {
   var table = $('#populate_investor_modal');
   alert('working populate');
   table.empty();
-  for (i = 0; i < data.length; i++) {
-    if (data[i].stakeholder_type == 'innovador') {
+  if (single_engagement_object.fundraiser.sub_engagements) {
+    var addedCompanies =
+      single_engagement_object.fundraiser.sub_engagements.filter((company) => {
+        if (company.company_to.isInvestorAdded) {
+          return company;
+        }
+      });
+    console.log('ADDED COMAPNIES HU ME', addedCompanies);
+    var newCompanies = addedCompanies.map((company) => {
+      return company.company_to.to_id;
+    });
+
+    console.log(newCompanies, 'ME HU ADDED COMPANIES ');
+
+    var newData = data.filter((company) => {
+      if (!newCompanies.includes(company.id)) {
+        return company;
+      }
+    });
+
+    console.log(newData, 'MERE ME ADDED COMPANUES NAHI HIA');
+
+    investorsToShow = newData;
+  } else {
+    investorsToShow = data;
+  }
+
+  for (i = 0; i < investorsToShow.length; i++) {
+    if (investorsToShow[i].stakeholder_type == 'innovador') {
       table.append(
         '<tr class="shadow">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
           '<img class= "image--cover" src="' +
-          data[i].logo +
+          investorsToShow[i].logo +
           '">' +
           '</div>' +
           '</td>' +
           '<td>' +
           '<div class="company_title_holder">' +
-          data[i].name +
+          investorsToShow[i].name +
           '</div>' +
           '</td>' +
           '<div>' +
           '<td>' +
-          data[i].stakeholder_location +
+          investorsToShow[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="createSubEngagement(\'' +
-          data[i].id +
+          '<td><Button class="btn btn-primary" id="' +
+          i +
+          '" onclick="createSubEngagement(\'' +
+          i +
           "','" +
-          data[i].name +
+          investorsToShow[i].id +
           "','" +
-          data[i].logo +
+          investorsToShow[i].name +
           "','" +
-          data[i].linkedIn +
+          investorsToShow[i].logo +
           "','" +
-          data[i].designation +
+          investorsToShow[i].linkedIn +
+          "','" +
+          investorsToShow[i].designation +
           '\')"><span>Add</span>  </Button></td>' +
           '</tr>'
       );
     } else if (
-      data[i].stakeholder_type == 'startup' ||
-      data[i].stakeholder_type == 'fund-vc-pe'
+      investorsToShow[i].stakeholder_type == 'startup' ||
+      investorsToShow[i].stakeholder_type == 'fund-vc-pe'
     ) {
       table.append(
         '<tr class="shadow">' +
@@ -868,32 +920,34 @@ function populate_Investor_modal(data) {
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
           '<img class= "image--cover" src="' +
-          data[i].logo +
+          investorsToShow[i].logo +
           '">' +
           '</div>' +
           '</td>' +
           '<td>' +
           '<div class="company_title_holder">' +
-          data[i].brand_name +
+          investorsToShow[i].brand_name +
           '</div>' +
           '</td>' +
           '<div>' +
           '<td>' +
-          data[i].stakeholder_location +
+          investorsToShow[i].stakeholder_location +
           '</td>' +
           '</div>' +
           '<td><Button class="btn btn-primary" id="' +
           i +
           '" onclick="createSubEngagement(\'' +
-          data[i].id +
+          i +
           "','" +
-          data[i].brand_name +
+          investorsToShow[i].id +
           "','" +
-          data[i].logo +
+          investorsToShow[i].brand_name +
           "','" +
-          data[i].website +
+          investorsToShow[i].logo +
           "','" +
-          data[i].company_name +
+          investorsToShow[i].website +
+          "','" +
+          investorsToShow[i].company_name +
           '\')"> <span>Add</span>  </Button></td>' +
           '</tr>'
       );
@@ -951,7 +1005,11 @@ function populate_exclusion_investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
+          '<td><Button class="btn btn-primary" id="' +
+          i +
+          '"onclick="excludeInvestor(\'' +
+          i +
+          "','" +
           data[i].id +
           "','" +
           data[i].name +
@@ -988,7 +1046,11 @@ function populate_exclusion_investor_modal(data) {
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="excludeInvestor(\'' +
+          '<td><Button class="btn btn-primary" id="' +
+          i +
+          '"onclick="excludeInvestor(\'' +
+          i +
+          "','" +
           data[i].id +
           "','" +
           data[i].brand_name +
@@ -1016,7 +1078,10 @@ function populate_exclusion_investor_modal(data) {
 
 let temp_exclude_investor;
 
-function excludeInvestor(id, name, logo, link, subtext) {
+function excludeInvestor(i, id, name, logo, link, subtext) {
+  console.log('ME I HU EXCLUSION KA ', i);
+  ival = document.getElementById(i).disabled = true;
+  ival = document.getElementById(i).innerHTML = 'Added';
   console.log('Exclude vala :', id, name, logo, link, subtext);
   exlcude_investor_array.push(name);
   let temp_exclude_investor = {
@@ -1048,8 +1113,14 @@ let parent_id;
 let sub_engagement_id;
 let created_on;
 let temp_sub_engagement;
+let isInvestorAdded = false;
 
-function createSubEngagement(id, name, logo, link, subtext) {
+function createSubEngagement(i, id, name, logo, link, subtext) {
+  console.log('ME I HU INVESTOR KA ', i);
+  ival = document.getElementById(i).disabled = true;
+  ival = document.getElementById(i).innerHTML = 'Added';
+
+  console.log(ival, 'IVALL HERE');
   console.log(
     'exlcude_investor_array ALERT ALERT ALERT',
     exlcude_investor_array
@@ -1087,12 +1158,13 @@ function createSubEngagement(id, name, logo, link, subtext) {
         to_logo: logo,
         to_link: link,
         to_subtext: subtext,
+        isInvestorAdded: true,
       },
 
       status: [{ type: 'Approached', description: '', timestamp: created_on }],
     };
 
-    console.log(temp_sub_engagement);
+    console.log(temp_sub_engagement, '<E HU TEMP SUB ENG ');
     if (single_engagement_object.fundraiser.sub_engagements) {
       single_engagement_object.fundraiser.sub_engagements.push(
         temp_sub_engagement
@@ -1154,11 +1226,17 @@ function handleEvaluationDateUpdate(event) {
 }
 
 function handleUpdateEvaluation() {
+  var updated_valuation_currency = $('#valuation_currency_update_modal')
+    .find(':selected')
+    .val();
+
+  console.log(updated_valuation_currency);
+
   if (single_engagement_object.fundraiser.expected_value) {
     expected_value_update = {
       amount: evaluation_update_amount,
       as_on: evaluation_update_date,
-      currency_type: 'default',
+      currency_type: updated_valuation_currency,
     };
   } else {
     expected_value_update = [];
@@ -1166,7 +1244,7 @@ function handleUpdateEvaluation() {
     expected_value_update = {
       amount: evaluation_update_amount,
       as_on: evaluation_update_date,
-      currency_type: 'default',
+      currency_type: updated_valuation_currency,
     };
   }
   console.log(expected_value_update);
@@ -1182,6 +1260,12 @@ function handleUpdateEvaluation() {
   }
 
   console.log(single_engagement_object);
+
+  $('single_engagement_valuation_amount_currency').text(
+    single_engagement_object.fundraiser.expected_value[
+      single_engagement_object.fundraiser.expected_value.length - 1
+    ].currency_type
+  );
 
   $('#modal_valuation_amount').text(
     `${numberWithCommas(
@@ -1203,10 +1287,14 @@ function handleUpdateEvaluation() {
   );
 
   $('#single_engagement_valuation_date').text(
-    single_engagement_object.fundraiser.expected_value[
+    `${single_engagement_object.fundraiser.expected_value[
       single_engagement_object.fundraiser.expected_value.length - 1
     ].as_on
+      .split('-')
+      .reverse()
+      .join('-')}`
   );
+
   $('#evaluation_amount_update').text('');
   $('#evaluation_date_update').text('');
   $('#close_update_valuation_modal').click();
@@ -1278,7 +1366,7 @@ function handleMandateSaveUpdate() {
   console.log(mandate_url_update);
   let table_append = $('#populate_mandate');
   let updated_file =
-    '<tr class="mandate-card mb-4" >' +
+    '<tr style="width: 100%;display:flex; justify-content: space-between;" class="mandate-card mb-4" >' +
     '<td class="mandate-td td-img">' +
     '<div class="mandate-img">' +
     '<div class="wrapper">' +
@@ -1287,7 +1375,7 @@ function handleMandateSaveUpdate() {
     '">' +
     '</div>' +
     '</td>' +
-    '<td class="mandate-td">' +
+    '<td style="width:250px;" class="mandate-td">' +
     '<div style="padding-left:10px;">' +
     '<a class="my-0" style="cursor:pointer;" href="' +
     mandate_url_update[mandate_url_update.length - 1] +
@@ -1382,7 +1470,7 @@ async function handleFileSaveUpdate() {
     });
 
     let updated_file =
-      '<tr class="mandate-card mb-4"  >' +
+      '<tr style="width: 100%;display:flex;" class="mandate-card mb-4">' +
       '<td class="mandate-td td-img">' +
       '<div class="mandate-img">' +
       '<div class="wrapper">' +
@@ -1391,7 +1479,7 @@ async function handleFileSaveUpdate() {
       '">' +
       '</div>' +
       '</td>' +
-      '<td class="mandate-td">' +
+      '<td style="width: 350px; margin-left:50px; align-self: center; class="mandate-td">' +
       '<div style="padding-left:10px;">' +
       '<a class="my-0" style="cursor:pointer;" href="' +
       doc_url_update[i] +
@@ -1400,9 +1488,9 @@ async function handleFileSaveUpdate() {
       '")">' +
       file_type_update[i] +
       '</a><br>' +
-      // '<div class="text-muted" style="font-size:0.7rem;line-height:normal">' +
-      // target[i].created_on.showdate +
-      // '</div>' +
+      '<div class="text-muted" style="font-size:0.7rem;line-height:normal">' +
+      'Uploaded Now' +
+      '</div>' +
       '</div>' +
       '</td>' +
       '<div>' +
@@ -1426,11 +1514,12 @@ function handleDocCloseUpdate() {
 
 function handleObjectUpdate() {
   // engagement.id = moment().format('YYYY|MMM|DD,HH:mm A');
-
+  console.log('inside handleObjectFunction');
   //mandate_new.engagement_id = engagement.id;
   console.log('DOUBLE MANDATES HAI KYA?', mandate_file_updated);
   if (single_engagement_object.fundraiser.mandate) {
     for (let i = 0; i < mandate_file_updated.length; i++) {
+      console.log('for loop iterating : ' + i);
       mandate_new[i] = {
         status: mandate_status_updated[i],
         description: mandate_description_updated[i],
@@ -1476,6 +1565,14 @@ function handleObjectUpdate() {
         type: docArrayUpdate[i].type,
         file_type: file_type_update[i],
         url: doc_url_update[i],
+        created_on: {
+          day: moment().format('DD'),
+          month: moment().format('MM'),
+          year: moment().format('YYYY'),
+          time: moment().format('hh:mm A'),
+          datetime: moment().toISOString(),
+          showdate: moment().format('DD MMM, YYYY hh:mm A'),
+        },
       };
     }
   } else {
@@ -1485,6 +1582,14 @@ function handleObjectUpdate() {
         type: docArrayUpdate[i].type,
         file_type: file_type_update[i],
         url: doc_url_update[i],
+        created_on: {
+          day: moment().format('DD'),
+          month: moment().format('MM'),
+          year: moment().format('YYYY'),
+          time: moment().format('hh:mm A'),
+          datetime: moment().toISOString(),
+          showdate: moment().format('DD MMM, YYYY hh:mm A'),
+        },
       };
     }
   }
@@ -1573,7 +1678,7 @@ function populate_Mandate(data) {
       console.log('target type', target[i].file_type);
 
       table.append(
-        '<tr class="mandate-card mb-4">' +
+        '<tr style="width: 100%;display:flex; justify-content: space-between;" class="mandate-card mb-4">' +
           '<td class="mandate-td td-img">' +
           '<div class="mandate-img">' +
           '<div class="wrapper">' +
@@ -1582,7 +1687,7 @@ function populate_Mandate(data) {
           '">' +
           '</div>' +
           '</td>' +
-          '<td class="mandate-td">' +
+          '<td style="width:250px" class="mandate-td">' +
           '<div style="padding-left:10px;">' +
           '<a class="my-0" style="cursor:pointer;" href="' +
           target[i].url +
@@ -1597,7 +1702,9 @@ function populate_Mandate(data) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td class="mandate-td">' +
+          '<td id="' +
+          i +
+          '" class="mandate-td">' +
           target[i].status +
           '</td>' +
           '</div>' +
@@ -1605,6 +1712,11 @@ function populate_Mandate(data) {
           '</td>' +
           '</tr>'
       );
+      if (target[i].status == 'signed') {
+        document.getElementById(i).style.color = 'green';
+      } else if (target[i].status == 'proposed') {
+        document.getElementById(i).style.color = 'orange';
+      }
     }
   }
 }
@@ -1621,8 +1733,8 @@ function populate_Files(data) {
         console.log('Target File type', target[i].type);
 
         table_files.append(
-          '<tr class="mandate-card mb-4"  >' +
-            '<td class="mandate-td td-img">' +
+          '<tr style="width: 100%;display:flex;" class="mandate-card mb-4"  >' +
+            '<td style="align-self: flex-start;" class="mandate-td td-img">' +
             '<div class="mandate-img">' +
             '<div class="wrapper">' +
             '<img class= "image--cover" src="' +
@@ -1630,8 +1742,8 @@ function populate_Files(data) {
             '">' +
             '</div>' +
             '</td>' +
-            '<td>' +
-            '<div style="padding-left:10px;">' +
+            '<td style="width: 350px; margin-left:50px; align-self: center;">' +
+            '<div>' +
             '<a class="my-0" style="cursor:pointer;" href="' +
             target[i].url +
             '"  onclick="openurl("' +
@@ -1640,7 +1752,7 @@ function populate_Files(data) {
             target[i].file_type +
             '</a><br>' +
             '<small class="text-muted">' +
-            target[i].created_on +
+            target[i].created_on.showdate +
             '</small>' +
             '</div>' +
             '</td>' +
@@ -1656,85 +1768,100 @@ function populate_Files(data) {
 function populate_Investor(data) {
   console.log('POPULATE INVESTOR KA DIV HAI YEH ', data);
 
-  if (data.fundraiser.sub_engagements) {
-    // if (data.fundraiser.sub_engagements.length > 0) {
-    $('#investor_no_people').hide();
+  $('#investor_approached_list').empty();
 
+  if (data.fundraiser.sub_engagements) {
+    $('#investor_no_people').hide();
     $('#investor_approached_list').show();
-    alert('populate references function called');
-    var target = data.fundraiser.sub_engagements;
-    $('#investor_approached_list').empty();
-    for (var i = 0; i < target.length; i++) {
-      if (i == target.length - 1) {
-        var li =
-          '<li class="list-group-item d-flex justify-content-between lh-condensed"   >' +
-          '<div style="display:flex;flex-direction:row">' +
-          '<div style="display:inline-flex";>' +
-          '<div>' +
-          '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
-          target[i].company_to.to_logo +
-          '"></img>' +
-          '</div>' +
-          '<div style="padding-left:10px;">' +
-          '<a class="my-0" style="cursor:pointer;" href="' +
-          target[i].company_to.to_link +
-          '"  onclick="openurl("' +
-          target[i].company_to.to_link +
-          '")">' +
-          target[i].company_to.to_name +
-          '</a><br>' +
-          '<small class="text-muted">' +
-          target[i].company_to.to_subtext +
-          '</small>' +
-          '</div>' +
-          '</div>' +
-          '<div>' +
-          '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
-          target[i].company_to.to_id +
-          '")">Edit</span>' +
-          '</div>' +
-          '</div>' +
-          '</li>';
-        $('#investor_approached_list').append(li);
-      } else {
-        var li =
-          '<li class="list-group-item d-flex justify-content-between lh-condensed"  style="border-bottom:3px solid #C5C0C0" >' +
-          '<div style="display:flex;flex-direction:row">' +
-          '<div style="display:inline-flex";>' +
-          '<div>' +
-          '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
-          target[i].company_to.to_logo +
-          '"></img>' +
-          '</div>' +
-          '<div style="padding-left:10px;">' +
-          '<a class="my-0" style="cursor:pointer;" href="' +
-          target[i].company_to.to_link +
-          '"  onclick="openurl("' +
-          target[i].company_to.to_link +
-          '")">' +
-          target[i].company_to.to_name +
-          '</a><br>' +
-          '<small class="text-muted">' +
-          target[i].company_to.to_subtext +
-          '</small>' +
-          '</div>' +
-          '</div>' +
-          '<div>' +
-          '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
-          target[i].company_to.to_id +
-          '")">Edit</span>' +
-          '</div>' +
-          '</div>' +
-          '</li>';
-        $('#investor_approached_list').append(li);
-      }
+  } else {
+    $('#investor_no_people').show();
+    $('#investor_approached_list').hide();
+  }
+
+  alert('populate references function called');
+  var target = data.fundraiser.sub_engagements;
+
+  for (var i = 0; i < target.length; i++) {
+    if (i == target.length - 1) {
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed"   >' +
+        '<div style="display:flex;flex-direction:row">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].company_to.to_logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].company_to.to_link +
+        '"  onclick="openurl("' +
+        target[i].company_to.to_link +
+        '")">' +
+        target[i].company_to.to_name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].company_to.to_subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].company_to.to_id +
+        '")">Edit</span>' +
+        '</div>' +
+        '</div>' +
+        '</li>';
+      $('#investor_approached_list').append(li);
+    } else {
+      var li =
+        '<li class="list-group-item d-flex justify-content-between lh-condensed"  style="border-bottom:3px solid #C5C0C0" >' +
+        '<div style="display:flex;flex-direction:row">' +
+        '<div style="display:inline-flex";>' +
+        '<div>' +
+        '<img class="rounded-circle img-fluid" width=50 height=50 src="' +
+        target[i].company_to.to_logo +
+        '"></img>' +
+        '</div>' +
+        '<div style="padding-left:10px;">' +
+        '<a class="my-0" style="cursor:pointer;" href="' +
+        target[i].company_to.to_link +
+        '"  onclick="openurl("' +
+        target[i].company_to.to_link +
+        '")">' +
+        target[i].company_to.to_name +
+        '</a><br>' +
+        '<small class="text-muted">' +
+        target[i].company_to.to_subtext +
+        '</small>' +
+        '</div>' +
+        '</div>' +
+        '<div>' +
+        '<span style="cursor:pointer;" class="text-muted" onclick="editpeople("' +
+        target[i].company_to.to_id +
+        '")">Edit</span>' +
+        '</div>' +
+        '</div>' +
+        '</li>';
+      $('#investor_approached_list').append(li);
     }
   }
-  // }
 }
 
 let exlcude_investor_array = [];
 function populate_exclusion_list(data) {
+  console.log('ME HU EXCLUDED INV KA LIST', data.fundraiser.excluded_investor);
+
+  $('#investor_exclusion_list').empty();
+
+  if (!data.fundraiser.excluded_investor) {
+    $('#exclusion_list_no_people').show();
+    $('#investor_exclusion_list').hide();
+  } else {
+    $('#exclusion_list_no_people').hide();
+    $('#investor_exclusion_list').show();
+  }
+
   if (data.fundraiser.excluded_investor) {
     exlcude_investor_array.push(
       ...data.fundraiser.excluded_investor.map((obj) => {
@@ -1861,6 +1988,9 @@ function handleCurrency(currency) {
       break;
     case 'percentage':
       sign = '%';
+      break;
+    case 'amount':
+      sign = '/-';
       break;
   }
   return sign;

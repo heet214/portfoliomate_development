@@ -143,7 +143,7 @@
                                             <br>
                                             <br>
                                             <label for="approachedNote"><b>Note</b></label>
-                                            <textarea class="form-control" id="approachedNote" rows="3"></textarea>
+                                            <textarea class="form-control" id="approachedNote" name="approachedNote" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -166,18 +166,22 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                
                                     <div class="modal-body">
+                                        <form class="needs-validation" novalidate>
                                         <div class="form-group">
                                             <label for="interestedNote"><b>Note</b></label>
                                             <textarea class="form-control" id="interestedNote" rows="3"></textarea>
                                         </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" id="saveInterested" class="btn btn-primary">Save
+                                                changes</button>
+                                        </div>
+                                    </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="button" id="saveInterested" class="btn btn-primary">Save
-                                            changes</button>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -234,35 +238,37 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    <div class="form-group">
                                     <div class="modal-body">
-                                        <div class="form-group">
+                                        
                                             <div class="dateandtime"
                                                 style="display: flex;align-items: center;justify-content: space-between;">
                                                 <div class="date">
                                                     <label for="meetdate"><b>Date:</b></label>
-                                                    <input type="date" id="meetingreScheduleddate" name="meetdate">
+                                                    <input type="date" id="meetingreScheduleddate" name="meetdate" required>
                                                 </div>
                                                 <div class="time"> <label for="meettime"><b>Time:</b></label>
-                                                    <input type="time" id="meetingreScheduledtime" name="meettime">
+                                                    <input type="time" id="meetingreScheduledtime" name="meettime" required>
                                                 </div>
                                             </div>
                                             <br>
                                             <label for="meetlink"><b>Meet Link:</b></label>
                                             <input type="url" id="meetingreScheduledlink" style="width:23.5rem"
-                                                name="meetlink">
+                                                name="meetlink" required>
                                             <br>
                                             <br>
                                             <label for="meetingScheduledNote"><b>Note</b></label>
                                             <textarea class="form-control" id="meetingreScheduledNote"
-                                                rows="3"></textarea>
-                                        </div>
+                                                rows="3" ></textarea>
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="button" id="saveMeetreScheduled" class="btn btn-primary">Save
+                                        <button type="submit" id="saveMeetreScheduled" class="btn btn-primary">Save
                                             changes</button>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -417,7 +423,9 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="Note"><b>Upload File</b></label><br>
-                                            <input type="file"><br><br>
+                                            <input type="file" onchange="termSheetReceivedHandle(event)">
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="termSheetReceivedSave()">Upload</button><br><br>
                                             <label for="Note"><b>Note</b></label>
                                             <textarea class="form-control" id="receivedNote" rows="3"></textarea>
                                         </div>
@@ -445,15 +453,19 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="Note"><b>Upload File</b></label><br>
-                                            <input type="file" id="termSheetSignedFile" onchange="termSheetSignedHandle(event)"><br><br>
+
+                                            <input type="file" id="termSheetSignedFile"
+                                                onchange="termSheetSignedHandle(event)"><button type="button"
+                                                class="btn btn-primary"
+                                                onclick="termSheetSignedSave()">Upload</button><br><br>
                                             <label for="Note"><b>Note</b></label>
-                                            <textarea class="form-control" id="signNote" rows="3"></textarea>
+                                            <textarea class="form-control" id="signNote" rows="3" ></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="button" id="saveSigned" class="btn btn-primary" >Save
+                                        <button type="button" id="saveSigned" class="btn btn-primary">Save
                                             changes</button>
                                     </div>
                                 </div>
@@ -515,28 +527,30 @@
                             </div>
                         </div>
 
-                        
+
                         <!-- NOT APPROACHED HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
                             <div class="status-header" id="notApproached-header">
-                            <div class="header-title">Not Approached</div>
-                            <div id="notApproached-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush notApproached-container" style="list-style-type: none;">
-                            </ul>
-                        </div>
+                                <div class="header-title">Not Approached</div>
+                                <div id="notApproached-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush notApproached-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- APPROACHED HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
                             <div class="status-header" id="Approached-header">
-                            <div class="header-title">Approached</div>
-                            <div id="Approached-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush Approached-container" style="list-style-type: none;">
-                                <!-- <div class="Approached-card">
+                                <div class="header-title">Approached</div>
+                                <div id="Approached-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush Approached-container"
+                                    style="list-style-type: none;">
+                                    <!-- <div class="Approached-card">
                                     <div class="Approached-card-header">
                                         <div class="mandate_id">2022|Nov|07,17:05 PM</div>
                                         <div class="dropdown">
@@ -549,8 +563,8 @@
                                             </div>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <h6 class="dropdown-header">Move to</h6>
-                                                <a class="dropdown-item" href="#">Approached</a>
-                                                <a class="dropdown-item" href="#">Interested</a>
+                                                <a class="dropdown-item" href="#" >Approached</a>
+                                                <a class="dropdown-item" href="#" >Interested</a>
                                                 <a class="dropdown-item" href="#">Not Interested</a>
                                                 <a class="dropdown-item" href="#">Meeting Scheduled</a>
                                                 <a class="dropdown-item" href="#">Negotiation</a>
@@ -595,9 +609,12 @@
 
 
 
-                                </div> -->
-                                <!-- <div class="content">
+                                </div>
+                                <div class="content">
                                     <div style="padding:0.3rem;">
+                                        <div class="edit-details">
+                                            <div><img src="/assets/re-evaluation-icon.png" style="width:1.5rem ;"/></div>
+                                        </div>
                                         <div class="status-details">
                                             <div class="lastmodified-details" style="display: flex;
                                         justify-content: space-between;
@@ -607,6 +624,18 @@
                                                     style="margin:0.2rem;font-size: 0.8rem;font-weight: 400;">
                                                     12/10/22 45:22:00
                                                 </div>
+                                            </div>
+                                            <div class="file-details" style="display:flex;flex-direction: column;">
+                                            <div style="font-size:0.8rem;font-weight: 600;">File</div>
+                                            <a href="https://firebasestorage.googleapis.com/v0/b/portfoliomate-e14a8.appspot.com/o/pdf-test.pdf?alt=media" target="_blank">
+                                            <div style="display: flex;
+                                            justify-content: space-between;
+                                            align-items: center;" class="file-container"  >
+
+                                                <img src="/assets/file_icon.png"/>
+                                                <div class="file-name-container">FSJLDKLSKFsgdfsdfgsfgergegafgdfgsdfgsdfgsdfL</div>
+                                            </div>
+                                        </a>
                                             </div>
                                             <div class="content-details" style="margin-top:0.2rem">
                                                 <div style="font-size:0.8rem;font-weight: 600;">Comments</div>
@@ -620,20 +649,21 @@
                                 </div> -->
 
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                        </div>
-                        
+
                         <!-- INTERESTED HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
                             <div class="status-header" id="Interested-header">
-                            <div class="header-title">Interested</div>
-                            <div id="Interested-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush Interested-container" style="list-style-type: none;">
-                            </ul>
-                        </div>
+                                <div class="header-title">Interested</div>
+                                <div id="Interested-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush Interested-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- NOT INTERESTED HOLDER -->
@@ -641,23 +671,23 @@
                             <div class="status-header" id="notInterested-header">
                                 <div class="header-title">Not Interested</div>
                                 <div id="notInterested-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush notInterested-container"
-                                style="list-style-type: none;">
-                            </ul>
-                        </div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush notInterested-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- MEET HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
                             <div class="status-header" id="meet-header">
-                            <div class="header-title">Meeting Scheduled</div>
-                            <div id="meet-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush meet-container" style="list-style-type: none;">
-                                <!-- <div class="Approached-card">
+                                <div class="header-title">Meeting Scheduled</div>
+                                <div id="meet-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush meet-container" style="list-style-type: none;">
+                                    <!-- <div class="Approached-card">
                                     <div class="Approached-card-header">
                                         <div class="mandate_id">2022|Nov|07,17:05 PM</div>
                                         <div class="dropdown">
@@ -752,33 +782,34 @@
                                         </div>
                                     </div>
                                 </div> -->
-                            </ul>
-                        </div>
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- RESCHEDULE HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
                             <div class="status-header" id="rescheduled-header">
-                            <div class="header-title">Rescheduled</div>
-                            <div id="reScheduled-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush rescheduled-container" style="list-style-type: none;">
-                            </ul>
-                        </div>
+                                <div class="header-title">Rescheduled</div>
+                                <div id="reScheduled-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush rescheduled-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- INTEREST RECEIVED UNDER DICUSSION HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
                             <div class="status-header" id="irud-header">
-                            <div class="header-title">Interest Received Under Dicussion</div>
-                            <div id="irud-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush InterestReceivedUnderDiscussion-container"
-                                style="list-style-type: none;">
-                            </ul>
-                        </div>
+                                <div class="header-title">Interest Received Under Dicussion</div>
+                                <div id="irud-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush InterestReceivedUnderDiscussion-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- PITCHING DONE HOLDER -->
@@ -788,84 +819,87 @@
                                 <div id="pitchingDone-number">0</div>
                             </div>
                             <div class="status-holders">
-                            <ul class="list-group list-group-flush pitchingDone-container"
-                                style="list-style-type: none;">
-                            </ul>
-                        </div>
+                                <ul class="list-group list-group-flush pitchingDone-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- SOFT COMMITMENT HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
-                        <div class="status-header" id="commit-header">
-                            <div class="header-title">Soft Commitment</div>
-                            <div id="commit-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush softCommitment-container" style="list-style-type: none;">
-                            </ul>
-                        </div>
+                            <div class="status-header" id="commit-header">
+                                <div class="header-title">Soft Commitment</div>
+                                <div id="commit-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush softCommitment-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- DD HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
-                        <div class="status-header" id="dd-header">
-                            <div class="header-title">Due Diligence</div>
-                            <div id="dd-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush dd-container" style="list-style-type: none;">
-                            </ul>
-                        </div>
+                            <div class="status-header" id="dd-header">
+                                <div class="header-title">Due Diligence</div>
+                                <div id="dd-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush dd-container" style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- TERM SHEET RECEIVED HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
-                        <div class="status-header" id="received-header">
-                            <div class="header-title">Term Sheet Received</div>
-                            <div id="receive-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush termSheetReceived-container"
-                                style="list-style-type: none;">
-                            </ul>
-                        </div>
+                            <div class="status-header" id="received-header">
+                                <div class="header-title">Term Sheet Received</div>
+                                <div id="receive-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush termSheetReceived-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- TERM SHEET SIGNED HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
-                        <div class="status-header" id="sign-header">
-                            <div class="header-title">Term Sheet Signed</div>
-                            <div id="sign-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush termSheetSigned-container" style="list-style-type: none;">
-                            </ul>
-                        </div>
+                            <div class="status-header" id="sign-header">
+                                <div class="header-title">Term Sheet Signed</div>
+                                <div id="sign-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush termSheetSigned-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- FUNDS TRANSFERED HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
-                        <div class="status-header" id="ft-header">
-                            <div class="header-title">Funds Transfered</div>
-                            <div id="ft-number">0</div>
-                        </div>
-                        <div class="status-holders">
-                            <ul class="list-group list-group-flush fundsTransfered-container"
-                                style="list-style-type: none;">
-                            </ul>
-                        </div>
+                            <div class="status-header" id="ft-header">
+                                <div class="header-title">Funds Transfered</div>
+                                <div id="ft-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush fundsTransfered-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- ROUND HOLDER -->
                         <div style="display:flex;flex-direction:column;width: auto;">
-                        <div class="status-header" id="round-closed-header">
-                            <div class="header-title">Round Closed</div>
-                            <div id="rc-number">0</div>
-                        </div><div class="status-holders">
-                            <ul class="list-group list-group-flush roundClosed-container"
-                                style="list-style-type: none;">
-                            </ul>
-                        </div>
+                            <div class="status-header" id="round-closed-header">
+                                <div class="header-title">Round Closed</div>
+                                <div id="rc-number">0</div>
+                            </div>
+                            <div class="status-holders">
+                                <ul class="list-group list-group-flush roundClosed-container"
+                                    style="list-style-type: none;">
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
