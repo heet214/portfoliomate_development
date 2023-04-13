@@ -89,8 +89,15 @@
 
 .image--cover {
   width: 52px;
-  height: 52px;
+  max-height: 52px;
   border-radius: 0;
+  object-fit: cover;
+  object-position: center right;
+}
+.image--cover-innovador {
+  width: 52px;
+  height: 52px;
+  border-radius: 360px;
   object-fit: cover;
   object-position: center right;
 }
@@ -101,9 +108,20 @@
 }
 
 td {
-  width: 7rem;
-  padding: 7% 5% 7% 5%;
+  padding: 2% 2% 2% 2%;
 }
+.company_title_holder {
+  width: 12rem;
+  margin-left: 25px;
+}
+.location-holder {
+  width: 7rem;
+}
+.add-button {
+  width: 5rem;
+  margin-left: 25px;
+}
+
 .mandate-card {
   width: 75%;
   height: 4.7rem;
@@ -173,7 +191,26 @@ td {
 .engagement-type-close-div:hover {
   background-color: #c41e3a;
 }
-
+.wrapper {
+  width: 110%;
+  border-radius: 20px;
+}
+.row-cells {
+  min-height: 80px;
+  border-bottom: 0.5px solid lightgrey;
+}
+.modal-content {
+  width: 120%;
+  border-radius: 20px;
+  max-height: 650px;
+}
+.modal-body {
+  overflow-y: scroll;
+}
+.modal-header {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
 .card-body_engagement {
   padding: 10px;
   background-color: #514ded;

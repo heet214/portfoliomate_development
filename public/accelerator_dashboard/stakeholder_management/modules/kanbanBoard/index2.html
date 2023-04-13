@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -101,7 +102,7 @@
 
                 </div>
                 <div class="container">
-                    <div id="main_content_holder">
+                    <div  id="main_content_holder">
                         <div class="kanban_content">
                             <div class="kanban_header">
                                 <nav class="kanban_nav">
@@ -624,6 +625,24 @@
                                             <textarea class="form-control" id="ddNote" rows="3"></textarea>
                                         </div> -->
                                                 <form class="row g-3 needs-validation" novalidate onsubmit="return false;">
+                                                    <div class="col-md-8 mb-4">
+                                                        <label for="validationCustom02" class="form-label">Upload
+                                                            File</label>
+            
+                                                        <input type="file" id="termSheetSignedFile"
+                                                        onchange="dueDeligenceHandle(event)" required
+                                                            class="form-control">
+                                                        <div class="invalid-feedback">
+                                                            Please upload a file!
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <button type="button" class="btn btn-primary"
+                                                        onclick="dueDeligenceSave()">Upload</button>
+                                                        </div>
+
+
 
                                                     <div class="col-md-12 mb-4">
                                                         <label for="validationCustom02" class="form-label">Note</label>
@@ -1372,4 +1391,4 @@
 
 </body>
 
-</html>
+</html> 

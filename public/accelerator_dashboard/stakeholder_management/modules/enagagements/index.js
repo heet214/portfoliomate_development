@@ -233,7 +233,7 @@ $('document').ready(function () {
       //populate
     },
     error: function (request, error) {
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
       $('.custom-file-label').text('Upload Logo to Proceed');
       $('.custom-file-label').css({ color: 'maroon' });
     },
@@ -276,7 +276,7 @@ function handleMandateSave() {
       mandate_url.push(data['image']);
     },
     error: function (request, error) {
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
       $('.custom-file-label').text('Upload Logo to Proceed');
       $('.custom-file-label').css({ color: 'maroon' });
     },
@@ -384,7 +384,7 @@ async function handleFileSave() {
         console.log(data['image']);
       },
       error: function (request, error) {
-        alert('Request: ' + JSON.stringify(request));
+        console.log('Request: ' + JSON.stringify(request));
         $('.custom-file-label').text('Upload Logo to Proceed');
         $('.custom-file-label').css({ color: 'maroon' });
       },
@@ -588,11 +588,11 @@ function pushObjectEngagement(engagement) {
     dataType: 'json',
     success: function (data) {
       location.reload();
-      alert('reloading');
+      console.log('reloading');
       console.log(data);
     },
     error: function (request, error) {
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
       $('.custom-file-label').text('Upload Logo to Proceed');
       $('.custom-file-label').css({ color: 'maroon' });
     },
@@ -826,7 +826,7 @@ function handleSingleEngagementClose() {
 }
 
 function investor_Modal() {
-  alert('function called');
+  console.log('function called');
   $.ajax({
     url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
     type: 'POST',
@@ -842,7 +842,7 @@ function investor_Modal() {
 let investorsToShow;
 function populate_Investor_modal(data) {
   var table = $('#populate_investor_modal');
-  alert('working populate');
+  console.log('working populate');
   table.empty();
   if (single_engagement_object.fundraiser.sub_engagements) {
     var addedCompanies =
@@ -874,11 +874,11 @@ function populate_Investor_modal(data) {
   for (i = 0; i < investorsToShow.length; i++) {
     if (investorsToShow[i].stakeholder_type == 'innovador') {
       table.append(
-        '<tr class="shadow">' +
+        '<tr class="row-cells">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
-          '<img class= "image--cover" src="' +
+          '<img class= "image--cover-innovador" src="' +
           investorsToShow[i].logo +
           '">' +
           '</div>' +
@@ -889,11 +889,11 @@ function populate_Investor_modal(data) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="location-holder">' +
           investorsToShow[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" id="' +
+          '<td><Button class="add-button btn btn-primary" id="' +
           i +
           '" onclick="createSubEngagement(\'' +
           i +
@@ -915,7 +915,7 @@ function populate_Investor_modal(data) {
       investorsToShow[i].stakeholder_type == 'fund-vc-pe'
     ) {
       table.append(
-        '<tr class="shadow">' +
+        '<tr class="row-cells">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
@@ -930,11 +930,11 @@ function populate_Investor_modal(data) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="location-holder">' +
           investorsToShow[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" id="' +
+          '<td><Button class="add-button btn btn-primary" id="' +
           i +
           '" onclick="createSubEngagement(\'' +
           i +
@@ -966,7 +966,7 @@ function populate_Investor_modal(data) {
 }
 
 function exclusion_investor_Modal() {
-  alert('exclusion function called');
+  console.log('exclusion function called');
   $.ajax({
     url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/getStakeHolders',
     type: 'POST',
@@ -981,16 +981,16 @@ function exclusion_investor_Modal() {
 
 function populate_exclusion_investor_modal(data) {
   var table = $('#populate_Exclusion_investor_modal');
-  alert('excluion working populate');
+  console.log('excluion working populate');
   table.empty();
   for (i = 0; i < data.length; i++) {
     if (data[i].stakeholder_type == 'innovador') {
       table.append(
-        '<tr class="shadow">' +
+        '<tr class="row-cells">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
-          '<img class= "image--cover" src="' +
+          '<img class= "image--cover-innovador" src="' +
           data[i].logo +
           '">' +
           '</div>' +
@@ -1001,11 +1001,11 @@ function populate_exclusion_investor_modal(data) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="location-holder">' +
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" id="' +
+          '<td><Button class="add-button btn btn-primary" id="' +
           i +
           '"onclick="excludeInvestor(\'' +
           i +
@@ -1027,7 +1027,7 @@ function populate_exclusion_investor_modal(data) {
       data[i].stakeholder_type == 'fund-vc-pe'
     ) {
       table.append(
-        '<tr class="shadow">' +
+        '<tr class="row-cells">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
@@ -1042,11 +1042,11 @@ function populate_exclusion_investor_modal(data) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="location-holder">' +
           data[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" id="' +
+          '<td><Button class="add-button btn btn-primary" id="' +
           i +
           '"onclick="excludeInvestor(\'' +
           i +
@@ -1358,7 +1358,7 @@ function handleMandateSaveUpdate() {
       mandate_url_update.push(data['image']);
     },
     error: function (request, error) {
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
       $('.custom-file-label').text('Upload Logo to Proceed');
       $('.custom-file-label').css({ color: 'maroon' });
     },
@@ -1463,7 +1463,7 @@ async function handleFileSaveUpdate() {
         console.log(data['image']);
       },
       error: function (request, error) {
-        alert('Request: ' + JSON.stringify(request));
+        console.log('Request: ' + JSON.stringify(request));
         $('.custom-file-label').text('Upload Logo to Proceed');
         $('.custom-file-label').css({ color: 'maroon' });
       },
@@ -1625,8 +1625,8 @@ function handleObjectUpdate() {
         'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateEngagement',
         data
       );
-      alert('updated data');
-      alert('redirecting to another page !!!');
+      console.log('updated data');
+      console.log('redirecting to another page !!!');
 
       location.reload();
 
@@ -1647,7 +1647,7 @@ function handleObjectUpdate() {
     error: function (request, error) {
       $('#loader_modal').modal('hide');
       location.reload();
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
     },
   });
 
@@ -1778,7 +1778,7 @@ function populate_Investor(data) {
     $('#investor_approached_list').hide();
   }
 
-  alert('populate references function called');
+  console.log('populate references function called');
   var target = data.fundraiser.sub_engagements;
 
   for (var i = 0; i < target.length; i++) {
@@ -1880,7 +1880,7 @@ function populate_exclusion_list(data) {
 
       $('#investor_exclusion_list').empty();
       $('#investor_exclusion_list').show();
-      alert('populate references function called');
+      console.log('populate references function called');
       var target = data.fundraiser.excluded_investor;
 
       for (var i = 0; i < target.length; i++) {

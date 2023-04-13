@@ -25,7 +25,7 @@ function stakeholder_selected(stakeholder_type) {
     switch (stakeholder_type) {
         case 'startup':
             {
-                alert("Getting " + stakeholder_type);
+                console.log("Getting " + stakeholder_type);
                 $("#startup_view_holder").show();
                 $("#investors_view_holder").hide();
                 $("#innovadors_view_holder").hide();
@@ -35,7 +35,7 @@ function stakeholder_selected(stakeholder_type) {
 
         case 'fund-vc-pe':
             {
-                alert("Getting " + stakeholder_type);
+                console.log("Getting " + stakeholder_type);
                 $("#startup_view_holder").hide();
                 $("#investors_view_holder").show();
                 $("#innovadors_view_holder").hide();
@@ -45,7 +45,7 @@ function stakeholder_selected(stakeholder_type) {
 
         case 'innovador':
             {
-                alert("Getting " + stakeholder_type);
+                console.log("Getting " + stakeholder_type);
                 $("#startup_view_holder").hide();
                 $("#investors_view_holder").hide();
                 $("#innovadors_view_holder").show();
@@ -60,8 +60,80 @@ function stakeholder_selected(stakeholder_type) {
 
 var startups, investors, innovadors;
 
+function populate_investors_table(stakeholders) {
+    //console.log("Populating Startups Table");
+    //console.log("Populating Tables ", stakeholders);
+    var table = $("#investor_table tbody");
+    table.empty();
+    investors = stakeholders;
+    var itemshow = ['disabled', 'disabled', 'disabled', 'disabled']
+    for (var i = 0; i < investors.length; i++) {
+        var status_badge_color = 'bg-danger';
+        console.log(investors[i].brand_name, startups[i].status);
+        if (investors[i].status == 'Profile Created') {
+            itemshow[0] = ''; //Complete
+            itemshow[1] = 'disabled'; // View
+            itemshow[2] = 'disabled'; // Edit
+            itemshow[3] = 'disabled'; // Enagegements
+            itemshow[4] = ''; // Delete
+            itemshow[5] = '';
+            status_badge_color = 'bg-notready0';
+        }
+        else if (investors[i].status == 'Profile Completed') {
+            itemshow[0] = 'disabled'; //Complete
+            itemshow[1] = ''; // View
+            itemshow[2] = ''; // Edit
+            itemshow[3] = 'disabled'; // Enagegements
+            itemshow[4] = ''; // Delete
+            itemshow[5] = '';
+            status_badge_color = 'bg-notready1';
+        }
+
+        table.append(
+            '<tr class="shadow">' +
+            "<td>" +
+            '<div class="company_logo_title_holder">' +
+            '<div class="circular--landscape">' +
+            '<img src="' + investors[i].logo + '">' +
+            '</div>' +
+            '<div class="company_title_holder">' + investors[i].brand_name + '</div>' +
+            '</div>' +
+            "</td>" +
+            "<td>" + investors[i].company_sector + "</td>" +
+            "<td>" + investors[i].stakeholder_location + "</td>" +
+            '<td><span class="badge ' + status_badge_color + '">' + investors[i].status + '</span></td>' +
+            '<td>' +
+            '<div class="dropdown dropleft">' +
+            '<i class="fa-solid fa-ellipsis" class="dropdown-toggle" data-toggle="dropdown"></i>' +
+            '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+            '<h6 class="dropdown-header">Just for ' + investors[i].company_name + '</h6>' +
+            '<div onclick="complete_stakeholder_profile(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[0] + ' ">Complete Profile</div>' +
+            '<div onclick="view_stakeholder_profile(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[1] + '">View Profile</div>' +
+            '<div onclick="edit_stakeholder_profile(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[2] + '">Edit Profile</div>' +
+            '<div onclick="start_enagagement(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[3] + '">Enagements</div>' +
+            '<div onclick="delete_stakeholder(\'' + investors[i].id + '\',false,null)" class="dropdown-item ' + itemshow[4] + '">Delete Stakeholder</div>' +
+            '</div>' +
+            '</div>' +
+            '</td>' +
+            "</tr>");
+
+            $("#investor_list_search_box").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#investor_table tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        
+    }
+
+    
+    
+}
+
+
+
 function populate_startups_table(stakeholders) {
-    //alert("Populating Startups Table");
+    //console.log("Populating Startups Table");
     //console.log("Populating Tables ", stakeholders);
     var table = $("#startup_table tbody");
     table.empty();
@@ -121,7 +193,7 @@ function populate_startups_table(stakeholders) {
                 '</td>' +
                 "</tr>");
         }
-
+        
         $("#startup_list_search_box").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $("#startup_table tbody tr").filter(function () {
@@ -133,74 +205,10 @@ function populate_startups_table(stakeholders) {
 
 }
 
-function populate_investors_table(stakeholders) {
-    //alert("Populating Startups Table");
-    //console.log("Populating Tables ", stakeholders);
-    var table = $("#investor_table tbody");
-    table.empty();
-    investors = stakeholders;
-    var itemshow = ['disabled', 'disabled', 'disabled', 'disabled']
-    for (var i = 0; i < investors.length; i++) {
-        var status_badge_color = 'bg-danger';
-        console.log(investors[i].brand_name, startups[i].status);
-        if (investors[i].status == 'Profile Created') {
-            itemshow[0] = ''; //Complete
-            itemshow[1] = 'disabled'; // View
-            itemshow[2] = 'disabled'; // Edit
-            itemshow[3] = 'disabled'; // Enagegements
-            itemshow[4] = ''; // Delete
-            itemshow[5] = '';
-            status_badge_color = 'bg-notready0';
-        }
-        else if (investors[i].status == 'Profile Completed') {
-            itemshow[0] = 'disabled'; //Complete
-            itemshow[1] = ''; // View
-            itemshow[2] = ''; // Edit
-            itemshow[3] = 'disabled'; // Enagegements
-            itemshow[4] = ''; // Delete
-            itemshow[5] = '';
-            status_badge_color = 'bg-notready1';
-        }
 
-        table.append(
-            '<tr class="shadow">' +
-            "<td>" +
-            '<div class="company_logo_title_holder">' +
-            '<div class="circular--landscape">' +
-            '<img src="' + investors[i].logo + '">' +
-            '</div>' +
-            '<div class="company_title_holder">' + investors[i].brand_name + '</div>' +
-            '</div>' +
-            "</td>" +
-            "<td>" + investors[i].company_sector + "</td>" +
-            "<td>" + investors[i].stakeholder_location + "</td>" +
-            '<td><span class="badge ' + status_badge_color + '">' + investors[i].status + '</span></td>' +
-            '<td>' +
-            '<div class="dropdown dropleft">' +
-            '<i class="fa-solid fa-ellipsis" class="dropdown-toggle" data-toggle="dropdown"></i>' +
-            '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
-            '<h6 class="dropdown-header">Just for ' + investors[i].company_name + '</h6>' +
-            '<div onclick="complete_stakeholder_profile(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[0] + ' ">Complete Profile</div>' +
-            '<div onclick="view_stakeholder_profile(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[1] + '">View Profile</div>' +
-            '<div onclick="edit_stakeholder_profile(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[2] + '">Edit Profile</div>' +
-            '<div onclick="start_enagagement(\'' + investors[i].id + '\')" class="dropdown-item ' + itemshow[3] + '">Enagements</div>' +
-            '<div onclick="delete_stakeholder(\'' + investors[i].id + '\',false,null)" class="dropdown-item ' + itemshow[4] + '">Delete Stakeholder</div>' +
-            '</div>' +
-            '</div>' +
-            '</td>' +
-            "</tr>");
-    }
-
-    $("#investor_list_search_box").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#investor_table tbody tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-}
 
 function populate_innovadors_table(stakeholders) {
-    alert("Populating Startups Table");
+    console.log("Populating Startups Table");
     console.log("Populating Tables ", stakeholders);
     var table = $("#innovadors_table tbody");
     table.empty();
@@ -248,14 +256,15 @@ function populate_innovadors_table(stakeholders) {
             '</div>' +
             '</td>' +
             "</tr>");
-    }
+    
 
-    $("#innovador_list_search_box").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#innovadors_table tbody tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        $("#innovador_list_search_box").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#innovadors_table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         });
-    });
+    }
 }
 
 function complete_stakeholder_profile(stakeholder_id) {
@@ -275,7 +284,7 @@ function close_complete_startup_profile_dialog() {
 }
 
 function delete_stakeholder(stakeholder_id, should_delete, stakeholder) {
-    alert("We are entering delete now, with should_delete = " + should_delete);
+    console.log("We are entering delete now, with should_delete = " + should_delete);
     if (should_delete) {
         //post receiving the object , initialize with delete details
         var stakeholder = stakeholder[0];
@@ -308,9 +317,9 @@ function refresh_page() {
 
 function setup_stakeholder_management_operator_module(makethecall, returned_object) {
     var stakeholders = [];
-    //alert(makethecall);
+    //console.log(makethecall);
     if (makethecall) {
-        //alert("Setting Up Stakeholder Layout");
+        //console.log("Setting Up Stakeholder Layout");
         get_stakeholders('setup_stakeholder_management', { callback: false }, setup_stakeholder_management_operator_module);
 
     }

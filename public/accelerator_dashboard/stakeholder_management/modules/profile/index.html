@@ -235,11 +235,10 @@
                       tabindex="-1"
                       role="dialog">
                       <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                       <div class="modal-content" >
                           <div class="modal-header">
                             <h5 class="modal-title">Existing User</h5>
-                            <input class="form-control stakeholders_search_box" id="user_list_search_box"
-                            type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                            
                             <button
                               type="button"
                               class="close"
@@ -249,7 +248,11 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body" id="populate_stake_holders">
+                          <div class="modal-body" style="overflow-y: scroll;" id="populate_stake_holders">
+                            <div class="modal-search-box"> 
+                              <input class="form-control stakeholders_search_box" id="user_list_search_box"
+                            type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                            </div>
                             <ul
                               id="populate_existing_people"
                               class="list-group mb-3"></ul>
@@ -334,11 +337,10 @@
                       tabindex="-1"
                       role="dialog">
                       <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title">Modal <title></title></h5>
-                            <input class="form-control stakeholders_search_box" id="reference_list_search_box"
-                              type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
+                            <h5 class="modal-title">Refernece <title></title></h5>
+                            
                             <button
                               type="button"
                               class="close"
@@ -349,10 +351,12 @@
                             </button>
                           </div>
                           <div class="modal-body" id="populate_stake_holders">
+                            <input class="form-control stakeholders_search_box" id="reference_list_search_box"
+                              type="text" placeholder="Search Startups" style="margin-bottom: 1vh;">
                             <ul
                               id="populate_existing_refference"
                               class="list-group mb-3">
-                              <li>Test</li>
+                              
                             </ul>
                           </div>
                           <div class="modal-footer">

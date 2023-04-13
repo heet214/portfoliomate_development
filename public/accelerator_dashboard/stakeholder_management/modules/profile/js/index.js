@@ -11,7 +11,7 @@ $('document').ready(function () {
   if (is_logged_in()) {
     $('#stakeholders_no_people').hide();
     var params = get_params_from_url();
-    //alert("Reading Url");
+    //console.log("Reading Url");
     console.log(params);
     stakeholder_id = params.stakeholder_id;
     if (params.action == 'edit') {
@@ -33,7 +33,7 @@ $('document').ready(function () {
   if (is_logged_in()) {
     $('#stakeholders_no_refferences').hide();
     var params = get_params_from_url();
-    //alert("Reading Url");
+    //console.log("Reading Url");
     console.log(params);
     stakeholder_id = params.stakeholder_id;
     if (params.action == 'edit') {
@@ -128,7 +128,7 @@ function populate_profile(stakeholder) {
 
   //refference Check
   if (stakeholder.refferences) {
-    alert('first if check');
+    console.log('first if check');
     if (stakeholder.refferences.length > 0) {
       $('#stakeholders_no_refferences').hide();
       populate_refferences(stakeholder.refferences);
@@ -208,7 +208,7 @@ function populate_people(people) {
 //Populate refference div
 function populate_refferences(refferences) {
   $('#stakeholders_refference_list').show();
-  alert('populate refferences function called');
+  console.log('populate refferences function called');
   for (i = 0; i < refferences.length; i++) {
     console.log(refferences[i]);
     if (refferences[i].stakeholder_type == 'innovador') {
@@ -272,7 +272,7 @@ function populate_refferences(refferences) {
 }
 
 function openurl(url) {
-  alert(url);
+  console.log(url);
   window.location.href = url;
 }
 
@@ -306,7 +306,7 @@ $(document).ready(function () {
   //Make script DOM ready
   $('#refference_type_select').change(function () {
     //jQuery Change Function
-    alert('working');
+    console.log('working');
     var opval = $(this).val(); //Get value from select element
     if (opval == 'existing_refference') {
       //Compare it and if true
@@ -380,11 +380,11 @@ function display_data_innovadors(data_innovadors) {
       console.log(data_innovadors[i]);
 
       table.append(
-        '<tr class="shadow">' +
+        '<tr class="row-cells">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
-          '<img class= "image--cover" src="' +
+          '<img class= "image--cover-innovador" src="' +
           data_innovadors[i].logo +
           '">' +
           '</div>' +
@@ -395,11 +395,11 @@ function display_data_innovadors(data_innovadors) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="location-holder">' +
           data_innovadors[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="profile(\'' +
+          '<td><Button class=" add-button btn btn-primary" onclick="profile(\'' +
           data_innovadors[i].id +
           '\')"> Add </Button></td>' +
           '</tr>'
@@ -418,7 +418,7 @@ function display_data_innovadors(data_innovadors) {
 var data_refference_search_by_id = [];
 function display_data_refference(data_refference) {
   var table = $('#populate_existing_refference');
-  alert('working populate');
+  console.log('working populate');
   table.empty();
   for (i = 0; i < data_refference.length; i++) {
     if (data_refference[i].stakeholder_type == 'innovador') {
@@ -426,11 +426,11 @@ function display_data_refference(data_refference) {
       console.log(data_refference[i]);
 
       table.append(
-        '<tr class="shadow">' +
+        '<tr class="row-cells">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
-          '<img class= "image--cover" src="' +
+          '<img class= "image--cover-innovador" src="' +
           data_refference[i].logo +
           '">' +
           '</div>' +
@@ -441,12 +441,12 @@ function display_data_refference(data_refference) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="location-holder">' +
           data_refference[i].stakeholder_location +
           '</td>' +
           '</div>' +
           '<td>' +
-          '<Button class="btn btn-primary"' +
+          '<Button class="add-button btn btn-primary"' +
           ' onclick="refferences(\'' +
           data_refference[i].id +
           '\')">' +
@@ -461,7 +461,7 @@ function display_data_refference(data_refference) {
     ) {
       data_refference_search_by_id.push(data_refference[i]);
       table.append(
-        '<tr class="shadow">' +
+        '<tr class="row-cells">' +
           '<td>' +
           '<div class="company_logo_title_holder">' +
           '<div class="wrapper">' +
@@ -476,11 +476,11 @@ function display_data_refference(data_refference) {
           '</div>' +
           '</td>' +
           '<div>' +
-          '<td>' +
+          '<td class="location-holder">' +
           data_refference[i].stakeholder_location +
           '</td>' +
           '</div>' +
-          '<td><Button class="btn btn-primary" onclick="refferences(\'' +
+          '<td><Button class="add-button btn btn-primary" onclick="refferences(\'' +
           data_refference[i].id +
           '\')"> Add </Button></td>' +
           '</tr>'
@@ -525,7 +525,7 @@ function profile(id) {
     count = 1;
     console.log(count);
     temp_stakeholder.people.push(temp);
-    alert('Data Pushed');
+    console.log('Data Pushed');
     close_modal();
   } else {
     alert('User already Exists !!!');
@@ -549,7 +549,7 @@ function profile(id) {
     error: function (request, error) {
       $('#loader_modal').modal('hide');
       location.reload();
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
     },
   });
 }
@@ -557,7 +557,7 @@ function profile(id) {
 //add refference
 function refferences(id) {
   count = 1;
-  alert('refferences called');
+  console.log('refferences called');
   if (window.location.href.indexOf('#populate_existing_refference') != -1) {
     $('#populate_existing_refference').modal('show');
   }
@@ -586,7 +586,7 @@ function refferences(id) {
     count = 1;
     console.log(count);
     temp_refference.refferences.push(temp);
-    alert('Data Pushed');
+    console.log('Data Pushed');
     close_modal();
   } else {
     alert('User already Exists !!!');
@@ -610,7 +610,7 @@ function refferences(id) {
     error: function (request, error) {
       $('#loader_modal').modal('hide');
       location.reload();
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
     },
   });
 }
@@ -750,15 +750,15 @@ function submit_complete_profile() {
         'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/updateStakeHolder',
         data
       );
-      alert('updated data');
-      alert('redirecting to another page !!!');
+      console.log('updated data');
+      console.log('redirecting to another page !!!');
 
       location.replace('../../index.html');
     },
     error: function (request, error) {
       $('#loader_modal').modal('hide');
       location.reload();
-      alert('Request: ' + JSON.stringify(request));
+      console.log('Request: ' + JSON.stringify(request));
     },
   });
 }
