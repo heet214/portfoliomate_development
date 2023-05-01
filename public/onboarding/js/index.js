@@ -240,7 +240,7 @@ async function save_user_data(data) {
   console.log(user);
   $('#loader_modal').modal('show');
   await $.ajax({
-    url: 'http://localhost:5001/portfoliomate-e14a8/us-central1/createUser',
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/createUser',
     type: 'POST',
     data: user,
     dataType: 'json',

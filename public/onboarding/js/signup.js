@@ -75,7 +75,7 @@ async function hanleLogin() {
   console.log(user);
 
   await $.ajax({
-    url: 'http://localhost:5001/portfoliomate-e14a8/us-central1/loginUser',
+    url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/loginUser',
     type: 'POST',
     data: user,
     dataType: 'json',
