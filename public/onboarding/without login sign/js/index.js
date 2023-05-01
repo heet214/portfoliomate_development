@@ -138,14 +138,6 @@ function is_submission_valid(data) {
           alert('Enter Brand Name');
           return false;
         }
-        if (!data.email) {
-          alert('Enter Email Address');
-          return false;
-        }
-        if (!data.password) {
-          alert('Enter Password');
-          return false;
-        }
 
         delete data.fund_name;
         data.logo = user_data.logo;
@@ -213,12 +205,7 @@ function is_submission_valid(data) {
   }
 }
 
-async function save_user_data(data) {
-  let user = {
-    id: '',
-    email: '',
-    password: '',
-  };
+function save_user_data(data) {
   data.id = moment().format('YYYY|MMM|DD,HH:mm A');
   data.status = 'Profile Created';
 
@@ -233,29 +220,9 @@ async function save_user_data(data) {
 
   data.id = data.stakeholder_type + '_' + data.id;
 
-  user.id = data.id;
-  user.email = data.email;
-  user.password = data.password;
-  user.stakeholder_type = data.stakeholder_type;
-  console.log(user);
-  $('#loader_modal').modal('show');
-  await $.ajax({
-    url: 'http://localhost:5001/portfoliomate-e14a8/us-central1/createUser',
-    type: 'POST',
-    data: user,
-    dataType: 'json',
-    success: function (data) {
-      console.log('NEW USER CREATED', data);
-    },
-    error: function (request, error) {
-      console.log('Request: ' + JSON.stringify(request));
-      console.error('Error: ' + error);
-    },
-  });
-
   console.log(data);
-
-  await $.ajax({
+  $('#loader_modal').modal('show');
+  $.ajax({
     url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/createStakeHolder',
     type: 'POST',
     data: data,

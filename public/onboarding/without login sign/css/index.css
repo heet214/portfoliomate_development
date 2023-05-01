@@ -1,0 +1,104 @@
+body {
+    background: white;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+@media (max-width: 480px) {
+
+    #main_holder {
+        background: white;  
+    }
+
+   
+
+    #onboarding_holder {
+        background: white;
+        width: 100vw;
+        min-height: 75vh;
+        overflow-y: scroll;
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
+    #onboarding_card {
+        margin-top: 10vh;
+    }
+
+    #mobile_image_holder {
+        height: 25vh;
+    }
+
+    #image_holder {
+        max-height: 0vh;
+        width: 0vw;
+    }
+
+    .card-title {
+        font-size: x-large;
+    }
+
+    .bm {
+        margin-bottom: 1vh;
+    }
+
+    .bootstrap-select {
+        width: -webkit-fill-available !important;
+    }
+
+    .dropdown-menu {
+        width: -webkit-fill-available !important;
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    #main_holder {
+        display: inline-flex;
+        background: #F6F7F9;
+    }
+
+    #onboarding_holder {
+        background: #F6F7F9;
+        width: 40vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
+    #onboarding_card {
+        margin-top: 10vh;
+
+    }
+
+    #onboarding_form_div{
+        max-height: 60vh;
+        overflow-y: scroll;
+    }
+
+    #mobile_image_holder {
+        display: none;
+    }
+
+    #image_holder {
+        max-height: 100vh;
+        width: 60vw;
+    }
+
+    .card-title {
+        font-size: x-large;
+    }
+
+    .bm {
+        margin-bottom: 1vh;
+    }
+
+    .bootstrap-select {
+        width: -webkit-fill-available !important;
+    }
+
+    .dropdown-menu {
+        width: -webkit-fill-available !important;
+    }
+}

@@ -79,6 +79,12 @@
                 <div class="label">Stakeholders</div>
             </div>
 
+            <div class="menu_item_divider"></div>
+            <div class="main_menu_item" id="logout_button"> 
+                <i class="fa-solid fa-right-from-bracket" style="color:#3342AE"></i>
+                <div class="label">Log Out</div>
+            </div>
+
         </div>
         <div id="stakeholder_management_holder">
             <h3 id="header">Stakeholder Management</h3>
@@ -434,16 +440,29 @@
     </div>
 
     <script>
-
-        
+  
         $('#work_icon').click(function () {
             console.log("hello There")
             location.href = "../stakeholder_management/modules/kanbanBoard/index2.html"
         });
+
+          $('#logout_button').click(function () {
+            sessionStorage.removeItem("current_user")
+            location.reload()
+        });
+
+
         $('document').ready(function () {
+
+            const current_user = sessionStorage.getItem('current_user');
+            if(current_user == "null" || !current_user) {
+                return location.href = "../../onboarding/login.html"
+            }
+            alert("current user",current_user)
 
 
             if (is_logged_in()) {
+
 
                 setup_stakeholder_management_operator_module(true, []);
                 //align_stakeholder_object();

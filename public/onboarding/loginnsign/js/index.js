@@ -1,12 +1,14 @@
-function is_logged_in() {
+import { handleSignUp } from './signup';
+
+export function is_logged_in() {
   return true;
 }
-
 var stakeholder_type = '';
 var is_startup_sector_list_setup = false;
 var is_country_list_setup = false;
 
 function setup_onboarding_form(value) {
+  alert(value);
   switch (value) {
     case 'startup': {
       setup_country_list();
@@ -65,7 +67,7 @@ function get_logo_from_url(stakeholder) {
   switch (stakeholder) {
     case 'startup': {
       if ($('#startuplogourl').val()) {
-      } else 'Please Enter Valid Url';
+      } else alert('Please Enter Valid Url');
     }
   }
 }
@@ -94,7 +96,7 @@ function setup_startup_sector_list() {
 
 var user_data = {};
 var parent_stakeholder = {};
-function proceed_pressed() {
+export function proceed_pressed() {
   var data = {};
   $('#onboarding_form')
     .serializeArray()
@@ -105,6 +107,10 @@ function proceed_pressed() {
 
   if (is_submission_valid(data)) {
     console.log(user_data);
+    let email = user_data.email;
+    let password = user_data.password;
+    handleSignUp(email, password);
+
     save_user_data(user_data);
   }
 }
@@ -136,14 +142,6 @@ function is_submission_valid(data) {
 
         if (!data.brand_name) {
           alert('Enter Brand Name');
-          return false;
-        }
-        if (!data.email) {
-          alert('Enter Email Address');
-          return false;
-        }
-        if (!data.password) {
-          alert('Enter Password');
           return false;
         }
 
@@ -213,12 +211,7 @@ function is_submission_valid(data) {
   }
 }
 
-async function save_user_data(data) {
-  let user = {
-    id: '',
-    email: '',
-    password: '',
-  };
+function save_user_data(data) {
   data.id = moment().format('YYYY|MMM|DD,HH:mm A');
   data.status = 'Profile Created';
 
@@ -233,29 +226,9 @@ async function save_user_data(data) {
 
   data.id = data.stakeholder_type + '_' + data.id;
 
-  user.id = data.id;
-  user.email = data.email;
-  user.password = data.password;
-  user.stakeholder_type = data.stakeholder_type;
-  console.log(user);
-  $('#loader_modal').modal('show');
-  await $.ajax({
-    url: 'http://localhost:5001/portfoliomate-e14a8/us-central1/createUser',
-    type: 'POST',
-    data: user,
-    dataType: 'json',
-    success: function (data) {
-      console.log('NEW USER CREATED', data);
-    },
-    error: function (request, error) {
-      console.log('Request: ' + JSON.stringify(request));
-      console.error('Error: ' + error);
-    },
-  });
-
   console.log(data);
-
-  await $.ajax({
+  $('#loader_modal').modal('show');
+  $.ajax({
     url: 'https://us-central1-portfoliomate-e14a8.cloudfunctions.net/createStakeHolder',
     type: 'POST',
     data: data,
@@ -331,7 +304,7 @@ function open_stakeholder_profile(stakeholder_id) {
 
 //const upload = document.getElementsByClassName('upload_logo');
 
-function upload_image(input_id) {
+export function upload_image(input_id) {
   console.log('Upload Image');
   console.log(stakeholder_type, input_id);
   const file_input = document.getElementById(input_id);
@@ -368,10 +341,10 @@ function upload_image(input_id) {
   }
 }
 
-function populate_profile(stakeholder_type, parent) {
+export function populate_profile(stakeholder_type, parent) {
   //alert(stakeholder_type);
   console.log('populate_profile', parent);
-  var params = get_params_from_url();
+  //var params = get_params_from_url();
   switch (stakeholder_type) {
     case 'innovador': {
       console.log('parent', parent);
@@ -397,4 +370,22 @@ function populate_profile(stakeholder_type, parent) {
       break;
     }
   }
+}
+export function handleRegister(id) {
+  let x = id.substring(9);
+
+  //alert(this.value);
+  console.log(x);
+  $('#investor_type_id').hide();
+  $('#main_holder').show();
+  $('.stakeholder_details').hide();
+
+  var y = document.getElementById(x);
+  $('#stakeholder_type option[value= ' + x + ' ').prop('selected', true);
+  $('#stakeholder_type').val(x);
+
+  stakeholder_type = y;
+  y.style.display = 'block';
+
+  setup_onboarding_form(x);
 }
