@@ -2450,6 +2450,7 @@ function termSheetReceivedSave() {
 }
 
 function update_Status_to_approached(data, count) {
+  alert('hi');
   openApproachedModal(
     data.id,
     data.fundraiser.sub_engagements[count].status[
@@ -3188,11 +3189,14 @@ function updateEngagement(data) {
       );
       $('#loader_modal').modal('hide');
       alert('updated data');
-      location.reload();
+      location.replace(
+        '  ../accelerator_dashboard/stakeholder_management/modules/kanbanBoard/index2.html'
+      );
     },
     error: function (request, error) {
       $('#loader_modal').modal('hide');
-      location.reload();
+      window.location.href =
+        '  ../accelerator_dashboard/stakeholder_management/modules/kanbanBoard/index2.html';
       alert('Request: ' + JSON.stringify(request));
     },
   });

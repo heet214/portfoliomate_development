@@ -80,6 +80,9 @@ function populate_profile(stakeholder) {
     $('#check').show();
     $('#submit').hide();
     $('.add-people-card').show();
+    $('#v-pills-profile-tab').hide();
+    $('#v-pills-messages-tab').hide();
+    $('#v-pills-settings-tab').hide();
   } else {
     $('#check').hide();
     $('#submit').hide();
@@ -157,18 +160,19 @@ function populate_profile(stakeholder) {
 }
 
 function addperson() {
-  if (stakeholder_id) {
-    var type = 'innovador';
-    if ($('#add_new_person_input').val().length > 3) {
-      window.location.href =
-        '../../../../onboarding/?parent_id=' +
-        stakeholder_id +
-        '?stakeholder_type=' +
-        type +
-        '?name=' +
-        $('#add_new_person_input').val();
-    } else alert('Enter Valid Name');
-  } else alert('Try Again, In a Minute');
+  window.location = '/public/onboarding/index2.html';
+  // if (stakeholder_id) {
+  //   var type = 'innovador';
+  //   if ($('#add_new_person_input').val().length > 3) {
+  //     window.location.href =
+  //       '../../../../onboarding/?parent_id=' +
+  //       stakeholder_id +
+  //       '?stakeholder_type=' +
+  //       type +
+  //       '?name=' +
+  //       $('#add_new_person_input').val();
+  //   } else alert('Enter Valid Name');
+  // } else alert('Try Again, In a Minute');
 }
 
 function populate_people(people) {
@@ -616,21 +620,22 @@ function refferences(id) {
 }
 
 function addperson() {
-  if (stakeholder_id) {
-    var type = 'innovador';
-    var action = 'addperson';
-    if ($('#add_new_person_input').val().length > 3) {
-      window.location.href =
-        '../../../../onboarding/?parent_id=' +
-        stakeholder_id +
-        '?stakeholder_type=' +
-        type +
-        '?name=' +
-        $('#add_new_person_input').val() +
-        '?action=' +
-        action;
-    } else alert('Enter Valid Name');
-  } else alert('Try Again, In a Minute');
+  location.href = '../public/onboarding/index2.html';
+  // if (stakeholder_id) {
+  //   var type = 'innovador';
+  //   var action = 'addperson';
+  //   if ($('#add_new_person_input').val().length > 3) {
+  //     window.location.href =
+  //       '../../../../onboarding/?parent_id=' +
+  //       stakeholder_id +
+  //       '?stakeholder_type=' +
+  //       type +
+  //       '?name=' +
+  //       $('#add_new_person_input').val() +
+  //       '?action=' +
+  //       action;
+  //   } else alert('Enter Valid Name');
+  // } else alert('Try Again, In a Minute');
 }
 
 function addrefferences() {

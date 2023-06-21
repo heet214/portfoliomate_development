@@ -38,6 +38,9 @@ function setup_onboarding_form(value) {
       $('.startup').prop('disabled', true);
       break;
     }
+
+    case 'own-company': {
+    }
   }
 }
 

@@ -15,6 +15,9 @@ function setup_onboarding_form(value) {
       $('.fund-vc-pe').prop('disabled', true);
       $('.innovador').prop('disabled', true);
       $('.startup').prop('disabled', false);
+      $('.own-company').prop('disabled', true);
+      $('.investment_banker').prop('disabled', true);
+      $('.university_incubationr').prop('disabled', true);
       break;
     }
 
@@ -25,6 +28,9 @@ function setup_onboarding_form(value) {
       $('.fund-vc-pe').prop('disabled', false);
       $('.innovador').prop('disabled', true);
       $('.startup').prop('disabled', true);
+      $('.own-company').prop('disabled', true);
+      $('.investment_banker').prop('disabled', true);
+      $('.university_incubationr').prop('disabled', true);
       break;
     }
 
@@ -34,6 +40,47 @@ function setup_onboarding_form(value) {
       $('.fund-vc-pe').prop('disabled', true);
       $('.innovador').prop('disabled', false);
       $('.startup').prop('disabled', true);
+      $('.own-company').prop('disabled', true);
+      $('.investment_banker').prop('disabled', true);
+      $('.university_incubationr').prop('disabled', true);
+      break;
+    }
+
+    case 'own-company': {
+      setup_country_list();
+      $('#company_sector_div').hide();
+      $('.fund-vc-pe').prop('disabled', true);
+      $('.innovador').prop('disabled', true);
+      $('.startup').prop('disabled', true);
+      $('.own-company').prop('disabled', false);
+      $('.investment_banker').prop('disabled', true);
+      $('.university_incubationr').prop('disabled', true);
+      break;
+    }
+    case 'investment_banker': {
+      setup_country_list();
+      $('#company_sector_div').hide();
+      $('.fund-vc-pe').prop('disabled', true);
+      $('.innovador').prop('disabled', true);
+      $('.startup').prop('disabled', true);
+      $('.own-company').prop('disabled', true);
+      $('.investment_banker').prop('disabled', false);
+      $('.university_incubationr').prop('disabled', true);
+
+      break;
+    }
+
+    case 'university_incubationr': {
+      setup_country_list();
+      setup_startup_sector_list();
+      $('#company_sector_div').show();
+
+      $('.fund-vc-pe').prop('disabled', true);
+      $('.innovador').prop('disabled', true);
+      $('.startup').prop('disabled', true);
+      $('.own-company').prop('disabled', true);
+      $('.investment_banker').prop('disabled', true);
+      $('.university_incubationr').prop('disabled', false);
       break;
     }
   }

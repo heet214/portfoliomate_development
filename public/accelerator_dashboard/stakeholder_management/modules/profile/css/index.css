@@ -221,3 +221,8 @@ td {
   display: flex;
   justify-content: start;
 }
+
+#main-document_holder {
+  display: flex;
+  justify-content: space-around;
+}

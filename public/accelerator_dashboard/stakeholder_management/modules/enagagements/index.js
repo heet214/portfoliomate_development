@@ -610,7 +610,20 @@ function populateEngagement(data) {
   console.log('Yeh hai mere companies ke engagements', filtered_engagements);
 
   var table = $('#populate_exsisting_engagements');
+  //var main_table = $('#investor_table');
   table.empty();
+
+  if (filtered_engagements <= 0) {
+    document.getElementById('investor_table').deleteTHead();
+
+    return table.append(
+      '<td style="padding:1.5rem">' +
+        '<div class="no_enagements">' +
+        'NO CURRENT ENGAEMENTS' +
+        '</div>' +
+        '</td>'
+    );
+  }
   for (i = 0; i < filtered_engagements.length; i++) {
     table.append(
       // '<tr class="shadow mb-3">' +
@@ -652,6 +665,7 @@ function populateEngagement(data) {
         '</tr>'
     );
   }
+  filterEngagementDoc(filtered_engagements);
 }
 
 let single_engagement_object;
@@ -1195,7 +1209,7 @@ function toggleDocuments() {
   mandate_container.style.display = 'block';
   document_container.style.display = 'none';
 }
-// mrunal
+
 function toggleMandateCreateEng() {
   // mandate_container.style.display = 'none';
   document.getElementById('mandate-container-create-eng').style.display =
@@ -1712,9 +1726,9 @@ function populate_Mandate(data) {
           '</td>' +
           '</tr>'
       );
-      if (target[i].status == 'signed') {
+      if (target[i].status == 'Signed') {
         document.getElementById(i).style.color = 'green';
-      } else if (target[i].status == 'proposed') {
+      } else if (target[i].status == 'Proposed') {
         document.getElementById(i).style.color = 'orange';
       }
     }

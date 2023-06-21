@@ -112,26 +112,26 @@
                       title="Choose Stakeholder Type"
                       id="stakeholder_type"
                       class="selectpicker bm">
-                      <option value="1">Own Company</option>
+                      <option value="own-company">Own Company</option>
                       <option value="startup">Startup</option>
                       <option value="innovador">
                         Entreprenuer / Innovator
                       </option>
-                      <option value="univerisity/college/research_center">
-                        University/ College/ Research Center
+                      <option value="university_incubationr">
+                        University/ College/ Research Center/ Incubation Center
                       </option>
-                      <option value="incubation_center">
+                      <!-- <option value="incubation_center">
                         Incubation Center
-                      </option>
+                      </option> -->
                       <option value="fund-vc-pe">
                         Investor [ Fund / VC / PE ]
                       </option>
                       <option value="investment_banker">
                         Operator / Investment Banker
                       </option>
-                      <option value="venture_partner">
+                      <!-- <option value="venture_partner">
                         Operator / Venture Partner
-                      </option>
+                      </option> -->
                     </select>
 
                     <select
@@ -153,6 +153,94 @@
                         class="bm"
                         data-live-search="true"
                         title="Select Main Operating Sector"></select>
+                    </div>
+
+                    <div
+                      class="stakeholder_details"
+                      id="own-company"
+                      style="display: none">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"
+                            >Brand Name</span
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control own-company"
+                          name="brand_name"
+                          id="brand_name"
+                          placeholder="Brand Name" />
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"
+                            >LinkedIn</span
+                          >
+                        </div>
+                        <input
+                          type="url"
+                          class="own-company form-control"
+                          name="linkedIn"
+                          id="person_linkedin"
+                          placeholder="Enter LinkedIn" />
+                      </div>
+
+                      <span style="color: red; font-size: 12px">
+                        *Please remember your email and password as it will be
+                        used during login
+                      </span>
+                      <div class="credentials_group" id="credentials_group">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Email</span
+                            >
+                          </div>
+                          <input
+                            type="email"
+                            class="form-control own-company"
+                            name="email"
+                            id="email"
+                            placeholder="Email Address" />
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Password</span
+                            >
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control own-company"
+                            name="password"
+                            id="password"
+                            placeholder="Password" />
+                        </div>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="custom-file">
+                          <input
+                            type="file"
+                            class="custom-file-input own-company"
+                            id="logo_input" />
+                          <label
+                            class="custom-file-label"
+                            style="color: maroon"
+                            for="logo_input"
+                            >Upload Logo to Proceed</label
+                          >
+                        </div>
+                        <div
+                          class="input-group-append"
+                          style="cursor: pointer"
+                          onclick="upload_image('logo_input')"
+                          id="upload_logo">
+                          <span class="input-group-text" id="">Upload</span>
+                        </div>
+                      </div>
                     </div>
 
                     <div
@@ -355,6 +443,210 @@
                           class="input-group-append upload_logo"
                           style="cursor: pointer"
                           onclick="upload_image('fund_logo_input')"
+                          id="upload_logo">
+                          <span class="input-group-text" id="">Upload</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="stakeholder_details"
+                      id="university_incubationr"
+                      style="display: none">
+                      <div class="input-group mb-3">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"
+                              >University/Incubation/Research Name</span
+                            >
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control university_incubationr"
+                            name="university_incubationr_name"
+                            id="university_incubationr_name"
+                            placeholder="Enter Name" />
+                        </div>
+
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"
+                            >Website</span
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control university_incubationr"
+                          name="website"
+                          id="website"
+                          placeholder="Website" />
+                      </div>
+
+                      <span style="color: red; font-size: 12px">
+                        *Please remember your email and password as it will be
+                        used during login
+                      </span>
+                      <div class="credentials_group" id="credentials_group">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Email</span
+                            >
+                          </div>
+                          <input
+                            type="email"
+                            class="form-control university_incubationr"
+                            name="email"
+                            id="email"
+                            placeholder="Email Address" />
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Password</span
+                            >
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control university_incubationr"
+                            name="password"
+                            id="password"
+                            placeholder="Password" />
+                        </div>
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="custom-file">
+                          <input
+                            type="file"
+                            class="university_incubationr custom-file-input logo_input"
+                            id="person_image_input" />
+                          <label
+                            class="custom-file-label"
+                            style="color: maroon"
+                            for="logo_input"
+                            >Upload Profile Image to Proceed</label
+                          >
+                        </div>
+                        <div
+                          class="input-group-append upload_logo"
+                          style="cursor: pointer"
+                          onclick="upload_image('person_image_input')"
+                          id="upload_logo">
+                          <span class="input-group-text" id="">Upload</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="stakeholder_details"
+                      id="investment_banker"
+                      style="display: none">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"
+                            >Fund Organization Name</span
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control investment_banker"
+                          name="company_name"
+                          id="company_name"
+                          placeholder="Enter Name" />
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"
+                            >Name</span
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control investment_banker"
+                          name="name"
+                          id="person_name"
+                          placeholder="Enter Name" />
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"
+                            >LinkedIn</span
+                          >
+                        </div>
+                        <input
+                          type="url"
+                          class="investment_banker form-control"
+                          name="linkedIn"
+                          id="person_linkedin"
+                          placeholder="Enter LinkedIn" />
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1"
+                            >Website</span
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control investment_banker"
+                          name="website"
+                          id="website"
+                          placeholder="Website" />
+                      </div>
+                      <span style="color: red; font-size: 12px">
+                        *Please remember your email and password as it will be
+                        used during login
+                      </span>
+                      <div class="credentials_group" id="credentials_group">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Email</span
+                            >
+                          </div>
+                          <input
+                            type="email"
+                            class="form-control investment_banker"
+                            name="email"
+                            id="email"
+                            placeholder="Email Address" />
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"
+                              >Password</span
+                            >
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control investment_banker"
+                            name="password"
+                            id="password"
+                            placeholder="Password" />
+                        </div>
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="custom-file">
+                          <input
+                            type="file"
+                            class="investment_banker custom-file-input logo_input"
+                            id="person_image_input" />
+                          <label
+                            class="custom-file-label"
+                            style="color: maroon"
+                            for="logo_input"
+                            >Upload Profile Image to Proceed</label
+                          >
+                        </div>
+                        <div
+                          class="input-group-append upload_logo"
+                          style="cursor: pointer"
+                          onclick="upload_image('person_image_input')"
                           id="upload_logo">
                           <span class="input-group-text" id="">Upload</span>
                         </div>
@@ -577,11 +869,12 @@
         return true;
       }
       $('#stakeholder_type').on('change', function () {
-        //alert(this.value);
+        alert(this.value);
         $('.stakeholder_details').hide();
         var x = document.getElementById(this.value);
         stakeholder_type = x;
         x.style.display = 'block';
+        $('#stakeholder_type').val(this.value);
         setup_onboarding_form(this.value);
       });
 
